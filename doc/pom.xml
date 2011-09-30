@@ -100,7 +100,7 @@
                                 
                                 <!-- New stuff -->
                                 <copy
-                                    todir="${basedir}/target/docbkx/webhelp/trunk/developer/quantum-api-1.0">
+                                    todir="${basedir}/target/docbkx/webhelp/trunk/openstack-network/developer/quantum-api-1.0">
                                     <fileset
                                         dir="${basedir}/target/docbkx/webhelp/quantum-api-1.0/quantum-api-guide/">
                                         <include name="**/*" />
@@ -109,7 +109,7 @@
                                 <!--Moves PDFs to the needed placement -->
                                 <move failonerror="false"
                                     file="${basedir}/target/docbkx/pdf/quantum-api-1.0/quantum-api-guide.pdf"
-                                    tofile="${basedir}/target/docbkx/webhelp/trunk/developer/quantum-api-1.0/quantum-api-guide-trunk.pdf"/>
+                                    tofile="${basedir}/target/docbkx/webhelp/trunk/openstack-network/developer/quantum-api-1.0/quantum-api-guide-trunk.pdf"/>
 
                                 <!--Deletes leftover uneeded directories -->
                                 <delete
