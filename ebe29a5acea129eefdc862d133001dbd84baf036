@@ -1,0 +1,7 @@
+Verified+1: Jenkins
+Code-Review+2: Anne Gentle <anne@openstack.org>
+Submitted-by: Jenkins
+Submitted-at: Fri, 30 Sep 2011 21:14:29 +0000
+Reviewed-on: https://review.openstack.org/774
+Project: openstack/netconn-api
+Branch: refs/heads/master
