@@ -18,7 +18,6 @@
             xmlns="http://www.w3.org/1999/xhtml">
             <xsdxt:title>Open Stack Common API Schema Types 1.0</xsdxt:title>
             <xsdxt:link rev="index" href="extensions.xsd" />
-            <xsdxt:link rev="index" href="limits.xsd" />
             <xsdxt:link rev="index" href="version.xsd" />
         </xsd:appinfo>
         <xsd:documentation
@@ -37,17 +36,6 @@
                 xmlns="http://www.w3.org/1999/xhtml">
                 <p>
                     Types related to extensions.
-                </p>
-            </xsd:documentation>
-        </annotation>
-    </include>
-    <include schemaLocation="limits.xsd">
-        <annotation>
-            <xsd:documentation
-                xml:lang="EN"
-                xmlns="http://www.w3.org/1999/xhtml">
-                <p>
-                    Types related to rate and absolute limits.
                 </p>
             </xsd:documentation>
         </annotation>

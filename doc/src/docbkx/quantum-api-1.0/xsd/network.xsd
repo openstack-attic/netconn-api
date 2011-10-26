@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="../xslt/schema.xsl"?>
+
+<!-- (C) 2011 OpenStack LLC., All Rights Reserved -->
+
+<schema
+    elementFormDefault="qualified"
+    attributeFormDefault="unqualified"
+    xmlns="http://www.w3.org/2001/XMLSchema"
+    xmlns:csapi="http://docs.openstack.org/netconn/api/v1.0"
+    xmlns:xsdxt="http://docs.rackspacecloud.com/xsd-ext/v1.0"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:atom="http://www.w3.org/2005/Atom"
+    xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning"
+    targetNamespace="http://docs.openstack.org/netconn/api/v1.0"
+>
+  <annotation>
+    <xsd:appinfo
+        xml:lang="EN"
+        xmlns="http://www.w3.org/1999/xhtml">
+      <xsdxt:title>Servers and Related Types</xsdxt:title>
+      <xsdxt:link rel="index" href="api.xsd" />
+    </xsd:appinfo>
+    <xsd:documentation
+        xml:lang="EN"
+        xmlns="http://www.w3.org/1999/xhtml">
+      <p>
+        This schema file defines a <a href="#type_Server"
+        title="Server Type Definition"> Server</a> and all internal
+        entities related to servers including <a
+        href="#type_Addresses" title="Addresses type
+        definition">Addresses</a> and <a href="#type_File" title="File
+        type definition">Files</a>.
+      </p>
+    </xsd:documentation>
+  </annotation>
+
+  <!-- Import ATOM specific schema definitions -->
+  <import namespace="http://www.w3.org/2005/Atom" schemaLocation="atom/atom.xsd" />
+
+  <include schemaLocation="common.xsd">
+    <annotation>
+      <xsd:documentation
+          xml:lang="EN"
+          xmlns="http://www.w3.org/1999/xhtml">
+        <p>
+          Common types used by multiple entities and possibly spanning
+          several types of requests.
+        </p>
+      </xsd:documentation>
+    </annotation>
+  </include>
+  <include schemaLocation="faults.xsd">
+    <annotation>
+      <xsd:documentation
+          xml:lang="EN"
+          xmlns="http://www.w3.org/1999/xhtml">
+        <p>
+          All fault types.
+        </p>
+      </xsd:documentation>
+    </annotation>
+  </include>
+
+  <element name="network" type="csapi:Network">
+    <annotation>
+      <xsd:documentation
+          xml:lang="EN"
+          xmlns="http://www.w3.org/1999/xhtml">
+        <p>
+          The element defines a network
+        </p>
+      </xsd:documentation>
+      <xsd:appinfo>
+        <xsdxt:samples>
+          <xsdxt:sample>
+            <xsdxt:code type="application/xml" href="../samples/network-post-res.xml" />
+          </xsdxt:sample>
+          <xsdxt:sample>
+            <xsdxt:code type="application/json" href="../samples/network-post-res.json" />
+          </xsdxt:sample>
+        </xsdxt:samples>
+      </xsd:appinfo>
+    </annotation>
+  </element>
+ 
+  <element name="port" type="csapi:Port">
+    <annotation>
+      <xsd:documentation
+        xml:lang="EN"
+        xmlns="http://www.w3.org/1999/xhtml">
+        <p>
+          The element defines a port
+        </p>
+      </xsd:documentation>
+      <xsd:appinfo>
+        <xsdxt:samples>
+          <xsdxt:sample>
+            <xsdxt:code type="application/xml" href="../samples/port-post-res.xml" />
+          </xsdxt:sample>
+          <xsdxt:sample>
+            <xsdxt:code type="application/json" href="../samples/port-post-res.json" />
+          </xsdxt:sample>
+        </xsdxt:samples>
+      </xsd:appinfo>
+    </annotation>
+  </element>
+  
+  <!-- Complex Types -->
+  <complexType name="Network">
+    <attribute type="xsd:id" name="id" use="csapi:UUID"/>
+    <attribute name="name" use="xsd:string"/>
+    <anyAttribute namespace="##other" processContents="lax"/>
+  </complexType>
+  
+  <complexType name="NetworkForCreateOrUpdate">
+      <annotation>
+          <xsd:documentation
+              xml:lang="EN"
+              xmlns="http://www.w3.org/1999/xhtml">
+              <p>
+                  When creating or updateing a network the network must contain a
+                  name.
+              </p>
+          </xsd:documentation>
+      </annotation>
+      <complexContent>
+          <restriction base="csapi:network">
+              <attribute type="xsd:string" name="name" use="required"/>
+              <attribute type="csapi:UUID" name="id" use="prohibited"/>
+              <anyAttribute namespace="##other" processContents="lax"/>
+          </restriction>
+      </complexContent>
+  </complexType>
+
+  <complexType name="Port">
+    <attribute type="xsd:id" name="id" use="csapi:UUID"/>
+    <attribute name="state" use="xsd:string"/>
+    <anyAttribute namespace="##other" processContents="lax"/>
+  </complexType>
+  
+  <complexType name="PortForCreateOrUpdate">
+    <annotation>
+      <xsd:documentation
+        xml:lang="EN"
+        xmlns="http://www.w3.org/1999/xhtml">
+        <p>
+          When creating or updateing a port, the portmust contain a
+          name.
+        </p>
+      </xsd:documentation>
+    </annotation>
+    <complexContent>
+      <restriction base="csapi:network">
+        <attribute type="xsd:string" name="state" use="required"/>
+        <attribute type="csapi:UUID" name="id" use="prohibited"/>
+        <anyAttribute namespace="##other" processContents="lax"/>
+      </restriction>
+    </complexContent>
+  </complexType>
+  
+</schema>

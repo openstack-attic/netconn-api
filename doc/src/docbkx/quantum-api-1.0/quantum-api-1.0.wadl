@@ -1,0 +1,471 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- (C) 2011 OpenStack LLC., All Rights Reserved -->
+
+<!--*******************************************************-->
+<!--         Import Common XML Entities                    -->
+<!--                                                       -->
+<!--     You can resolve the entites with xmllint          -->
+<!--                                                       -->
+<!--        xmllint -noent os-compute-1.1.wadl             -->
+<!--*******************************************************-->
+<!DOCTYPE application [<!ENTITY % common  SYSTEM "common.ent">
+%common;]>
+
+<application xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns="http://wadl.dev.java.net/2009/02"
+    xmlns:osapi="http://docs.openstack.org/netconn/api/v1.0"
+    xmlns:common="http://docs.openstack.org/netconn/api/v1.0"
+    xmlns:atom="http://www.w3.org/2005/Atom"
+    xsi:schemaLocation="http://docs.openstack.org/netconn/api/v1.0
+    xsd/api.xsd
+    http://docs.openstack.org/common/api/v1.0
+    xsd/api-common.xsd
+    ">
+
+    <grammars>
+        <include href="xsd/api.xsd" />
+        <include href="xsd/api-common.xsd" />
+    </grammars>
+
+    <!--*******************************************************-->
+    <!--             All Resoruces                             -->
+    <!--*******************************************************-->
+
+    <resources base="https://quantum-api.api.openstack.com">
+        <resource id="version" type="#VersionDetails" path="v1.0">
+            <resource id="extensions" type="#ExtensionList" path="extensions">
+                <resource id="extension" path="{alias}">
+                    <param name="alias" style="template" type="xsd:string"/>
+                    <method href="#getExtension" />
+                </resource>
+            </resource>
+            <resource id="tenantID" path="{tenantId}">
+                <param name="tenantId" style="template" type="xsd:string"/>
+                <resource path="networks" type="#NetworksList">
+                    <resource path="detail" type="#DetailNetworksList"/>
+                    <method href="#createNetwork"/>
+                    <resource id="networkId" path="{networkId}">
+                        <param name="networkId" style="template" type="osapi:UUID"/>
+                        <method href="#getNetwork"/>
+                        <method href="#updateNetwork"/>
+                        <method href="#deleteNetwork"/>
+                        <resource id="Port" path="ports" type="#PortsList">
+                            <resource path="detail" type="#DetailPortsList"/>
+                            <method href="#createPort"/>
+                            <resource id="portId" path="{networkId}">
+                                <param name="portId" style="template" type="osapi:UUID"/>
+                                <method href="#getPort"/>
+                                <resource path="detail" type="#DetailPort"/>
+                                <method href="#updatePort"/>
+                                <method href="#deletePort"/>
+                                <resource path="attachment">
+                                    <method href="#showAttachment"/>
+                                    <method href="#plugAttachment"/>
+                                    <method href="#unplugAttachment"/>
+                                </resource>
+                             </resource>
+                        </resource>
+                    </resource>
+                </resource>
+            </resource>
+        </resource>
+    </resources>
+
+    <!--*******************************************************-->
+    <!--               Resource Types                          -->
+    <!--*******************************************************-->
+    <resource_type id="VersionDetails">
+        <method href="#versionDetails"/>
+    </resource_type>
+
+    <resource_type id="ExtensionList">
+        <doc xml:lang="EN" title="Extension List">
+            <p xmlns="http://www.w3.org/1999/xhtml">
+                A list of supported extensions.
+            </p>
+        </doc>
+        <method href="#listExtensions"/>
+    </resource_type>
+
+    <resource_type id="NetworksList">
+        <doc xml:lang="EN" title="Netowork List">
+            <p xmlns="http://www.w3.org/1999/xhtml">
+                A list of networks.
+            </p>
+        </doc>
+        <method href="#listNetworks"/>
+    </resource_type>
+
+    <resource_type id="DetailNetworksList">
+        <doc xml:lang="EN" title="Detailed Netowork List">
+            <p xmlns="http://www.w3.org/1999/xhtml">
+                A list of detailed networks.
+            </p>
+        </doc>
+        <method href="#listDetailNetworks"/>
+    </resource_type>
+    
+    <resource_type id="PortsList">
+        <doc xml:lang="EN" title="ports List">
+            <p xmlns="http://www.w3.org/1999/xhtml">
+                A list of ports.
+            </p>
+        </doc>
+        <method href="#listNetworks"/>
+    </resource_type>
+    
+    <resource_type id="DetailPortsList">
+        <doc xml:lang="EN" title="Detailed ports List">
+            <p xmlns="http://www.w3.org/1999/xhtml">
+                A list of detailed ports.
+            </p>
+        </doc>
+        <method href="#listDetailPorts"/>
+    </resource_type>
+ 
+    <resource_type id="DetailPort">
+        <doc xml:lang="EN" title="Get detailed port">
+            <p xmlns="http://www.w3.org/1999/xhtml">
+                Get detailed port.
+            </p>
+        </doc>
+        <method href="#getDetailPort"/>
+    </resource_type>
+ 
+    <!--*******************************************************-->
+    <!--               All Methods                             -->
+    <!--*******************************************************-->
+
+    <!-- Version -->
+    <method name="GET" id="versionDetails">
+        <doc xml:lang="EN" title="Version Details">
+            <p xmlns="http://www.w3.org/1999/xhtml">
+                Returns detailed information about this specific
+                version of the API.
+            </p>
+        </doc>
+        <response status="200 203">
+            <representation mediaType="application/xml" element="common:version">
+                <param name="location" style="plain" type="xsd:anyURI"
+                    required="true"
+                    path="/common:version/atom:link[@rel='self']/@href">
+                    <link resource_type="#VersionDetails" rel="self"/>
+                </param>
+            </representation>
+            <representation mediaType="application/json" />
+        </response>
+        <!-- Common Faults -->
+        &commonFaults;
+    </method>
+
+    <!-- Extensions -->
+    <method name="GET" id="listExtensions">
+        <doc xml:lang="EN" title="List Extensions">
+            <p xmlns="http://www.w3.org/1999/xhtml">
+                List all available extensions.
+            </p>
+        </doc>
+        <response status="200 203">
+            <representation mediaType="application/xml" element="common:extensions">
+                <param name="next" style="plain" type="xsd:anyURI"
+                    path="/common:extensions/atom:link[@rel='next']/@href">
+                    <link resource_type="#ExtensionList" rel="next"/>
+                </param>
+                <param name="previous" style="plain" type="xsd:anyURI"
+                    path="/common:extensions/atom:link[@rel='previous']/@href">
+                    <link resource_type="#ExtensionList" rel="previous"/>
+                </param>
+            </representation>
+            <representation mediaType="application/json" />
+        </response>
+        <!-- Common Faults -->
+        &commonFaults;
+    </method>
+    
+    <method name="GET" id="getExtension">
+        <doc xml:lang="EN" title="Get Extension Details">
+            <p xmlns="http://www.w3.org/1999/xhtml">
+                Get details about a specific extension.
+            </p>
+        </doc>
+        <response status="200 203">
+            <representation mediaType="application/xml" element="common:extension"/>
+            <representation mediaType="application/json" />
+        </response>
+        <!-- Common and GET Faults-->
+        &commonFaults;
+        &getFaults;
+    </method>
+    <!-- network -->
+    <method name="GET" id="listNetworks">
+        <doc xml:lang="EN" title="List networks">
+            <p xmlns="http://www.w3.org/1999/xhtml">
+                list networks.
+            </p>
+        </doc>
+        <response status="200 203">
+            <representation mediaType="application/xml"/>
+            <representation mediaType="application/json" />
+        </response>
+        <!-- Common and GET Faults-->
+        &commonFaults;
+        &getFaults;
+    </method>
+
+    <method name="GET" id="listDetailNetworks">
+        <doc xml:lang="EN" title="List networks">
+            <p xmlns="http://www.w3.org/1999/xhtml">
+                list detailed networks.
+            </p>
+        </doc>
+        <response status="200 203">
+            <representation mediaType="application/xml"/>
+            <representation mediaType="application/json" />
+        </response>
+        <!-- Common and GET Faults-->
+        &commonFaults;
+        &getFaults;
+    </method>
+
+    <method name="GET" id="getNetwork">
+        <doc xml:lang="EN" title="Get network">
+            <p xmlns="http://www.w3.org/1999/xhtml">
+                Get a network
+            </p>
+        </doc>
+        <response status="200 203">
+            <representation mediaType="application/xml"/>
+            <representation mediaType="application/json" />
+        </response>
+        <!-- Common and GET Faults-->
+        &commonFaults;
+        &getFaults;
+    </method>
+
+    <method name="POST" id="createNetwork">
+        <doc xml:lang="EN" title="Create Network">
+            <p xmlns="http://www.w3.org/1999/xhtml">
+               Create a network
+            </p>
+        </doc>
+        <request>
+            <representation mediaType="application/xml" element="network:server">
+                <param name="network" style="plain" required="true"
+                    type="osapi:NetworkForCreateOrUpdate"
+                    path="/osapi:server"/>
+            </representation>
+            <representation mediaType="application/json" />
+        </request>
+        <response status="200 203">
+            <representation mediaType="application/xml"/>
+            <representation mediaType="application/json" />
+        </response>
+        <!-- Common and GET Faults-->
+        &commonFaults;
+        &getFaults;
+    </method>
+
+    <method name="PUT" id="updateNetwork">
+        <doc xml:lang="EN" title="Update Network">
+            <p xmlns="http://www.w3.org/1999/xhtml">
+                Update a network
+            </p>
+        </doc>
+        <request>
+            <representation mediaType="application/xml" element="network:server">
+                <param name="network" style="plain" required="true"
+                    type="osapi:NetworkForCreateOrUpdate"
+                    path="/osapi:server"/>
+            </representation>
+            <representation mediaType="application/json" />
+        </request>
+        <response status="200 203">
+            <representation mediaType="application/xml"/>
+            <representation mediaType="application/json" />
+        </response>
+        <!-- Common and GET Faults-->
+        &commonFaults;
+        &getFaults;
+    </method>
+
+    <method name="DELETE" id="deleteNetwork">
+        <doc xml:lang="EN" title="Delete Network">
+            <p xmlns="http://www.w3.org/1999/xhtml">
+                Delete a network
+            </p>
+        </doc>
+        <response status="200 203">
+            <representation mediaType="application/xml"/>
+            <representation mediaType="application/json" />
+        </response>
+        <!-- Common and GET Faults-->
+        &commonFaults;
+        &getFaults;
+    </method>
+    <!-- port -->
+    <method name="GET" id="listPorts">
+        <doc xml:lang="EN" title="List ports">
+            <p xmlns="http://www.w3.org/1999/xhtml">
+                list ports.
+            </p>
+        </doc>
+        <response status="200 203">
+            <representation mediaType="application/xml"/>
+            <representation mediaType="application/json" />
+        </response>
+        <!-- Common and GET Faults-->
+        &commonFaults;
+        &getFaults;
+    </method>
+    
+    <method name="GET" id="listDetailPorts">
+        <doc xml:lang="EN" title="List ports">
+            <p xmlns="http://www.w3.org/1999/xhtml">
+                list detailed ports.
+            </p>
+        </doc>
+        <response status="200 203">
+            <representation mediaType="application/xml"/>
+            <representation mediaType="application/json" />
+        </response>
+        <!-- Common and GET Faults-->
+        &commonFaults;
+        &getFaults;
+    </method>
+    
+    <method name="GET" id="getPort">
+        <doc xml:lang="EN" title="Get port">
+            <p xmlns="http://www.w3.org/1999/xhtml">
+                Get a port
+            </p>
+        </doc>
+        <response status="200 203">
+            <representation mediaType="application/xml"/>
+            <representation mediaType="application/json" />
+        </response>
+        <!-- Common and GET Faults-->
+        &commonFaults;
+        &getFaults;
+    </method>
+
+    <method name="GET" id="getDetailPort">
+        <doc xml:lang="EN" title="Get detailed port">
+            <p xmlns="http://www.w3.org/1999/xhtml">
+                Get detailed port
+            </p>
+        </doc>
+        <response status="200 203">
+            <representation mediaType="application/xml"/>
+            <representation mediaType="application/json" />
+        </response>
+        <!-- Common and GET Faults-->
+        &commonFaults;
+        &getFaults;
+    </method>
+
+    <method name="POST" id="createPort">
+        <doc xml:lang="EN" title="Create Port">
+            <p xmlns="http://www.w3.org/1999/xhtml">
+                Create a port
+            </p>
+        </doc>
+        <request>
+            <representation mediaType="application/xml" element="network:port">
+                <param name="port" style="plain" required="true"
+                    type="osapi:PortForCreateOrUpdate"/>
+            </representation>
+            <representation mediaType="application/json" />
+        </request>
+        <response status="200 203">
+            <representation mediaType="application/xml"/>
+            <representation mediaType="application/json" />
+        </response>
+        <!-- Common and GET Faults-->
+        &commonFaults;
+        &getFaults;
+    </method>
+    
+    <method name="PUT" id="updatePort">
+        <doc xml:lang="EN" title="Update Port">
+            <p xmlns="http://www.w3.org/1999/xhtml">
+                Update a port
+            </p>
+        </doc>
+        <request>
+            <representation mediaType="application/xml" element="network:port">
+                <param name="port" style="plain" required="true"
+                    type="osapi:PortForCreateOrUpdate"/>
+            </representation>
+            <representation mediaType="application/json" />
+        </request>
+        <response status="200 203">
+            <representation mediaType="application/xml"/>
+            <representation mediaType="application/json" />
+        </response>
+        <!-- Common and GET Faults-->
+        &commonFaults;
+        &getFaults;
+    </method>
+    
+    <method name="DELETE" id="deletePort">
+        <doc xml:lang="EN" title="Delete Port">
+            <p xmlns="http://www.w3.org/1999/xhtml">
+                Delete a port
+            </p>
+        </doc>
+        <response status="200 203">
+            <representation mediaType="application/xml"/>
+            <representation mediaType="application/json" />
+        </response>
+        <!-- Common and GET Faults-->
+        &commonFaults;
+        &getFaults;
+    </method>
+    
+    <method name="GET" id="showAttachment">
+        <doc xml:lang="EN" title="Show attachment">
+            <p xmlns="http://www.w3.org/1999/xhtml">
+                Show Attachment for Port
+            </p>
+        </doc>
+        <response status="200 203">
+            <representation mediaType="application/xml"/>
+            <representation mediaType="application/json" />
+        </response>
+        <!-- Common and GET Faults-->
+        &commonFaults;
+        &getFaults;
+    </method>
+
+    <method name="PUT" id="plugAttachment">
+        <doc xml:lang="EN" title="Show attachment">
+            <p xmlns="http://www.w3.org/1999/xhtml">
+                Plug Attachment into Port
+            </p>
+        </doc>
+        <response status="200 203">
+            <representation mediaType="application/xml"/>
+            <representation mediaType="application/json" />
+        </response>
+        <!-- Common and GET Faults-->
+        &commonFaults;
+        &getFaults;
+    </method>
+    
+    <method name="DELETE" id="unplugAttachment">
+        <doc xml:lang="EN" title="Show attachment">
+            <p xmlns="http://www.w3.org/1999/xhtml">
+                Unplug Attachment from Port
+            </p>
+        </doc>
+        <response status="200 203">
+            <representation mediaType="application/xml"/>
+            <representation mediaType="application/json" />
+        </response>
+        <!-- Common and GET Faults-->
+        &commonFaults;
+        &getFaults;
+    </method>
+</application>
