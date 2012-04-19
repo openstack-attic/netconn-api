@@ -53,12 +53,12 @@
             </personname>
         </author>
         <copyright>
-            <year>2011</year>
+            <year>2011</year><year>2012</year>
             <holder>OpenStack</holder>
         </copyright>
         <releaseinfo>Quantum API v1.0</releaseinfo>
         <productname>OpenStack Quantum (virtual network service)</productname>
-        <pubdate>2011-09-22</pubdate>
+        <pubdate>2012-04-18</pubdate>
         <legalnotice role="apache2">
             <annotation>
                 <remark>Copyright details are filled in by the template.</remark>
@@ -68,34 +68,62 @@
             <para>This document is intended for software developers interested in developing
                 applications using the OpenStack Quantum Layer-2 Networking Service
                     (<abbrev>API</abbrev>). </para>
-        </abstract>
+        </abstract> 
+        <revhistory>
+            <revision><!-- ... continue addding more revisions here as you change this document using the markup shown below... -->
+                <date>2012-04-18</date>
+                <revdescription>
+                    <itemizedlist spacing="compact">
+                        <listitem>
+                            <para>Fixed incorrect mention of &PUT;
+                                verb in <xref linkend="Delete_Network"
+                                />. Verb changed to &DELETE;. </para>
+                        </listitem>
+                        <listitem>
+                            <para>Fixed formatting issues in request
+                                and response examples.</para>
+                        </listitem>
+                    </itemizedlist>
+                </revdescription>
+            </revision><revision><!-- ... continue addding more revisions here as you change this document using the markup shown below... -->
+                <date>2011-09-22</date>
+                <revdescription>
+                    <itemizedlist spacing="compact">
+                        <listitem>
+                            <para>Initial release. </para>
+                        </listitem>
+                        <listitem>
+                            <para>First edition of this document.</para>
+                        </listitem>
+                    </itemizedlist>
+                </revdescription>
+            </revision>
+        </revhistory>
     </info>
     <chapter xml:id="Overview-d1e71">
         <title>Overview</title>
-        <para>
-            Quantum is a project to provide "network connectivity as a
-            service" between devices managed by the OpenStack compute service.
-            For more information on Quantum and the other network-related
-            projects please check the Quantum home page
-            (<link xlink:href="http://wiki.openstack.org/Quantum"/>)
-            and the NetStack home page
-            (<link xlink:href="http://wiki.openstack.org/Network"/>).
-        </para>
-        <para> We welcome feedback, comments, and bug reports at <link
-            xlink:href="http://bugs.launchpad.net/Quantum">bugs.launchpad.net/Quantum</link>.
-        </para>
+        <para>Quantum is a project to provide "network connectivity as
+            a service" between devices managed by the OpenStack
+            compute service. For more information on Quantum and the
+            other network-related projects please check the Quantum
+            home page (<link
+                xlink:href="http://wiki.openstack.org/Quantum"/>) and
+            the NetStack home page (<link
+                xlink:href="http://wiki.openstack.org/Network"/>). </para>
+        <para>We welcome feedback, comments, and bug reports at <link
+                xlink:href="http://bugs.launchpad.net/Quantum"
+                >bugs.launchpad.net/Quantum</link>. </para>
         <section xml:id="Intended_Audience-d1e85">
             <title>Intended Audience</title>
-            <para> This Guide is intended to assist software
-            developers who want to develop applications using the
-            Quantum API. To use the information provided
-            here, you should first have a general understanding of the
-            OpenStack Quantum network service, the OpenStack compute
-            service (Nova), and the integration between the two.
-            The user should also have access to a plugin providing the
-            implementation for the API described in this document.
-            Two plugins are included in the Quantum distribution:
-			</para>
+            <para>This guide is intended to assist software developers
+                who want to develop applications using the Quantum
+                API. To use the information provided here, you should
+                first have a general understanding of the OpenStack
+                Quantum network service, the OpenStack compute service
+                (Nova), and the integration between the two. The user
+                should also have access to a plugin providing the
+                implementation for the API described in this document.
+                Two plugins are included in the Quantum distribution: </para>
             <itemizedlist spacing="compact">
                 <listitem>
                     <para>Openvswitch - Implementing Quantum API with Open vSwitch</para>
@@ -122,6 +150,13 @@
         </section>
         <section xml:id="Document_Change_History-d1e118">
             <title>Document Change History</title>
+            <para>This version of the document replaces and obsoletes all
+                previous versions. The following table describes the most
+                recent changes:</para>
+            <?rax revhistory?><!-- Table generated in output from revision element in the book element -->
+        </section>
+        <?hard-pagebreak?>
+        <!-- <title>Document Change History</title>
             <para>The most recent changes are described in the table below:</para>
             <informaltable rules='all'>
                     <thead>
@@ -132,7 +167,24 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td colspan="1" align="center">September 22, 2011</td>
+                            <td colspan="1">April 18, 2012</td>
+                            <td colspan="4">
+                                <itemizedlist spacing="compact">
+                                    <listitem>
+                                        <para>Corrected verb in
+                                   delete networks API operation to
+                                   DELETE from PUT. </para>
+                                    </listitem>
+                                    <listitem>
+                                        <para>
+                                            Cleaned up miscellaneous code formatting issues.
+                                        </para>
+                                    </listitem>
+                                </itemizedlist>
+                            </td>
+                        </tr> 
+                        <tr>
+                            <td colspan="1">September 22, 2011</td>
                             <td colspan="4">
                                  <itemizedlist spacing="compact">
                                      <listitem>
@@ -146,7 +198,7 @@
                     </tbody>
             </informaltable>
         </section>
-        <?hard-pagebreak?>
+        <?hard-pagebreak?> -->
         <section xml:id="Glossary">
         	<title>Glossary</title>
         	<informaltable rules='all'>
@@ -158,75 +210,68 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td colspan="1" align="center">
-                            Entity
+                            <td colspan="1" align="center">Entity
                             </td>
-                            <td colspan="4">
-                            A generic term for any piece of hardware or
-                            software desiring to connect to the network
-                            services provided by Quantum. An entity may
-                            make use of Quantum by implementing a VIF.
-                            </td>
+                            <td colspan="4">Any piece of hardware or
+                            software that wants to connect to the
+                            network services provided by Quantum. An
+                            entity can use Quantum network services by
+                            implementing a VIF. </td>
                         </tr>
                         <tr>
-                            <td colspan="1" align="center" bgcolor="#4F91BD">
-                            Layer-2 network
+                           <!-- <td colspan="1" align="center" bgcolor="#4F91BD"> --> <td colspan="1" align="center">Layer-2 network
                             </td>
-                            <td colspan="4" bgcolor="#4F91BD">
-                            A virtual Ethernet network managed by the Quantum
-                            service. For the time being, Quantum will manage
-                            only Ethernet networks.
-                            </td>
+                           <!-- <td colspan="4" bgcolor="#4F91BD"> --><td colspan="4">A
+                            virtual Ethernet network managed by the
+                            Quantum service. For the time being,
+                            Quantum will manage only Ethernet
+                            networks. </td>
                         </tr>
                         <tr>
                             <td align="center">
                             Network
                             </td>
-                            <td colspan="4">
-                            A virtual network providing connectivity
-                            between entities, i.e.: collection of virtual
-                            ports sharing network connectivity. In the
-                            Quantum terminology, a network is always a Layer-2
-                            network.
-                            </td>
+                            <td colspan="4">A virtual network
+                            providing connectivity between entities
+                            such as, a collection of virtual ports
+                            sharing network connectivity. In the
+                            Quantum terminology, a network is always a
+                            Layer-2 network. </td>
                         </tr>
                         <tr>
-                            <td align="center" bgcolor="#4F91BD">
+                            <!-- <td align="center" bgcolor="#4F91BD"> --> <td align="center">
                             Plugin
                             </td>
-                            <td colspan="4" bgcolor="#4F91BD">
-                            Software component providing the actual
-                            implementation for Quantum APIs.
-                            </td>
+                           <!-- <td colspan="4" bgcolor="#4F91BD"> -->
+                            <td colspan="4">Software component that
+                            provides the actual implementation for
+                            Quantum APIs. </td>
                         </tr>
                         <tr>
                             <td align="center">
                             Port
                             </td>
-                            <td colspan="4">
-                            A port on the virtual network switch represented
-                            by a Quantum virtual Layer-2 network.
-                            </td>
+                            <td colspan="4">A port on the virtual
+                            network switch represented by a Quantum
+                            virtual Layer-2 network. </td>
                         </tr>
                         <tr>
-                            <td align="center" bgcolor="#4F91BD">
+                          <!--  <td align="center" bgcolor="#4F91BD"> -->
+                            <td align="center">
                             VIF
                             </td>
-                            <td colspan="4" bgcolor="#4F91BD">
-                            A Virtual network InterFace plugged into a port of a Quantum
-                            network; typically a virtual network interface
-                            belonging to a VM
-                            </td>
+                           <!-- <td colspan="4" bgcolor="#4F91BD"> --> <td colspan="4">A Virtual network InterFace plugged into a port of a
+                            Quantum network. Typically a virtual
+                            network interface belonging to a VM.</td>
                         </tr>
                         <tr>
                             <td align="center">
                             Attachment
                             </td>
-                            <td colspan="4">
-                            Association of an interface identifier to a logical
-                            port, which represent 'plugging' an interface into
-                            a port.
-                            </td>
+                            <td colspan="4">The association of an
+                            interface identifier to a logical port,
+                            which represents 'plugging' an interface
+                            into a port. </td>
                         </tr>
                     </tbody>
         	</informaltable>
@@ -234,32 +279,27 @@
         <?hard-pagebreak?>
 	    <section xml:id="Theory">
 	    	<title>Theory of Operation</title>
-	    	<para>
-			This section presents the objects and semantics of Quantum’s
-			logical model.
-			</para><para>
-			Quantum abstracts the physical implementation of the network,
-			allowing plugins to configure and manage physical resources.
-			Quantum is a standalone service, in that it requires no other
-			project within OpenStack to function correctly.
-			</para><para>
+	    	<para>This section presents the objects and semantics of
+                Quantum’s logical model. </para><para>Quantum abstracts the physical implementation of the network,
+                allowing plugins to configure and manage physical
+                resources. Quantum is a standalone service, in that it
+                requires no other project within OpenStack to function
+                correctly. </para><para>
 			Further Quantum is agnostic to the entities it allows to connect.
 			While we anticipate Nova instances will be a heavy user of
 			Quantum, any entity can make use of any Quantum created network
 			so long as it provides an appropriate interfaces for exposing VIFs
 			to Quantum itself.
-			</para><para>
-			Virtual Interfaces(VIF) in the logical model are analogous to
-			physical network interface cards (NICs). VIFs are typically
-			owned a managed by an external service; for instance when
-			Quantum is used for building OpenStack networks,
-			VIFs would be created, owned, and managed in Nova.
-			VIFs are connected to Quantum networks via ports.
-			A port is analogous to a port on a network switch, and it
-			has an administrative state. Quantum API
-			allows for controlling the administrative state of the port,
-			which can be either 'DOWN' or 'ACTIVE'.
-			</para><para>
+			</para><para> Virtual Interfaces (VIF) in the logical model are analogous to
+                physical network interface cards (NICs). VIFs are
+                typically owned a managed by an external service; for
+                instance when Quantum is used for building OpenStack
+                networks, VIFs would be created, owned, and managed in
+                Nova. VIFs are connected to Quantum networks via
+                ports. A port is analogous to a port on a network
+                switch, and it has an administrative state. Quantum
+                API allows for controlling the administrative state of
+                the port, which can be either 'DOWN' or 'ACTIVE'. </para><para>
 			When a VIF is attached to a port the Quantum API creates
 			an attachment object, which specifies the fact that a VIF with a
 			given identifier is plugged into the port.
@@ -284,8 +324,7 @@
         To use the Quantum API effectively, developers should understand
         the concepts introduced in this chapter.
         </para>
-        <section xml:id="Network">
-            <title>Network</title>
+        <section xml:id="Network"><title>Network</title>
             <para>
 			Each tenant can define one or more networks. A network is a virtual
 			isolated layer-2 broadcast domain reserved to the tenant.
@@ -293,8 +332,7 @@
 			virtual interfaces into these ports.
 			</para>
         </section>
-        <section xml:id="Port">
-            <title>Port</title>
+        <section xml:id="Port"><title>Port</title>
             <para>
 			A port represents a virtual switch port on a logical
 			network switch where all the interfaces attached to a given
@@ -305,8 +343,7 @@
 			down will not be able to receive/send traffic.
 			</para>
         </section>
-        <section xml:id="Attachment">
-            <title>Attachment</title>
+        <section xml:id="Attachment"><title>Attachment</title>
             <para>
 			An attachment represents an interface plugged into a logical
 			port. At any time at most one attachment can be plugged into a
@@ -388,18 +425,16 @@
         </section>
         <section xml:id="Request_Response_Types">
             <title>Request/Response Types</title>
-            <para>
-                The OpenStack Quantum  API supports both the JSON and XML
-                data serialization formats.
-                The format for both the request and the response can be
-                specified either using the <code>Content-Type</code> header,
-				the <code>Accept</code> header or adding an <code>.xml</code>
-				or <code>.json</code> extension to the request  URI.
-            </para><para>
-                If conflicting formats are specified in headers and/or format
-                extensions, the latter takes precedence. XML is currently
-                the default format for both requests and responses.
-            </para>
+            <para>The OpenStack Quantum API supports both the JSON and
+                XML data serialization formats. The format for both
+                the request and the response can be specified either
+                using the <code>Content-Type</code> header, the
+                    <code>Accept</code> header or adding an
+                    <code>.xml</code> or <code>.json</code> extension
+                to the request URI. </para><para>If conflicting formats are specified in headers and/or format
+                extensions, the latter takes precedence. XML is
+                currently the default format for both requests and
+                responses. </para>
             <table rules="all">
                 <caption>JSON and XML Response Formats</caption>
                 <thead>
@@ -427,63 +462,62 @@
             </table>
             <example>
                 <title>Request/Response with Headers: JSON</title>
-                <literallayout class="monospaced">
-POST			/v1.0/tenants/tenantX/networks HTTP/1.1
-Host			127.0.0.1:9696
-Accept			text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
-Content-Type	application/json; charset=UTF-8
-Content-Length	30
+               <para>Request:</para> <literallayout class="monospaced">
+POST /v1.0/tenants/tenantX/networks HTTP/1.1
+Host 127.0.0.1:9696
+Accept text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Content-Type application/json; charset=UTF-8
+Content-Length 30
                 </literallayout>
-                <programlisting language="javascript"><xi:include href="samples/networks-post-req.json" parse="text"/></programlisting>
-                <literallayout class="monospaced">
+                <programlisting language="json"><xi:include href="samples/networks-post-req.json" parse="text"/></programlisting>
+               <para>Response:</para> <literallayout class="monospaced">
 HTTP/1.1 200 Accepted
-Content-Type	application/json
-Content-Length	59
+Content-Type application/json
+Content-Length 59
                 </literallayout>
-                <programlisting language="javascript"><xi:include href="samples/networks-post-res.json" parse="text"/></programlisting>
+                <programlisting language="json"><xi:include href="samples/networks-post-res.json" parse="text"/></programlisting>
             </example>
-            <para>
-                Notice, in the above example, that both the
-                <code>Content-Type</code> and the <code>Accept</code>
-                headers are specified. The
-                <code>Content-Type</code> header always takes precedence
-                over the <code>Accept</code> header. The value of the latter
-                header is therefore ignored in the example above.
-            </para>
+            <para>Notice, in the above example, that both the
+                    <code>Content-Type</code> and the
+                    <code>Accept</code> headers are specified. The
+                    <code>Content-Type</code> header always takes
+                precedence over the <code>Accept</code> header. The
+                value of the latter header is therefore ignored in the
+                example above. </para>
             <example>
                 <title>Request/Response with Headers: XML</title>
-                <literallayout class="monospaced">
-POST 			/v1.0/tenants/tenantX/networks HTTP/1.1
-Host			127.0.0.1:9696
-Accept			text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
-Content-Type	application/xml; charset=UTF-8
-Content-Length	22
+               <para>Request:</para> <literallayout class="monospaced">
+POST /v1.0/tenants/tenantX/networks HTTP/1.1
+Host 127.0.0.1:9696
+Accept text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Content-Type application/xml; charset=UTF-8
+Content-Length 22
                 </literallayout>
                 <programlisting language="xml"><?db-font-size 80%?><xi:include href="samples/networks-post-req.xml" parse="text"/></programlisting>
-                <literallayout class="monospaced">
+               <para>Response:</para> <literallayout class="monospaced">
 HTTP/1.1 200 Accepted
-Content-Type	application/xml
-Content-Length	52
+Content-Type application/xml
+Content-Length 52
                 </literallayout>
-                <programlisting language="javascript"><xi:include href="samples/networks-post-res.xml" parse="text"/></programlisting>
+                <programlisting language="xml"><xi:include href="samples/networks-post-res.xml" parse="text"/></programlisting>
             </example>
             <?hard-pagebreak?>
             <example>
                 <title>Request/Response with Extensions: JSON</title>
-                <literallayout class="monospaced">
-POST 			/v1.0/tenants/tenantX/networks.json HTTP/1.1
-Host			127.0.0.1:9696
-Accept			text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
-Content-Type	application/json; charset=UTF-8
-Content-Length	30
+             <para>Request:</para>   <literallayout class="monospaced">
+POST /v1.0/tenants/tenantX/networks.json HTTP/1.1
+Host 127.0.0.1:9696
+Accept text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Content-Type application/json; charset=UTF-8
+Content-Length 30
                 </literallayout>
-                <programlisting language="javascript"><xi:include href="samples/networks-post-req.json" parse="text"/></programlisting>
-                <literallayout class="monospaced">
+                <programlisting language="json"><xi:include href="samples/networks-post-req.json" parse="text"/></programlisting>
+            <para>Response:</para>    <literallayout class="monospaced">
 HTTP/1.1 200 Accepted
-Content-Type	application/json
-Content-Length	59
+Content-Type application/json
+Content-Length 59
                 </literallayout>
-                <programlisting language="javascript"><xi:include href="samples/networks-post-res.json" parse="text"/></programlisting>
+                <programlisting language="json"><xi:include href="samples/networks-post-res.json" parse="text"/></programlisting>
             </example>
         </section>
         <section xml:id="Async_behaviour">
@@ -528,19 +562,19 @@ Content-Length	59
             <title>Versions</title>
             <para>
                 The Quantum API uses a URI based versioning scheme.
-				The first element of the URI path contains the target
-				version identifier.
-            <example>
-                <title>Request with URI versioning</title>
-                <literallayout class="monospaced">
-GET 			/v1.0/tenants/tenantX/networks HTTP/1.1
-Host			127.0.0.1:9696
-Accept			text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
-Content-Type	application/xml; charset=UTF-8
-Content-Length	22
+                The first element of the URI path contains the target
+                version identifier.
+                <example>
+                    <title>Request with URI versioning</title>
+                    <literallayout class="monospaced">
+GET /v1.0/tenants/tenantX/networks HTTP/1.1
+Host 127.0.0.1:9696
+Accept text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Content-Type application/xml; charset=UTF-8
+Content-Length 22
                 </literallayout>
-            </example>
-             </para>
+                </example>
+            </para>
             <para>
                 Available API versions can be retrieved
                 by performing a &GET; on the root URL
@@ -550,24 +584,24 @@ Content-Length	22
             <example>
                 <title>Versions List Request/Response (XML)</title>
                 <literallayout class="monospaced">
-GET 			/ HTTP/1.1
-Host			127.0.0.1:9696
-Content-Type	application/xml
+GET / HTTP/1.1
+Host 127.0.0.1:9696
+Content-Type application/xml
                 </literallayout>
                 <programlisting language="xml"><xi:include href="samples/versions.xml" parse="text"/>
                 </programlisting>
             </example>
             <?hard-pagebreak?>
-
-
+            
+            
             <example>
                 <title>Version List Request/Response: JSON</title>
                 <literallayout class="monospaced">
-GET 			/ HTTP/1.1
-Host			127.0.0.1:9696
-Content-Type	application/json
+GET / HTTP/1.1
+Host 127.0.0.1:9696
+Content-Type application/json
                 </literallayout>
-                <programlisting language="javascript"><xi:include
+                <programlisting language="json"><xi:include
                 href="samples/versions.json" parse="text"/></programlisting>
             </example>
         </section>
@@ -610,14 +644,12 @@ Content-Type	application/json
             </para>
             <example>
                 <title>Extensions Response: XML</title>
-                <programlisting language="xml"><?db-font-size 90%?>
-<xi:include href="samples/extensions.xml" parse="text"/>
-                </programlisting>
+                <programlisting language="xml"><?db-font-size 90%?><xi:include href="samples/extensions.xml" parse="text"/></programlisting>
             </example>
             <?hard-pagebreak?>
             <example>
                 <title>Extensions Response: JSON</title>
-                <programlisting language="javascript"><?db-font-size 90%?><xi:include
+                <programlisting language="json"><?db-font-size 90%?><xi:include
                 href="samples/extensions.json" parse="text"/></programlisting>
             </example>
 			<para>
@@ -626,14 +658,13 @@ Content-Type	application/json
 	            method of checking if an extension is available as an unavailable extension will issue an
 	            itemNotFound (404) response.
 		    </para>
-            <para>
-            <note>
-				Existing core API resources can be extended with new actions or extra data in request/response of existing actions.
+           
+            <note><para>Existing core API resources can be extended with new actions or extra data in request/response of existing actions.
 				Further new resources can also be added as extensions.
 				Extensions usually have vendor specific tags that prevent clash with other extensions.
 				Availability of an extension will vary with deployments and the specific plugin in use.
-            </note>
-            </para>
+            </para></note>
+            
             <important>
                 <para>
                     Applications should be prepared to ignore response
@@ -660,8 +691,7 @@ Content-Type	application/json
                 </example>
                 <example>
                     <title>"Network not found" fault Response (XML)</title>
-                    <programlisting language="javascript"><xi:include href="samples/fault.json" parse="text"/>
-                    </programlisting>
+                    <programlisting language="json"><xi:include href="samples/fault.json" parse="text"/>                   </programlisting>
                 </example>
                 <para> The error code is returned in the body of the response for convenience. The
                 message section returns a human-readable message that is appropriate for display to
@@ -686,82 +716,71 @@ Content-Type	application/json
                     </thead>
                     <tbody>
                         <tr>
-                            <td bgcolor="#4F91BD">BadRequest</td>
-                            <td bgcolor="#4F91BD">400</td>
-                            <td bgcolor="#4F91BD" colspan="2">
-                            Malformed request body.
-                            The Quantum service is unable to parse the contents of the
-                            request body.
-                            </td>
+                            <!-- <td bgcolor="#4F91BD"> --><td>BadRequest</td>
+                           <!-- <td bgcolor="#4F91BD"> --><td>400</td>
+                           <!-- <td bgcolor="#4F91BD" colspan="2"> --><td colspan="2">Malformed request body. The Quantum service is unable
+                            to parse the contents of the request body. </td>
                         </tr>
                         <tr>
                             <td>Unauthorized</td>
                             <td>401</td>
-                            <td colspan="2">
-                            User has not provided authentication credentials.
-                            If authentication is provided by the Keystone identity
-                            service, this might mean that either no authentication
-                            token has been supplied in the request, or that the
-                            token itself is either invalid or expired.
-                            </td>
+                            <td colspan="2">User has not provided
+                            authentication credentials. If
+                            authentication is provided by the Keystone
+                            identity service, this might mean that
+                            either no authentication token has been
+                            supplied in the request, or that the token
+                            itself is either invalid or expired. </td>
                         </tr>
                         <tr>
-                            <td bgcolor="#4F91BD">Forbidden</td>
-                            <td bgcolor="#4F91BD">403</td>
-                            <td bgcolor="#4F91BD" colspan="2">
-                            The user does not have the necessary rights
-                            to execute the requested operation
-                            </td>
+                            <!-- <td bgcolor="#4F91BD"> --><td>Forbidden</td>
+                           <!-- <td bgcolor="#4F91BD"> --> <td>403</td>
+                           <!-- <td bgcolor="#4F91BD" colspan="2"> --> <td colspan="2">The user does not have the necessary rights to
+                            execute the requested operation. </td>
                         </tr>
                         <tr>
                             <td>ItemNotFound</td>
                             <td>404</td>
-                            <td colspan="2">
-                            The requested resource does not exist on the Quantum API server
-                            </td>
+                            <td colspan="2">The requested resource
+                            does not exist on the Quantum API server. </td>
                         </tr>
                         <tr>
-                            <td bgcolor="#4F91BD">NetworkNotFound</td>
-                            <td bgcolor="#4F91BD">420</td>
-                            <td bgcolor="#4F91BD" colspan="2">
-                            The specified network has not been created or has been removed.
-                            </td>
+                            <!-- <td bgcolor="#4F91BD"> --><td>NetworkNotFound</td>
+                           <!-- <td bgcolor="#4F91BD"> --><td>420</td>
+                           <!-- <td bgcolor="#4F91BD" colspan="2"> --> <td colspan="2">The specified network has not been created or has
+                            been removed. </td>
                         </tr>
                         <tr>
                             <td>NetworkInUse</td>
                             <td>421</td>
-                            <td colspan="2">
-                            The specified network has attachments plugged into one or more of its ports.
-                            </td>
+                            <td colspan="2">The specified network has
+                            attachments plugged into one or more of
+                            its ports. </td>
                         </tr>
                         <tr>
-                            <td bgcolor="#4F91BD">PortNotFound</td>
-                            <td bgcolor="#4F91BD">430</td>
-                            <td bgcolor="#4F91BD" colspan="2">
-                            The specified port has not been created or has been removed.
-                            </td>
+                           <!-- <td bgcolor="#4F91BD"> --><td>PortNotFound</td>
+                           <!-- <td bgcolor="#4F91BD"> --><td>430</td>
+                           <!-- <td bgcolor="#4F91BD" colspan="2"> --><td colspan="2">The specified port has not been created or has been
+                            removed. </td>
                         </tr>
                         <tr>
                             <td>RequestedStateInvalid</td>
                             <td>431</td>
-                            <td colspan="2">
-                            Indicates a request to change port to an administrative
-                            state not currently supported.
-                            </td>
+                            <td colspan="2">Indicates a request to
+                            change port to an administrative state not
+                            currently supported. </td>
                         </tr>
 						<tr>
-                            <td bgcolor="#4F91BD">PortInUse</td>
-                            <td bgcolor="#4F91BD">432</td>
-                            <td bgcolor="#4F91BD" colspan="2">
-							The specified port cannot be removed as there is an attachment plugged in it.
-                            </td>
+                           <!-- <td bgcolor="#4F91BD"> --> <td>PortInUse</td>
+                          <!-->  <td bgcolor="#4F91BD"> --> <td>432</td>
+                           <!-- <td bgcolor="#4F91BD" colspan="2"> --><td colspan="2">The specified port cannot be removed as there is an
+                            attachment plugged in it. </td>
                         </tr>
 						<tr>
                             <td>AlreadyAttached</td>
                             <td>440</td>
-                            <td colspan="2">
-							Attachment is already plugged into another port.
-                            </td>
+                            <td colspan="2">Attachment is already
+                            plugged into another port. </td>
                         </tr>
                     </tbody>
                 </table>
@@ -795,31 +814,25 @@ Content-Type	application/json
                     <tbody>
                         <tr>
                             <td colspan="1">&GET;</td>
-                            <td colspan="2">/tenants/<emphasis>{tenant-id}</emphasis>/networks</td>
-                            <td colspan="3">
-                            List summary of networks configured in Quantum for
-                            a given tenant, identified by tenant-id
-                            </td>
+                            <td colspan="2">/tenants/<parameter>tenant-id</parameter>/networks</td>
+                            <td colspan="3">Lists summary of networks
+                                configured in Quantum for a given
+                                tenant, identified by
+                                   <parameter>tenant-id</parameter>.</td>
                         </tr>
                     </tbody>
                 </informaltable>
-                <simpara>
-                    Normal Response Code(s):
-                    <returnvalue>200</returnvalue>
+                <simpara>Normal Response Code(s):
+                        <returnvalue>200</returnvalue>
                 </simpara>
-                <simpara>
-                    Error Response Code(s):
-                    Unauthorized (<errorcode>401</errorcode>),
-                    Forbidden (<errorcode>403</errorcode>)
-                </simpara>
-                <para>
-                    This operation returns the list of all networks
+                <simpara>Error Response Code(s): Unauthorized
+                        (<errorcode>401</errorcode>), Forbidden
+                        (<errorcode>403</errorcode>) </simpara>
+                <para>This operation returns the list of all networks
                     currently defined in Quantum for the tenant
-                    specified in the request URI.
-                    The returned list will provide the unique identifier
-                    of each network configured for the tenant specified
-                    in the resource URI.
-                </para>
+                    specified in the request URI. The list provides
+                    the unique identifier of each network configured
+                    for the tenant specified in the resource URI. </para>
                 <note>
                     <para>
                         <property>TenantId</property> is a unique tenant
@@ -832,23 +845,17 @@ Content-Type	application/json
                 <example>
                     <title>Networks List Request/Response (XML)</title>
                     <para>Request:</para>
-                <literallayout class="monospaced">
-GET /tenants/XYZ/networks.xml
-                </literallayout>
+                <literallayout class="monospaced">GET /tenants/XYZ/networks.xml                </literallayout>
                     <para>Response:</para>
-                    <programlisting language="xml"><xi:include href="samples/networks-get-res.xml" parse="text"/>
-                    </programlisting>
+                    <programlisting language="xml"><xi:include href="samples/networks-get-res.xml" parse="text"/></programlisting>
                 </example>
             	<?hard-pagebreak?>
                 <example>
                     <title>Networks List Request/Response (JSON)</title>
                     <para>Request:</para>
-	                <literallayout class="monospaced">
-GET /tenants/XYZ/networks.json
-	                </literallayout>
+	                <literallayout class="monospaced">GET /tenants/XYZ/networks.json	                </literallayout>
                     <para>Response:</para>
-                    <programlisting language="javascript"><xi:include href="samples/networks-get-res.json" parse="text"/>
-                    </programlisting>
+                    <programlisting language="json"><xi:include href="samples/networks-get-res.json" parse="text"/></programlisting>
                 </example>
             </section>
             <section xml:id="List_Networks_Detail">
@@ -864,12 +871,11 @@ GET /tenants/XYZ/networks.json
                     <tbody>
                         <tr>
                             <td colspan="1">&GET;</td>
-                            <td colspan="2">/tenants/<emphasis>{tenant-id}</emphasis>/networks/detail</td>
-                            <td colspan="3">
-                            List more detailed information about networks
-                            configured in Quantum for a given tenant,
-                            identified by tenant-id
-                            </td>
+                            <td colspan="2">/tenants/<parameter>tenant-id</parameter>/networks/detail</td>
+                            <td colspan="3">Lists more detailed
+                                information about networks configured
+                                in Quantum for a given tenant,
+                                identified by <parameter>tenant-id</parameter>. </td>
                         </tr>
                     </tbody>
                 </informaltable>
@@ -891,9 +897,7 @@ GET /tenants/XYZ/networks.json
                 <example>
                     <title>Networks List Request/Response (XML)</title>
                     <para>Request:</para>
-                <literallayout class="monospaced">
-GET /tenants/XYZ/networks/detail.xml
-                </literallayout>
+                <literallayout class="monospaced">GET /tenants/XYZ/networks/detail.xml                </literallayout>
                     <para>Response:</para>
                     <programlisting language="xml"><xi:include href="samples/networks-get-detail-res.xml" parse="text"/>
                     </programlisting>
@@ -902,12 +906,9 @@ GET /tenants/XYZ/networks/detail.xml
                 <example>
                     <title>Networks List Request/Response (JSON)</title>
                     <para>Request:</para>
-	                <literallayout class="monospaced">
-GET /tenants/XYZ/networks/detail.json
-	                </literallayout>
+	                <literallayout class="monospaced">GET /tenants/XYZ/networks/detail.json</literallayout>
                     <para>Response:</para>
-                    <programlisting language="javascript"><xi:include href="samples/networks-get-detail-res.json" parse="text"/>
-                    </programlisting>
+                    <programlisting language="json"><xi:include href="samples/networks-get-detail-res.json" parse="text"/>                   </programlisting>
                 </example>
             </section>
             <section xml:id="Show_Network">
@@ -923,12 +924,12 @@ GET /tenants/XYZ/networks/detail.json
                     <tbody>
                         <tr>
                             <td colspan="1">&GET;</td>
-                            <td colspan="2">/tenants/<emphasis>{tenant-id}</emphasis>/networks/<emphasis>{network-id}</emphasis></td>
-                            <td colspan="3">
-							List information for a specific network,
-							identified by <emphasis>network-id</emphasis>,
-							for a given tenant, identified by <emphasis>tenant-id</emphasis>.
-                            </td>
+                            <td colspan="2">/tenants/<parameter>tenant-id</parameter>/networks/<parameter>network-id</parameter></td>
+                            <td colspan="3">Lists information for a
+                                specific network, identified by
+                                   <parameter>network-id</parameter>,
+                                for a given tenant, identified by
+                                   <parameter>tenant-id</parameter>. </td>
                         </tr>
                     </tbody>
                 </informaltable>
@@ -936,12 +937,10 @@ GET /tenants/XYZ/networks/detail.json
                     Normal Response Code(s):
                     <returnvalue>200</returnvalue>
                 </simpara>
-                <simpara>
-                    Error Response Code(s):
-                    Unauthorized (<errorcode>401</errorcode>),
-                    Forbidden (<errorcode>403</errorcode>),
-                    NetworkNotFound (<errorcode>420</errorcode>),
-                </simpara>
+                <simpara> Error Response Code(s): Unauthorized
+                        (<errorcode>401</errorcode>), Forbidden
+                        (<errorcode>403</errorcode>), NetworkNotFound
+                        (<errorcode>420</errorcode>)</simpara>
                 <para>
 				This operation returns the identifier and the name for a
 				specific network configured in Quantum.
@@ -950,23 +949,17 @@ GET /tenants/XYZ/networks/detail.json
                 <example>
                     <title>Show Network Request/Response (XML)</title>
                     <para>Request:</para>
-                <literallayout class="monospaced">
-GET /tenants/XYZ/networks/8bec1293-16bd-4568-ba75-1f58bec0b4c3.xml
-                </literallayout>
+                <literallayout class="monospaced">GET /tenants/XYZ/networks/8bec1293-16bd-4568-ba75-1f58bec0b4c3.xml</literallayout>
                     <para>Response:</para>
-                    <programlisting language="xml"><xi:include href="samples/network-get-res.xml" parse="text"/>
-                    </programlisting>
+                    <programlisting language="xml"><xi:include href="samples/network-get-res.xml" parse="text"/>                    </programlisting>
                 </example>
                 <?hard-pagebreak?>
                 <example>
                     <title>Show Network Request/Response (JSON)</title>
                     <para>Request:</para>
-	                <literallayout class="monospaced">
-GET /tenants/XYZ/networks/8bec1293-16bd-4568-ba75-1f58bec0b4c3.json
-	                </literallayout>
+	                <literallayout class="monospaced">GET /tenants/XYZ/networks/8bec1293-16bd-4568-ba75-1f58bec0b4c3.json	                </literallayout>
                     <para>Response:</para>
-                    <programlisting language="javascript"><xi:include href="samples/network-get-res.json" parse="text"/>
-                    </programlisting>
+                    <programlisting language="json"><xi:include href="samples/network-get-res.json" parse="text"/>                   </programlisting>
                 </example>
             </section>
             <section xml:id="Show_Network_Detail">
@@ -982,12 +975,12 @@ GET /tenants/XYZ/networks/8bec1293-16bd-4568-ba75-1f58bec0b4c3.json
                     <tbody>
                         <tr>
                             <td colspan="1">&GET;</td>
-                            <td colspan="2">/tenants/<emphasis>{tenant-id}</emphasis>/networks/<emphasis>{network-id}</emphasis>/detail</td>
-                            <td colspan="3">
-							List detailed information for a specific network,
-							identified by <emphasis>network-id</emphasis>,
-							for a given tenant, identified by <emphasis>tenant-id</emphasis>.
-                            </td>
+                            <td colspan="2">/tenants/<parameter>tenant-id</parameter>/networks/<parameter>network-id</parameter>/detail</td>
+                            <td colspan="3">Lists detailed information
+                                for a specific network, identified by
+                                   <parameter>network-id</parameter>,
+                                for a given tenant, identified by
+                                   <parameter>tenant-id</parameter>. </td>
                         </tr>
                     </tbody>
                 </informaltable>
@@ -995,12 +988,10 @@ GET /tenants/XYZ/networks/8bec1293-16bd-4568-ba75-1f58bec0b4c3.json
                     Normal Response Code(s):
                     <returnvalue>200</returnvalue>
                 </simpara>
-                <simpara>
-                    Error Response Code(s):
-                    Unauthorized (<errorcode>401</errorcode>),
-                    Forbidden (<errorcode>403</errorcode>),
-                    NetworkNotFound (<errorcode>420</errorcode>),
-                </simpara>
+                <simpara> Error Response Code(s): Unauthorized
+                        (<errorcode>401</errorcode>), Forbidden
+                        (<errorcode>403</errorcode>), NetworkNotFound
+                        (<errorcode>420</errorcode>)</simpara>
                 <para>
 				This operation returns detailed information concerning the
 				network specified in the request URI. Returned data include
@@ -1015,9 +1006,7 @@ GET /tenants/XYZ/networks/8bec1293-16bd-4568-ba75-1f58bec0b4c3.json
                 <example>
                     <title>Show Network Detail Request/Response (XML)</title>
                     <para>Request:</para>
-                <literallayout class="monospaced">
-GET /tenants/XYZ/networks/8bec1293-16bd-4568-ba75-1f58bec0b4c3/detail.xml
-                </literallayout>
+                <literallayout class="monospaced">GET /tenants/XYZ/networks/8bec1293-16bd-4568-ba75-1f58bec0b4c3/detail.xml                </literallayout>
                     <para>Response:</para>
                     <programlisting language="xml"><xi:include href="samples/network-get-detail-res.xml" parse="text"/>
                     </programlisting>
@@ -1025,12 +1014,9 @@ GET /tenants/XYZ/networks/8bec1293-16bd-4568-ba75-1f58bec0b4c3/detail.xml
                 <example>
                     <title>Show Network Detail Request/Response (JSON)</title>
                     <para>Request:</para>
-	                <literallayout class="monospaced">
-GET /tenants/XYZ/networks/8bec1293-16bd-4568-ba75-1f58bec0b4c3/detail.json
-	                </literallayout>
+	                <literallayout class="monospaced">GET /tenants/XYZ/networks/8bec1293-16bd-4568-ba75-1f58bec0b4c3/detail.json	                </literallayout>
                     <para>Response:</para>
-                    <programlisting language="javascript"><xi:include href="samples/network-get-detail-res.json" parse="text"/>
-                    </programlisting>
+                    <programlisting language="json"><xi:include href="samples/network-get-detail-res.json" parse="text"/>                    </programlisting>
                 </example>
             </section>
             <section xml:id="Create_Network">
@@ -1046,11 +1032,11 @@ GET /tenants/XYZ/networks/8bec1293-16bd-4568-ba75-1f58bec0b4c3/detail.json
                     <tbody>
                         <tr>
                             <td colspan="1">&POST;</td>
-                            <td colspan="2">/tenants/<emphasis>{tenant-id}</emphasis>/networks</td>
-                            <td colspan="3">
-							Creates a new logical layer-2 network for the
-							tenant identified by <emphasis>tenant-id</emphasis>
-							</td>
+                            <td colspan="2">/tenants/<parameter>tenant-id</parameter>/networks</td>
+                            <td colspan="3">Creates a new logical
+                                layer-2 network for the tenant
+                                identified by
+                                   <parameter>tenant-id</parameter>.</td>
                         </tr>
                     </tbody>
                 </informaltable>
@@ -1058,12 +1044,10 @@ GET /tenants/XYZ/networks/8bec1293-16bd-4568-ba75-1f58bec0b4c3/detail.json
                     Normal Response Code(s):
                     <returnvalue>200</returnvalue>
                 </simpara>
-                <simpara>
-                    Error Response Code(s):
-                    BadRequest (<errorcode>400</errorcode>)
-                    Unauthorized (<errorcode>401</errorcode>),
-                    Forbidden (<errorcode>403</errorcode>),
-                </simpara>
+                <simpara> Error Response Code(s): BadRequest
+                        (<errorcode>400</errorcode>) Unauthorized
+                        (<errorcode>401</errorcode>), Forbidden
+                        (<errorcode>403</errorcode>)</simpara>
                 <para>
 				This operation creates a Layer-2 network in
 				Quantum based on the information provided in the request body.
@@ -1096,26 +1080,19 @@ GET /tenants/XYZ/networks/8bec1293-16bd-4568-ba75-1f58bec0b4c3/detail.json
                 <example>
                     <title>Create Network Request/Response (XML)</title>
                     <para>Request:</para>
-                <literallayout class="monospaced">
-POST /tenants/XYZ/networks.xml
-                </literallayout>
+                <literallayout class="monospaced">POST /tenants/XYZ/networks.xml                </literallayout>
                     <programlisting language="xml"><xi:include href="samples/network-post-req.xml" parse="text"/>
                     </programlisting>
                     <para>Response:</para>
-                    <programlisting language="xml"><xi:include href="samples/network-post-res.xml" parse="text"/>
-                    </programlisting>
+                    <programlisting language="xml"><xi:include href="samples/network-post-res.xml" parse="text"/>                    </programlisting>
                 </example>
                 <example>
                     <title>Create Network Request/Response (JSON)</title>
                     <para>Request:</para>
-	                <literallayout class="monospaced">
-POST /tenants/XYZ/networks.json
-	                </literallayout>
-                    <programlisting language="javascript"><xi:include href="samples/network-post-req.json" parse="text"/>
-                    </programlisting>
+	                <literallayout class="monospaced">POST /tenants/XYZ/networks.json	                </literallayout>
+                    <programlisting language="json"><xi:include href="samples/network-post-req.json" parse="text"/>                    </programlisting>
                     <para>Response:</para>
-                    <programlisting language="javascript"><xi:include href="samples/network-post-res.json" parse="text"/>
-                    </programlisting>
+                    <programlisting language="json"><xi:include href="samples/network-post-res.json" parse="text"/>                    </programlisting>
                 </example>
             </section>
 			<section xml:id="Update_Network">
@@ -1131,12 +1108,12 @@ POST /tenants/XYZ/networks.json
                     <tbody>
                         <tr>
                             <td colspan="1">&PUT;</td>
-                            <td colspan="2">/tenants/<emphasis>{tenant-id}</emphasis>/networks/<emphasis>{network-id}</emphasis></td>
-                            <td colspan="3">
-                            Renames the network identified by
-                            <emphasis>network-id</emphasis> for the
-							tenant identified by <emphasis>tenant-id</emphasis>
-							</td>
+                            <td colspan="2">/tenants/<parameter>tenant-id</parameter>/networks/<parameter>network-id</parameter></td>
+                            <td colspan="3">Renames the network
+                                identified by
+                                   <parameter>network-id</parameter> for
+                                the tenant identified by
+                                   <parameter>tenant-id</parameter>.</td>
                         </tr>
                     </tbody>
                 </informaltable>
@@ -1144,13 +1121,11 @@ POST /tenants/XYZ/networks.json
                     Normal Response Code(s):
                     <returnvalue>204</returnvalue>
                 </simpara>
-                <simpara>
-                    Error Response Code(s):
-                    BadRequest (<errorcode>400</errorcode>)
-                    Unauthorized (<errorcode>401</errorcode>),
-                    Forbidden (<errorcode>403</errorcode>),
-                    NetworkNotFound (<errorcode>420</errorcode>)
-                </simpara>
+                <simpara> Error Response Code(s): BadRequest
+                        (<errorcode>400</errorcode>) Unauthorized
+                        (<errorcode>401</errorcode>), Forbidden
+                        (<errorcode>403</errorcode>) NetworkNotFound
+                        (<errorcode>420</errorcode>) </simpara>
                 <para>
 				This operation renames a Quantum network using the data
 				provided in the request body.
@@ -1166,24 +1141,20 @@ POST /tenants/XYZ/networks.json
                 <example>
                     <title>Update Network Request/Response (XML)</title>
                     <para>Request:</para>
-                <literallayout class="monospaced">
-PUT /tenants/XYZ/networks/158233b0-ca9a-40b4-8614-54a4a99d47d1.xml
-                </literallayout>
-                    <programlisting language="xml"><xi:include href="samples/network-post-req.xml" parse="text"/>
-                    </programlisting>
+                <literallayout class="monospaced">PUT /tenants/XYZ/networks/158233b0-ca9a-40b4-8614-54a4a99d47d1.xml                </literallayout>
+                    <programlisting language="xml"><xi:include href="samples/network-post-req.xml" parse="text"/>                   </programlisting>
                     <para>Response:</para>
-                    <para><emphasis>No data returned in response body</emphasis></para>
+                    <para><emphasis>No data is returned in the
+                            response body.</emphasis></para>
                 </example>
                 <example>
                     <title>Update Network Request/Response (JSON)</title>
                     <para>Request:</para>
-	                <literallayout class="monospaced">
-PUT /tenants/XYZ/networks/158233b0-ca9a-40b4-8614-54a4a99d47d1.json
-	                </literallayout>
-                    <programlisting language="javascript"><xi:include href="samples/network-post-req.json" parse="text"/>
-                    </programlisting>
+	                <literallayout class="monospaced">PUT /tenants/XYZ/networks/158233b0-ca9a-40b4-8614-54a4a99d47d1.json	                </literallayout>
+                    <programlisting language="json"><xi:include href="samples/network-post-req.json" parse="text"/>                    </programlisting>
                     <para>Response:</para>
-                    <para><emphasis>No data returned in response body</emphasis></para>
+                    <para><emphasis>No data is returned in the
+                            response body.</emphasis></para>
                     </example>
             </section>
             <section xml:id="Delete_Network">
@@ -1198,63 +1169,53 @@ PUT /tenants/XYZ/networks/158233b0-ca9a-40b4-8614-54a4a99d47d1.json
                     </thead>
                     <tbody>
                         <tr>
-                            <td colspan="1">&PUT;</td>
-                            <td colspan="2">/tenants/<emphasis>{tenant-id}</emphasis>/networks/<emphasis>{network-id}</emphasis></td>
-                            <td colspan="3">
-                            Destroys the network identified by
-                            <emphasis>network-id</emphasis> for the
-							tenant identified by <emphasis>tenant-id</emphasis>
-							</td>
+                            <td colspan="1">&DELETE;</td>
+                            <td colspan="2">/tenants/<parameter>tenant-id</parameter>/networks/<parameter>network-id</parameter></td>
+                            <td colspan="3">Destroys the network
+                                identified by
+                                   <parameter>network-id</parameter> for
+                                the tenant identified by
+                                   <parameter>tenant-id</parameter>.</td>
                         </tr>
                     </tbody>
                 </informaltable>
-                <simpara>
-                    Normal Response Code(s):
-                    <returnvalue>204</returnvalue>
+                <simpara>Normal Response Code(s):
+                        <returnvalue>204</returnvalue>
                 </simpara>
-                <simpara>
-                    Error Response Code(s):
-                    BadRequest (<errorcode>400</errorcode>)
-                    Unauthorized (<errorcode>401</errorcode>),
-                    Forbidden (<errorcode>403</errorcode>),
-                    NetworkNotFound (<errorcode>420</errorcode>),
-                    NetworkInUse (<errorcode>421</errorcode>)
-                </simpara>
-                <para>
-				This operation removes the network specified in the URI.
-				This request will fail as long as there is at least one
-				port on the network with attachments plugged in it.
-				If all ports on the networks are unattached, they will
-				be destroyed together with the network itself.
-				</para>
-				<para>
-				As for the create operation there is no guarantee that the
-				plugin will have completely removed the network when the
-				call returns. Quantum forwards the request to the plugin,
-				which will then destroy the network.
-				</para><para>
-				Please note that this operation cannot be undone.
-				</para>
-                <para>
-                This operation does not require a request body.
-                </para>
+                <simpara>Error Response Code(s): BadRequest
+                        (<errorcode>400</errorcode>) Unauthorized
+                        (<errorcode>401</errorcode>), Forbidden
+                        (<errorcode>403</errorcode>), NetworkNotFound
+                        (<errorcode>420</errorcode>), NetworkInUse
+                        (<errorcode>421</errorcode>) </simpara>
+                <para>This operation removes the network specified in
+                    the URI. This request will fail as long as there
+                    is at least one port on the network with
+                    attachments plugged in it. If all ports on the
+                    networks are unattached, they will be destroyed
+                    together with the network itself. </para>
+				<para>As for the create operation there is no guarantee that the
+                    plugin will have completely removed the network
+                    when the call returns. Quantum forwards the
+                    request to the plugin, which will then destroy the
+                    network. </para>
+                <note><para>This operation cannot be undone. </para></note>
+                <para>This operation does not require a request body. </para>
                 <example>
                     <title>Delete Network Request/Response (XML)</title>
                     <para>Request:</para>
-                <literallayout class="monospaced">
-DELETE /tenants/XYZ/networks/158233b0-ca9a-40b4-8614-54a4a99d47d1.xml
-                </literallayout>
+                <literallayout class="monospaced">DELETE /tenants/XYZ/networks/158233b0-ca9a-40b4-8614-54a4a99d47d1.xml                </literallayout>
                     <para>Response:</para>
-                    <para><emphasis>No data returned in response body</emphasis></para>
+                    <para><emphasis>No data is returned in the
+                            response body.</emphasis></para>
                 </example>
                 <example>
                     <title>Update Network Request/Response (JSON)</title>
                     <para>Request:</para>
-	                <literallayout class="monospaced">
-DELETE /tenants/XYZ/networks/158233b0-ca9a-40b4-8614-54a4a99d47d1.json
-	                </literallayout>
+	                <literallayout class="monospaced">DELETE /tenants/XYZ/networks/158233b0-ca9a-40b4-8614-54a4a99d47d1.json	                </literallayout>
                     <para>Response:</para>
-                    <para><emphasis>No data returned in response body</emphasis></para>
+                    <para><emphasis>No data is returned in the
+                            response body.</emphasis></para>
                     </example>
             </section>
         </section>
@@ -1277,52 +1238,42 @@ DELETE /tenants/XYZ/networks/158233b0-ca9a-40b4-8614-54a4a99d47d1.json
                     <tbody>
                         <tr>
                             <td colspan="1">&GET;</td>
-                            <td colspan="2">/tenants/<emphasis>{tenant-id}</emphasis>/networks/
-                            				<emphasis>{network-id}/ports</emphasis></td>
+                            <td colspan="2">/tenants/<parameter>tenant-id</parameter>/networks/
+                            				<parameter>network-id/ports</parameter></td>
                             <td colspan="3">
 							Lists all the ports currently defined for a Quantum network,
-							identified by <emphasis>network-id</emphasis>
+							identified by <parameter>network-id</parameter>
 							</td>
                         </tr>
                     </tbody>
                 </informaltable>
-                <simpara>
-                    Normal Response Code(s):
-                    <returnvalue>200</returnvalue>
+                <simpara>Normal Response Code(s):
+                        <returnvalue>200</returnvalue>
                 </simpara>
-                <simpara>
-                    Error Response Code(s):
-                    Unauthorized (<errorcode>401</errorcode>),
-                    Forbidden (<errorcode>403</errorcode>),
-                    NetworkNotFound (<errorcode>420</errorcode>)
-                </simpara>
-                <para>
-					This operation lists all the ports currently configured
-					for a network. For each port the response reports its
-					unique identifier. If no ports have been
-					created on the network an empty list will be returned.
-				</para>
+                <simpara>Error Response Code(s): Unauthorized
+                        (<errorcode>401</errorcode>), Forbidden
+                        (<errorcode>403</errorcode>), NetworkNotFound
+                        (<errorcode>420</errorcode>) </simpara>
+                <para>This operation lists all the ports currently
+                    configured for a network. For each port the
+                    response reports its unique identifier. If no
+                    ports have been created on the network an empty
+                    list will be returned. </para>
                 <para>This operation does not require a request body.</para>
                 <example>
                     <title>Port List Request/Response (XML)</title>
                     <para>Request:</para>
-                <literallayout class="monospaced">
-GET /tenants/XYZ/networks/158233b0-ca9a-40b4-8614-54a4a99d47d1/ports.xml
-                </literallayout>
+                <literallayout class="monospaced">GET /tenants/XYZ/networks/158233b0-ca9a-40b4-8614-54a4a99d47d1/ports.xml                </literallayout>
                     <para>Response:</para>
-                    <programlisting language="xml"><xi:include href="samples/ports-get-res.xml" parse="text"/>
-                    </programlisting>
+                    <programlisting language="xml"><xi:include href="samples/ports-get-res.xml" parse="text"/>                    </programlisting>
                 </example>
             	<?hard-pagebreak?>
                 <example>
                     <title>Port List Request/Response (JSON)</title>
                     <para>Request:</para>
-	                <literallayout class="monospaced">
-GET /tenants/XYZ/networks/158233b0-ca9a-40b4-8614-54a4a99d47d1/ports.json
-	                </literallayout>
+	                <literallayout class="monospaced">GET /tenants/XYZ/networks/158233b0-ca9a-40b4-8614-54a4a99d47d1/ports.json	                </literallayout>
                     <para>Response:</para>
-                    <programlisting language="javascript"><xi:include href="samples/ports-get-res.json" parse="text"/>
-                    </programlisting>
+                    <programlisting language="json"><xi:include href="samples/ports-get-res.json" parse="text"/>                    </programlisting>
                 </example>
             </section>
 			<section xml:id="List_Ports_Details">
@@ -1338,52 +1289,43 @@ GET /tenants/XYZ/networks/158233b0-ca9a-40b4-8614-54a4a99d47d1/ports.json
                     <tbody>
                         <tr>
                             <td colspan="1">&GET;</td>
-                            <td colspan="2">/tenants/<emphasis>{tenant-id}</emphasis>/networks/
-                            				<emphasis>{network-id}</emphasis>/ports/detail</td>
-                            <td colspan="3">
-							Lists detailed information for all the ports currently defined
-							for the network identified by <emphasis>network-id</emphasis>
-							</td>
+                            <td colspan="2">/tenants/<parameter>tenant-id</parameter>/networks/<parameter>network-id</parameter>/ports/detail</td>
+                            <td colspan="3">Lists detailed information
+                                for all the ports currently defined
+                                for the network identified by
+                                   <parameter>network-id</parameter>.
+                            </td>
                         </tr>
                     </tbody>
                 </informaltable>
-                <simpara>
-                    Normal Response Code(s):
-                    <returnvalue>200</returnvalue>
+                <simpara>Normal Response Code(s):
+                        <returnvalue>200</returnvalue>
                 </simpara>
-                <simpara>
-                    Error Response Code(s):
-                    Unauthorized (<errorcode>401</errorcode>),
-                    Forbidden (<errorcode>403</errorcode>),
-                    NetworkNotFound (<errorcode>420</errorcode>)
-                </simpara>
-                <para>
-                This operation lists detailed information for all the ports
-                currently configured for a network. Response for each port
-                includes its identifier and the current administrative state.
-                If no ports have been created on the network an
-                empty list will be returned.
-				</para>
+                <simpara>Error Response Code(s): Unauthorized
+                        (<errorcode>401</errorcode>), Forbidden
+                        (<errorcode>403</errorcode>), NetworkNotFound
+                        (<errorcode>420</errorcode>) </simpara>
+                <para>This operation lists detailed information for
+                    all the ports currently configured for a network.
+                    Response for each port includes its identifier and
+                    the current administrative state. If no ports have
+                    been created on the network an empty list will be
+                    returned. </para>
                 <para>This operation does not require a request body.</para>
                 <example>
                     <title>Port List Details Request/Response (XML)</title>
                     <para>Request:</para>
-                <literallayout class="monospaced">
-GET /tenants/XYZ/networks/158233b0-ca9a-40b4-8614-54a4a99d47d1/ports/detail.xml
-                </literallayout>
+                <literallayout class="monospaced">GET /tenants/XYZ/networks/158233b0-ca9a-40b4-8614-54a4a99d47d1/ports/detail.xml               </literallayout>
                     <para>Response:</para>
-                    <programlisting language="xml"><xi:include href="samples/ports-get-detail-res.xml" parse="text"/>
-                    </programlisting>
+                    <programlisting language="xml"><xi:include href="samples/ports-get-detail-res.xml" parse="text"/>                    </programlisting>
                 </example>
             	<?hard-pagebreak?>
                 <example>
                     <title>Port List Details Request/Response (JSON)</title>
                     <para>Request:</para>
-	                <literallayout class="monospaced">
-GET /tenants/XYZ/networks/158233b0-ca9a-40b4-8614-54a4a99d47d1/ports/detail.json
-	                </literallayout>
+	                <literallayout class="monospaced">GET /tenants/XYZ/networks/158233b0-ca9a-40b4-8614-54a4a99d47d1/ports/detail.json	                </literallayout>
                     <para>Response:</para>
-                    <programlisting language="javascript"><xi:include href="samples/ports-get-detail-res.json" parse="text"/>
+                    <programlisting language="json"><xi:include href="samples/ports-get-detail-res.json" parse="text"/>
                     </programlisting>
                 </example>
             </section>
@@ -1400,55 +1342,45 @@ GET /tenants/XYZ/networks/158233b0-ca9a-40b4-8614-54a4a99d47d1/ports/detail.json
                     <tbody>
                         <tr>
                             <td colspan="1">&GET;</td>
-                            <td colspan="2">/tenants/<emphasis>{tenant-id}</emphasis>/networks/
-                            				<emphasis>{network-id}</emphasis>/ports/
-                            				<emphasis>{port-id}</emphasis></td>
-                            <td colspan="3">
-							Retrieves the port
-							<emphasis>port-id</emphasis> configured for the
-							network <emphasis>network-id</emphasis> belonging
-							to the tenant <emphasis>tenant-id</emphasis>.
-							</td>
+                            <td colspan="2">/tenants/<parameter>tenant-id</parameter>/networks/
+                            				<parameter>network-id</parameter>/ports/
+                            				<parameter>port-id</parameter></td>
+                            <td colspan="3">Retrieves the port
+                                   <parameter>port-id</parameter>
+                                configured for the network
+                                   <parameter>network-id</parameter>
+                                belonging to the tenant
+                                   <parameter>tenant-id</parameter>. </td>
                         </tr>
                     </tbody>
                 </informaltable>
-                <simpara>
-                    Normal Response Code(s):
-                    <returnvalue>200</returnvalue>
+                <simpara>Normal Response Code(s):
+                        <returnvalue>200</returnvalue>
                 </simpara>
-                <simpara>
-                    Error Response Code(s):
-                    Unauthorized (<errorcode>401</errorcode>),
-                    Forbidden (<errorcode>403</errorcode>),
-                    NetworkNotFound (<errorcode>420</errorcode>),
-                    PortNotFound (<errorcode>430</errorcode>)
-                </simpara>
-                <para>
-				This operation returns the unique identifier and the
-				current administrative state for a specific port configured
-				for the network specified in the request URI.
-				</para>
+                <simpara>Error Response Code(s): Unauthorized
+                        (<errorcode>401</errorcode>), Forbidden
+                        (<errorcode>403</errorcode>), NetworkNotFound
+                        (<errorcode>420</errorcode>), PortNotFound
+                        (<errorcode>430</errorcode>) </simpara>
+                <para>This operation returns the unique identifier and
+                    the current administrative state for a specific
+                    port configured for the network specified in the
+                    request URI. </para>
                 <para>This operation does not require a request body.</para>
                 <example>
                     <title>Show Port Request/Response (XML)</title>
                     <para>Request:</para>
-                <literallayout class="monospaced">
-GET /tenants/33/networks/158233b0-ca9a-40b4-8614-54a4a99d47d1/ports/98017ddc-efc8-4c25-a915-774b2a633855.xml
-                </literallayout>
+                <literallayout class="monospaced">GET /tenants/33/networks/158233b0-ca9a-40b4-8614-54a4a99d47d1/ports/98017ddc-efc8-4c25-a915-774b2a633855.xml                </literallayout>
                     <para>Response:</para>
-                    <programlisting language="xml"><xi:include href="samples/port-get-res.xml" parse="text"/>
-                    </programlisting>
+                    <programlisting language="xml"><xi:include href="samples/port-get-res.xml" parse="text"/>                    </programlisting>
                 </example>
             	<?hard-pagebreak?>
                 <example>
                     <title>Show Port Request/Response (JSON)</title>
                     <para>Request:</para>
-	                <literallayout class="monospaced">
-GET /tenants/33/networks/158233b0-ca9a-40b4-8614-54a4a99d47d1/ports/98017ddc-efc8-4c25-a915-774b2a633855.json
-	                </literallayout>
+	                <literallayout class="monospaced">GET /tenants/33/networks/158233b0-ca9a-40b4-8614-54a4a99d47d1/ports/98017ddc-efc8-4c25-a915-774b2a633855.json	                </literallayout>
                     <para>Response:</para>
-                    <programlisting language="javascript"><xi:include href="samples/port-get-res.json" parse="text"/>
-                    </programlisting>
+                    <programlisting language="json"><xi:include href="samples/port-get-res.json" parse="text"/>                   </programlisting>
                 </example>
             </section>
             <section xml:id="Show_port_Details">
@@ -1464,57 +1396,46 @@ GET /tenants/33/networks/158233b0-ca9a-40b4-8614-54a4a99d47d1/ports/98017ddc-efc
                     <tbody>
                         <tr>
                             <td colspan="1">&GET;</td>
-                            <td colspan="2">/tenants/<emphasis>{tenant-id}</emphasis>/networks/
-                            				<emphasis>{network-id}</emphasis>/ports/
-                            				<emphasis>{port-id}</emphasis>/detail</td>
-                            <td colspan="3">
-							Retrieves detailed information for the port
-							<emphasis>port-id</emphasis> configured for the
-							network <emphasis>network-id</emphasis> belonging
-							to the tenant <emphasis>tenant-id</emphasis>.
-							</td>
+                            <td colspan="2">/tenants/<parameter>tenant-id</parameter>/networks/
+                            				<parameter>network-id</parameter>/ports/
+                            				<parameter>port-id</parameter>/detail</td>
+                            <td colspan="3">Retrieves detailed
+                                information for the port
+                                   <parameter>port-id</parameter>
+                                configured for the network
+                                   <parameter>network-id</parameter>
+                                belonging to the tenant
+                                   <parameter>tenant-id</parameter>. </td>
                         </tr>
                     </tbody>
                 </informaltable>
-                <simpara>
-                    Normal Response Code(s):
+                <simpara>Normal Response Code(s):
                     <returnvalue>200</returnvalue>
                 </simpara>
-                <simpara>
-                    Error Response Code(s):
+                <simpara>Error Response Code(s):
                     Unauthorized (<errorcode>401</errorcode>),
                     Forbidden (<errorcode>403</errorcode>),
                     NetworkNotFound (<errorcode>420</errorcode>),
                     PortNotFound (<errorcode>430</errorcode>)
                 </simpara>
-                <para>
-				This operation provides at least the identifier and the
-				current administrative state for specific port configured
-				for a given network.
-				</para><para>
-				If an attachment is plugged into the port, this operation
-				will return the identifier of the attachment as well.
-				</para>
+                <para>This operation provides at least the identifier
+                    and the current administrative state for specific
+                    port configured for a given network. </para><para>If an attachment is plugged into the port, this operation will
+                    return the identifier of the attachment as well. </para>
                 <para>This operation does not require a request body.</para>
                 <example>
                     <title>Show Port Detail Request/Response (XML)</title>
                     <para>Request:</para>
-                <literallayout class="monospaced">
-GET /tenants/33/networks/158233b0-ca9a-40b4-8614-54a4a99d47d1/ports/98017ddc-efc8-4c25-a915-774b2a633855/detail.xml
-                </literallayout>
+                <literallayout class="monospaced">GET /tenants/33/networks/158233b0-ca9a-40b4-8614-54a4a99d47d1/ports/98017ddc-efc8-4c25-a915-774b2a633855/detail.xml                </literallayout>
                     <para>Response:</para>
-                    <programlisting language="xml"><xi:include href="samples/port-get-detail-res.xml" parse="text"/>
-                    </programlisting>
+                    <programlisting language="xml"><xi:include href="samples/port-get-detail-res.xml" parse="text"/>                    </programlisting>
                 </example>
                 <example>
                     <title>Show Port Detail Request/Response (JSON)</title>
                     <para>Request:</para>
-	                <literallayout class="monospaced">
-GET /tenants/33/networks/158233b0-ca9a-40b4-8614-54a4a99d47d1/ports/98017ddc-efc8-4c25-a915-774b2a633855/detail.json
-	                </literallayout>
+	                <literallayout class="monospaced">GET /tenants/33/networks/158233b0-ca9a-40b4-8614-54a4a99d47d1/ports/98017ddc-efc8-4c25-a915-774b2a633855/detail.json	                </literallayout>
                     <para>Response:</para>
-                    <programlisting language="javascript"><xi:include href="samples/port-get-detail-res.json" parse="text"/>
-                    </programlisting>
+                    <programlisting language="json"><xi:include href="samples/port-get-detail-res.json" parse="text"/>                    </programlisting>
                 </example>
             </section>
 			<section xml:id="Create_Port">
@@ -1530,83 +1451,66 @@ GET /tenants/33/networks/158233b0-ca9a-40b4-8614-54a4a99d47d1/ports/98017ddc-efc
                     <tbody>
                         <tr>
                             <td colspan="1">&POST;</td>
-                            <td colspan="2">/tenants/<emphasis>{tenant-id}</emphasis>/networks/
-                            				<emphasis>{network-id}</emphasis>/ports</td>
-                            <td colspan="3">
-							Creates a port on the network specified
-							in the request URI, identified by
-							<emphasis>network-id</emphasis>
-							</td>
+                            <td colspan="2">/tenants/<parameter>tenant-id</parameter>/networks/
+                            				<parameter>network-id</parameter>/ports</td>
+                            <td colspan="3">Creates a port on the
+                                network specified in the request URI,
+                                identified by
+                                   <parameter>network-id</parameter>.</td>
                         </tr>
                     </tbody>
                 </informaltable>
-                <simpara>
-                    Normal Response Code(s):
-                    <returnvalue>200</returnvalue>
+                <simpara>Normal Response Code(s):
+                        <returnvalue>200</returnvalue>
                 </simpara>
-                <simpara>
-                    Error Response Code(s):
+                <simpara>Error Response Code(s):
                     BadRequest (<errorcode>400</errorcode>),
                     Unauthorized (<errorcode>401</errorcode>),
                     Forbidden (<errorcode>403</errorcode>),
                     NetworkNotFound (<errorcode>420</errorcode>),
                     RequestedStateInvalid (<errorcode>431</errorcode>)
                 </simpara>
-                <para>
-				This operation creates a port on a Quantum network based on
-				the information provided in the request body.
-				Quantum validates the request, and dispatches the request
-				to the plugin, which creates the port and attaches
-				it to the appropriate network.
-				</para><para>
-				This operation could not be implemented for some
-				plugins as the number of ports available might be fixed
-				when the network is created.
-				</para><para>
-				If the validation phase fails, the port object is not
-				created at all, and a <code>BadRequest</code> error is returned
-				to the caller.
-				</para><para>
-				The operation returns a port with an identifier, and set its
-				administrative state set to <code>DOWN</code>, unless a state
-				has been explicitly specified in the request body.
-				</para><para>
-				Please note that this operation does not guarantee that the
-				port has been actually created when the calls returns,
-				as the plugin might still be performing the necessary
-				operations on the network infrastructure. However, the port
-				entity can be immediately used for API operations.
-				</para><para>
-				The request body is not mandatory for this operation,
-				but it can optionally contain the administrative state
-				for the port being created, which can be either
-				<code>DOWN</code> or <code>ACTIVE</code>.
-				The administrative state should be encapsulated into a Port
-				object within the request body, as shown in the example below.
-				</para>
+                <para>This operation creates a port on a Quantum
+                    network based on the information provided in the
+                    request body. Quantum validates the request, and
+                    dispatches the request to the plugin, which
+                    creates the port and attaches it to the
+                    appropriate network. </para><para>This operation could not be implemented for some plugins as the
+                    number of ports available might be fixed when the
+                    network is created. </para><para>If the validation phase fails, the port object is not created at
+                    all, and a <code>BadRequest</code> error is
+                    returned to the caller. </para><para>The operation returns a port with an identifier, and set its
+                    administrative state set to <code>DOWN</code>,
+                    unless a state has been explicitly specified in
+                    the request body. </para>
+			    <note><para>This operation does not guarantee that the port
+                    has been actually created when the calls returns,
+                    as the plugin might still be performing the
+                    necessary operations on the network
+                    infrastructure. However, the port entity can be
+                    immediately used for API operations. </para></note>
+			    <para>The request body is not required for this operation, but it can
+                        optionally contain the administrative state for
+                        the port being created, which can be either
+                        <code>DOWN</code> or <code>ACTIVE</code>. The
+                        administrative state should be encapsulated into a
+                        Port object within the request body, as shown in
+                    the example below. </para>
                 <example>
                     <title>Create Port Request/Response (XML)</title>
                     <para>Request:</para>
-                <literallayout class="monospaced">
-POST /tenants/33/networks/158233b0-ca9a-40b4-8614-54a4a99d47d1/ports.xml
-                </literallayout>
-                <programlisting language="xml"><xi:include href="samples/port-post-req.xml" parse="text"/>
-                </programlisting>
+                <literallayout class="monospaced">POST /tenants/33/networks/158233b0-ca9a-40b4-8614-54a4a99d47d1/ports.xml                </literallayout>
+                <programlisting language="xml"><xi:include href="samples/port-post-req.xml" parse="text"/>              </programlisting>
                     <para>Response:</para>
-                    <programlisting language="xml"><xi:include href="samples/port-post-res.xml" parse="text"/>
-                    </programlisting>
+                    <programlisting language="xml"><xi:include href="samples/port-post-res.xml" parse="text"/>                    </programlisting>
                 </example>
                 <example>
                     <title>Create Port Request/Response (JSON)</title>
                     <para>Request:</para>
-	                <literallayout class="monospaced">
-POST /tenants/33/networks/158233b0-ca9a-40b4-8614-54a4a99d47d1/ports.json
-	                </literallayout>
-	                <programlisting language="xml"><xi:include href="samples/port-post-req.json" parse="text"/>
-                	</programlisting>
+	                <literallayout class="monospaced">POST /tenants/33/networks/158233b0-ca9a-40b4-8614-54a4a99d47d1/ports.json	                </literallayout>
+	                <programlisting language="json"><xi:include href="samples/port-post-req.json" parse="text"/>                	</programlisting>
                     <para>Response:</para>
-                    <programlisting language="javascript"><xi:include href="samples/port-post-res.json" parse="text"/>
-                    </programlisting>
+                    <programlisting language="json"><xi:include href="samples/port-post-res.json" parse="text"/>                   </programlisting>
                 </example>
             </section>
 			<section xml:id="Update_Port">
@@ -1622,15 +1526,13 @@ POST /tenants/33/networks/158233b0-ca9a-40b4-8614-54a4a99d47d1/ports.json
                     <tbody>
                         <tr>
                             <td colspan="1">&PUT;</td>
-                            <td colspan="2">/tenants/<emphasis>{tenant-id}</emphasis>/networks/
-                            				<emphasis>{network-id}</emphasis>/ports/
-                            				<emphasis>{port-id}</emphasis></td>
-                            <td colspan="3">
-							Sets the administrative state for the port
-							identified by <emphasis>port-id</emphasis>
-							on the network identified by
-							<emphasis>network-id</emphasis>
-							</td>
+                            <td colspan="2"
+                                   >/tenants/<parameter>tenant-id</parameter>/networks/<parameter>network-id</parameter>/ports/<parameter>port-id</parameter></td>
+                            <td colspan="3">Sets the administrative
+                                state for the port identified by
+                                   <parameter>port-id</parameter> on
+                                the network identified by
+                                   <parameter>network-id</parameter>.</td>
                         </tr>
                     </tbody>
                 </informaltable>
@@ -1667,24 +1569,22 @@ POST /tenants/33/networks/158233b0-ca9a-40b4-8614-54a4a99d47d1/ports.json
                 <example>
                     <title>Set Port State Request/Response (XML)</title>
                     <para>Request:</para>
-                <literallayout class="monospaced">
-PUT tenants/33/networks/158233b0-ca9a-40b4-8614-54a4a99d47d1/ports/98017ddc-efc8-4c25-a915-774b2a633855.xml
-                </literallayout>
+                <literallayout class="monospaced">PUT tenants/33/networks/158233b0-ca9a-40b4-8614-54a4a99d47d1/ports/98017ddc-efc8-4c25-a915-774b2a633855.xml                </literallayout>
                 <programlisting language="xml"><xi:include href="samples/port-post-req.xml" parse="text"/>
                 </programlisting>
                     <para>Response:</para>
-					<para><emphasis>No data returned in response body.</emphasis></para>
+					<para><emphasis>No data is returned in the response
+                            body..</emphasis></para>
                 </example>
                 <example>
                     <title>Create Port Request/Response (JSON)</title>
                     <para>Request:</para>
-	                <literallayout class="monospaced">
-PUT tenants/33/networks/158233b0-ca9a-40b4-8614-54a4a99d47d1/ports/98017ddc-efc8-4c25-a915-774b2a633855.json
-	                </literallayout>
-	                <programlisting language="xml"><xi:include href="samples/port-post-req.json" parse="text"/>
+	                <literallayout class="monospaced">PUT tenants/33/networks/158233b0-ca9a-40b4-8614-54a4a99d47d1/ports/98017ddc-efc8-4c25-a915-774b2a633855.json	                </literallayout>
+	                <programlisting language="json"><xi:include href="samples/port-post-req.json" parse="text"/>
                 	</programlisting>
                     <para>Response:</para>
-                    <para><emphasis>No data returned in response body.</emphasis></para>
+                    <para><emphasis>No data is returned in the
+                            response body..</emphasis></para>
                 </example>
             </section>
             <section xml:id="Delete_Port">
@@ -1700,15 +1600,13 @@ PUT tenants/33/networks/158233b0-ca9a-40b4-8614-54a4a99d47d1/ports/98017ddc-efc8
                     <tbody>
                         <tr>
                             <td colspan="1">&DELETE;</td>
-                            <td colspan="2">/tenants/<emphasis>{tenant-id}</emphasis>/networks/
-                            				<emphasis>{network-id}</emphasis>/ports/
-                            				<emphasis>{port-id}</emphasis></td>
-                            <td colspan="3">
-							Destroys the port
-							identified by <emphasis>port-id</emphasis>
-							on the network identified by
-							<emphasis>network-id</emphasis>
-							</td>
+                            <td colspan="2"
+                                   >/tenants/<parameter>tenant-id</parameter>/networks/<parameter>network-id</parameter>/ports/<parameter>port-id</parameter></td>
+                            <td colspan="3">Destroys the port
+                                identified by
+                                   <parameter>port-id</parameter> on
+                                the network identified by
+                                   <parameter>network-id</parameter>. </td>
                         </tr>
                     </tbody>
                 </informaltable>
@@ -1740,20 +1638,18 @@ PUT tenants/33/networks/158233b0-ca9a-40b4-8614-54a4a99d47d1/ports/98017ddc-efc8
                 <example>
                     <title>Delete Port State Request/Response (XML)</title>
                     <para>Request:</para>
-                <literallayout class="monospaced">
-DELETE tenants/33/networks/158233b0-ca9a-40b4-8614-54a4a99d47d1/ports/98017ddc-efc8-4c25-a915-774b2a633855.xml
-                </literallayout>
+                <literallayout class="monospaced">DELETE tenants/33/networks/158233b0-ca9a-40b4-8614-54a4a99d47d1/ports/98017ddc-efc8-4c25-a915-774b2a633855.xml                </literallayout>
                     <para>Response:</para>
-					<para><emphasis>No data returned in response body.</emphasis></para>
+					<para><emphasis>No data is returned in the response
+                            body..</emphasis></para>
                 </example>
                 <example>
                     <title>Create Port Request/Response (JSON)</title>
                     <para>Request:</para>
-	                <literallayout class="monospaced">
-DELETE tenants/33/networks/158233b0-ca9a-40b4-8614-54a4a99d47d1/ports/98017ddc-efc8-4c25-a915-774b2a633855.json
-	                </literallayout>
+	                <literallayout class="monospaced">DELETE tenants/33/networks/158233b0-ca9a-40b4-8614-54a4a99d47d1/ports/98017ddc-efc8-4c25-a915-774b2a633855.json	                </literallayout>
                     <para>Response:</para>
-                    <para><emphasis>No data returned in response body.</emphasis></para>
+                    <para><emphasis>No data is returned in the
+                            response body..</emphasis></para>
                 </example>
             </section>
         </section>
@@ -1780,47 +1676,36 @@ DELETE tenants/33/networks/158233b0-ca9a-40b4-8614-54a4a99d47d1/ports/98017ddc-e
                     <tbody>
                         <tr>
                             <td colspan="1">&GET;</td>
-                            <td colspan="2">/tenants/<emphasis>{tenant-id}</emphasis>/networks/
-                            				<emphasis>{network-id}</emphasis>/ports/
-                            				<emphasis>{port-id}</emphasis>/attachment</td>
-                            <td colspan="3">
-							Returns the identifier of the attachment plugged
-							into the specified port, identified by
-							<emphasis>port-id</emphasis>.
-							</td>
+                            <td colspan="2"
+                                   >/tenants/<parameter>tenant-id</parameter>/networks/<parameter>network-id</parameter>/ports/<parameter>port-id</parameter>/attachment</td>
+                            <td colspan="3">Returns the identifier of
+                                the attachment plugged into the
+                                specified port, identified by
+                                   <parameter>port-id</parameter>. </td>
                         </tr>
                     </tbody>
                 </informaltable>
-                <simpara>
-                    Normal Response Code(s):
-                    <returnvalue>200</returnvalue>
+                <simpara>Normal Response Code(s):
+                        <returnvalue>200</returnvalue>
                 </simpara>
-                <simpara>
-                    Error Response Code(s):
-                    Unauthorized (<errorcode>401</errorcode>),
-                    Forbidden (<errorcode>403</errorcode>),
-                    NetworkNotFound (<errorcode>420</errorcode>),
-                    PortNotFound (<errorcode>430</errorcode>)
-                </simpara>
-                <para>
-				This operation returns configuration details for the
-				attachment plugged into the port specified in the request URI.
-				This information is a reference to a virtual interface
-				identifier.
-				</para><para>
-				If no attachment is currently plugged into the port,
-				the operation does not return any attachment
-				identifier in the response.
-				The response will contain an empty <code>attachment</code> element
-                with no <code>id</code> attribute set.
-				</para>
+                <simpara>Error Response Code(s): Unauthorized
+                        (<errorcode>401</errorcode>), Forbidden
+                        (<errorcode>403</errorcode>), NetworkNotFound
+                        (<errorcode>420</errorcode>), PortNotFound
+                        (<errorcode>430</errorcode>) </simpara>
+                <para>This operation returns configuration details for
+                    the attachment plugged into the port specified in
+                    the request URI. This information is a reference
+                    to a virtual interface identifier. </para><para>If no attachment is currently plugged into the port, the
+                    operation does not return any attachment
+                    identifier in the response. The response will
+                    contain an empty <code>attachment</code> element
+                    with no <code>id</code> attribute set. </para>
                 <para>This operation does not require a request body.</para>
                 <example>
                     <title>Show Attachment (XML)</title>
                     <para>Request:</para>
-                <literallayout class="monospaced">
-GET /tenants/XYZ/networks/158233b0-ca9a-40b4-8614-54a4a99d47d1/ports/b832be00-6553-4f69-af33-acd554e36d08/attachment.xml
-                </literallayout>
+                <literallayout class="monospaced">GET /tenants/XYZ/networks/158233b0-ca9a-40b4-8614-54a4a99d47d1/ports/b832be00-6553-4f69-af33-acd554e36d08/attachment.xml               </literallayout>
                     <para>Response (attachment set):</para>
                     <programlisting language="xml"><xi:include href="samples/att-get-res.xml" parse="text"/>
                     </programlisting>
@@ -1831,15 +1716,12 @@ GET /tenants/XYZ/networks/158233b0-ca9a-40b4-8614-54a4a99d47d1/ports/b832be00-65
                 <example>
                     <title>Show Attachment (JSON)</title>
                     <para>Request:</para>
-	                <literallayout class="monospaced">
-GET /tenants/XYZ/networks/158233b0-ca9a-40b4-8614-54a4a99d47d1/ports/b832be00-6553-4f69-af33-acd554e36d08/attachment.json
-	                </literallayout>
+	                <literallayout class="monospaced">GET /tenants/XYZ/networks/158233b0-ca9a-40b4-8614-54a4a99d47d1/ports/b832be00-6553-4f69-af33-acd554e36d08/attachment.json	                </literallayout>
                     <para>Response (attachment set):</para>
-                    <programlisting language="javascript"><xi:include href="samples/att-get-res.json" parse="text"/>
+                    <programlisting language="json"><xi:include href="samples/att-get-res.json" parse="text"/>
                     </programlisting>
                     <para>Response (attachment not set):</para>
-                    <programlisting language="javascript"><xi:include href="samples/att-get-res-none.json" parse="text"/>
-                    </programlisting>
+                    <programlisting language="json"><xi:include href="samples/att-get-res-none.json" parse="text"/>                    </programlisting>
                 </example>
             </section>
             <section xml:id="Put_Attachment">
@@ -1855,66 +1737,47 @@ GET /tenants/XYZ/networks/158233b0-ca9a-40b4-8614-54a4a99d47d1/ports/b832be00-65
                     <tbody>
                         <tr>
                             <td colspan="1">&PUT;</td>
-                            <td colspan="2">/tenants/<emphasis>{tenant-id}</emphasis>/networks/
-                            				<emphasis>{network-id}</emphasis>/ports/
-                            				<emphasis>{port-id}</emphasis>/attachment</td>
-                            <td colspan="3">
-							Plugs a resource, i.e. a virtual network interface
-							into the port identified by
-							<emphasis>port-id</emphasis>.
-							</td>
+                            <td colspan="2"
+                                   >/tenants/<parameter>tenant-id</parameter>/networks/<parameter>network-id</parameter>/ports/<parameter>port-id</parameter>/attachment</td>
+                            <td colspan="3">Plugs a resource, such as
+                                a virtual network interface, into the
+                                port identified by
+                                   <parameter>port-id</parameter>. </td>
                         </tr>
                     </tbody>
                 </informaltable>
-                <simpara>
-                    Normal Response Code(s):
-                    <returnvalue>204</returnvalue>
+                <simpara>Normal Response Code(s):
+                        <returnvalue>204</returnvalue>
                 </simpara>
-                <simpara>
-                    Error Response Code(s):
-                    Unauthorized (<errorcode>401</errorcode>),
-                    Forbidden (<errorcode>403</errorcode>),
-                    NetworkNotFound (<errorcode>420</errorcode>),
-                    PortNotFound (<errorcode>430</errorcode>),
-                    PortInUse (<errorcode>432</errorcode>),
-                    AlreadyAttached (<errorcode>440</errorcode>)
-                </simpara>
-                <para>
-				This operation plugs an attachment into the port
-				specified in the request URL.
-				</para><para>
-				The request will be first validated by Quantum and then
-				dispatched to the plugin. It is not guaranteed that the
-				attached resource will be available as soon as the
-				operation returns.
-				</para><para>
-				The validation can fail if:
-				</para>
+                <simpara>Error Response Code(s): Unauthorized
+                        (<errorcode>401</errorcode>), Forbidden
+                        (<errorcode>403</errorcode>), NetworkNotFound
+                        (<errorcode>420</errorcode>), PortNotFound
+                        (<errorcode>430</errorcode>), PortInUse
+                        (<errorcode>432</errorcode>), AlreadyAttached
+                        (<errorcode>440</errorcode>) </simpara>
+                <para>This operation plugs an attachment into the port
+                    specified in the request URL. </para><para>Quantum validates the request and dispatches the request to the
+                    plugin. It is not guaranteed that the attached
+                    resource will be available as soon as the
+                    operation returns. </para><para>The validation can fail if: </para>
 	            <itemizedlist spacing="compact">
 	                <listitem>
-	                    <para>
-	                    An attachment with the same identifier
-	                    is already plugged somewhere else;
-	                    </para>
+	                    <para> An attachment with the same identifier is
+                            already plugged in somewhere else. </para>
 	                </listitem>
 	                <listitem>
-	                    <para>
-						There is already another attachment plugged
-						into the specified port.
-	                    </para>
+	                    <para> Another attachment is already plugged into
+                            the specified port. </para>
 	                </listitem>
 	            </itemizedlist>
-				<para>
-				If the validation phase fails, the attachment is not
-				created at all, and the appropriate error code is
-				returned to the caller.
-				</para>
-	            <para>
-				If no attachment is currently plugged into the port,
-				the operation does not return any attachment
-				identifier in the response.
-				The response will contain an empty <code>attachment</code> element.
-				</para>
+				<para>If validation fails, the attachment is not created at all,
+                    and the appropriate error code is returned to the
+                    caller. </para>
+	            <para>If no attachment is currently plugged into the
+                    port, the operation does not return any attachment
+                    identifier in the response. The response will
+                    contain an empty <code>attachment</code> element. </para>
                 <para>
                 The request body for this network should contain a reference
                 to the attachment to plug into the port.
@@ -1922,24 +1785,21 @@ GET /tenants/XYZ/networks/158233b0-ca9a-40b4-8614-54a4a99d47d1/ports/b832be00-65
                 <example>
                     <title>Plug Attachment (XML)</title>
                     <para>Request:</para>
-	                <literallayout class="monospaced">
-PUT /tenants/XYZ/networks/158233b0-ca9a-40b4-8614-54a4a99d47d1/ports/b832be00-6553-4f69-af33-acd554e36d08/attachment.xml
-	                </literallayout>
-                    <programlisting language="xml"><xi:include href="samples/att-put-req.xml" parse="text"/>
-                    </programlisting>
+	                <literallayout class="monospaced">PUT /tenants/XYZ/networks/158233b0-ca9a-40b4-8614-54a4a99d47d1/ports/b832be00-6553-4f69-af33-acd554e36d08/attachment.xml	                </literallayout>
+                    <programlisting language="xml"><xi:include href="samples/att-put-req.xml" parse="text"/>                   </programlisting>
                    <para>Response:</para>
-                   <para>No data returned in response body</para>
+                   <para><emphasis role="italic">No data is returned
+                            in the response body.</emphasis></para>
                 </example>
                 <example>
                     <title>Plug Attachment (JSON)</title>
                     <para>Request:</para>
-	                <literallayout class="monospaced">
-PUT /tenants/XYZ/networks/158233b0-ca9a-40b4-8614-54a4a99d47d1/ports/b832be00-6553-4f69-af33-acd554e36d08/attachment.json
-	                </literallayout>
+	                <literallayout class="monospaced">PUT /tenants/XYZ/networks/158233b0-ca9a-40b4-8614-54a4a99d47d1/ports/b832be00-6553-4f69-af33-acd554e36d08/attachment.json	                </literallayout>
                     <programlisting language="xml"><xi:include href="samples/att-put-req.json" parse="text"/>
                     </programlisting>
                     <para>Response:</para>
-					<para>No data returned in response body</para>
+					<para><emphasis role="italic">No data is returned in the response
+                            body.</emphasis></para>
 				</example>
             </section>
 			<section xml:id="Delete_Attachment">
@@ -1955,55 +1815,41 @@ PUT /tenants/XYZ/networks/158233b0-ca9a-40b4-8614-54a4a99d47d1/ports/b832be00-65
                     <tbody>
                         <tr>
                             <td colspan="1">&DELETE;</td>
-                            <td colspan="2">/tenants/<emphasis>{tenant-id}</emphasis>/networks/
-                            				<emphasis>{network-id}</emphasis>/ports/
-                            				<emphasis>{port-id}</emphasis>/attachment</td>
-                            <td colspan="3">
-							Removes the attachment currently plugged
-							into the port identified by
-							<emphasis>port-id</emphasis>.
-							</td>
+                            <td colspan="2">/tenants/<parameter>tenant-id</parameter>/networks/<parameter>network-id</parameter>/ports/<parameter>port-id</parameter>/attachment</td>
+                            <td colspan="3">Removes the attachment
+                                currently plugged into the port
+                                identified by
+                                   <parameter>port-id</parameter>. </td>
                         </tr>
                     </tbody>
                 </informaltable>
-                <simpara>
-                    Normal Response Code(s):
-                    <returnvalue>204</returnvalue>
+                <simpara>Normal Response Code(s):
+                        <returnvalue>204</returnvalue>
                 </simpara>
-                <simpara>
-                    Error Response Code(s):
-                    Unauthorized (<errorcode>401</errorcode>),
-                    Forbidden (<errorcode>403</errorcode>),
-                    NetworkNotFound (<errorcode>420</errorcode>),
-                    PortNotFound (<errorcode>430</errorcode>)
-                </simpara>
-                <para>
-				This operation removes the attachment from the port
-				specified in the request URI.
-				</para><para>
-				If no attachment is currently plugged into the port,
-				this operation has no effect.
-				</para>
-                <para>
-                This operation does not require a request body
-                </para>
+                <simpara>Error Response Code(s): Unauthorized
+                        (<errorcode>401</errorcode>), Forbidden
+                        (<errorcode>403</errorcode>), NetworkNotFound
+                        (<errorcode>420</errorcode>), PortNotFound
+                        (<errorcode>430</errorcode>) </simpara>
+                <para>This operation removes the specified attachment
+                    from the port specified in the request URI. </para><para>If no attachment is currently plugged into the port, this
+                    operation has no effect. </para>
+                <para>This operation does not require a request body. </para>
                 <example>
                     <title>Remove Attachment (XML)</title>
                     <para>Request:</para>
-	                <literallayout class="monospaced">
-DELETE /tenants/XYZ/networks/158233b0-ca9a-40b4-8614-54a4a99d47d1/ports/b832be00-6553-4f69-af33-acd554e36d08/attachment.xml
-	                </literallayout>
+	                <literallayout class="monospaced">DELETE /tenants/XYZ/networks/158233b0-ca9a-40b4-8614-54a4a99d47d1/ports/b832be00-6553-4f69-af33-acd554e36d08/attachment.xml	                </literallayout>
                    <para>Response:</para>
-                   <para>No data returned in response body</para>
+                   <para><emphasis role="italic">No data is returned
+                            in the response body.</emphasis></para>
                 </example>
                 <example>
                     <title>Remove Attachment (JSON)</title>
                     <para>Request:</para>
-	                <literallayout class="monospaced">
-DELETE /tenants/XYZ/networks/158233b0-ca9a-40b4-8614-54a4a99d47d1/ports/b832be00-6553-4f69-af33-acd554e36d08/attachment.json
-	                </literallayout>
+	                <literallayout class="monospaced">DELETE /tenants/XYZ/networks/158233b0-ca9a-40b4-8614-54a4a99d47d1/ports/b832be00-6553-4f69-af33-acd554e36d08/attachment.json	                </literallayout>
                     <para>Response:</para>
-					<para>No data returned in response body</para>
+					<para><emphasis role="italic">No data is returned in the response
+                            body.</emphasis></para>
 				</example>
             </section>
         </section>
