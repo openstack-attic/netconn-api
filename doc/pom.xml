@@ -52,8 +52,7 @@
             <plugin>
                 <groupId>com.rackspace.cloud.api</groupId>
                 <artifactId>clouddocs-maven-plugin</artifactId>
-               <!-- <version>1.0.5-SNAPSHOT</version> -->
-                <version>1.1.1-SNAPSHOT</version>
+                <version>1.2.0</version>
                 <executions>
                     <execution>
                         <id>goal1</id>
@@ -73,7 +72,7 @@
                         <phase>generate-sources</phase>
                         <configuration>
                             <!-- These parameters only apply to webhelp -->
-                            <enableDisqus>0</enableDisqus>
+                            <enableDisqus>1</enableDisqus>
                             <disqusShortname>openstackdocs</disqusShortname>
                             <enableGoogleAnalytics>1</enableGoogleAnalytics>
                             <googleAnalyticsId>UA-17511903-6</googleAnalyticsId>
@@ -103,7 +102,7 @@
                                 
                                 <!-- New stuff -->
                                 <copy
-                                    todir="${basedir}/target/docbkx/webhelp/trunk/openstack-network/developer/quantum-api-1.0">
+                                    todir="${basedir}/target/docbkx/webhelp/api/openstack-network/developer/quantum-api-1.0">
                                     <fileset
                                         dir="${basedir}/target/docbkx/webhelp/quantum-api-1.0/quantum-api-guide/">
                                         <include name="**/*" />
@@ -112,7 +111,7 @@
                                 <!--Moves PDFs to the needed placement -->
                                 <move failonerror="false"
                                     file="${basedir}/target/docbkx/pdf/quantum-api-1.0/quantum-api-guide.pdf"
-                                    tofile="${basedir}/target/docbkx/webhelp/trunk/openstack-network/developer/quantum-api-1.0/quantum-api-guide-trunk.pdf"/>
+                                    tofile="${basedir}/target/docbkx/webhelp/api/openstack-network/developer/quantum-api-1.0/quantum-api-guide-trunk.pdf"/>
 
                                 <!--Deletes leftover uneeded directories -->
                                 <delete
