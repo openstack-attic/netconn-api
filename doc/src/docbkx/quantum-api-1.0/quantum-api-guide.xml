@@ -44,6 +44,7 @@
       version="5.0" status="final"
     xml:id="Quantum-api-spec">
     <title>Quantum API Guide (1.0)</title>
+    <?rax pdf.url="../quantum-api-guide-1.0.pdf"?>
     <titleabbrev>Quantum API 1.0</titleabbrev>
     <info>
         <author>

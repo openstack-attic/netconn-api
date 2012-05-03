@@ -7,8 +7,7 @@
     
     <groupId>org.openstack.docs</groupId>
     <artifactId>openstack-guide</artifactId>
- <!-- <version>1.0.0-SNAPSHOT</version> -->
-    <version>1.1.1-SNAPSHOT</version>
+    <version>1.0</version>
 
     <packaging>jar</packaging>
     <name>OpenStack Guides</name>
@@ -102,7 +101,7 @@
                                 
                                 <!-- New stuff -->
                                 <copy
-                                    todir="${basedir}/target/docbkx/webhelp/api/openstack-network/developer/quantum-api-1.0">
+                                    todir="${basedir}/target/docbkx/webhelp/api/openstack-network/1.0">
                                     <fileset
                                         dir="${basedir}/target/docbkx/webhelp/quantum-api-1.0/quantum-api-guide/">
                                         <include name="**/*" />
@@ -111,7 +110,7 @@
                                 <!--Moves PDFs to the needed placement -->
                                 <move failonerror="false"
                                     file="${basedir}/target/docbkx/pdf/quantum-api-1.0/quantum-api-guide.pdf"
-                                    tofile="${basedir}/target/docbkx/webhelp/api/openstack-network/developer/quantum-api-1.0/quantum-api-guide-trunk.pdf"/>
+                                    tofile="${basedir}/target/docbkx/webhelp/api/openstack-network/1.0/quantum-api-guide-1.0.pdf"/>
 
                                 <!--Deletes leftover uneeded directories -->
                                 <delete
@@ -127,6 +126,7 @@
                     <includes>
                         quantum-api-1.0/quantum-api-guide.xml
                     </includes>
+                    <canonicalUrlBase>http://docs.openstack.org/api/openstack-network/1.0/content/</canonicalUrlBase>
                     <profileSecurity>reviewer</profileSecurity>
                     <branding>openstack</branding>
                 </configuration>
