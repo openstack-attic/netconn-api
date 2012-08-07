@@ -71,6 +71,18 @@
                     (<abbrev>API</abbrev>). </para>
         </abstract> 
         <revhistory>
+            <revision>
+                <!-- ... continue addding more revisions here as you change this document using the markup shown below... -->
+                <date>2012-08-08</date>
+                <revdescription>
+                    <itemizedlist spacing="compact">
+                        <listitem>
+                            <para>Corrected the titles of some
+                                examples.</para>
+                        </listitem>
+                    </itemizedlist>
+                </revdescription>
+            </revision>
             <revision><!-- ... continue addding more revisions here as you change this document using the markup shown below... -->
                 <date>2012-04-18</date>
                 <revdescription>
@@ -345,57 +357,45 @@
 			</para>
         </section>
         <section xml:id="Attachment"><title>Attachment</title>
-            <para>
-			An attachment represents an interface plugged into a logical
-			port. At any time at most one attachment can be plugged into a
-			given port.
-			</para><para>
-			An attachment typically identified a virtual network interface.
-			Network interfaces are typically defined in an external services
-			which uses Quantum, for instance the OpenStack Compute service,
-			Nova.
-            </para>
+            <para>An attachment represents an interface plugged into a
+                logical port. At any time at most one attachment can
+                be plugged into a given port. </para><para>An attachment typically identified a virtual network interface.
+                Network interfaces are typically defined in an
+                external services which uses Quantum, for instance the
+                OpenStack Compute service, Nova. </para>
         </section>
     </chapter>
     <chapter xml:id="General_API_Information-d1e436">
         <title>General API Information</title>
-        <para>
-            The OpenStack Quantum API is defined as a ReSTful HTTP
+        <para>The OpenStack Quantum API is defined as a ReSTful HTTP
             service. The API takes advantage of all aspects of the
             HTTP protocol (methods, URIs, media types, response codes,
             etc.) and providers are free to use existing features of
             the protocol such as caching, persistent connections, and
-            content compression among others.  For example, providers
+            content compression among others. For example, providers
             who employ a caching layer may respond with a 203 when a
             request is served from the cache instead of a 200.
             Additionally, providers may offer support for conditional
             &GET; requests using ETags, or they may send a redirect in
-            response to a &GET; request.  Clients should be written to
-            account for these differences.
-        </para>
+            response to a &GET; request. Clients should be written to
+            account for these differences. </para>
         <section xml:id="Authentication-d1e444">
             <title>Authentication</title>
-            <para>
-                The current version of the OpenStack Quantum service
-                does not require that each request will include the credentials
-                of the user submitting the request.
-            </para><para>
-                However, Quantum deployments can support several
-                authentication schemes (OAuth, Basic Auth, Token). The
-                authentication scheme used is determined by the
-                provider of the Quantum service. Please contact
-                your provider to determine the best way to
-                authenticate against this API.
-            </para><para>
+            <para>The current version of the OpenStack Quantum service
+                does not require that each request will include the
+                credentials of the user submitting the request. </para><para>However, Quantum deployments can support several authentication
+                schemes (OAuth, Basic Auth, Token). The authentication
+                scheme used is determined by the provider of the
+                Quantum service. Please contact your provider to
+                determine the best way to authenticate against this
+                API. </para><para>
                 Ideally, middleware modules for Authentication and/or Authorization
                 should be inserted in the first stages of the Quantum pipeline
                 (available in <code>etc/quantum.conf</code>).
             </para>
             <note>
-                <para>
-                    Some authentication schemes may require that the
-                    API operate using SSL over HTTP (HTTPS).
-                </para>
+                <para>Some authentication schemes may require that the
+                    API operate using SSL over HTTP (HTTPS). </para>
             </note>
         </section>
         <?hard-pagebreak?>
@@ -667,12 +667,11 @@ Content-Type application/json
             </para></note>
             
             <important>
-                <para>
-                    Applications should be prepared to ignore response
-                    data that contains extension elements.
+                <para>Applications should be prepared to ignore
+                    response data that contains extension elements.
                     Applications should also verify that an extension
-                    is available before submitting an extended request.
-                </para>
+                    is available before submitting an extended
+                    request. </para>
             </important>
         </section>
         <?hard-pagebreak?>
@@ -896,7 +895,8 @@ Content-Type application/json
                 </para>
                 <para>This operation does not require a request body.</para>
                 <example>
-                    <title>Networks List Request/Response (XML)</title>
+                    <title>Networks List Details Request/Response
+                        (XML)</title>
                     <para>Request:</para>
                 <literallayout class="monospaced">GET /tenants/XYZ/networks/detail.xml                </literallayout>
                     <para>Response:</para>
@@ -905,7 +905,8 @@ Content-Type application/json
                 </example>
                 <?hard-pageb reak?>
                 <example>
-                    <title>Networks List Request/Response (JSON)</title>
+                    <title>Networks List Details Request/Response
+                        (JSON)</title>
                     <para>Request:</para>
 	                <literallayout class="monospaced">GET /tenants/XYZ/networks/detail.json</literallayout>
                     <para>Response:</para>
@@ -1005,7 +1006,8 @@ Content-Type application/json
                 </para>
                 <para>This operation does not require a request body.</para>
                 <example>
-                    <title>Show Network Detail Request/Response (XML)</title>
+                    <title>Show Network Details Request/Response
+                        (XML)</title>
                     <para>Request:</para>
                 <literallayout class="monospaced">GET /tenants/XYZ/networks/8bec1293-16bd-4568-ba75-1f58bec0b4c3/detail.xml                </literallayout>
                     <para>Response:</para>
@@ -1013,7 +1015,8 @@ Content-Type application/json
                     </programlisting>
                 </example>
                 <example>
-                    <title>Show Network Detail Request/Response (JSON)</title>
+                    <title>Show Network Details Request/Response
+                        (JSON)</title>
                     <para>Request:</para>
 	                <literallayout class="monospaced">GET /tenants/XYZ/networks/8bec1293-16bd-4568-ba75-1f58bec0b4c3/detail.json	                </literallayout>
                     <para>Response:</para>
@@ -1140,7 +1143,7 @@ Content-Type application/json
 				case the identifier in the request body will be ignored.
                 </para>
                 <example>
-                    <title>Update Network Request/Response (XML)</title>
+                    <title>Update Network Request (XML)</title>
                     <para>Request:</para>
                 <literallayout class="monospaced">PUT /tenants/XYZ/networks/158233b0-ca9a-40b4-8614-54a4a99d47d1.xml                </literallayout>
                     <programlisting language="xml"><xi:include href="samples/network-post-req.xml" parse="text"/>                   </programlisting>
@@ -1149,7 +1152,7 @@ Content-Type application/json
                             response body.</emphasis></para>
                 </example>
                 <example>
-                    <title>Update Network Request/Response (JSON)</title>
+                    <title>Update Network Request (JSON)</title>
                     <para>Request:</para>
 	                <literallayout class="monospaced">PUT /tenants/XYZ/networks/158233b0-ca9a-40b4-8614-54a4a99d47d1.json	                </literallayout>
                     <programlisting language="json"><xi:include href="samples/network-post-req.json" parse="text"/>                    </programlisting>
@@ -1203,7 +1206,7 @@ Content-Type application/json
                 <note><para>This operation cannot be undone. </para></note>
                 <para>This operation does not require a request body. </para>
                 <example>
-                    <title>Delete Network Request/Response (XML)</title>
+                    <title>Delete Network Request (XML)</title>
                     <para>Request:</para>
                 <literallayout class="monospaced">DELETE /tenants/XYZ/networks/158233b0-ca9a-40b4-8614-54a4a99d47d1.xml                </literallayout>
                     <para>Response:</para>
@@ -1211,7 +1214,7 @@ Content-Type application/json
                             response body.</emphasis></para>
                 </example>
                 <example>
-                    <title>Update Network Request/Response (JSON)</title>
+                    <title>Delete Network Request (JSON)</title>
                     <para>Request:</para>
 	                <literallayout class="monospaced">DELETE /tenants/XYZ/networks/158233b0-ca9a-40b4-8614-54a4a99d47d1.json	                </literallayout>
                     <para>Response:</para>
@@ -1425,14 +1428,16 @@ Content-Type application/json
                     return the identifier of the attachment as well. </para>
                 <para>This operation does not require a request body.</para>
                 <example>
-                    <title>Show Port Detail Request/Response (XML)</title>
+                    <title>Show Port Details Request/Response
+                        (XML)</title>
                     <para>Request:</para>
                 <literallayout class="monospaced">GET /tenants/33/networks/158233b0-ca9a-40b4-8614-54a4a99d47d1/ports/98017ddc-efc8-4c25-a915-774b2a633855/detail.xml                </literallayout>
                     <para>Response:</para>
                     <programlisting language="xml"><xi:include href="samples/port-get-detail-res.xml" parse="text"/>                    </programlisting>
                 </example>
                 <example>
-                    <title>Show Port Detail Request/Response (JSON)</title>
+                    <title>Show Port Details Request/Response
+                        (JSON)</title>
                     <para>Request:</para>
 	                <literallayout class="monospaced">GET /tenants/33/networks/158233b0-ca9a-40b4-8614-54a4a99d47d1/ports/98017ddc-efc8-4c25-a915-774b2a633855/detail.json	                </literallayout>
                     <para>Response:</para>
@@ -1568,24 +1573,24 @@ Content-Type application/json
 				the new administrative state for the port.
 				</para>
                 <example>
-                    <title>Set Port State Request/Response (XML)</title>
+                    <title>Update Port Request (XML)</title>
                     <para>Request:</para>
                 <literallayout class="monospaced">PUT tenants/33/networks/158233b0-ca9a-40b4-8614-54a4a99d47d1/ports/98017ddc-efc8-4c25-a915-774b2a633855.xml                </literallayout>
                 <programlisting language="xml"><xi:include href="samples/port-post-req.xml" parse="text"/>
                 </programlisting>
                     <para>Response:</para>
 					<para><emphasis>No data is returned in the response
-                            body..</emphasis></para>
+                            body.</emphasis></para>
                 </example>
                 <example>
-                    <title>Create Port Request/Response (JSON)</title>
+                    <title>Update Port Request (JSON)</title>
                     <para>Request:</para>
 	                <literallayout class="monospaced">PUT tenants/33/networks/158233b0-ca9a-40b4-8614-54a4a99d47d1/ports/98017ddc-efc8-4c25-a915-774b2a633855.json	                </literallayout>
 	                <programlisting language="json"><xi:include href="samples/port-post-req.json" parse="text"/>
                 	</programlisting>
                     <para>Response:</para>
                     <para><emphasis>No data is returned in the
-                            response body..</emphasis></para>
+                            response body.</emphasis></para>
                 </example>
             </section>
             <section xml:id="Delete_Port">
@@ -1637,7 +1642,7 @@ Content-Type application/json
 				This operation does not require a request body.
 				</para>
                 <example>
-                    <title>Delete Port State Request/Response (XML)</title>
+                    <title>Delete Port Request (XML)</title>
                     <para>Request:</para>
                 <literallayout class="monospaced">DELETE tenants/33/networks/158233b0-ca9a-40b4-8614-54a4a99d47d1/ports/98017ddc-efc8-4c25-a915-774b2a633855.xml                </literallayout>
                     <para>Response:</para>
@@ -1645,7 +1650,7 @@ Content-Type application/json
                             body..</emphasis></para>
                 </example>
                 <example>
-                    <title>Create Port Request/Response (JSON)</title>
+                    <title>Delete Port Request (JSON)</title>
                     <para>Request:</para>
 	                <literallayout class="monospaced">DELETE tenants/33/networks/158233b0-ca9a-40b4-8614-54a4a99d47d1/ports/98017ddc-efc8-4c25-a915-774b2a633855.json	                </literallayout>
                     <para>Response:</para>
@@ -1704,7 +1709,8 @@ Content-Type application/json
                     with no <code>id</code> attribute set. </para>
                 <para>This operation does not require a request body.</para>
                 <example>
-                    <title>Show Attachment (XML)</title>
+                    <title>Show Attachment Request/Response
+                        (XML)</title>
                     <para>Request:</para>
                 <literallayout class="monospaced">GET /tenants/XYZ/networks/158233b0-ca9a-40b4-8614-54a4a99d47d1/ports/b832be00-6553-4f69-af33-acd554e36d08/attachment.xml               </literallayout>
                     <para>Response (attachment set):</para>
@@ -1715,7 +1721,8 @@ Content-Type application/json
                     </programlisting>
                 </example>
                 <example>
-                    <title>Show Attachment (JSON)</title>
+                    <title>Show Attachment Request/Response
+                        (JSON)</title>
                     <para>Request:</para>
 	                <literallayout class="monospaced">GET /tenants/XYZ/networks/158233b0-ca9a-40b4-8614-54a4a99d47d1/ports/b832be00-6553-4f69-af33-acd554e36d08/attachment.json	                </literallayout>
                     <para>Response (attachment set):</para>
@@ -1784,7 +1791,7 @@ Content-Type application/json
                 to the attachment to plug into the port.
                 </para>
                 <example>
-                    <title>Plug Attachment (XML)</title>
+                    <title>Plug Attachment Request (XML)</title>
                     <para>Request:</para>
 	                <literallayout class="monospaced">PUT /tenants/XYZ/networks/158233b0-ca9a-40b4-8614-54a4a99d47d1/ports/b832be00-6553-4f69-af33-acd554e36d08/attachment.xml	                </literallayout>
                     <programlisting language="xml"><xi:include href="samples/att-put-req.xml" parse="text"/>                   </programlisting>
@@ -1793,7 +1800,7 @@ Content-Type application/json
                             in the response body.</emphasis></para>
                 </example>
                 <example>
-                    <title>Plug Attachment (JSON)</title>
+                    <title>Plug Attachment Request (JSON)</title>
                     <para>Request:</para>
 	                <literallayout class="monospaced">PUT /tenants/XYZ/networks/158233b0-ca9a-40b4-8614-54a4a99d47d1/ports/b832be00-6553-4f69-af33-acd554e36d08/attachment.json	                </literallayout>
                     <programlisting language="xml"><xi:include href="samples/att-put-req.json" parse="text"/>
@@ -1804,7 +1811,7 @@ Content-Type application/json
 				</example>
             </section>
 			<section xml:id="Delete_Attachment">
-                <title>Unplug Attachment from Port</title>
+                <title>Delete Attachment from Port</title>
                 <informaltable rules="all">
                     <thead>
                         <tr>
@@ -1838,7 +1845,7 @@ Content-Type application/json
                     operation has no effect. </para>
                 <para>This operation does not require a request body. </para>
                 <example>
-                    <title>Remove Attachment (XML)</title>
+                    <title>Delete Attachment Request (XML)</title>
                     <para>Request:</para>
 	                <literallayout class="monospaced">DELETE /tenants/XYZ/networks/158233b0-ca9a-40b4-8614-54a4a99d47d1/ports/b832be00-6553-4f69-af33-acd554e36d08/attachment.xml	                </literallayout>
                    <para>Response:</para>
@@ -1846,7 +1853,7 @@ Content-Type application/json
                             in the response body.</emphasis></para>
                 </example>
                 <example>
-                    <title>Remove Attachment (JSON)</title>
+                    <title>Delete Attachment Request (JSON)</title>
                     <para>Request:</para>
                     <literallayout class="monospaced">DELETE /tenants/XYZ/networks/158233b0-ca9a-40b4-8614-54a4a99d47d1/ports/b832be00-6553-4f69-af33-acd554e36d08/attachment.json	                </literallayout>
                     <para>Response:</para>
