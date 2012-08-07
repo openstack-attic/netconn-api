@@ -1,0 +1,15 @@
+'status': '201'
+'content-length': '194'
+'content-type': 'application/json;
+
+{
+  "network": 
+    {
+      "status": "ACTIVE",
+      "subnets": [], 
+      "name": "sample_network", 
+      "admin_state_up": false, 
+      "tenant_id": "c1210485b2424d48804aad5d39c61b8f", 
+      "id": "fc68ea2c-b60b-4b4f-bd82-94ec81110766"
+     }
+}

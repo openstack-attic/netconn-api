@@ -1,0 +1,7 @@
+{
+ "network": 
+    {
+      "name": "net-name", 
+      "admin_state_up": true
+    }
+}
