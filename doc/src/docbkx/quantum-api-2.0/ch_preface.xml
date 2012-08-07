@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE chapter [
+<!-- Some useful entities borrowed from HTML -->
+<!ENTITY ndash  "&#x2013;">
+<!ENTITY mdash  "&#x2014;">
+<!ENTITY hellip "&#x2026;">
+<!ENTITY plusmn "&#xB1;">
+
+<!-- Useful for describing APIs -->
+<!ENTITY GET    '<command xmlns="http://docbook.org/ns/docbook">GET</command>'>
+<!ENTITY PUT    '<command xmlns="http://docbook.org/ns/docbook">PUT</command>'>
+<!ENTITY POST   '<command xmlns="http://docbook.org/ns/docbook">POST</command>'>
+<!ENTITY DELETE '<command xmlns="http://docbook.org/ns/docbook">DELETE</command>'>
+
+<!ENTITY CHECK  '<inlinemediaobject xmlns="http://docbook.org/ns/docbook">
+<imageobject role="fo">
+<imagedata fileref="figures/Check_mark_23x20_02.svg"
+format="SVG" scale="60"/>
+</imageobject>
+<imageobject role="html">
+<imagedata fileref="../figures/Check_mark_23x20_02.png"
+format="PNG" />
+</imageobject>
+</inlinemediaobject>'>
+
+<!ENTITY ARROW  '<inlinemediaobject xmlns="http://docbook.org/ns/docbook">
+<imageobject role="fo">
+<imagedata fileref="figures/Arrow_east.svg"
+format="SVG" scale="60"/>
+</imageobject>
+<imageobject role="html">
+<imagedata fileref="../figures/Arrow_east.png"
+format="PNG" />
+</imageobject>
+</inlinemediaobject>'>
+ <!ENTITY APIv2   'Quantum API v2.0'>
+]>
+<preface xmlns="http://docbook.org/ns/docbook"
+    xmlns:xi="http://www.w3.org/2001/XInclude"
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0"
+    xml:id="ch_preface">
+    <?dbhtml stop-chunking?>
+    <title>Preface</title>
+    <para>The Quantum project provides virtual networking services
+        among devices managed by the <link
+            xlink:href="http://wiki.openstack.org/OpenStack"
+            xmlns:svg="http://www.w3.org/2000/svg"
+            xmlns:m="http://www.w3.org/1998/Math/MathML"
+            xmlns:html="http://www.w3.org/1999/xhtml"
+            xmlns:db="http://docbook.org/ns/docbook">OpenStack</link>
+        compute service. </para>
+    <para>This document describes the features available with the
+        &APIv2;.</para>
+    <para>We welcome feedback, comments, and bug reports at <link
+            xlink:href="http://bugs.launchpad.net/Quantum"
+            xmlns:svg="http://www.w3.org/2000/svg"
+            xmlns:m="http://www.w3.org/1998/Math/MathML"
+            xmlns:html="http://www.w3.org/1999/xhtml"
+            xmlns:db="http://docbook.org/ns/docbook"
+            >bugs.launchpad.net/Quantum</link>. </para>
+    <section xml:id="Intended_Audience-d1e85">
+        <title>Intended Audience</title>
+        <para xmlns:svg="http://www.w3.org/2000/svg"
+            xmlns:m="http://www.w3.org/1998/Math/MathML"
+            xmlns:html="http://www.w3.org/1999/xhtml"
+            xmlns:db="http://docbook.org/ns/docbook">This guide is for
+            software developers who create applications by using the
+            &APIv2;. To use this information, you should have a
+            general understanding of the OpenStack Quantum network
+            service, the OpenStack compute service, and the
+            integration between the two. You should also have access
+            to a plugin that implements the &APIv2;. </para>
+        <para xmlns:svg="http://www.w3.org/2000/svg"
+            xmlns:m="http://www.w3.org/1998/Math/MathML"
+            xmlns:html="http://www.w3.org/1999/xhtml"
+            xmlns:db="http://docbook.org/ns/docbook">You should also
+            be familiar with: </para>
+        <itemizedlist spacing="compact"
+            xmlns:svg="http://www.w3.org/2000/svg"
+            xmlns:m="http://www.w3.org/1998/Math/MathML"
+            xmlns:html="http://www.w3.org/1999/xhtml"
+            xmlns:db="http://docbook.org/ns/docbook">
+            <listitem>
+                <para>ReSTful web services</para>
+            </listitem>
+            <listitem>
+                <para>HTTP/1.1</para>
+            </listitem>
+            <listitem>
+                <para>JSON and XML data serialization formats</para>
+            </listitem>
+        </itemizedlist>
+    </section>
+    <?hard-pagebreak?>
+    <section xml:id="Document_Change_History-d1e118">
+        <title>Document Change History</title>
+        <para>This version of the document replaces and obsoletes all
+            previous versions. The following table describes the most
+            recent changes:</para>
+        <?rax revhistory?>
+        <!-- Table generated in output from revision element in the book element -->
+    </section>
+    <?hard-pagebreak?>
+    <section xml:id="Additional_Resources-d1e346">
+        <title>Resources</title>
+        <para>Use the following resources in conjunction with this
+            guide: <informaltable rules="all"
+                xmlns:svg="http://www.w3.org/2000/svg"
+                xmlns:m="http://www.w3.org/1998/Math/MathML"
+                xmlns:html="http://www.w3.org/1999/xhtml"
+                xmlns:db="http://docbook.org/ns/docbook">
+                <col width="32%"/>
+                <col width="68%"/>
+                <thead>
+                    <tr>
+                        <th>Resource</th>
+                        <th>See</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <para>Related documents</para>
+                        </td>
+                        <td><link xlink:href="docs.openstack.org"
+                                >OpenStack Manuals</link></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <para>OpenStack Quantum Wiki</para>
+                        </td>
+                        <td><link
+                                xlink:href="http://wiki.openstack.org/Quantum"
+                                >http://wiki.openstack.org/Quantum</link></td>
+                    </tr>
+                </tbody>
+            </informaltable></para>
+    </section>
+
+</preface>
