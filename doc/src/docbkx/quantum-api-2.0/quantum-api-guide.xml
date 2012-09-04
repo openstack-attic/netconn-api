@@ -924,18 +924,16 @@
         <?hard-pagebreak?>
         <section xml:id="Request_Response_Types">
             <title>Request/Response Types</title>
-            <para>The &APIv2; supports both the JSON and XML data
-                serialization formats. The format for both the request
-                and the response can be specified either using the
+            <para>The &APIv2; supports the JSON data serialization
+                format. The format for both the request and the
+                response can be specified either using the
                     <code>Content-Type</code> header, the
-                    <code>Accept</code> header or adding an
-                    <code>.xml</code> or <code>.json</code> extension
-                to the request URI. </para>
-            <para>If conflicting formats are specified in headers
-                and/or format extensions, the latter takes precedence.
-                XML is currently the default format for both requests
-                and responses. </para>
-            <table rules="all">
+                    <code>Accept</code> header or adding the
+                    <code>.json</code> extension to the request URI. </para>
+            <para><!--If conflicting formats are specified in headers and/or format extensions, the latter takes precedence. -->JSON
+                is currently the default format for both requests and
+                responses. </para>
+            <!--<table rules="all">
                 <caption>JSON and XML Response Formats</caption>
                 <thead>
                     <tr>
@@ -950,21 +948,19 @@
                         <td>JSON</td>
                         <td>application/json</td>
                         <td>.json</td>
-                        <td>No</td>
+                        <td>Yes</td>
                     </tr>
                     <tr>
                         <td>XML</td>
                         <td>application/xml</td>
                         <td>.xml</td>
-                        <td>Yes</td>
+                        <td>No</td>
                     </tr>
                 </tbody>
-            </table>
+            </table>-->
             <example>
                 <title>Request/Response with Headers: JSON</title>
-                <para>The <link
-                        xlink:href="http://wiki.openstack.org/OpenStack"
-                        >OpenStack</link> Quantum API supports the
+                <para>The Quantum API supports the
                     JSON data format. The format for both the request
                     and the response can be specified either using the
                     Accept header or adding the .json extension to the
@@ -1533,7 +1529,6 @@ Accept: application/json
                         (<errorcode>403</errorcode>) Not Found
                         (<errorcode>404</errorcode>), Unprocessable
                     Entity (<errorcode>422</errorcode>)</simpara>
-                <para/>
                 <para>This operation requires a request body. You can
                     set the following attributes in the request
                         body:<table rules="all">
