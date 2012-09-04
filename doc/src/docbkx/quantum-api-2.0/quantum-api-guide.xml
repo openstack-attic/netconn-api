@@ -75,6 +75,16 @@
         <revhistory>
             <revision>
                 <!-- ... continue addding more revisions here as you change this document using the markup shown below... -->
+                <date>2012-09-05</date>
+                <revdescription>
+                    <itemizedlist spacing="compact">
+                        <listitem>
+                            <para>Removes XML as a valid request or response type.</para>
+                        </listitem>
+                    </itemizedlist>
+                </revdescription>
+            </revision>
+            <revision>
                 <date>2012-08-17</date>
                 <revdescription>
                     <itemizedlist spacing="compact">
@@ -924,51 +934,17 @@
         <?hard-pagebreak?>
         <section xml:id="Request_Response_Types">
             <title>Request/Response Types</title>
-            <para>The &APIv2; supports both the JSON and XML data
-                serialization formats. The format for both the request
-                and the response can be specified either using the
-                    <code>Content-Type</code> header, the
-                    <code>Accept</code> header or adding an
-                    <code>.xml</code> or <code>.json</code> extension
-                to the request URI. </para>
-            <para>If conflicting formats are specified in headers
-                and/or format extensions, the latter takes precedence.
-                XML is currently the default format for both requests
-                and responses. </para>
-            <table rules="all">
-                <caption>JSON and XML Response Formats</caption>
-                <thead>
-                    <tr>
-                        <td>Format</td>
-                        <td>Accept Header</td>
-                        <td>Query Extension</td>
-                        <td>Default</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>JSON</td>
-                        <td>application/json</td>
-                        <td>.json</td>
-                        <td>No</td>
-                    </tr>
-                    <tr>
-                        <td>XML</td>
-                        <td>application/xml</td>
-                        <td>.xml</td>
-                        <td>Yes</td>
-                    </tr>
-                </tbody>
-            </table>
+            <para>The &APIv2; supports the JSON data serialization
+                format.</para>
             <example>
                 <title>Request/Response with Headers: JSON</title>
-                <para>The <link
-                        xlink:href="http://wiki.openstack.org/OpenStack"
-                        >OpenStack</link> Quantum API supports the
-                    JSON data format. The format for both the request
-                    and the response can be specified either using the
-                    Accept header or adding the .json extension to the
-                    request URI. </para>
+                <para>The format for both the request and the response
+                    can be specified using the
+                        <code>Content-Type</code> header, the
+                        <code>Accept</code> header or adding the
+                        <code>.json</code> extension to the request
+                    URI. </para>
+                <para> </para>
                 <para>Request:</para>
                 <literallayout class="monospaced">
 POST /v1.0/tenants/tenantX/networks HTTP/1.1
@@ -1533,7 +1509,6 @@ Accept: application/json
                         (<errorcode>403</errorcode>) Not Found
                         (<errorcode>404</errorcode>), Unprocessable
                     Entity (<errorcode>422</errorcode>)</simpara>
-                <para/>
                 <para>This operation requires a request body. You can
                     set the following attributes in the request
                         body:<table rules="all">
