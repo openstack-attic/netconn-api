@@ -1,23 +1,40 @@
 {
-  "subnets": [
-   {
-     "name": "",
-     "network_id": "ed2e3c10-2e43-4297-9006-2863a2d1abbc",
-     "tenant_id": "c1210485b2424d48804aad5d39c61b8f", 
-     "allocation_pools": [{"start": "10.10.0.2", "end": "10.10.0.254"}],
-     "gateway_ip": "10.10.0.1",
-     "ip_version": 4,
-     "cidr": "10.10.0.0/24",
-     "id": "4156c7a5-e8c4-4aff-a6e1-8f3c7bc83861"
-    }, 
-    {
-      "name": "", 
-      "network_id": "afc75773-640e-403c-9fff-62ba98db1f19",
-      "tenant_id": "ed680f49ff714162ab3612d7876ffce5",
-      "allocation_pools": [{"start": "10.0.0.2", "end": "10.0.0.254"}],
-      "gateway_ip": "10.0.0.1", 
-      "ip_version": 4,
-      "cidr": "10.0.0.0/24",
-       "id": "e12f0c45-46e3-446a-b207-9474b27687a6"
-     }]
+    "subnets": [
+        {
+            "allocation_pools": [
+                {
+                    "end": "10.0.3.254",
+                    "start": "10.0.3.2"
+                }
+            ],
+            "cidr": "10.0.3.0/24",
+            "dns_nameservers": [],
+            "enable_dhcp": true,
+            "gateway_ip": "10.0.3.1",
+            "host_routes": [],
+            "id": "91e47a57-7508-46fe-afc9-fc454e8580e1",
+            "ip_version": 4,
+            "name": "",
+            "network_id": "1a6f6006-9e0b-4f99-984c-96787ae66363",
+            "tenant_id": "f667b69e4d6749749ef3bcba7251d9ce"
+        },
+        {
+            "allocation_pools": [
+                {
+                    "end": "10.0.2.254",
+                    "start": "10.0.2.2"
+                }
+            ],
+            "cidr": "10.0.2.0/24",
+            "dns_nameservers": [],
+            "enable_dhcp": true,
+            "gateway_ip": "10.0.2.1",
+            "host_routes": [],
+            "id": "e3c3620c-9d24-4470-b226-739da2f617c0",
+            "ip_version": 4,
+            "name": "",
+            "network_id": "1a6f6006-9e0b-4f99-984c-96787ae66363",
+            "tenant_id": "f667b69e4d6749749ef3bcba7251d9ce"
+        }
+    ]
 }

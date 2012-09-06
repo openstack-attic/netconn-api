@@ -3,13 +3,13 @@
 'content-type': 'application/json;
 
 {
-  "network": 
-    {
-      "status": "ACTIVE",
-      "subnets": [], 
-      "name": "sample_network", 
-      "admin_state_up": false, 
-      "tenant_id": "c1210485b2424d48804aad5d39c61b8f", 
-      "id": "fc68ea2c-b60b-4b4f-bd82-94ec81110766"
-     }
+    "network": {
+        "admin_state_up": true,
+        "id": "850d3f2c-f0a5-4f8b-b1cf-5836fc0be940",
+        "name": "sample_network",
+        "shared": false,
+        "status": "ACTIVE",
+        "subnets": [],
+        "tenant_id": "f667b69e4d6749749ef3bcba7251d9ce"
+    }
 }
