@@ -262,19 +262,22 @@
                         specifies a single NIC that connects to the
                         network. </para>
                     <para>For
-                        example:<programlisting language="bash" role="gutter: false"><prompt>$</prompt> nova boot --image <emphasis role="italic">image_name</emphasis> --nic net-id=<emphasis role="italic">id_of_net1</emphasis> <emphasis role="italic">server_name</emphasis></programlisting></para>
+                        example A:<programlisting language="bash" role="gutter: false"><prompt>$</prompt> nova boot --image <emphasis role="italic">image_name</emphasis> --nic net-id=<emphasis role="italic">id_of_net1</emphasis> <emphasis role="italic">server_name</emphasis></programlisting>
+                        example B:<programlisting language="bash" role="gutter: false"><prompt>$</prompt> nova boot --image <emphasis role="italic">image_name</emphasis> --nic port-id=<emphasis role="italic">id_of_port1</emphasis> <emphasis role="italic">server_name</emphasis></programlisting>
+                    </para>
                 </listitem>
                 <listitem>
-                    <para>Nova contacts Quantum and creates the
+                    <para>In example A, Nova contacts Quantum and creates the
                             <literal>port1</literal> port on the
                             <literal>net1</literal> network.</para>
+                    <para>In example B, You should create port before boot a VM.</para>
                 </listitem>
                 <listitem>
                     <para>Quantum assigns an IP address to the
                             <literal>port1</literal> port.</para>
                     <note>
-                        <para>Quantum chooses the IP address.</para>
-                    </note>
+                        <para>Quantum chooses the IP address by default.
+                        </para></note>
                 </listitem>
                 <listitem>
                     <para>The tenant deletes the VM. </para>
@@ -462,37 +465,13 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>permissions </td>
-                        <td>octal(3) </td>
+                        <td>shared </td>
+                        <td>Bool </td>
                         <td>No </td>
-                        <td>CR<footnote xml:id="group">
-                                <para>The &APIv2; currently ignores
-                                   group permissions, and executable
-                                   bits. Write access to world, even
-                                   if granted by the user, is
-                                   currently ignored by the Quantum
-                                   API. The full permission mask has
-                                   been provided for compatibility
-                                   with future implementations.
-                                </para>
-                            </footnote>
-                        </td>
-                        <td>rw- --- --- </td>
-                        <td>3-octal digit string or permission string
-                            in the rwxrwxrwx form.<footnote
-                                xml:id="symbolic">
-                                <para>The &APIv2; also allows the
-                                   symbolic string <emphasis
-                                   role="italic">private</emphasis>
-                                   and <emphasis role="italic"
-                                   >public</emphasis> for the
-                                   permissions string. Private
-                                   corresponds to 0600 or rw- --- ---,
-                                   whereas Public corresponds to 0644
-                                   or rw-r--r--. </para>
-                            </footnote></td>
-                        <td>Specifies access rights on the network
-                            object for owner, group, and world </td>
+                        <td>CRU</td>
+                        <td>False</td>
+                        <td>{ True | False } </td>
+                        <td>Specifies whether the network resource can be accessed by any tenant or not.</td>
                     </tr>
                     <tr>
                         <td>tenant_id </td>
@@ -656,9 +635,9 @@
                         <td>list(dict) </td>
                         <td>No </td>
                         <td>CRU </td>
-                        <td>default route to gateway_ip </td>
+                        <td>Empty List </td>
                         <td>
-                            <emphasis role="italic">TBD</emphasis>
+                            <emphasis role="italic">[]</emphasis>
                         </td>
                         <td>Routes that should be used by devices with
                             IPs from this subnet (not including local
@@ -823,20 +802,6 @@
                             from </td>
                     </tr>
                     <tr>
-                        <td>host_routes </td>
-                        <td>list(dict) </td>
-                        <td>No </td>
-                        <td>CR </td>
-                        <td>Empty list </td>
-                        <td>
-                            <emphasis role="italic">TBD</emphasis>
-                        </td>
-                        <td>list of routes to be used with this port.
-                            In case of overlap, overrides routes
-                            specified for the subnets associated with
-                            this port. </td>
-                    </tr>
-                    <tr>
                         <td>device_id </td>
                         <td>str </td>
                         <td>No </td>
@@ -845,6 +810,15 @@
                         <td>No constraint </td>
                         <td>identifies the device (e.g., virtual
                             server) using this port. </td>
+                    </tr>
+                    <tr>
+                        <td>device_owner </td>
+                        <td>str </td>
+                        <td>No </td>
+                        <td>CRUD </td>
+                        <td>None </td>
+                        <td>No constraint </td>
+                        <td>Identifies the entity (e.g.: dhcp agent) using this port. </td>
                     </tr>
                     <tr>
                         <td>tenant_id </td>
@@ -951,14 +925,14 @@ POST /v1.0/tenants/tenantX/networks HTTP/1.1
 Host 127.0.0.1:9696
 Content-Type application/json
 Accept application/json
-Content-Length 57 
+Content-Length 57
                 </literallayout>
                 <programlisting language="json"><xi:include href="samples/networks-post-req.json" parse="text"/></programlisting>
                 <para>Response:</para>
                 <literallayout class="monospaced">
-HTTP/1.1 200 Accepted
+HTTP/1.1 201 Created
 Content-Type application/json
-Content-Length 204 
+Content-Length 204
                 </literallayout>
                 <programlisting language="json"><xi:include href="samples/networks-post-res.json" parse="text"/></programlisting>
             </example>
@@ -1115,8 +1089,8 @@ Content-Length 204
                     </thead>
                     <tbody>
                         <tr>
-                            <td rowspan="4">400 </td>
-                            <td rowspan="4">Bad Request</td>
+                            <td rowspan="6">400 </td>
+                            <td rowspan="6">Bad Request</td>
                             <td>Malformed request URI or body</td>
                         </tr>
                         <tr>
@@ -1127,6 +1101,15 @@ Content-Length 204
                         </tr>
                         <tr>
                             <td>Bulk operations disallowed</td>
+                        </tr>
+                        <tr>
+                            <td>Validation failed</td>
+                        </tr>
+                        <tr>
+                            <td>Method not allowed for request body
+                                (such as trying to update attributes
+                                that can be specified at create-time
+                                only)</td>
                         </tr>
                         <tr>
                             <td rowspan="2">404 </td>
@@ -1147,17 +1130,6 @@ Content-Length 204
                         <tr>
                             <td>Conflicting IP allocation pools for
                                 subnet</td>
-                        </tr>
-                        <tr>
-                            <td rowspan="2">422</td>
-                            <td rowspan="2">Unprocessable Entity</td>
-                            <td>Validation failed</td>
-                        </tr>
-                        <tr>
-                            <td>Method not allowed for request body
-                                (such as trying to update attributes
-                                that can be specified at create-time
-                                only)</td>
                         </tr>
                         <tr>
                             <td>500</td>
@@ -1265,8 +1237,7 @@ Content-Length 204
                 <simpara>Normal Response Code:
                         <returnvalue>200</returnvalue>
                 </simpara>
-                <simpara>Error Response Codes: Bad Request
-                        (<errorcode>400</errorcode>), Unauthorized
+                <simpara>Error Response Codes:Unauthorized
                         (<errorcode>401</errorcode>)</simpara>
                 <para>Lists a summary of all networks defined in
                     Quantum that are accessible to the tenant who
@@ -1283,7 +1254,7 @@ Content-Length 204
                 <example>
                     <title>List Networks: XML Response</title>
                     <programlisting language="xml"><xi:include href="samples/networks-get-res.xml" parse="text"/></programlisting>
-                </example> 
+                </example>
                 <?hard-pagebreak?>-->
                 <example>
                     <title>List Networks: JSON Request</title>
@@ -1324,8 +1295,7 @@ Accept: application/json
                 <simpara> Normal Response Code:
                         <returnvalue>200</returnvalue>
                 </simpara>
-                <simpara> Error Response Codes: Bad Request
-                        (<errorcode>400</errorcode>), Unauthorized
+                <simpara> Error Response Codes: Unauthorized
                         (<errorcode>401</errorcode>), Not Found
                         (<errorcode>404</errorcode>)</simpara>
                 <para>This operation returns the status, subnets,
@@ -1381,7 +1351,7 @@ Accept: application/json
                     </tbody>
                 </informaltable>
                 <simpara>Normal Response Code:
-                        <returnvalue>200</returnvalue>
+                        <returnvalue>201</returnvalue>
                 </simpara>
                 <simpara>Error Response Codes: Bad Request
                         (<errorcode>400</errorcode>) Unauthorized
@@ -1405,9 +1375,9 @@ Accept: application/json
                     <title>Create Network: JSON Request</title>
 
                     <literallayout class="monospaced">
-POST v2.0/networks.json 
+POST v2.0/networks.json
 Content-Type: application/json
-Accept: application/json 
+Accept: application/json
 </literallayout>
 
                     <programlisting language="json"><xi:include href="samples/network-post-req.json" parse="text"/>                    </programlisting>
@@ -1430,7 +1400,7 @@ Accept: application/json
                         <title>Bulk Create Servers: JSON Request </title>
 
                         <literallayout class="monospaced">
-POST v2.0/networks.json 
+POST v2.0/networks.json
 
 Content-Type: application/json
 Accept: application/json
@@ -1439,11 +1409,11 @@ Accept: application/json
                         <programlisting language="json">{
 "networks": [
    {
-     "name": "sample_network_1", 
+     "name": "sample_network_1",
      "admin_state_up": false
    },
    {
-     "name": "sample_network_2", 
+     "name": "sample_network_2",
      "admin_state_up": false
    }]
 }</programlisting>
@@ -1451,30 +1421,6 @@ Accept: application/json
                     <para>The bulk create operation is always atomic.
                         Either all or no networks in the request body
                         are created. </para>
-                    <note>
-                        <para>You can use the
-                                <literal>permissions</literal>
-                            attribute to create a public network. A
-                            public network can be shared with other
-                            tenants. This attribute enables you to
-                            specify file system-like permissions on
-                            Quantum resources. However, &APIv2;
-                            currently supports creating networks that
-                            are shared with every other tenant. To do
-                            so, set the <literal>permissions</literal>
-                            attribute to <literal>0644</literal> or
-                                <literal>rw- r-- r--</literal>. </para>
-                        <para>Control of the
-                                <literal>permissions</literal>
-                            attribute could reserved to only specific
-                            users, such as administrators. In this
-                            case, regular users who try to create a
-                            network with a permissions setting that is
-                            different from the default value receive a
-                                <errorcode>403</errorcode>
-                            <errortext>Forbidden</errortext> error.
-                        </para>
-                    </note>
                 </section>
 
             </section>
@@ -1507,8 +1453,7 @@ Accept: application/json
                         (<errorcode>400</errorcode>) Unauthorized
                         (<errorcode>401</errorcode>), Forbidden
                         (<errorcode>403</errorcode>) Not Found
-                        (<errorcode>404</errorcode>), Unprocessable
-                    Entity (<errorcode>422</errorcode>)</simpara>
+                        (<errorcode>404</errorcode>) </simpara>
                 <para>This operation requires a request body. You can
                     set the following attributes in the request
                         body:<table rules="all">
@@ -1542,8 +1487,8 @@ Accept: application/json
                         <literal>tenant_id</literal>, or
                         <literal>id</literal> attributes. If you try
                     to update these attributes, a
-                        <errorcode>422</errorcode>
-                    <errortext>Unprocessable Entity</errortext> error
+                        <errorcode>400</errorcode>
+                    <errortext>Bad Request</errortext> error
                     is returned. </para>
                 <para>This operation returns a response body.</para>
                 <note>
@@ -1567,14 +1512,14 @@ Accept: application/json
                 <example>
                     <title>Update Network: JSON Request </title>
                     <literallayout class="monospaced">
-PUT /v2.0/networks/fc68ea2c-b60b-4b4f-bd82-94ec81110766.json 
+PUT /v2.0/networks/fc68ea2c-b60b-4b4f-bd82-94ec81110766.json
 
 Content-Type: application/json
-Accept: application/json 
+Accept: application/json
 </literallayout>
 
                     <programlisting language="json">{
-  "network": 
+  "network":
     {
       "name": "updated_name"
     }
@@ -1588,14 +1533,14 @@ content-length: 192
 content-type: application/json
 
 {
-  "network": 
+  "network":
     {
      "status": "ACTIVE",
      "subnets": [],
-     "name": "updated_name", 
+     "name": "updated_name",
      "admin_state_up": false,
      "shared": false,
-     "tenant_id": "c1210485b2424d48804aad5d39c61b8f", 
+     "tenant_id": "c1210485b2424d48804aad5d39c61b8f",
      "id": "fc68ea2c-b60b-4b4f-bd82-94ec81110766"
     }
 } </programlisting>
@@ -1771,8 +1716,8 @@ Accept: application/json </literallayout>
                     <title>List Subnets: JSON Request </title>
 
                     <literallayout class="monospaced">GET v2.0/subnets.json
- 
-Accept: application/json 	                </literallayout>
+
+Accept: application/json</literallayout>
                 </example>
                 <example>
                     <title>List Subnets: JSON Response</title>
@@ -1805,8 +1750,7 @@ Accept: application/json 	                </literallayout>
                 <simpara>Normal Response Code:
                         <returnvalue>200</returnvalue>
                 </simpara>
-                <simpara>Error Response Codes: Bad Request
-                        (<errorcode>400</errorcode>), Unauthorized
+                <simpara>Error Response Codes: Unauthorized
                         (<errorcode>401</errorcode>), Not Found
                         (<errorcode>404</errorcode>) </simpara>
                 <para>This operation returns data about the subnet
@@ -1953,18 +1897,24 @@ Accept: application/json
 </literallayout>
 
                         <programlisting language="json">{
-  "subnets": [ 
-    {
-      "network_id": "ed2e3c10-2e43-4297-9006-2863a2d1abbc",
-      "ip_version": 4,
-      "cidr": "10.0.4.0/24",
+    "subnet": {
+        "allocation_pools": [
+            {
+                "end": "10.0.3.254",
+                "start": "10.0.3.2"
+            }
+        ],
+        "cidr": "10.0.3.0/24",
+        "dns_nameservers": [],
+        "enable_dhcp": true,
+        "gateway_ip": "10.0.3.1",
+        "host_routes": [],
+        "id": "91e47a57-7508-46fe-afc9-fc454e8580e1",
+        "ip_version": 4,
+        "name": "",
+        "network_id": "1a6f6006-9e0b-4f99-984c-96787ae66363",
+        "tenant_id": "f667b69e4d6749749ef3bcba7251d9ce"
     }
-    {
-      "network_id": "ed2e3c10-2e43-4297-9006-2863a2d1abbc",
-      "ip_version": 4,
-      "cidr": "10.0.5.0/24",
-    }
-   ]
 }</programlisting>
                     </example>
                     <para>The bulk create operation is always atomic.
@@ -2001,8 +1951,7 @@ Accept: application/json
                         (<errorcode>400</errorcode>), Unauthorized
                         (<errorcode>401</errorcode>), Forbidden
                         (<errorcode>403</errorcode>), Not Found
-                        (<errorcode>404</errorcode>), Unprocessable
-                    Entity (<errorcode>422</errorcode>) </simpara>
+                        (<errorcode>404</errorcode>)  </simpara>
                 <para>This operation updates the specified subnet.
                     Some attributes, such as IP version
                         (<parameter>ip_version</parameter>), CIDR
@@ -2010,8 +1959,8 @@ Accept: application/json
                     allocation pools
                         (<parameter>allocation_pools</parameter>)
                     cannot be updated. Attempting to update these
-                    attributes results in a <errorcode>422</errorcode>
-                    <errortext>Unprocessable Entity</errortext> error. </para>
+                    attributes results in a <errorcode>400</errorcode>
+                    <errortext>Bad Request</errortext> error. </para>
                 <para>This operation requires a request body.</para>
                 <para>This operation returns a response body.</para>
                 <note>
@@ -2028,8 +1977,8 @@ Accept: application/json
                     <para>Request:</para>
                     <literallayout class="monospaced">PUT tenants/33/networks/158233b0-ca9a-40b4-8614-54a4a99d47d1/ports/98017ddc-efc8-4c25-a915-774b2a633855.xml                </literallayout>
                     <programlisting language="xml"><xi:include href="samples/port-post-req.xml" parse="text"/>
-                </programlisting> 
-                
+                </programlisting>
+
                     <para>Response:</para>
                     <para><emphasis>No data is returned in the
                             response body..</emphasis></para>-->
@@ -2038,12 +1987,12 @@ Accept: application/json
 
                     <literallayout class="monospaced">
 PUT /v2.0/subnets/9436e561-47bf-436a-b1f1-fe23a926e031
- 
+
 Content-Type: application/json
-Accept: application/json 
+Accept: application/json
 </literallayout>
                     <programlisting language="json">{
-  "subnet": 
+  "subnet":
     {
       "gateway_ip": "10.0.3.254",
       "name": "new_name"
@@ -2222,7 +2171,7 @@ Accept: application/json
                     <literallayout class="monospaced">
 GET /v2.0/ports.json HTTP/1.1
 content-type: application/json
-accept: application/json 
+accept: application/json
 	                </literallayout>
                     <para>Response:</para>
                     <programlisting language="json"><xi:include href="samples/ports-get-res.json" parse="text"/>                    </programlisting>
@@ -2255,8 +2204,7 @@ accept: application/json
                 <simpara>Normal Response Code:
                         <returnvalue>200</returnvalue>
                 </simpara>
-                <simpara>Error Response Codes: Bad Request
-                        (<errorcode>400</errorcode>), Unauthorized
+                <simpara>Error Response Codes: Unauthorized
                         (<errorcode>401</errorcode>), Not Found
                         (<errorcode>404</errorcode>)</simpara>
                 <para>This operation returns information for the port
@@ -2427,8 +2375,7 @@ accept: application/json</literallayout>
                         (<errorcode>401</errorcode>), Forbidden
                         (<errorcode>403</errorcode>), Not Found
                         (<errorcode>404</errorcode>), Conflict
-                        (<errorcode>409</errorcode>), Unprocessable
-                    Entity (<errorcode>422</errorcode>)</simpara>
+                        (<errorcode>409</errorcode>) </simpara>
                 <para>You can use this operation to update information
                     for a port, such as its symbolic name and
                     associated IPs. When you update IPs for a port,
@@ -2449,7 +2396,7 @@ accept: application/json</literallayout>
                     <para>Request:</para>
                     <literallayout class="monospaced">PUT tenants/33/networks/158233b0-ca9a-40b4-8614-54a4a99d47d1/ports/98017ddc-efc8-4c25-a915-774b2a633855.xml                </literallayout>
                     <programlisting language="xml"><xi:include href="samples/port-post-req.xml" parse="text"/>
-          </programlisting>    
+          </programlisting>
                     <para>Response:</para>
                     <para><emphasis>No data is returned in the
                             response body..</emphasis></para>
@@ -2479,19 +2426,20 @@ Content-Length: 410
 {
     "port": {
         "admin_state_up": true,
-        "device_id": "37b4f622-5e17-4dca-bf67-7338c5b7dd63",
+        "device_id": "",
+        "device_owner": "",
         "fixed_ips": [
             {
-                "ip_address": "192.168.111.4",
-                "subnet_id": "22b44fc2-4ffb-4de4-b0f9-69d58b37ae27"
+                "ip_address": "10.0.3.3",
+                "subnet_id": "91e47a57-7508-46fe-afc9-fc454e8580e1"
             }
         ],
-        "id": "1d8591f4-7b62-428e-857d-e82a15e5a7f1",
-        "mac_address": "fa:16:3e:70:d2:8c",
-        "name": "port2",
-        "network_id": "6aeaf34a-c482-4bd3-9dc3-7faf36412f12",
+        "id": "64d913c1-bcb1-42d2-8f0a-9593dbcaf251",
+        "mac_address": "fa:16:3e:25:32:5d",
+        "name": "",
+        "network_id": "1a6f6006-9e0b-4f99-984c-96787ae66363",
         "status": "ACTIVE",
-        "tenant_id": "cf1a5775e766426cb1968766d0191908"
+        "tenant_id": "f667b69e4d6749749ef3bcba7251d9ce"
     }
 }</programlisting>
 
