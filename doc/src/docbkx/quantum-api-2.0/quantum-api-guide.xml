@@ -1043,19 +1043,10 @@ Content-Length 204
                 <errortext>Bad Request</errortext> error is
                 returned.</para>
             <para>For information about how to submit bulk requests to
-                the &APIv2;, see <xref linkend="bulk_create_networks"
+                the &APIv2; see <xref linkend="bulk_create_networks"
                 />, <xref linkend="bulK_create_subnets"/>, and <xref
                     linkend="bulk_create_ports"/>.</para>
         </section>
-        <section xml:id="quotas">
-            <title>Quotas</title>
-            <para>[tbd] Yong to contribute </para>
-        </section>
-        <section xml:id="notifications">
-            <title>Notifications</title>
-            <para>[tbd] Yong to contribute </para>
-        </section>
-        <?hard-pagebreak?>
         <section xml:id="extensions">
             <title>Extensions</title>
             <para>The &APIv2; is extensible. </para>
@@ -1095,6 +1086,8 @@ Content-Length 204
                 extension might not be supported by all plugins, the
                 availability of an extension varies with deployments
                 and the specific plugin in use. </para>
+            <para>For more information regarding specific extensions,
+                see <xref linkend="API_extensions"/></para>
         </section>
         <?hard-pagebreak?>
         <section xml:id="faults">
@@ -2558,4 +2551,118 @@ Content-Length: 410
         </section>
 
     </chapter>
+
+  <chapter xml:id="API_extensions">
+    <title>Generic API extensions</title>
+
+    <para>The features available in the core API, whose operations has been
+    extensively discussed in the previous chapter, can be augmented by API
+    extensions. An API extension can define any comabination of:</para>
+
+    <itemizedlist>
+      <listitem>
+        <para>Resource extensions, which are new object classes;</para>
+      </listitem>
+      <listitem>
+        <para>Attribute extensions, whose effect is to add new attribute to
+        existing resources; attributes added by extended resources will be
+        prefixed by the extension name.</para>
+      </listitem>
+      <listitem>
+        <para>Action extensions, which define new operations (beyond the one
+        defined by the HTTP verbs) on existing or new resources</para>
+      </listitem>
+    </itemizedlist>
+
+    <para>This chapter only discusses generic API extensions, i.e. those
+    extensions which are not plugin-specific. For plugin-specific extension
+    shipped with Quantum, please refer to the extension documentation in the
+    source code tree.</para>
+
+    <section xml:id="retrieve_extensions">
+      <title>Retrieving Available Extensions</title>
+
+      <para>Available extensions can be queried at the <filename
+      role="bold">/v2.0/extensions</filename> URI; please note that this
+      requests must be authenticated just like any other API request.</para>
+
+      <para>The response will look like the following:</para>
+
+      <programlisting>
+    Status Code: 200 OK
+    Connection: keep-alive
+    Content-Length: 654
+    Content-Type: application/xml; charset=UTF-8
+    Date: Wed, 12 Sep 2012 11:32:56 GMT
+
+
+    &lt;extensions&gt;
+    &lt;extension&gt;
+    &lt;updated&gt;2012-07-20T10:00:00-00:00&lt;/updated&gt;
+    &lt;name&gt;Quantum L3 Router&lt;/name&gt;
+    &lt;links/&gt;
+    &lt;namespace&gt;http://docs.openstack.org/ext/quantum/router/api/v1.0&lt;/namespace&gt;
+    &lt;alias&gt;router&lt;/alias&gt;
+    &lt;description&gt;Router abstraction for basic L3 forwarding between L2 Quantum networks and access to external networks via a NAT gateway.&lt;/description&gt;
+    &lt;/extension&gt;
+    &lt;extension&gt;
+    &lt;updated&gt;2012-09-07T10:00:00-00:00&lt;/updated&gt;
+    &lt;name&gt;Provider Network&lt;/name&gt;
+    &lt;links/&gt;
+    &lt;namespace&gt;http://docs.openstack.org/ext/provider/api/v1.0&lt;/namespace&gt;
+    &lt;alias&gt;provider&lt;/alias&gt;
+    &lt;description&gt;Expose mapping of virtual networks to physical networks&lt;/description&gt;
+    &lt;/extension&gt;
+    &lt;/extensions&gt;
+
+</programlisting>
+
+      <para>Also, it is possible ot query for specific extension using the
+      extension alias. For instance querying
+      <literal>/v2.0/extensions</literal>, will result in the following
+      response:</para>
+
+      <programlisting>
+    Status Code: 200 OK
+    Connection: keep-alive
+    Content-Length: 350
+    Content-Type: application/xml; charset=UTF-8
+    Date: Wed, 12 Sep 2012 11:36:20 GMT
+
+
+    &lt;extension&gt;
+    &lt;updated&gt;2012-07-20T10:00:00-00:00&lt;/updated&gt;
+    &lt;name&gt;Quantum L3 Router&lt;/name&gt;
+    &lt;links/&gt;
+    &lt;namespace&gt;http://docs.openstack.org/ext/quantum/router/api/v1.0&lt;/namespace&gt;
+    &lt;alias&gt;router&lt;/alias&gt;
+    &lt;description&gt;Router abstraction for basic L3 forwarding between L2 Quantum networks and access to external networks via a NAT gateway.&lt;/description&gt;
+    &lt;/extension&gt;
+
+</programlisting>
+    </section>
+    <section xml:id="provider_ext">
+      <title>The Provider Networks Extensions
+      (<literal>provider</literal>)</title>
+
+      <para>Discuss attributes exposed by this extension and how they
+      work</para>
+    </section>
+
+    <section xml:id="router_ext">
+      <title>The Layer-3 Networking Extensions
+      (<literal>router</literal>)</title>
+
+      <para>Discuss attributes, resources, and actions exposed by this
+      extension and how they work [salv-orlando]</para>
+    </section>
+
+    <section xml:id="quotas_ext">
+      <title>The Quotas Extensions (<literal>quotas</literal>)</title>
+
+      <para>Discuss how this extension works.</para>
+    </section>
+
+  </chapter>
+
 </book>
