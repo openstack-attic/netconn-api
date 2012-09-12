@@ -1,0 +1,959 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE book[
+        <!-- Some useful entities borrowed from HTML -->
+        <!ENTITY ndash  "&#x2013;">
+        <!ENTITY mdash  "&#x2014;">
+        <!ENTITY hellip "&#x2026;">
+        <!ENTITY plusmn "&#xB1;">
+        
+        <!-- Useful for describing APIs -->
+        <!ENTITY GET    '<command xmlns="http://docbook.org/ns/docbook">GET</command>'>
+        <!ENTITY PUT    '<command xmlns="http://docbook.org/ns/docbook">PUT</command>'>
+        <!ENTITY POST   '<command xmlns="http://docbook.org/ns/docbook">POST</command>'>
+        <!ENTITY DELETE '<command xmlns="http://docbook.org/ns/docbook">DELETE</command>'>
+        
+        <!ENTITY CHECK  '<inlinemediaobject xmlns="http://docbook.org/ns/docbook">
+                 <imageobject role="fo">
+                  <imagedata fileref="figures/Check_mark_23x20_02.svg"
+                             format="SVG" scale="60"/>
+                </imageobject>
+                 <imageobject role="html">
+                  <imagedata fileref="../figures/Check_mark_23x20_02.png"
+                             format="PNG" />
+                </imageobject>
+              </inlinemediaobject>'>
+              
+        <!ENTITY ARROW  '<inlinemediaobject xmlns="http://docbook.org/ns/docbook">
+                 <imageobject role="fo">
+                  <imagedata fileref="figures/Arrow_east.svg"
+                             format="SVG" scale="60"/>
+                </imageobject>
+                 <imageobject role="html">
+                  <imagedata fileref="../figures/Arrow_east.png"
+                             format="PNG" />
+                </imageobject>
+              </inlinemediaobject>'>
+ <!ENTITY APIv2   'Quantum API v2.0'>
+]>
+<section xml:id="router_ext" xmlns="http://docbook.org/ns/docbook" xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+      <title>The Layer-3 Networking Extensions
+      (<literal>router</literal>)</title>
+
+      <para>The Layer-3 extension allows Quantum API users to route packets
+            between subnets, as well as forwarding packets from internal
+            network to external ones, and allow access to instances from an
+            external network through
+            <emphasis role="italic"> Floating IPs</emphasis>.</para>
+      <para>This extension introduces two new resources:
+          <itemizedlist>
+              <listitem>
+                  <para><emphasis role="bold">router</emphasis>, a logical
+                      entity for forwarding packets across internal subnets
+                      and NATting then on external networks through an
+                      appropriate external gateway.</para>
+              </listitem>
+              <listitem>
+                  <para><emphasis role="bold">floatingip</emphasis>,
+                      representing an external IP address mapped to a Quantum
+                      port attached to an internal network.</para>
+              </listitem>
+          </itemizedlist>
+          Also, it extends the <emphasis role="bold">network </emphasis>
+          resource by defining a new attribute,
+          <emphasis role="italic">router:external</emphasis>, which specifies
+          whether a network is meant to be attached to a router's external
+          gateway or not.
+      </para>
+      <?hard-pagebreak?>
+      <section xml:id="router_ext_concepts">
+          <title>Concepts</title>
+          <para>The quantum layer-3 extension is both a resource and attribute
+                extension. As an attribute extension, it adds the
+                <emphasis role="italic">router:external</emphasis> attribute
+                to the network resource; as a resource extension it defines
+                two new resources: <emphasis role="bold">router</emphasis> and
+                <emphasis role="bold">floating IP</emphasis>.</para>
+          <para>The <emphasis role="italic">router:external</emphasis> attribute is characterized as
+                    follows: <itemizedlist>
+                        <listitem>
+                            <para>Available in Create, Update,and Get requests.</para>
+                        </listitem>
+                        <listitem>
+                            <para>Boolean type, default value <literal>False</literal>.</para>
+                        </listitem>
+                        <listitem>
+                            <para>Usage of this attribute might be restricted through authorization
+                                policies. The default setting is as follows: only admin users can
+                                set this flag to True, whereas any user can read the value of this
+                                flag. Altough regular users won't be authorized to create instances
+                                with VIFs on external networks, they will be able to see them in
+                                their network list; this is because external networks can be used by
+                                any tenant to set an external gateway for their Quantum
+                                routers.</para>
+                        </listitem>
+                    </itemizedlist></para>
+            <para>A <emphasis role="bold">router </emphasis> is used to interconnect subnets and
+                    forward traffic among them. Another feature of the router is to NAT internal
+                    traffic to external networks. </para>
+            <para>A router has an interface for each subnet it is associated with. By default the IP
+                    address of such interface is the subnet's gateway IP. Also, whenever a router is
+                    associated with a subnet a port for that router interface will be added to the
+                    subnet's network.</para>
+            <para>A <emphasis role="bold">floating IP </emphasis> is an IP
+                address on an external network, which is associated with a
+                specific port, and optionally a specific IP address too, on
+                a private Quantum network. Therefore a floating IP allows
+                access to a Virtual Machine instance on a private network
+                from an external network. Floating IPs can only be defined
+                on networks for which the attribute
+                <emphasis role="italic">router:external</emphasis> has been
+                set to True.</para>
+            <?hard-pagebreak?>
+            <table rules="all" width="95%">
+                <caption>Router Attributes</caption>
+                <col width="20%"/>
+                <col width="10%"/>
+                <col width="10%"/>
+                <col width="10%"/>
+                <col width="15%"/>
+                <col width="17%"/>
+                <col width="20%"/>
+                <thead>
+                    <tr>
+                        <th>Attribute </th>
+                        <th>Type </th>
+                        <th>Required </th>
+                        <th>CRUD</th>
+                        <th>Default Value </th>
+                        <th>Validation Constraints </th>
+                        <th>Notes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>id </td>
+                        <td>uuid-str </td>
+                        <td>N/A </td>
+                        <td>R </td>
+                        <td>generated </td>
+                        <td>N/A </td>
+                        <td>UUID representing the router</td>
+                    </tr>
+                    <tr>
+                        <td>name</td>
+                        <td>String </td>
+                        <td>No </td>
+                        <td>CRU</td>
+                        <td>None</td>
+                        <td>N/A </td>
+                        <td>Human readable name for the router.
+                        Does not have to be unique</td>
+                    </tr>
+                    <tr>
+                        <td>admin_state_up</td>
+                        <td>Bool </td>
+                        <td>No </td>
+                        <td>CRU</td>
+                        <td>true</td>
+                        <td>{true | false }</td>
+                        <td>Administrative state of the router</td>
+                    </tr>
+                    <tr>
+                        <td>status</td>
+                        <td>String </td>
+                        <td>N/A </td>
+                        <td>R</td>
+                        <td>N/A</td>
+                        <td>N/A</td>
+                        <td>Indicates whether a router is currently
+                        operational or not</td>
+                    </tr>
+                    <tr>
+                        <td>tenant_id</td>
+                        <td>uuid-str</td>
+                        <td>No</td>
+                        <td>CR</td>
+                        <td>Derived from Authentication token</td>
+                        <td>N/A</td>
+                        <td>Owner of the router.  Only admin users can specify a tenant identifier
+                                other than its own </td>
+                    </tr>
+                    <tr>
+                        <td>external_gateway_info</td>
+                        <td>dict</td>
+                        <td>No</td>
+                        <td>CRU</td>
+                        <td>None</td>
+                        <td>No constraint</td>
+                        <td>Information on external gateway for the
+                        router</td>
+                    </tr>
+                </tbody>
+            </table>
+            <table rules="all" width="853">
+                    <caption>Floating IP Attributes</caption>
+                    <col width="20%"/>
+                    <col width="10%"/>
+                    <col width="10%"/>
+                    <col width="156px"/>
+                    <col width="15%"/>
+                    <col width="17%"/>
+                    <col width="10%"/>
+                    <thead>
+                        <tr>
+                            <th>Attribute </th>
+                            <th>Type </th>
+                            <th>Required </th>
+                            <th>CRUD<footnote xml:id="crud2">
+                                    <para>
+                                        <itemizedlist>
+                                            <listitem>
+                                                <para><emphasis role="bold">C</emphasis>. Use the
+                                                  attribute in create operations. </para>
+                                            </listitem>
+                                            <listitem>
+                                                <para><emphasis role="bold">R</emphasis>. This
+                                                  attribute is returned in response to show and list
+                                                  operations. </para>
+                                            </listitem>
+                                            <listitem>
+                                                <para><emphasis role="bold">U</emphasis>. You can
+                                                  update the value of this attribute.</para>
+                                            </listitem>
+                                            <listitem>
+                                                <para><emphasis role="bold">D</emphasis>. You can
+                                                  delete the value of this attribute. </para>
+                                            </listitem>
+                                        </itemizedlist>
+                                    </para>
+                                </footnote>
+                            </th>
+                            <th>Default Value </th>
+                            <th>Validation Constraints </th>
+                            <th>Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>id </td>
+                            <td>uuid-str </td>
+                            <td>N/A </td>
+                            <td>R </td>
+                            <td>generated </td>
+                            <td>N/A </td>
+                            <td>UUID representing the Floating IP instance</td>
+                        </tr>
+                        <tr>
+                            <td>floating_network_id</td>
+                            <td>uuid-str </td>
+                            <td>Yes </td>
+                            <td>CR</td>
+                            <td>N/A</td>
+                            <td>UUID Pattern</td>
+                            <td>UUID of the external network where the floating IP is to be
+                                created</td>
+                        </tr>
+                        <tr>
+                            <td>port_id</td>
+                            <td>uuid-str </td>
+                            <td>Yes </td>
+                            <td>CRU</td>
+                            <td>N/A</td>
+                            <td>UUID Pattern</td>
+                            <td>UUID of the port on an internal Quantum network which should be
+                                associated to the Floating IP</td>
+                        </tr>
+                        <tr>
+                            <td>fixed_ip_address</td>
+                            <td>IP Address </td>
+                            <td>No</td>
+                            <td>CRU</td>
+                            <td>None</td>
+                            <td>IP address or null</td>
+                            <td>Specific IP address on <literal>port_id</literal> which should be
+                                associated with the floating IP</td>
+                        </tr>
+                        <tr>
+                            <td>floating_ip_address</td>
+                            <td>IP Address </td>
+                            <td>N/A </td>
+                            <td>R</td>
+                            <td>Automatically allocated from pool</td>
+                            <td>N/A</td>
+                            <td>Address of the floating IP on the external network</td>
+                        </tr>
+                        <tr>
+                            <td>tenant_id</td>
+                            <td>uuid-str</td>
+                            <td>No</td>
+                            <td>CR</td>
+                            <td>Derived from Authentication token</td>
+                            <td>N/A</td>
+                            <td>Owenr of the Floating IP. Only admin users can specify a tenant
+                                identifier other than its own </td>
+                        </tr>
+                    </tbody>
+                </table>
+      </section>
+      <?hard-pagebreak?>
+      <section xml:id="router_ext_ops">
+          <title>API operations</title>
+          <section xml:id="router_ext_ops_router">
+              <title>Router Operations</title>
+              <para>This section discusses operations for creating and managing  routers through the
+                        Quantum L3 API extension</para>
+                    <section xml:id="router_list">
+                        <title>List Routers</title>
+                        <para>
+                            <informaltable rules="all" width="100%">
+                                <col width="20%"/>
+                                <col width="20%"/>
+                                <col width="60%"/>
+                                <thead>
+                                    <tr>
+                                        <td>Verb</td>
+                                        <td>URI</td>
+                                        <td>Description</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>&GET;</td>
+                                        <td>/routers</td>
+                                        <td>Returns a list of logical users accessbile to the tenant
+                                            submitting the request.</td>
+                                    </tr>
+                                </tbody>
+                            </informaltable>
+                        </para>
+                        <para>Normal Response Code: <returnvalue>200</returnvalue>
+                        </para>
+                        <simpara>Error Response Codes: Unauthorized
+                            (<errorcode>401</errorcode>)</simpara>
+                        <para>This operation returns a list of routers to which the tenant has
+                            access. Default policy settings return only those routers that are owned
+                            by the tenant who submits the request, unless the request is submitted
+                            by an user with administrative rights. Users can control which
+                            attributes should be returned by using the <parameter>fields</parameter>
+                            query parameter. Additionally, results can be filtered by using query
+                            string parameters.</para>
+                        <para>This operation does not require a request body. </para>
+                        <para>This operation returns a response body.</para>
+                        <example>
+                            <title>List Routers:  Request</title>
+                            <literallayout class="monospaced">
+GET /v2.0/routers
+Accept: application/json
+                            </literallayout>
+                        </example>
+                        <example>
+                            <title>List Routers:  Response</title>
+                            <programlisting language="json"><xi:include href="samples/routers-get-res.json" parse="text"/></programlisting>
+                        </example>
+                    </section>
+              <?hard-pagebreak?>
+              <section xml:id="router_show">
+                  <title>Show Router</title>
+                  <para>
+                      <informaltable rules="all" width="100%">
+                          <col width="20%"/>
+                          <col width="20%"/>
+                          <col width="60%"/>
+                          <thead>
+                              <tr>
+                                  <td>Verb</td>
+                                  <td>URI</td>
+                                  <td>Description</td>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              <tr>
+                                  <td>&GET;</td>
+                                  <td>/routers/<parameter>router_id</parameter></td>
+                                  <td>Returns details about a specific logical router.</td>
+                              </tr>
+                          </tbody>
+                      </informaltable>
+                  </para>
+                  <para>Normal Response Code: <returnvalue>200</returnvalue>
+                        </para>
+                        <simpara>Error Response Codes: Unauthorized (<errorcode>401</errorcode>),
+                            Forbidden (<errorcode>403</errorcode>), Not Found
+                            (<errorcode>404</errorcode>)</simpara>
+                        <para>This operation returns the details for a specific router whose
+                            identifier is specified on the request URI. Users can control which
+                            attributes should be returned by using the <parameter>fields</parameter>
+                            query parameter. </para>
+                        <para>This operation does not require a request body. </para>
+                        <para>This operation returns a response body.</para>
+                  <example>
+                      <title>Show Router:  Request</title>
+                      <literallayout class="monospaced">
+GET /v2.0/routers/a9254bdb-2613-4a13-ac4c-adc581fba50d
+Accept: application/json
+                      </literallayout>
+                  </example>
+                  <example>
+                      <title>Show Router:  Response</title>
+                      <programlisting language="json"><xi:include href="samples/routers-show-res.json" parse="text"/></programlisting>
+                  </example>
+              </section>
+              <?hard-pagebreak?>
+              <section xml:id="router_create">
+                  <title>Create Router</title>
+                  <para>     
+                      <informaltable rules="all" width="100%">
+                      <col width="20%"/>
+                      <col width="20%"/>
+                      <col width="60%"/>
+                      <thead>
+                          <tr>
+                              <td>Verb</td>
+                              <td>URI</td>
+                              <td>Description</td>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr>
+                              <td>&POST;</td>
+                              <td>/routers</td>
+                              <td>Create a new logical router.</td>
+                          </tr>
+                      </tbody>
+                      </informaltable>
+                  </para>
+                        <para>Normal Response Code: <returnvalue>201</returnvalue>
+                        </para>
+                        <simpara>Error Response Codes: Unauthorized (<errorcode>401</errorcode>),
+                            Bad Request (<literal>400</literal>)</simpara>
+                        <simpara>This operation creates a new logical router. When it is created, a
+                            logical router does not have any internal interface. In other words, it
+                            is not associated to any subnet. The user can optionally specify an
+                            external gateway for a router at create time; a router's external
+                            gateway myst be plugged into an external network, that is to say a
+                            network for which the extended field <literal>router:external</literal>
+                            is set to true. </simpara>
+                        <para>In order to specify an external gateway, the identifier of the
+                            external network must be passed in the request body's
+                                <literal>external_gateway_info</literal> attribute. This can be
+                            achieved as shown in the following snippet:</para>
+                        <para><programlisting language="json">"external_gateway_info" :
+{
+    "network_id": &lt;external_network_uuid>
+}
+                        </programlisting></para>
+                  <para>
+                      This operation requires request body.
+                      This operation returns a response body.
+                  </para>
+                  <example>
+                      <title>Create Router:  Request</title>
+                      <literallayout class="monospaced">
+POST /v2.0/routers
+Accept: application/json
+	                </literallayout>
+                      <programlisting language="json"><xi:include href="samples/routers-post-req.json" parse="text"/></programlisting>
+                  </example>
+                  <example>
+                      <title>Create Router:  Response</title>
+                      <programlisting language="json"><xi:include href="samples/routers-post-res.json" parse="text"/></programlisting>
+                  </example>
+              </section>
+              <?hard-pagebreak?>
+              <section xml:id="router_update">
+                  <title>Update Router</title>
+                  <para>
+                      <informaltable rules="all" width="100%">
+                      <col width="20%"/>
+                      <col width="20%"/>
+                      <col width="60%"/>
+                      <thead>
+                          <tr>
+                              <td>Verb</td>
+                              <td>URI</td>
+                              <td>Description</td>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr>
+                              <td>&PUT;</td>
+                              <td>/routers/<parameter>router_id</parameter></td>
+                              <td>Updates a logical router.</td>
+                          </tr>
+                      </tbody>
+                  </informaltable>
+                  </para>
+                  <para>Normal Response Code: <returnvalue>200</returnvalue>
+                        </para>
+                        <simpara>Error Response Codes: Unauthorized (<errorcode>401</errorcode>),
+                            Bad Request (<literal>400</literal>), Not Found (404)</simpara>
+                        <simpara>This operation updates a  logical router. Beyond the name and the
+                            administrative state, the only parameter which can be updated with this
+                            operation is the external gateway. For more information concerning how
+                            to set the external gateway for a router, please refer to the previous
+                            section (Create Router) or to the following example.</simpara>
+                        <simpara>Please note that this operation does not allow to update router
+                            interfaces. To this aim, the <link linkend="router_add_interface">add router interface</link> and
+                            <link linkend="router_remove_interface">remove router interface</link> should be used.</simpara>
+                  <example>
+                      <title>Update Router:  Request</title>
+                      <literallayout class="monospaced">
+PUT /v2.0/routers
+Accept: application/json/8604a0de-7f6b-409a-a47c-a1cc7bc77b2e
+	                </literallayout>
+                      <programlisting language="json"><xi:include href="samples/routers-put-req.json" parse="text"/></programlisting>
+                  </example>
+                  <example>
+                      <title>Update Router:  Response</title>
+                      <programlisting language="json"><xi:include href="samples/routers-put-res.json" parse="text"/></programlisting>
+                  </example>
+              </section>
+              <section xml:id="router_delete">
+                  <title>Delete Router</title>
+                  <para>
+                      <informaltable rules="all" width="100%">
+                          <col width="20%"/>
+                          <col width="20%"/>
+                          <col width="60%"/>
+                          <thead>
+                              <tr>
+                                  <td>Verb</td>
+                                  <td>URI</td>
+                                  <td>Description</td>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              <tr>
+                                  <td>&DELETE;</td>
+                                  <td>/routers/<parameter>router_id</parameter></td>
+                                  <td>Removes a logical router and all its interfaces</td>
+                              </tr>
+                          </tbody>
+                      </informaltable>
+                  </para>
+                  <para/>
+                        <para>Normal Response Code: <returnvalue>204</returnvalue>
+                        </para>
+                        <simpara>Error Response Codes: Unauthorized (<errorcode>401</errorcode>),
+                            Not Found (<literal>404</literal>), Conflict
+                            (<literal>409</literal>)</simpara>
+                        <simpara>This operation removes a logical router; the operation will fail if
+                            the router still has some interfaces, both internal and
+                            external.</simpara>
+                        <simpara>Users must remove all router interfaces before deleting the router,
+                            by clearing the router's external gateway with an
+                            <link linkend="router_update">Update Router</link> operation and removing
+                            all internal interfaces through <link linkend="router_remove_interface">
+                           remove router interface operation</link>
+                        </simpara>
+                  <example>
+                      <title>Delete Router:  Request</title>
+                      <literallayout class="monospaced">
+DELETE /v2.0/routers/8604a0de-7f6b-409a-a47c-a1cc7bc77b2e
+Accept: application/json
+
+This operation does not have a response body
+	            </literallayout>
+                  </example>
+              </section>
+              <section xml:id="router_add_interface">
+                  <title>Add interface to router</title>
+                  <para>
+                      <informaltable rules="all" width="100%">
+                          <col width="20%"/>
+                          <col width="20%"/>
+                          <col width="60%"/>
+                          <thead>
+                              <tr>
+                                  <td>Verb</td>
+                                  <td>URI</td>
+                                  <td>Description</td>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              <tr>
+                                  <td>&PUT;</td>
+                                  <td>/routers/<parameter>router_id</parameter>/add_router_interface</td>
+                                  <td>Add a new internal interface to a logical router.</td>
+                              </tr>
+                          </tbody>
+                      </informaltable>
+                  </para>
+                        <para>Normal Response Code: <returnvalue>200</returnvalue>
+                        </para>
+                        <simpara>Error Response Codes: Unauthorized (<errorcode>401</errorcode>),
+                            Bad Request (<literal>400</literal>), Not Found
+                            (<literal>404</literal>), Conflict (<literal>409</literal>)</simpara>
+                  <para>This operation attaches a subnet to an internal router interface. Either a
+                            subnet identifier or a port identifier must be passed in the request
+                            body; this will be used to create the router interface. If both are
+                            specified, a <literal>400 Bad Request</literal> error will be
+                            returned.</para>
+                        <para>When the <literal>subnet_id</literal> attribute is specified in the
+                            request body, the subnet's gateway ip address is used to create the
+                            router interface; otherwise, if <literal>port_id</literal> is specified,
+                            the first IP address associated with this port is used for creating the
+                            router interface.</para>
+                        <para>It is worth remarking that a <literal>400 Bad Request</literal> error
+                            will be returned if several IP addresses are associated to the specified
+                            port, or if no IP address is associated with the port; also a
+                                <literal>409 Conflict </literal>will be returned if the port is
+                            already used by some other device, i.e.: the
+                                <literal>device_id</literal> attribute is already populated.</para>
+                  <example>
+                      <title>Add Router Interface:  Request</title>
+                      <literallayout class="monospaced">
+PUT /v2.0/routers/8604a0de-7f6b-409a-a47c-a1cc7bc77b2e/add_router_interface
+Accept: application/json
+</literallayout>
+                      <programlisting language="json">{"subnet_id": "a2f1f29d-571b-4533-907f-5803ab96ead1"}</programlisting>
+                  </example>
+                  <example>
+                      <title>Add Router Interface:  Response</title>
+                      <programlisting language="json">
+{
+    "subnet_id": "a2f1f29d-571b-4533-907f-5803ab96ead1",
+    "port_id": "3a44f4e5-1694-493a-a1fb-393881c673a4"
+}</programlisting>
+                  </example>
+                  <para>The port identifier returned by this operation can either be the same
+                            identifier passed in the request body or the identifier of  a new port
+                            created by this operation to attach the subnet specifieed by
+                                <literal>subnet_id</literal> to the router.</para>
+                        <para>It is also worth noting that after executing this operation, the
+                                <literal>device_id</literal> attribute of this port is set to the
+                            router's identifier, and the <literal>device_owner</literal> attribute
+                            is set to <literal>network:router_interface</literal>, as shown in the
+                            following example:</para>
+                  <programlisting language="json"><xi:include href="samples/router-port-res.json" parse="text"/></programlisting>
+              </section>
+              <?hard-pagebreak?>
+              <section xml:id="router_remove_interface">
+                  <title>Remove interface from router</title>
+                  <para>
+                          <informaltable rules="all" width="100%">
+                                <col width="20%"/>
+                                <col width="20%"/>
+                                <col width="60%"/>
+                              <thead>
+                                  <tr>
+                                      <td>Verb</td>
+                                      <td>URI</td>
+                                      <td>Description</td>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                  <tr>
+                                      <td>&PUT;</td>
+                                      <td>/routers/<parameter>router_id</parameter>/remove_router_interface</td>
+                                      <td>Removes an internal interface from a logical router.</td>
+                                  </tr>
+                              </tbody>
+                          </informaltable>
+                  </para>
+                  <para>Normal Response Code: <returnvalue>200</returnvalue>
+                        </para>
+                        <simpara>Error Response Codes: Unauthorized (<errorcode>401</errorcode>),
+                            Bad Request (<errorcode>400</errorcode>), Not Found
+                            (<errorcode>404</errorcode>), Conflict (<errorcode>409</errorcode>)</simpara>
+                        <simpara>This request requires a request body.</simpara>
+                        <simpara>This request does not return a response body.</simpara>
+                        <para>This operation  removes an internal router interface, thus detaching a
+                            subnet from the router. Either a subnet identifier or a port identifier
+                            must be passed in the request body; this will be used to identify the
+                            router interface to remove. If both are specified, a <errorcode>400 Bad
+                                Request</errorcode> error will be returned.</para>
+                        <para>Both a router identifier, and a subnet or port identifier must be
+                            specified in the request body, as shown in the example below. A
+                                <literal>404 Not Found</literal> error will be returned either if
+                            the router or the subnet/port do not exist or are not visible to the
+                            user. </para>
+                        <para>As a consequence of this operation, the port connecting the router
+                            with the subnet is removed from the subnet's network.</para>
+                  <example>
+                      <title>Remove Router Interface:  Request</title>
+                      <literallayout class="monospaced">
+PUT /v2.0/routers/8604a0de-7f6b-409a-a47c-a1cc7bc77b2e/remove_router_interface
+Accept: application/json
+</literallayout>
+                      <programlisting language="json">{"subnet_id": "a2f1f29d-571b-4533-907f-5803ab96ead1"}</programlisting>
+                  </example>
+              </section>
+          </section>
+          <?hard-pagebreak?>
+          <section xml:id="router_ext_ops_floatingip">
+              <title>Floating IP Operations</title>
+              <para>This section discusses operations for creating and managing  floating IPs
+                        through the Quantum L3 API extension.</para>
+                    <para>It is worth noting that if Floating IPs are proxied from Nova to Quantum,
+                        floating IPs created using the Quantum API will not appear among Nova's
+                        Floating IPs. However, Floating IPs created using Nova APIs will appear in
+                        GET operations from the Quantum API, even if delete and update operations
+                        won't be reflected in floating IPs reported by Nova.</para>
+              <section xml:id="floatingip_list">
+                  <title>List floating IPs</title>
+                  <para>
+                      <informaltable rules="all" width="100%">
+                          <col width="20%"/>
+                          <col width="20%"/>
+                          <col width="60%"/>
+                          <thead>
+                              <tr>
+                                  <td>Verb</td>
+                                  <td>URI</td>
+                                  <td>Description</td>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              <tr>
+                                  <td>&GET;</td>
+                                  <td>/floatingips</td>
+                                  <td>Returns a list of floating IPs accessibile to the tenant submitting the request.</td>
+                              </tr>
+                          </tbody>
+                      </informaltable>
+                  </para>
+                  <para>Normal Response Code: 200 OK</para>
+                        <para>Error Response Codes: 401 Unauthorized</para>
+                        <para>This operation does not require a request body.</para>
+                        <para>This operation returns a response body.</para>
+                        <para>The operation returns a list of floating IPs to which the tenant has
+                            access. Default policy settings return only those floating IPs that are
+                            owned by the tenant who submits the request, unless the request is
+                            submitted by an user with administrative rights. Users can control which
+                            attributes should be returned by using the <parameter>fields</parameter>
+                            query parameter. Additionally, results can be filtered by using query
+                            string parameters.</para>
+                        <example>
+                            <title>List Floating IPs:  Request</title>
+                            <literallayout class="monospaced">
+GET /v2.0/floatingips
+Accept: application/json
+                            </literallayout>
+                        </example>
+                        <example>
+                            <title>List Floating IPs:  Response</title>
+                            <programlisting language="json"><xi:include href="samples/floatingips-get-res.json" parse="text"/></programlisting>
+                        </example>
+              </section>
+              <section xml:id="floatingip_show">
+                  <title>Show floating IP</title>
+                  <para>
+                      <informaltable rules="all" width="100%">
+                          <col width="20%"/>
+                          <col width="20%"/>
+                          <col width="60%"/>
+                          <thead>
+                              <tr>
+                                  <td>Verb</td>
+                                  <td>URI</td>
+                                  <td>Description</td>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              <tr>
+                                  <td>&GET;</td>
+                                  <td>/floatingips/<parameter>floatingip_id</parameter></td>
+                                  <td>Returns details about a specific Floating IP.</td>
+                              </tr>
+                          </tbody>
+                      </informaltable>                   
+                  </para>
+                  <para>Normal Response Code: 200 OK</para>
+                        <para>Error Response Code: 401 Unauthorized, 404 Not Found</para>
+                        <para>This operation does not require a request body.</para>
+                        <para>This operation returns a response body.</para>
+                        <para>This operation returns the details for a specific floating IP whose
+                            identifier is specified on the request URI. Users can control which
+                            attributes should be returned by using the <parameter>fields</parameter>
+                            query parameter. </para>
+                            <example>
+                                <title>Show Floating IP (request specfic fields):  Request</title>
+                                <literallayout class="monospaced">
+GET /v2.0/floatingips/2f245a7b-796b-4f26-9cf9-9e82d248fda7.json?fields=fixed_ip_address&amp;fields=floating_ip_address
+Accept: application/json
+                            </literallayout>
+                            </example>
+                            <example>
+                                <title>Show Floating IP:  Response</title>
+                                <programlisting language="json"><xi:include href="samples/floatingips-show-res.json" parse="text"/></programlisting>
+                            </example>
+                        
+              </section>
+              <section xml:id="floatingip_create">
+                  <title>Create floating IP</title>
+                  <para>
+                      <informaltable rules="all" width="100%">
+                          <col width="20%"/>
+                          <col width="20%"/>
+                          <col width="60%"/>
+                          <thead>
+                              <tr>
+                                  <td>Verb</td>
+                                  <td>URI</td>
+                                  <td>Description</td>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              <tr>
+                                  <td>&POST;</td>
+                                  <td>/floatingips</td>
+                                  <td>Create a new floating IP, and configures its association with an internal port, if the relevant information are specified</td>
+                              </tr>
+                          </tbody>
+                      </informaltable>
+                  </para>
+                  <para>Normal Response Code: 200 OK</para>
+                        <para>Error Response Code: 400 Bad Request, 401 Unauthorized</para>
+                        <para>This operation requires a request body.</para>
+                        <para>This operation returns a response body.</para>
+                        <para>This operation creates a floating IP. Users can specify association
+                            information for this floating IP in the request body. These information
+                            are however optional, and can be specified with an UPDATE call at a
+                            later stage. The only mandatory parameter in the request body is the
+                            external network identifier, <literal>floating_network_id</literal>.
+                            Floating IPs can only be created on external networks. If the network
+                            specified by <literal>floating_network_id</literal> is not external
+                            (i.e.: <errorcode>router:external=False</errorcode>), a
+                                <errorcode>400</errorcode> error will be returned.</para>
+                        <para>An address for the floating ip will be automatically allocated, unless
+                            the <literal>floating_ip_address</literal>attribute is specified in the
+                            request body. If the requested floating IP address does not fall in the
+                            external network's subnet range, a <errorcode>400</errorcode> error will
+                            be returned. If the requested floating IP address is already in use a
+                                <errorcode>409</errorcode> error code will be returned.</para>
+                        <para>Users can associate the floating IP with an internal port using the
+                                <literal>port_id</literal> attribute in the request body. If an
+                            invalid port identifier is specified a <errorcode>404</errorcode> error
+                            will be returned. The internal Quantum port associated with the Floating
+                            IP must have at least an IP address configured, otherwise a
+                                <errorcode>400</errorcode> error will be returned.</para>
+                        <para> As a Quantum port might be associated with multiple IP addresses, the
+                            particular IP address to associate with the floating IP can be specified
+                            using the <literal>fixed_ip_address</literal> request body parameter.
+                            The default logic of this operation is to associate the floating IP with
+                            a single IP address configured on a port; hence, if a port has multiple
+                            IP addresses, it is mandatory to specify the
+                                <literal>fixed_ip_address</literal> attribute. If an invalid IP
+                            address is specified in <literal>fixed_ip_address</literal> a
+                                <errorcode>400</errorcode> error will be returned.</para>
+                        <para>If the internal Quantum port and ip address selected for association
+                            are already associated to another floating IP, a 409 error will be
+                            returned. The floating </para>
+                            <example>
+                                <title>Create Floating IP:  Request</title>
+                                <literallayout class="monospaced">
+POST /v2.0/floatingips
+Accept: application/json
+                            </literallayout>
+                            <programlisting language="json"><xi:include href="samples/floatingips-post-req.json" parse="text"/></programlisting>
+                            </example>
+                            <example>
+                                <title>Create Floating IP:  Response</title>
+                                <programlisting language="json"><xi:include href="samples/floatingips-post-res.json" parse="text"/></programlisting>
+                            </example>
+              </section>
+              <section xml:id="floatingip_update">
+                  <title>Update floating IP</title>
+                  <para>
+                      <informaltable rules="all" width="100%">
+                          <col width="20%"/>
+                          <col width="20%"/>
+                          <col width="60%"/>
+                          <thead>
+                              <tr>
+                                  <td>Verb</td>
+                                  <td>URI</td>
+                                  <td>Description</td>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              <tr>
+                                  <td>&PUT;</td>
+                                  <td>/floatingips/<parameter>floatingip_id</parameter></td>
+                                  <td>Updates a Floating IP and its association with an internal port, if the relevant information are 
+                                      specified in the request body.</td>
+                              </tr>
+                          </tbody>
+                      </informaltable>
+                  </para>
+                        <para>Normal Response Code: 200 OK</para>
+                        <para>Error Response Code: 400 Bad Request, 401 Unauthorized, 404 Not
+                            Found</para>
+                        <para>This operation requires a request body.</para>
+                        <para>This operation returns a response body.</para>
+                        <para>This operation has the name of setting, unsetting, or updating the
+                            assocation between a floating ip and a Quantum port. The association
+                            process is exactly the same as the one discussed for the <emphasis
+                                role="italic">create floating IP</emphasis> operation.</para>
+                        <para>In order to disassociate a floating IP, the <literal>port_id</literal>
+                            request attribute should be omitted in the request body.</para>
+                        <example>
+                            <title>Update Floating IP (associate):  Request</title>
+                            <literallayout class="monospaced">
+PUT /v2.0/floatingips/2f245a7b-796b-4f26-9cf9-9e82d248fda7.json
+Accept: application/json
+                        </literallayout>
+                        <programlisting language="json"><xi:include href="samples/floatingips-put-ass-req.json" parse="text"/></programlisting>
+                        </example>
+                        <example>
+                            <title>Update Floating IP (associate):  Response</title>
+                            <programlisting language="json"><xi:include href="samples/floatingips-put-ass-res.json" parse="text"/></programlisting>
+                        </example>
+                  <example>
+                      <title>Update Floating IP (disassociate):  Request</title>
+                      <literallayout class="monospaced">
+PUT /v2.0/floatingips/2f245a7b-796b-4f26-9cf9-9e82d248fda7
+Accept: application/json
+                        </literallayout>
+                      <programlisting language="json"><xi:include href="samples/floatingips-put-disass-req.json" parse="text"/></programlisting>
+                  </example>
+                  <example>
+                      <title>Update Floating IP (disassociate):  Response</title>
+                      <programlisting language="json"><xi:include href="samples/floatingips-put-disass-res.json" parse="text"/></programlisting>
+                  </example>
+              </section>
+              <section xml:id="floatingip_delete">
+                  <title>Delete floating IP</title>
+                  <para>
+                      <informaltable rules="all" width="100%">
+                          <col width="20%"/>
+                          <col width="20%"/>
+                          <col width="60%"/>
+                          <thead>
+                              <tr>
+                                  <td>Verb</td>
+                                  <td>URI</td>
+                                  <td>Description</td>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              <tr>
+                                  <td>&DELETE;</td>
+                                  <td>/floatingips/<parameter>floatingip_id</parameter></td>
+                                  <td>Removes a floating IP and its association information.</td>
+                              </tr>
+                          </tbody>
+                      </informaltable>
+                  </para>
+                        <para>Normal Response Code: 200 OK</para>
+                        <para>Error Response Code: 401 Unauthorized, 404 Not Found</para>
+                        <para>This operation does not require a request body.</para>
+                        <para>This operation does not return a response body.</para>
+                        <para>The operation removes the floating IP whose identifier is specified in
+                            the request URI. If the floating IP being removed is associated with a
+                            Quantum port, the association is removed as well.</para>
+                        <para>
+                            <example>
+                                <title>Delete Floating IP:  Request</title>
+                                <literallayout class="monospaced">
+DELETE /v2.0/floatingips/2f245a7b-796b-4f26-9cf9-9e82d248fda7
+Accept: application/json
+                        </literallayout>
+                            </example>
+                        </para>
+              </section>
+          </section>
+      </section>
+    </section>
