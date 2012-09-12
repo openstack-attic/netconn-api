@@ -1166,9 +1166,9 @@ Content-Length 204
             <title>Networks</title>
             <para>Use the &APIv2; to manage network resources. </para>
             <informaltable rules="all" width="100%">
-                <col width="20%"/>
-                <col width="20%"/>
-                <col width="60%"/>
+                <col width="12%"/>
+                <col width="30%"/>
+                <col width="58%"/>
 
                 <thead>
                     <tr align="center">
@@ -1262,7 +1262,7 @@ Content-Length 204
                     <literallayout class="monospaced">
 GET /v2.0/networks
 Accept: application/json
-	                </literallayout>
+                        </literallayout>
                 </example>
                 <example>
                     <title>List Networks: JSON Response</title>
@@ -1270,7 +1270,7 @@ Accept: application/json
                 </example>
             </section>
             <?hard-pagebreak?>
-            <section xml:id="List_Networks_Detail">
+            <section xml:id="Show_Network">
                 <title>Show Network</title>
                 <informaltable rules="all" width="100%">
                     <col width="20%"/>
@@ -1304,16 +1304,6 @@ Accept: application/json
                 <para>This operation does not require a request
                     body.</para>
                 <para>This operation returns a response body.</para>
-                <!--  <example>
-                    <title>Networks List Request/Response
-                        (XML)</title>
-                    <para>Request:</para>
-                    <literallayout class="monospaced">GET /tenants/XYZ/networks/detail.xml                </literallayout>
-                    <para>Response:</para>
-                    <programlisting language="xml"><xi:include href="samples/networks-get-detail-res.xml" parse="text"/>
-                    </programlisting>
-                </example>
-                <?hard-pagebreak?> -->
                 <example>
                     <title>Show Network: JSON Request</title>
 
@@ -1325,7 +1315,7 @@ Accept: application/json
                 <example>
                     <title>Show Network: JSON Response</title>
 
-                    <programlisting language="json"><xi:include href="samples/networks-get-detail-res.json" parse="text"/>                   </programlisting>
+                    <programlisting language="json"><xi:include href="samples/network-get-res.json" parse="text"/>                   </programlisting>
                 </example>
             </section>
             <?hard-pagebreak?>
@@ -1361,30 +1351,15 @@ Accept: application/json
                         <literal>network</literal> object that
                     specifies a symbolic name for the network. </para>
                 <para>This operation returns a response body.</para>
-                <!--  <example>
-                    <title>Create Network Request/Response
-                        (XML)</title>
-                    <para>Request:</para>
-                    <literallayout class="monospaced">POST /tenants/XYZ/networks.xml                </literallayout>
-                    <programlisting language="xml"><xi:include href="samples/network-post-req.xml" parse="text"/>
-                    </programlisting>
-                    <para>Response:</para>
-                    <programlisting language="xml"><xi:include href="samples/network-post-res.xml" parse="text"/>                    </programlisting>
-                </example> -->
                 <example>
                     <title>Create Network: JSON Request</title>
-
                     <literallayout class="monospaced">
-POST v2.0/networks.json
-Content-Type: application/json
-Accept: application/json
-</literallayout>
-
+POST /v2.0/networks
+                                        </literallayout>
                     <programlisting language="json"><xi:include href="samples/network-post-req.json" parse="text"/>                    </programlisting>
                 </example>
                 <example>
                     <title>Create Network: JSON Response</title>
-
                     <programlisting language="json"><xi:include href="samples/network-post-res.json" parse="text"/>                    </programlisting>
                 </example>
                 <section xml:id="bulk_create_networks">
@@ -1397,14 +1372,7 @@ Accept: application/json
                     <para>Specify a list of networks in the request
                         body, as shown in the following example: </para>
                     <example>
-                        <title>Bulk Create Servers: JSON Request </title>
-
-                        <literallayout class="monospaced">
-POST v2.0/networks.json
-
-Content-Type: application/json
-Accept: application/json
-</literallayout>
+                        <title>Bulk Create Networks: JSON Request </title>
 
                         <programlisting language="json">{
 "networks": [
@@ -1499,51 +1467,22 @@ Accept: application/json
                         attributes that the user wishes to update, as
                         shown in the following example. </para>
                 </note>
-                <!--  <example>
-                    <title>Update Network Request/Response
-                    (XML)</title>
-                    <para>Request:</para>
-                    <literallayout class="monospaced">PUT /tenants/XYZ/networks/158233b0-ca9a-40b4-8614-54a4a99d47d1.xml                </literallayout>
-                    <programlisting language="xml"><xi:include href="samples/network-post-req.xml" parse="text"/>                   </programlisting>
-                    <para>Response:</para>
-                    <para><emphasis>No data is returned in the
-                            response body.</emphasis></para>
-                </example> -->
                 <example>
                     <title>Update Network: JSON Request </title>
                     <literallayout class="monospaced">
-PUT /v2.0/networks/fc68ea2c-b60b-4b4f-bd82-94ec81110766.json
-
-Content-Type: application/json
-Accept: application/json
+PUT /v2.0/networks/fc68ea2c-b60b-4b4f-bd82-94ec81110766
 </literallayout>
 
-                    <programlisting language="json">{
-  "network":
-    {
-      "name": "updated_name"
-    }
-}</programlisting>
+                    <programlisting language="json">
+                    <xi:include href="samples/network-put-req.json" parse="text"/>                    
+                    </programlisting>
                 </example>
                 <example>
                     <title>Update Network: JSON Response</title>
 
-                    <programlisting language="json">status: 200
-content-length: 192
-content-type: application/json
-
-{
-  "network":
-    {
-     "status": "ACTIVE",
-     "subnets": [],
-     "name": "updated_name",
-     "admin_state_up": false,
-     "shared": false,
-     "tenant_id": "c1210485b2424d48804aad5d39c61b8f",
-     "id": "fc68ea2c-b60b-4b4f-bd82-94ec81110766"
-    }
-} </programlisting>
+                    <programlisting language="json">
+                    <xi:include href="samples/network-put-res.json" parse="text"/>
+                                        </programlisting>
 
                 </example>
             </section>
@@ -1590,32 +1529,15 @@ content-type: application/json
                 <para>This operation does not require a request body. </para>
                 <para>This operation does not return a response
                     body.</para>
-                <!--  <example>
-                    <title>Delete Network Request/Response
-                        (XML)</title>
-                    <para>Request:</para>
-                    <literallayout class="monospaced">DELETE /tenants/XYZ/networks/158233b0-ca9a-40b4-8614-54a4a99d47d1.xml                </literallayout>
-                    <para>Response:</para>
-                    <para><emphasis>No data is returned in the
-                            response body.</emphasis></para>
-                </example> -->
                 <example>
                     <title>Delete Network: JSON Request </title>
 
                     <literallayout class="monospaced">DELETE /v2.0/networks/fc68ea2c-b60b-4b4f-bd82-94ec81110766
-
-Content-Type: application/json
-Accept: application/json </literallayout>
+                                        </literallayout>
                 </example>
-                <example>
-                    <title>Delete Network: JSON Response </title>
-                    <literallayout class="monospaced">status: 204</literallayout>
-                </example>
-
-
-
             </section>
         </section>
+        <?hard-pagebreak?>
         <section xml:id="Subnets">
             <title>Subnets</title>
             <para>Use the &APIv2; to manage subnet resources. </para>
@@ -1704,24 +1626,13 @@ Accept: application/json </literallayout>
                 <para>This operation does not require a request
                     body.</para>
                 <para>This operation returns a response body.</para>
-                <!--  <example>
-                    <title>Port List Request/Response (XML)</title>
-                    <para>Request:</para>
-                    <literallayout class="monospaced">GET /tenants/XYZ/networks/158233b0-ca9a-40b4-8614-54a4a99d47d1/ports.xml                </literallayout>
-                    <para>Response:</para>
-                    <programlisting language="xml"><xi:include href="samples/ports-get-res.xml" parse="text"/>                    </programlisting>
-                </example>
-                <?hard-pagebreak?> -->
                 <example>
                     <title>List Subnets: JSON Request </title>
-
-                    <literallayout class="monospaced">GET v2.0/subnets.json
-
-Accept: application/json</literallayout>
+                    <literallayout class="monospaced">GET v2.0/subnets.json</literallayout>
                 </example>
                 <example>
                     <title>List Subnets: JSON Response</title>
-                    <programlisting language="json"><xi:include href="samples/subnets_get_resp.json" parse="text"/>                    </programlisting>
+                    <programlisting language="json"><xi:include href="samples/subnets-get-res.json" parse="text"/>                    </programlisting>
                 </example>
             </section>
             <?hard-pagebreak?>
@@ -1762,28 +1673,15 @@ Accept: application/json</literallayout>
                 <para>This operation does not require a request
                     body.</para>
                 <para>This operation returns a response body.</para>
-                <!--  <example>
-                    <title>Port List Details Request/Response
-                        (XML)</title>
-                    <para>Request:</para>
-                    <literallayout class="monospaced">GET /tenants/XYZ/networks/158233b0-ca9a-40b4-8614-54a4a99d47d1/ports/detail.xml               </literallayout>
-                    <para>Response:</para>
-                    <programlisting language="xml"><xi:include href="samples/ports-get-detail-res.xml" parse="text"/>                    </programlisting>
-                </example>
-                <?hard-pagebreak?> -->
                 <example>
                     <title>Show Subnet: JSON Request</title>
 
                     <literallayout class="monospaced">GET /v2.0/subnets/4156c7a5-e8c4-4aff-a6e1-8f3c7bc83861
-
-Accept: application/json</literallayout>
+                    </literallayout>
                 </example>
                 <example>
                     <title>Show Subnet: JSON Response</title>
-                    <literallayout class="monospaced">status: 200
-content-length: 309
-content-type: application/json </literallayout>
-                    <programlisting language="json"><xi:include href="samples/subnets-get-detail-res.json" parse="text"/>                   </programlisting>
+                    <programlisting language="json"><xi:include href="samples/subnet-get-res.json" parse="text"/>                   </programlisting>
                 </example>
 
             </section>
@@ -1848,33 +1746,20 @@ content-type: application/json </literallayout>
                     gateway. Otherwise, you can explicitly specify
                     allocation pools as shown in the following
                     example. </para>
-                <!--  <example>
-                    <title>Create Port Request/Response (XML)</title>
-                    <para>Request:</para>
-                    <literallayout class="monospaced">POST /tenants/33/networks/158233b0-ca9a-40b4-8614-54a4a99d47d1/ports.xml                </literallayout>
-                    <programlisting language="xml"><xi:include href="samples/port-post-req.xml" parse="text"/>              </programlisting>
-                    <para>Response:</para>
-                    <programlisting language="xml"><xi:include href="samples/port-post-res.xml" parse="text"/>                    </programlisting>
-                </example> -->
                 <example>
                     <title>Create Subnet: JSON Request</title>
                     <literallayout class="monospaced">
 POST /v2.0/subnets
-Content-Type: application/json
-Accept: application/json
 </literallayout>
-                    <programlisting language="json">{
-  "subnet": {
-    "network_id": "ed2e3c10-2e43-4297-9006-2863a2d1abbc",
-    "ip_version": 4,
-    "cidr": "10.0.3.0/24",
-    "allocation_pools": [{"start": "10.0.3.20", "end": "10.0.3.150"}]
-  }
-} 	                </programlisting>
+                    <programlisting language="json">
+                    <xi:include href="samples/subnet-post-req.json" parse="text"/>
+                    </programlisting>
                 </example>
                 <example>
                     <title>Create Subnet: JSON Response</title>
-                    <programlisting language="json"><xi:include href="samples/subnet-post-req.json" parse="text"/>                	</programlisting>
+                    <programlisting language="json">
+                    <xi:include href="samples/subnet-post-res.json" parse="text"/>
+                    </programlisting>
 
                 </example>
                 <section xml:id="bulK_create_subnets">
@@ -1971,42 +1856,21 @@ Accept: application/json
                         wish to update, as shown in the following
                         example. </para>
                 </note>
-                <!--  <example>
-                    <title>Set Port State Request/Response
-                        (XML)</title>
-                    <para>Request:</para>
-                    <literallayout class="monospaced">PUT tenants/33/networks/158233b0-ca9a-40b4-8614-54a4a99d47d1/ports/98017ddc-efc8-4c25-a915-774b2a633855.xml                </literallayout>
-                    <programlisting language="xml"><xi:include href="samples/port-post-req.xml" parse="text"/>
-                </programlisting>
-
-                    <para>Response:</para>
-                    <para><emphasis>No data is returned in the
-                            response body..</emphasis></para>-->
                 <example>
                     <title>Update Subnet: JSON Request</title>
 
                     <literallayout class="monospaced">
-PUT /v2.0/subnets/9436e561-47bf-436a-b1f1-fe23a926e031
-
-Content-Type: application/json
-Accept: application/json
+PUT /v2.0/subnets/91e47a57-7508-46fe-afc9-fc454e8580e1
 </literallayout>
-                    <programlisting language="json">{
-  "subnet":
-    {
-      "gateway_ip": "10.0.3.254",
-      "name": "new_name"
-    }
-}</programlisting>
-
-
+                    <programlisting language="json">
+                    <xi:include href="samples/subnet-put-req.json" parse="text"/>
+                    </programlisting>
                 </example>
                 <example>
                     <title>Update Subnet: JSON Response</title>
-
-
-                    <programlisting language="json"><xi:include href="samples/subnet-post-res.json" parse="text"/></programlisting>
-
+                    <programlisting language="json">
+                    <xi:include href="samples/subnet-put-res.json" parse="text"/>
+                    </programlisting>
                 </example>
             </section>
             <?hard-pagebreak?>
@@ -2048,30 +1912,15 @@ Accept: application/json
                     body.</para>
                 <para>This operation does not return a response
                     body.</para>
-                <!-- <example>
-                    <title>Delete Port State Request/Response
-                        (XML)</title>
-                    <para>Request:</para>
-                    <literallayout class="monospaced">DELETE tenants/33/networks/158233b0-ca9a-40b4-8614-54a4a99d47d1/ports/98017ddc-efc8-4c25-a915-774b2a633855.xml                </literallayout>
-                    <para>Response:</para>
-                    <para><emphasis>No data is returned in the
-                            response body..</emphasis></para>
-                </example> -->
                 <example>
                     <title>Delete Subnet: JSON Request</title>
 
                     <literallayout class="monospaced">
-DELETE /v2.0/subnets/9436e561-47bf-436a-b1f1-fe23a926e031
-
-Accept: application/json
-</literallayout>
-                </example>
-                <example>
-                    <title>Delete Subnet: Response </title>
-                    <literallayout class="monospaced">Status: 204</literallayout>
+DELETE /v2.0/subnets/9436e561-47bf-436a-b1f1-fe23a926e031</literallayout>
                 </example>
             </section>
         </section>
+        <?hard-pagebreak?>
         <section xml:id="Ports">
             <title>Ports</title>
             <para>Use the &APIv2; to manage port resources. </para>
@@ -2157,22 +2006,12 @@ Accept: application/json
                     query string parameters. </para>
                 <para>This operation does not require a request body. </para>
                 <para>This operation returns a response body.</para>
-                <!-- <example>
-                    <title>Port List Request/Response (XML)</title>
-                    <para>Request:</para>
-                    <literallayout class="monospaced">GET /tenants/XYZ/networks/158233b0-ca9a-40b4-8614-54a4a99d47d1/ports.xml                </literallayout>
-                    <para>Response:</para>
-                    <programlisting language="xml"><xi:include href="samples/ports-get-res.xml" parse="text"/>                    </programlisting>
-                </example>
-                <?hard-pagebreak?> -->
                 <example>
                     <title>List Ports: JSON Request</title>
 
                     <literallayout class="monospaced">
-GET /v2.0/ports.json HTTP/1.1
-content-type: application/json
-accept: application/json
-	                </literallayout>
+GET /v2.0/ports
+                        </literallayout>
                     <para>Response:</para>
                     <programlisting language="json"><xi:include href="samples/ports-get-res.json" parse="text"/>                    </programlisting>
                 </example>
@@ -2212,20 +2051,11 @@ accept: application/json
                 <para>This operation does not require a request
                     body.</para>
                 <para>This operation returns a response body.</para>
-                <!--    <example>
-                    <title>Show Port Request/Response (XML)</title>
-                    <para>Request:</para>
-                    <literallayout class="monospaced">GET /tenants/33/networks/158233b0-ca9a-40b4-8614-54a4a99d47d1/ports/98017ddc-efc8-4c25-a915-774b2a633855.xml                </literallayout>
-                    <para>Response:</para>
-                    <programlisting language="xml"><xi:include href="samples/port-get-res.xml" parse="text"/>                    </programlisting>
-                </example>
-                <?hard-pagebreak?> -->
                 <example>
                     <title>Show Port: JSON Request</title>
                     <para>
                         <programlisting>
-GET /v2.0/ports/ebe69f1e-bc26-4db5-bed0-c0afb4afe3db.json
-accept: application/json
+GET /v2.0/ports/ebe69f1e-bc26-4db5-bed0-c0afb4afe3db
 </programlisting>
                     </para>
                     <para>Response:</para>
@@ -2305,23 +2135,11 @@ accept: application/json
                             that the port is associated with.</para>
                     </listitem>
                 </itemizedlist>
-                <!--    <example>
-                    <title>Create Port Request/Response (XML)</title>
-                    <para>Request:</para>
-                    <literallayout class="monospaced">POST /tenants/33/networks/158233b0-ca9a-40b4-8614-54a4a99d47d1/ports.xml                </literallayout>
-                    <programlisting language="xml"><xi:include href="samples/port-post-req.xml" parse="text"/>              </programlisting>
-                    <para>Response:</para>
-                    <programlisting language="xml"><xi:include href="samples/port-post-res.xml" parse="text"/>                    </programlisting>
-                </example> -->
                 <para>This operation requires a request body.</para>
                 <para>This operation returns a response body.</para>
                 <example>
                     <title>Create Port: JSON Request</title>
-                    <literallayout class="monospaced">POST /v2.0/ports.json HTTP/1.1
-Content-Length: 158
-content-type: application/json
-accept: application/json</literallayout>
-
+                    <literallayout class="monospaced">POST /v2.0/ports</literallayout>
                     <programlisting language="json"><xi:include href="samples/port-post-req.json" parse="text"/></programlisting>
                 </example>
                 <example>
@@ -2339,7 +2157,9 @@ accept: application/json</literallayout>
                         ports in the request body. </para>
                     <example>
                         <title>Bulk Create Port: JSON Request</title>
-                        <programlisting>xx</programlisting>
+                        <programlisting>
+                        <xi:include href="samples/port-post-bulk-req.json" parse="text"/>
+                        </programlisting>
                     </example>
                     <para>The &APIv2; always guarantees the atomic
                         completion of the bulk operation. </para>
@@ -2390,58 +2210,20 @@ accept: application/json</literallayout>
                     already in use, the operation fails and the
                     existing IP addresses are not removed from the
                     port. </para>
-                <!--  <example>
-                    <title>Set Port State Request/Response
-                        (XML)</title>
-                    <para>Request:</para>
-                    <literallayout class="monospaced">PUT tenants/33/networks/158233b0-ca9a-40b4-8614-54a4a99d47d1/ports/98017ddc-efc8-4c25-a915-774b2a633855.xml                </literallayout>
-                    <programlisting language="xml"><xi:include href="samples/port-post-req.xml" parse="text"/>
-          </programlisting>
-                    <para>Response:</para>
-                    <para><emphasis>No data is returned in the
-                            response body..</emphasis></para>
-                </example> -->
                 <para>This operation requires a request body.</para>
                 <para>This operation returns a response body.</para>
                 <example>
                     <title>Update Port: JSON Request</title>
-
-                    <literallayout class="monospaced">PUT /v2.0/ports/1d8591f4-7b62-428e-857d-e82a15e5a7f1.json HTTP/1.1
-Content-Length: 63
-content-type: application/json
-accept: application/json </literallayout>
-                    <programlisting language="json">{
-    "port": {
-        "device_id": "37b4f622-5e17-4dca-bf67-7338c5b7dd63"
-    }
-}</programlisting>
-
+                    <literallayout class="monospaced">PUT /v2.0/ports/1d8591f4-7b62-428e-857d-e82a15e5a7f1</literallayout>
+                    <programlisting language="json">
+                    <xi:include href="samples/port-put-req.json" parse="text"/>
+                    </programlisting>
                 </example>
                 <example>
                     <title>Update Port: JSON Response</title>
-                    <programlisting language="json">Status: 200
-Content-Type: application/json;
-Content-Length: 410
-
-{
-    "port": {
-        "admin_state_up": true,
-        "device_id": "",
-        "device_owner": "",
-        "fixed_ips": [
-            {
-                "ip_address": "10.0.3.3",
-                "subnet_id": "91e47a57-7508-46fe-afc9-fc454e8580e1"
-            }
-        ],
-        "id": "64d913c1-bcb1-42d2-8f0a-9593dbcaf251",
-        "mac_address": "fa:16:3e:25:32:5d",
-        "name": "",
-        "network_id": "1a6f6006-9e0b-4f99-984c-96787ae66363",
-        "status": "ACTIVE",
-        "tenant_id": "f667b69e4d6749749ef3bcba7251d9ce"
-    }
-}</programlisting>
+                    <programlisting language="json">
+                    <xi:include href="samples/port-put-res.json" parse="text"/>
+                                        </programlisting>
 
                 </example>
             </section>
@@ -2482,25 +2264,11 @@ Content-Length: 410
                     body.</para>
                 <para>This operation does not return a response
                     body.</para>
-                <!-- <example>
-                    <title>Delete Port State Request/Response
-                        (XML)</title>
-                    <para>Request:</para>
-                    <literallayout class="monospaced">DELETE tenants/33/networks/158233b0-ca9a-40b4-8614-54a4a99d47d1/ports/98017ddc-efc8-4c25-a915-774b2a633855.xml                </literallayout>
-                    <para>Response:</para>
-                    <para><emphasis>No data is returned in the
-                            response body..</emphasis></para>
-                </example> -->
                 <example>
                     <title>Delete Port: JSON Request</title>
 
-                    <literallayout class="monospaced"> DELETE /v2.0/ports/ebe69f1e-bc26-4db5-bed0-c0afb4afe3db.json
-
- accept: application/json </literallayout>
-                </example>
-                <example>
-                    <title>Delete Port: JSON Response</title>
-                    <literallayout class="monospaced"> status: 204 </literallayout>
+                    <literallayout class="monospaced"> DELETE /v2.0/ports/ebe69f1e-bc26-4db5-bed0-c0afb4afe3db
+                    </literallayout>
                 </example>
             </section>
         </section>

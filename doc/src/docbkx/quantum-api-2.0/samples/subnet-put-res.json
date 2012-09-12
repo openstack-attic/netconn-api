@@ -9,7 +9,7 @@
         "cidr": "10.0.3.0/24",
         "dns_nameservers": [],
         "enable_dhcp": true,
-        "gateway_ip": "10.0.3.1",
+        "gateway_ip": "10.0.3.254",
         "host_routes": [],
         "id": "91e47a57-7508-46fe-afc9-fc454e8580e1",
         "ip_version": 4,

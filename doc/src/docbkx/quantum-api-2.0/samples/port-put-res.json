@@ -1,7 +1,7 @@
 {
     "port": {
         "admin_state_up": true,
-        "device_id": "",
+        "device_id": "37b4f622-5e17-4dca-bf67-7338c5b7dd63",
         "device_owner": "",
         "fixed_ips": [
             {
@@ -9,7 +9,7 @@
                 "subnet_id": "91e47a57-7508-46fe-afc9-fc454e8580e1"
             }
         ],
-        "id": "64d913c1-bcb1-42d2-8f0a-9593dbcaf251",
+        "id": "1d8591f4-7b62-428e-857d-e82a15e5a7f1",
         "mac_address": "fa:16:3e:25:32:5d",
         "name": "",
         "network_id": "1a6f6006-9e0b-4f99-984c-96787ae66363",

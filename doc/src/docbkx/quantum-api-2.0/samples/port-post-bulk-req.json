@@ -1,0 +1,14 @@
+{
+    "ports": [
+    {
+        "admin_state_up": true,
+        "name": "port1",
+        "network_id": "6aeaf34a-c482-4bd3-9dc3-7faf36412f12"
+    },
+    {
+        "admin_state_up": true,
+        "name": "port2",
+        "network_id": "6aeaf34a-c482-4bd3-9dc3-7faf36412f12"
+    }
+    ]
+} 

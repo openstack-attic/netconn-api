@@ -1,7 +1,3 @@
-Status: 200
-Content-Type: application/json
-Content-Length: 410
-
 {
     "port": {
         "admin_state_up": true,

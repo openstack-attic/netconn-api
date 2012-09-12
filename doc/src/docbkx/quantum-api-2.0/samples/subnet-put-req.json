@@ -1,0 +1,7 @@
+{
+  "subnet":
+    {
+      "gateway_ip": "10.0.3.254",
+      "name": "new_name"
+    }
+}

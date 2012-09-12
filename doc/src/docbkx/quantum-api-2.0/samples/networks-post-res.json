@@ -6,6 +6,7 @@
      "name": "net-name",
      "admin_state_up": true,
      "tenant_id": "388a70781bae4ca895f17b7f6293eb70",
-     "shared": false, "id": "2a4017ef-31ff-496a-9294-e96ecc3bc9c9"
+     "shared": false,
+     "id": "2a4017ef-31ff-496a-9294-e96ecc3bc9c9"
     }
 }
