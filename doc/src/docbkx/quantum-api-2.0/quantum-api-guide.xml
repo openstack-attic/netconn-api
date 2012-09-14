@@ -70,7 +70,7 @@
         <abstract>
             <para>This document is intended for software developers
                 who develop applications by using the OpenStack
-                &APIv2;. </para>
+                &APIv2;.</para>
         </abstract>
         <revhistory>
             <revision>
