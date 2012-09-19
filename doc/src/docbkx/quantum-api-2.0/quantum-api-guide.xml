@@ -485,7 +485,7 @@
                         </td>
                         <td>CR </td>
                         <td>N/A </td>
-                        <td>UUID_PATTERN </td>
+                        <td>No constraint</td>
                         <td>Owner of network. Only admin users can
                             specify a tenant_id other than its own.
                         </td>
@@ -575,9 +575,19 @@
                         <td/>
                     </tr>
                     <tr>
+                        <td>name </td>
+                        <td>String </td>
+                        <td>No </td>
+                        <td>CRU </td>
+                        <td>None </td>
+                        <td>N/A </td>
+                        <td>Human-readable name for the subnet. Might
+                            not be unique. </td>
+                    </tr>
+                    <tr>
                         <td>ip_version </td>
                         <td>int </td>
-                        <td>Yes </td>
+                        <td>No </td>
                         <td>CR </td>
                         <td>4 </td>
                         <td>{ 4 | 6 } </td>
@@ -602,7 +612,7 @@
                         <td>first address in <emphasis role="italic"
                                 >cidr</emphasis>
                         </td>
-                        <td>Valid IP address </td>
+                        <td>Valid IP address or null</td>
                         <td>default gateway used by devices in this
                             subnet </td>
                     </tr>
@@ -611,7 +621,7 @@
                         <td>list(str) </td>
                         <td>No </td>
                         <td>CRU </td>
-                        <td>None </td>
+                        <td>Empty list </td>
                         <td>No constraint </td>
                         <td>DNS name servers used by hosts in this
                             subnet. </td>
@@ -644,6 +654,16 @@
                             subnet route). </td>
                     </tr>
                     <tr>
+                        <td>enable_dhcp </td>
+                        <td>Bool </td>
+                        <td>No</td>
+                        <td>CRU </td>
+                        <td>True </td>
+                        <td>{ True | False } </td>
+                        <td>Specifies whether DHCP is enabled for
+			    this subnet or not. </td>
+                    </tr>
+                    <tr>
                         <td>tenant_id </td>
                         <td>uuid-str </td>
                         <td>No<footnote xml:id="tenant2">
@@ -654,7 +674,7 @@
                             </footnote></td>
                         <td>CR </td>
                         <td>N/A </td>
-                        <td>UUID_PATTERN </td>
+                        <td>No constraint</td>
                         <td>Owner of network. Only admin users can
                             specify a tenant_id other than its own.
                         </td>
@@ -721,7 +741,6 @@
                     </tr>
                 </thead>
                 <tbody>
-
                     <tr>
                         <td>id </td>
                         <td>uuid-str </td>
@@ -740,6 +759,16 @@
                         <td>existing network identifier </td>
                         <td>Network that this port is associated with.
                         </td>
+                    </tr>
+                    <tr>
+                        <td>name </td>
+                        <td>String </td>
+                        <td>No </td>
+                        <td>CRU </td>
+                        <td>None </td>
+                        <td>N/A </td>
+                        <td>Human-readable name for the port. Might
+                            not be unique. </td>
                     </tr>
                     <tr>
                         <td>admin_state_up </td>
@@ -832,7 +861,7 @@
                         </td>
                         <td>CR </td>
                         <td>N/A </td>
-                        <td>UUID_PATTERN </td>
+                        <td>No constraint</td>
                         <td>Owner of network. Only admin users can
                             specify a tenant_id other than its own.
                         </td>
@@ -960,7 +989,7 @@ Content-Length 204
                 show or list call. The &APIv2; has a mechanism to
                 limit the set of attributes returned. For example,
                 return <literal>id</literal>. </para>
-            <para>You can use the <literal>field</literal> query
+            <para>You can use the <literal>fields</literal> query
                 parameter to control the attributes returned from the
                 &APIv2;. </para>
             <para>For example, the following request returns only
@@ -1058,7 +1087,7 @@ Content-Length 204
                 URI. Use this method to easily determine if an
                 extension is available. If the extension is not
                 available, a <errorcode>404</errorcode>
-                <errortext>itemNotFound</errortext> response is
+                <errortext>Not Found</errortext> response is
                 returned. </para>
             <para>You can extend existing core API resources with new
                 actions or extra attributes. Also, you can add new
@@ -1148,9 +1177,8 @@ Content-Length 204
                 receive the following errors: </para>
             <itemizedlist>
                 <listitem>
-                    <para><errorcode>401</errorcode> Unauthorized.
-                        Credentials that were not valid were provided. </para>
-                    <para>if invalid credentials are provided </para>
+                    <para><errorcode>401</errorcode> Unauthorized - If
+                        invalid credentials are provided. </para>
                 </listitem>
                 <listitem>
                     <para><errorcode>403</errorcode> Forbidden - If
@@ -1189,7 +1217,7 @@ Content-Length 204
                         <td>&GET;</td>
                         <td>/networks/<parameter>network_id</parameter></td>
                         <td>Lists detailed information for the
-                            specified network ID.</td>
+                            specified network.</td>
                     </tr>
                     <tr>
                         <td>&POST;</td>
@@ -1573,10 +1601,8 @@ content-type: application/json
                 <simpara>Normal Response Code:
                         <returnvalue>204</returnvalue>
                 </simpara>
-                <simpara>Error Response Codes: Bad Request
-                        (<errorcode>400</errorcode>) Unauthorized
-                        (<errorcode>401</errorcode>), Forbidden
-                        (<errorcode>403</errorcode>), Not Found
+                <simpara>Error Response Codes: Unauthorized
+                        (<errorcode>401</errorcode>), Not Found
                         (<errorcode>404</errorcode>), Network In Use
                         (<errorcode>409</errorcode>) </simpara>
                 <para>This operation deletes a Quantum network and its
@@ -1759,8 +1785,7 @@ Accept: application/json</literallayout>
                         <emphasis role="italic">fields</emphasis>
                     query parameter, as discussed in <xref
                         linkend="filtering"/>. </para>
-                <para>This operation does not require a request
-                    body.</para>
+                <para>This operation does not require a request body.</para>
                 <para>This operation returns a response body.</para>
                 <!--  <example>
                     <title>Port List Details Request/Response
@@ -1818,7 +1843,8 @@ content-type: application/json </literallayout>
                         (<errorcode>400</errorcode>), Unauthorized
                         (<errorcode>401</errorcode>), Forbidden
                         (<errorcode>403</errorcode>), Not Found
-                        (<errorcode>404</errorcode>)</simpara>
+                        (<errorcode>404</errorcode>), Conflict
+                        (<errorcode>409</errorcode>)</simpara>
                 <para>This operation creates a new subnet on the
                     specified network. The network ID,
                         <parameter>network_id</parameter>, is
@@ -1838,7 +1864,7 @@ content-type: application/json </literallayout>
                     specified, Quantum allocates an address from the
                     cidr for the gateway for the subnet. </para>
                 <para>To specify a subnet without a gateway, specify
-                    the value <literal>none</literal> for the
+                    the value <literal>null</literal> for the
                         <literal>gateway_ip</literal> attribute in the
                     request body. If allocation pools attribute,
                         <literal>allocation_pools</literal>, is not
@@ -1848,6 +1874,13 @@ content-type: application/json </literallayout>
                     gateway. Otherwise, you can explicitly specify
                     allocation pools as shown in the following
                     example. </para>
+                 <para>
+                    When <literal>allocation_pools</literal> and
+                    <literal>gateway_ip</literal> are both specified, it
+                    is up to the user ensuring the gateway ip does not
+                    overlap with the specified allocation pools; otherwise
+                    a <literal>409 Conflict</literal> error will be returned.
+                    </para>
                 <!--  <example>
                     <title>Create Port Request/Response (XML)</title>
                     <para>Request:</para>
@@ -2034,10 +2067,8 @@ Accept: application/json
                 <simpara>Normal Response Code:
                         <returnvalue>204</returnvalue>
                 </simpara>
-                <simpara>Error Response Codes: Bad Request
-                        (<errorcode>400</errorcode>), Unauthorized
-                        (<errorcode>401</errorcode>), Forbidden
-                        (<errorcode>403</errorcode>), Not Found
+                <simpara>Error Response Codes: Unauthorized
+                        (<errorcode>401</errorcode>), Not Found
                         (<errorcode>404</errorcode>), Conflict
                         (<errorcode>409</errorcode>)</simpara>
                 <simpara>This operation removes a subnet from a
@@ -2264,7 +2295,8 @@ accept: application/json
                         (<errorcode>401</errorcode>), Forbidden
                         (<errorcode>403</errorcode>), Not Found
                         (<errorcode>404</errorcode>), Conflict
-                        (<errorcode>409</errorcode>) </simpara>
+                        (<errorcode>409</errorcode>), MAC generation failure
+                        (<errorcode>503</errorcode>) </simpara>
                 <para>This operation creates a new Quantum port. The
                     network where the port is created must be
                     specified in the <parameter>network_id</parameter>
@@ -2275,7 +2307,16 @@ accept: application/json
                         <para>A symbolic name for the port </para>
                     </listitem>
                     <listitem>
-                        <para>MAC address </para>
+                        <para>MAC address. If an invalid address is specified
+                        a <literal>400 Bad Request</literal> error will be
+                        returned, whereas a <literal>409 Conflict</literal>
+                        error will be returned if the specified MAC address is
+                        already in use.</para>
+                        <para>When the MAC address is not specified, Quantum
+                        will try to allocate one for the port being created.
+                        If there is a failure while generating the address,
+                        a <literal>503 Service Unavailable</literal> error
+                        will be returned.</para>
                     </listitem>
                     <listitem>
                         <para>Administrative state. Set to
@@ -2287,7 +2328,7 @@ accept: application/json
                         <para>Fixed IPs <itemizedlist>
                                 <listitem>
                                    <para>If you specify just a subnet
-                                   ID, Quantum allocates the first
+                                   ID, Quantum allocates an
                                    available IP from that subnet to
                                    the port.</para>
                                 </listitem>
