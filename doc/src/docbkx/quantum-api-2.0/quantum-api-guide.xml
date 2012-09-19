@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE book [
+<!DOCTYPE book[
         <!-- Some useful entities borrowed from HTML -->
         <!ENTITY ndash  "&#x2013;">
         <!ENTITY mdash  "&#x2014;">
@@ -35,14 +35,7 @@
               </inlinemediaobject>'>
  <!ENTITY APIv2   'Quantum API v2.0'>
 ]>
-<book xmlns="http://docbook.org/ns/docbook"
-    xmlns:xlink="http://www.w3.org/1999/xlink"
-    xmlns:xi="http://www.w3.org/2001/XInclude"
-    xmlns:svg="http://www.w3.org/2000/svg"
-    xmlns:m="http://www.w3.org/1998/Math/MathML"
-    xmlns:html="http://www.w3.org/1999/xhtml"
-    xmlns:db="http://docbook.org/ns/docbook" version="5.0"
-    status="final" xml:id="Quantum-api-spec">
+<book xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:svg="http://www.w3.org/2000/svg" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:db="http://docbook.org/ns/docbook" version="5.0" status="final" xml:id="Quantum-api-spec">
     <title>Quantum API Guide (v2.0)</title>
     <titleabbrev>Quantum API v2.0</titleabbrev>
     <info>
@@ -100,16 +93,10 @@
     <chapter xml:id="Overview-d1e71">
         <title>Overview</title>
         <para>The Quantum project provides virtual networking services
-            among devices that are managed by the <link
-                xlink:href="http://wiki.openstack.org/OpenStack"
-                >OpenStack</link> compute service. </para>
-        <para>The &APIv2; combines the <link
-                xlink:href="http://docs.openstack.org/api/openstack-network/1.0/content/"
-                >Quantum API v1.1</link> with some essential Internet
+            among devices that are managed by the <link xlink:href="http://wiki.openstack.org/OpenStack">OpenStack</link> compute service. </para>
+        <para>The &APIv2; combines the <link xlink:href="http://docs.openstack.org/api/openstack-network/1.0/content/">Quantum API v1.1</link> with some essential Internet
             Protocol Address Management (IPAM) capabilities from the
-                <link
-                xlink:href="http://melange.readthedocs.org/en/latest/apidoc.html"
-                >Melange API</link>. </para>
+                <link xlink:href="http://melange.readthedocs.org/en/latest/apidoc.html">Melange API</link>. </para>
         <para>These IPAM capabilities enable you to:<itemizedlist>
                 <listitem>
                     <para>Associate IP address blocks and other
@@ -323,14 +310,12 @@
                     <para><emphasis role="bold">Subnet</emphasis>. An
                         IP version 4 or version 6 address block from
                         which IP addresses that are assigned to VMs on
-                        a specified network are selected. See <xref
-                            linkend="subnet"/>.</para>
+                        a specified network are selected. See <xref linkend="subnet"/>.</para>
                 </listitem>
                 <listitem>
                     <para><emphasis role="bold">Port</emphasis>. A
                         virtual, or logical, switch port on a
-                        specified network. See <xref linkend="Port"
-                        />.</para>
+                        specified network. See <xref linkend="Port"/>.</para>
                 </listitem>
             </itemizedlist></para>
         <para>These entities have auto-generated unique identifiers
@@ -369,24 +354,20 @@
                         <th>CRUD<footnote xml:id="crud">
                                 <para><itemizedlist>
                                    <listitem>
-                                   <para><emphasis role="bold"
-                                   >C</emphasis>. Use the attribute in
+                                   <para><emphasis role="bold">C</emphasis>. Use the attribute in
                                    create operations. </para>
                                    </listitem>
                                    <listitem>
-                                   <para><emphasis role="bold"
-                                   >R</emphasis>. This attribute is
+                                   <para><emphasis role="bold">R</emphasis>. This attribute is
                                    returned in response to show and
                                    list operations. </para>
                                    </listitem>
                                    <listitem>
-                                   <para><emphasis role="bold"
-                                   >U</emphasis>. You can update the
+                                   <para><emphasis role="bold">U</emphasis>. You can update the
                                    value of this attribute.</para>
                                    </listitem>
                                    <listitem>
-                                   <para><emphasis role="bold"
-                                   >D</emphasis>. You can delete the
+                                   <para><emphasis role="bold">D</emphasis>. You can delete the
                                    value of this attribute. </para>
                                    </listitem>
                                    </itemizedlist></para>
@@ -526,24 +507,20 @@
                         <th>CRUD<footnote xml:id="crud2">
                                 <para><itemizedlist>
                                    <listitem>
-                                   <para><emphasis role="bold"
-                                   >C</emphasis>. Use the attribute in
+                                   <para><emphasis role="bold">C</emphasis>. Use the attribute in
                                    create operations. </para>
                                    </listitem>
                                    <listitem>
-                                   <para><emphasis role="bold"
-                                   >R</emphasis>. This attribute is
+                                   <para><emphasis role="bold">R</emphasis>. This attribute is
                                    returned in response to show and
                                    list operations. </para>
                                    </listitem>
                                    <listitem>
-                                   <para><emphasis role="bold"
-                                   >U</emphasis>. You can update the
+                                   <para><emphasis role="bold">U</emphasis>. You can update the
                                    value of this attribute.</para>
                                    </listitem>
                                    <listitem>
-                                   <para><emphasis role="bold"
-                                   >D</emphasis>. You can delete the
+                                   <para><emphasis role="bold">D</emphasis>. You can delete the
                                    value of this attribute. </para>
                                    </listitem>
                                    </itemizedlist></para>
@@ -609,8 +586,7 @@
                         <td>string </td>
                         <td>No </td>
                         <td>CRUD </td>
-                        <td>first address in <emphasis role="italic"
-                                >cidr</emphasis>
+                        <td>first address in <emphasis role="italic">cidr</emphasis>
                         </td>
                         <td>Valid IP address or null</td>
                         <td>default gateway used by devices in this
@@ -631,9 +607,7 @@
                         <td>list(dict) </td>
                         <td>No </td>
                         <td>CR </td>
-                        <td>Every address in <emphasis role="italic"
-                                >cidr</emphasis>, excluding <emphasis
-                                role="italic">gateway_ip</emphasis> if
+                        <td>Every address in <emphasis role="italic">cidr</emphasis>, excluding <emphasis role="italic">gateway_ip</emphasis> if
                             configured </td>
                         <td>star/end of range must be valid ip </td>
                         <td>Sub-ranges of cidr available for dynamic
@@ -712,24 +686,20 @@
                         <th>CRUD<footnote xml:id="crud3">
                                 <para><itemizedlist>
                                    <listitem>
-                                   <para><emphasis role="bold"
-                                   >C</emphasis>. Use the attribute in
+                                   <para><emphasis role="bold">C</emphasis>. Use the attribute in
                                    create operations. </para>
                                    </listitem>
                                    <listitem>
-                                   <para><emphasis role="bold"
-                                   >R</emphasis>. This attribute is
+                                   <para><emphasis role="bold">R</emphasis>. This attribute is
                                    returned in response to show and
                                    list operations. </para>
                                    </listitem>
                                    <listitem>
-                                   <para><emphasis role="bold"
-                                   >U</emphasis>. You can update the
+                                   <para><emphasis role="bold">U</emphasis>. You can update the
                                    value of this attribute.</para>
                                    </listitem>
                                    <listitem>
-                                   <para><emphasis role="bold"
-                                   >D</emphasis>. You can delete the
+                                   <para><emphasis role="bold">D</emphasis>. You can delete the
                                    value of this attribute. </para>
                                    </listitem>
                                    </itemizedlist></para>
@@ -890,18 +860,13 @@
             for.</para>
         <section xml:id="Authentication-d1e444">
             <title>Authentication and Authorization</title>
-            <para>The &APIv2; uses the <link
-                    xlink:href="https://openstack.keystone.org"
-                    >Keystone Identity Service</link> as the default
+            <para>The &APIv2; uses the <link xlink:href="https://openstack.keystone.org">Keystone Identity Service</link> as the default
                 authentication service. When Keystone is enabled,
                 users that submit requests to the Quantum service must
-                provide an authentication token in <emphasis
-                    role="bold">X-Auth-Token</emphasis> request
+                provide an authentication token in <emphasis role="bold">X-Auth-Token</emphasis> request
                 header. You obtain the token by authenticating to the
                 Keystone endpoint. For more information about
-                Keystone, see the <link
-                    xlink:href="http://docs.openstack.org/api/openstack-identity-service/2.0/content/"
-                        ><citetitle>OpenStack Identity Developer
+                Keystone, see the <link xlink:href="http://docs.openstack.org/api/openstack-identity-service/2.0/content/"><citetitle>OpenStack Identity Developer
                         Guide</citetitle></link>. </para>
             <para>When Keystone is enabled, the
                     <literal>tenant_id</literal> attribute is not
@@ -1046,9 +1011,7 @@ Content-Length 204
                 <errortext>Bad Request</errortext> error is
                 returned.</para>
             <para>For information about how to submit bulk requests to
-                the &APIv2; see <xref linkend="bulk_create_networks"
-                />, <xref linkend="bulK_create_subnets"/>, and <xref
-                    linkend="bulk_create_ports"/>.</para>
+                the &APIv2; see <xref linkend="bulk_create_networks"/>, <xref linkend="bulK_create_subnets"/>, and <xref linkend="bulk_create_ports"/>.</para>
         </section>
         <section xml:id="extensions">
             <title>Extensions</title>
@@ -1716,8 +1679,7 @@ Accept: application/json </literallayout>
                     submitting the request, unless the request is
                     submitted by an user with administrative rights.
                     You can control which attributes are returned by
-                    using the <emphasis role="italic"
-                        >fields</emphasis> query parameter. You can
+                    using the <emphasis role="italic">fields</emphasis> query parameter. You can
                     filter results by using query string parameters.
                     See <xref linkend="filtering"/>. </para>
                 <para>This operation does not require a request
@@ -2571,8 +2533,7 @@ Content-Length: 410
     <section xml:id="retrieve_extensions">
       <title>Retrieving Available Extensions</title>
 
-      <para>Available extensions can be queried at the <filename
-      role="bold">/v2.0/extensions</filename> URI; please note that this
+      <para>Available extensions can be queried at the <filename role="bold">/v2.0/extensions</filename> URI; please note that this
       requests must be authenticated just like any other API request.</para>
 
       <para>The response will look like the following:</para>
@@ -2637,13 +2598,758 @@ Content-Length: 410
       <para>Discuss attributes exposed by this extension and how they
       work</para>
     </section>
-
+    <?hard-pagebreak?>
     <section xml:id="router_ext">
       <title>The Layer-3 Networking Extensions
       (<literal>router</literal>)</title>
 
-      <para>Discuss attributes, resources, and actions exposed by this
-      extension and how they work [salv-orlando]</para>
+      <para>The Layer-3 extension allows Quantum API users to route packets
+            between subnets, as well as forwarding packets from internal
+            network to external ones, and allow access to instances from an
+            external network through
+            <emphasis role="italic"> Floating IPs</emphasis>.</para>
+      <para>This extension introduces two new resources:
+          <itemizedlist>
+              <listitem>
+                  <para><emphasis role="bold">router</emphasis>, a logical
+                      entity for forwarding packets across internal subnets
+                      and NATting then on external networks through an
+                      appropriate external gateway.</para>
+              </listitem>
+          	  <listitem>
+          	      <para><emphasis role="bold">floatingip</emphasis>,
+          	          representing an external IP address mapped to a Quantum
+          	          port attached to an internal network.</para>
+          	  </listitem>
+          </itemizedlist>
+          Also, it extends the <emphasis role="bold">network </emphasis>
+          resource by defining a new attribute,
+          <emphasis role="italic">router:external</emphasis>, which specifies
+          whether a network is meant to be attached to a router's external
+          gateway or not. 
+      </para>
+      <?hard-pagebreak?>
+      <section xml:id="router_ext_concepts">
+          <title>Concepts</title>
+          <para>The quantum layer-3 extension is both a resource and attribute
+                extension. As an attribute extension, it adds the
+                <emphasis role="italic">router:external</emphasis> attribute
+                to the network resource; as a resource extension it defines
+                two new resources: <emphasis role="bold">router</emphasis> and
+                <emphasis role="bold">floating IP</emphasis>.</para>
+          <para>The <emphasis role="italic">router:external</emphasis>
+                attribute is characterized as follows:
+                <itemizedlist>
+                    <listitem>
+                    <para>Available in Create, Update,and Get requests.</para>
+                    </listitem>
+                    <listitem>
+                    <para>Boolean type, default value
+                    <literal>False</literal>.</para>
+                    </listitem>
+                    <listitem>
+                    <para>Might be restricted to admin users only, meaning
+                        that regular users might not see this attribute at all.
+                        </para>
+                    </listitem>
+                </itemizedlist>
+                </para>
+            <para>A <emphasis role="bold">router </emphasis> is used to
+                interconnect subnets and forward their traffic on external
+                networks, through which VM instances on private Quantum
+                network can reach, for instance, the Internet.</para>
+            <para>A router has an interface for each subnet it is associated
+                with. By default the IP address od such interface is the
+                subnet's gateway IP. Also, whenever a router is associated
+                with a subnet a port for that router interface will be added
+                to the subnet's network.</para>
+            <para>A <emphasis role="bold">floating IP </emphasis> is an IP
+                address on an external network, which is associated with a
+                specific port, and optionally a specific IP address too, on
+                a private Quantum network. Therefore a floating IP allows
+                access to a Virtual Machine instance on a private network
+                from an external network. Floating IPs can only be defined
+                on networks for which the attribute
+                <emphasis role="italic">router:external</emphasis> has been
+                set to True.</para>
+            <?hard-pagebreak?>
+            <table rules="all" width="95%">
+                <caption>Router Attributes</caption>
+                <col width="20%"/>
+                <col width="10%"/>
+                <col width="10%"/>
+                <col width="10%"/>
+                <col width="15%"/>
+                <col width="17%"/>
+                <col width="20%"/>
+                <thead>
+                    <tr>
+                        <th>Attribute </th>
+                        <th>Type </th>
+                        <th>Required </th>
+                        <th>CRUD</th>
+                        <th>Default Value </th>
+                        <th>Validation Constraints </th>
+                        <th>Notes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>id </td>
+                        <td>uuid-str </td>
+                        <td>N/A </td>
+                        <td>R </td>
+                        <td>generated </td>
+                        <td>N/A </td>
+                        <td>UUID representing the router</td>
+                    </tr>
+                    <tr>
+                        <td>name</td>
+                        <td>String </td>
+                        <td>No </td>
+                        <td>CRU</td>
+                        <td>None</td>
+                        <td>N/A </td>
+                        <td>Human readable name for the router.
+                        Does not have to be unique</td>
+                    </tr>
+                    <tr>
+                        <td>admin_state_up</td>
+                        <td>Bool </td>
+                        <td>No </td>
+                        <td>CRU</td>
+                        <td>true</td>
+                        <td>{true | false }</td>
+                        <td>Administrative state of the router</td>
+                    </tr>
+                    <tr>
+                        <td>status</td>
+                        <td>String </td>
+                        <td>N/A </td>
+                        <td>R</td>
+                        <td>N/A</td>
+                        <td>N/A</td>
+                        <td>Indicates whether a router is currently
+                        operational or not</td>
+                    </tr>
+                    <tr>
+                        <td>tenant_id</td>
+                        <td>uuid-str</td>
+                        <td>No</td>
+                        <td>CR</td>
+                        <td>Derived from Authentication token</td>
+                        <td>N/A</td>
+                        <td>Owner of the router</td>
+                    </tr>
+                    <tr>
+                        <td>external_gateway_info</td>
+                        <td>dict</td>
+                        <td>No</td>
+                        <td>CRU</td>
+                        <td>None</td>
+                        <td>No constraint</td>
+                        <td>Information on external gateway for the
+                        router</td>
+                    </tr>
+                </tbody>
+            </table>
+            <table rules="all" width="95%">
+                <caption>Floating IP Attributes</caption>
+                <col width="20%"/>
+                <col width="10%"/>
+                <col width="10%"/>
+                <col width="10%"/>
+                <col width="15%"/>
+                <col width="17%"/>
+                <col width="20%"/>
+                <thead>
+                    <tr>
+                        <th>Attribute </th>
+                        <th>Type </th>
+                        <th>Required </th>
+                        <th>CRUD<footnote xml:id="crud2">
+                                <para><itemizedlist>
+                                   <listitem>
+                                   <para><emphasis role="bold">C</emphasis>. Use the attribute in
+                                   create operations. </para>
+                                   </listitem>
+                                   <listitem>
+                                   <para><emphasis role="bold">R</emphasis>. This attribute is
+                                   returned in response to show and
+                                   list operations. </para>
+                                   </listitem>
+                                   <listitem>
+                                   <para><emphasis role="bold">U</emphasis>. You can update the
+                                   value of this attribute.</para>
+                                   </listitem>
+                                   <listitem>
+                                   <para><emphasis role="bold">D</emphasis>. You can delete the
+                                   value of this attribute. </para>
+                                   </listitem>
+                                   </itemizedlist></para>
+                            </footnote>
+                        </th>
+                        <th>Default Value </th>
+                        <th>Validation Constraints </th>
+                        <th>Notes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>id </td>
+                        <td>uuid-str </td>
+                        <td>N/A </td>
+                        <td>R </td>
+                        <td>generated </td>
+                        <td>N/A </td>
+                        <td>UUID representing the Floating IP instance</td>
+                    </tr>
+                    <tr>
+                        <td>floating_network_id</td>
+                        <td>uuid-str </td>
+                        <td>Yes </td>
+                        <td>CR</td>
+                        <td>N/A</td>
+                        <td>UUID Pattern</td>
+                        <td>UUID of the external network where the floating
+                        IP is to be created</td>
+                    </tr>
+                    <tr>
+                        <td>port_id</td>
+                        <td>uuid-str </td>
+                        <td>Yes </td>
+                        <td>CRU</td>
+                        <td>N/A</td>
+                        <td>UUID Pattern</td>
+                        <td>UUID of the port on an internal Quantum network
+                        which should be associated to the Floating IP</td>
+                    </tr>
+                    <tr>
+                        <td>fixed_ip_address</td>
+                        <td>IP Address </td>
+                        <td>No</td>
+                        <td>CRU</td>
+                        <td>None</td>
+                        <td>IP address or null</td>
+                        <td>Specific IP address on <literal>port_id</literal>
+                        which should be associated with the floating IP</td>
+                    </tr>
+                    <tr>
+                        <td>floating_ip_address</td>
+                        <td>IP Address </td>
+                        <td>N/A </td>
+                        <td>R</td>
+                        <td>N/A</td>
+                        <td>N/A</td>
+                        <td>Address of the floating IP on the external
+                        network</td>
+                    </tr>
+                    <tr>
+                        <td>tenant_id</td>
+                        <td>uuid-str</td>
+                        <td>No</td>
+                        <td>CR</td>
+                        <td>Derived from Authentication token</td>
+                        <td>N/A</td>
+                        <td>Owner of the floating IP</td>
+                    </tr>
+                </tbody>
+            </table>
+      </section>
+      <?hard-pagebreak?>
+      <section xml:id="router_ext_ops">
+          <title>API operations</title>
+          <?hard-pagebreak?>
+          <section xml:id="router_ext_ops_router">
+              <title>Router Operations</title>
+              <para>This section discusses the operations which are available for creating and
+                        managing logical routers through the Quantum L3 API extension</para>
+                    <section xml:id="router_list">
+                        <title>List Routers</title>
+                        <para>
+                            <informaltable rules="all" width="100%">
+                                <col width="20%"/>
+                                <col width="20%"/>
+                                <col width="60%"/>
+                                <thead>
+                                    <tr>
+                                        <td>Verb</td>
+                                        <td>URI</td>
+                                        <td>Description</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>&GET;</td>
+                                        <td>/routers</td>
+                                        <td>Returns a list of logical users accessbile to the tenant
+                                            submitting the request.</td>
+                                    </tr>
+                                </tbody>
+                            </informaltable>
+                        </para>
+                        <para>Normal Response Code: <returnvalue>200</returnvalue>
+                        </para>
+                        <simpara>Error Response Codes: Unauthorized
+                            (<errorcode>401</errorcode>)</simpara>
+                        <para>This operation returns a list of routers to which the tenant has
+                            access. Default policy settings return only those routers that are owned
+                            by the tenant who submits the request, unless the request is submitted
+                            by an user with administrative rights. Users can control which
+                            attributes should be returned by using the <parameter>fields</parameter>
+                            query parameter. Additionally, results can be filtered by using query
+                            string parameters.</para>
+                        <para>This operation does not require a request body. </para>
+                        <para>This operation returns a response body.</para>
+                        <example>
+                            <title>List Routers: JSON Request</title>
+                            
+                            <literallayout class="monospaced">
+GET /v2.0/routers
+Accept: application/json
+	                </literallayout>
+                        </example>
+                        <example>
+                            <title>List Routers: JSON Response</title>
+                            <programlisting language="json"><xi:include href="samples/routers-get-res.json" parse="text"/></programlisting>
+                        </example>
+                    </section>
+              <?hard-pagebreak?>
+              <section xml:id="router_show">
+                  <title>Show Router</title>
+                  <para>
+                      <informaltable rules="all" width="100%">
+                          <col width="20%"/>
+                          <col width="20%"/>
+                          <col width="60%"/>
+                          <thead>
+                              <tr>
+                                  <td>Verb</td>
+                                  <td>URI</td>
+                                  <td>Description</td>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              <tr>
+                                  <td>&GET;</td>
+                                  <td>/routers/<parameter>router_id</parameter></td>
+                                  <td>Returns details about a specific logical router.</td>
+                              </tr>
+                          </tbody>
+                      </informaltable>
+                  </para>
+                  <para>Normal Response Code: <returnvalue>200</returnvalue>
+                        </para>
+                        <simpara>Error Response Codes: Unauthorized (<errorcode>401</errorcode>),
+                            Forbidden (<literal>403</literal>), Not Found
+                            (<literal>404</literal>)</simpara>
+                        <para>This operation returns the details for a specific router whose
+                            identifier is specified on the request URI. Users can control which
+                            attributes should be returned by using the <parameter>fields</parameter>
+                            query parameter. </para>
+                        <para>This operation does not require a request body. </para>
+                        <para>This operation returns a response body.</para>
+                  <example>
+                      <title>Show Router: JSON Request</title>
+                      <literallayout class="monospaced">
+GET /v2.0/routers/a9254bdb-2613-4a13-ac4c-adc581fba50d
+Accept: application/json
+	                </literallayout>
+                  </example>
+                  <example>
+                      <title>Show Router: JSON Response</title>
+                      <programlisting language="json"><xi:include href="samples/routers-show-res.json" parse="text"/></programlisting>
+                  </example>
+              </section>
+              <?hard-pagebreak?>
+              <section xml:id="router_create">
+                  <title>Create Router</title>
+                  <para>                            
+                      <informaltable rules="all" width="100%">
+                      <col width="20%"/>
+                      <col width="20%"/>
+                      <col width="60%"/>
+                      <thead>
+                          <tr>
+                              <td>Verb</td>
+                              <td>URI</td>
+                              <td>Description</td>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr>
+                              <td>&POST;</td>
+                              <td>/routers</td>
+                              <td>Create a new logical router.</td>
+                          </tr>
+                      </tbody>
+                      </informaltable>
+                  </para>
+                        <para>Normal Response Code: <returnvalue>201</returnvalue>
+                        </para>
+                        <simpara>Error Response Codes: Unauthorized (<errorcode>401</errorcode>),
+                            Bad Request (<literal>400</literal>)</simpara>
+                        <simpara>This operation creates a new logical router. When it is created, a
+                            logical router does not have any internal interface. In other words, it
+                            is not associated to any subnet. The user can optionally specify an
+                            external gateway for a router at create time; a router's external
+                            gateway myst be plugged into an external network, that is to say a
+                            network for which the extended field <literal>router:external</literal>
+                            is set to true. </simpara>
+                        <para>In order to specify an external gateway, the identifier of the
+                            external network must be passed in the request body's
+                                <literal>external_gateway_info</literal> attribute. This can be
+                            achieved as shown in the following snippet:</para>
+                        <para><programlisting language="json">"external_gateway_info" :
+{
+    "network_id": &lt;external_network_uuid>
+}
+                        </programlisting></para>
+                  <para>
+                      This operation might require request body. 
+                      This operation returns a response body.
+                  </para>
+                  <example>
+                      <title>Create Router: JSON Request</title>
+                      <literallayout class="monospaced">
+POST /v2.0/routers
+Accept: application/json
+	                </literallayout>
+                      <programlisting language="json"><xi:include href="samples/routers-post-req.json" parse="text"/></programlisting>
+                  </example>
+                  <example>
+                      <title>Create Router: JSON Response</title>
+                      <programlisting language="json"><xi:include href="samples/routers-post-res.json" parse="text"/></programlisting>
+                  </example>
+              </section>
+              <?hard-pagebreak?>
+              <section xml:id="router_update">
+                  <title>Update Router</title>
+                  <para>                            
+                      <informaltable rules="all" width="100%">
+                      <col width="20%"/>
+                      <col width="20%"/>
+                      <col width="60%"/>
+                      <thead>
+                          <tr>
+                              <td>Verb</td>
+                              <td>URI</td>
+                              <td>Description</td>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr>
+                              <td>&PUT;</td>
+                              <td>/routers/<parameter>router_id</parameter></td>
+                              <td>Updates a logical router.</td>
+                          </tr>
+                      </tbody>
+                  </informaltable>
+                  </para>
+                  <para>Normal Response Code: <returnvalue>200</returnvalue>
+                        </para>
+                        <simpara>Error Response Codes: Unauthorized (<errorcode>401</errorcode>),
+                            Bad Request (<literal>400</literal>), Not Found (404)</simpara>
+                        <simpara>This operation updates a  logical router. Beyond the name and the
+                            administrative state, the only parameter which can be updated with this
+                            operation is the external gateway. For more information concerning how
+                            to set the external gateway for a router, please refer to the previous
+                            section (Create Router) or to the following example.</simpara>
+                        <simpara>Please note that this operation does not allow to update router
+                            interfaces. To this aim, the <link linkend="router_add_interface">add router interface</link> and
+                            <link linkend="router_remove_interface">remove router interface</link> should be used.</simpara>
+                  <example>
+                      <title>Update Router: JSON Request</title>
+                      <literallayout class="monospaced">
+PUT /v2.0/routers
+Accept: application/json/8604a0de-7f6b-409a-a47c-a1cc7bc77b2e
+	                </literallayout>
+                      <programlisting language="json"><xi:include href="samples/routers-put-req.json" parse="text"/></programlisting>
+                  </example>
+                  <example>
+                      <title>Update Router: JSON Response</title>
+                      <programlisting language="json"><xi:include href="samples/routers-put-res.json" parse="text"/></programlisting>
+                  </example>
+              </section>
+              <section xml:id="router_delete">
+                  <title>Delete Router</title>
+                  <para>
+                      <informaltable rules="all" width="100%">
+                          <col width="20%"/>
+                          <col width="20%"/>
+                          <col width="60%"/>
+                          <thead>
+                              <tr>
+                                  <td>Verb</td>
+                                  <td>URI</td>
+                                  <td>Description</td>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              <tr>
+                                  <td>&DELETE;</td>
+                                  <td>/routers/<parameter>router_id</parameter></td>
+                                  <td>Removes a logical router and all its interfaces</td>
+                              </tr>
+                          </tbody>
+                      </informaltable>
+                  </para>
+                  <para/>
+                        <para>Normal Response Code: <returnvalue>204</returnvalue>
+                        </para>
+                        <simpara>Error Response Codes: Unauthorized (<errorcode>401</errorcode>),
+                            Not Found (<literal>404</literal>), Conflict
+                            (<literal>409</literal>)</simpara>
+                        <simpara>This operation removes a logical router; the operation will fail if
+                            the router still has some interfaces, both internal and
+                            external.</simpara>
+                        <simpara>Users must remove all router interfaces before deleting the router,
+                            by clearing the router's external gateway with an
+                            <link linkend="router_update">Update Router</link> operation and removing
+                            all internal interfaces through <link linkend="router_remove_interface">
+                           remove router interface operation</link>
+                        </simpara>
+                  <example>
+                      <title>Delete Router: JSON Request</title>
+                      <literallayout class="monospaced">
+DELETE /v2.0/routers/8604a0de-7f6b-409a-a47c-a1cc7bc77b2e
+Accept: application/json
+
+This operation does not have a response body
+	            </literallayout>
+                  </example>
+              </section>
+              <section xml:id="router_add_interface">
+                  <title>Add interface to router</title>
+                  <para>
+                      <informaltable rules="all" width="100%">
+                          <col width="20%"/>
+                          <col width="20%"/>
+                          <col width="60%"/>
+                          <thead>
+                              <tr>
+                                  <td>Verb</td>
+                                  <td>URI</td>
+                                  <td>Description</td>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              <tr>
+                                  <td>&PUT;</td>
+                                  <td>/routers/<parameter>router_id</parameter>/add_router_interface</td>
+                                  <td>Add a new internal interface to a logical router.</td>
+                              </tr>
+                          </tbody>
+                      </informaltable>
+                  </para>
+                        <para>Normal Response Code: <returnvalue>200</returnvalue>
+                        </para>
+                        <simpara>Error Response Codes: Unauthorized (<errorcode>401</errorcode>),
+                            Bad Request (<literal>400</literal>), Not Found
+                            (<literal>404</literal>), Conflict (<literal>409</literal>)</simpara>
+                  <para>This operation attaches a subnet to an internal router interface. Either a
+                            subnet identifier or a port identifier must be passed in the request
+                            body; this will be used to create the router interface. If both are
+                            specified, a <literal>400 Bad Request</literal> error will be
+                            returned.</para>
+                        <para>When the <literal>subnet_id</literal> attribute is specified in the
+                            request body, the subnet's gateway ip address is used to create the
+                            router interface; otherwise, if <literal>port_id</literal> is specified,
+                            the first IP address associated with this port is used for creating the
+                            router interface.</para>
+                        <para>It is worth remarking that a <literal>400 Bad Request</literal> error
+                            will be returned if several IP addresses are associated to the specified
+                            port, or if no IP address is associated with the port; also a
+                                <literal>409 Conflict </literal>will be returned if the port is
+                            already used by some other device, i.e.: the
+                                <literal>device_id</literal> attribute is already populated.</para>
+                  <example>
+                      <title>Add Router Interface: JSON Request</title>
+                      <literallayout class="monospaced">
+PUT /v2.0/routers/8604a0de-7f6b-409a-a47c-a1cc7bc77b2e/add_router_interface
+Accept: application/json
+</literallayout>
+                      <programlisting language="json">{"subnet_id": "a2f1f29d-571b-4533-907f-5803ab96ead1"}</programlisting>
+                  </example>
+                  <example>
+                      <title>Add Router Interface: JSON Response</title>
+                      <programlisting language="json">
+{
+    "subnet_id": "a2f1f29d-571b-4533-907f-5803ab96ead1",
+    "port_id": "3a44f4e5-1694-493a-a1fb-393881c673a4"
+}</programlisting>
+                  </example>
+                  <para>The port identifier returned by this operation can either be the same
+                            identifier passed in the request body or the identifier of  a new port
+                            created by this operation to attach the subnet specifieed by
+                                <literal>subnet_id</literal> to the router.</para>
+                        <para>It is also worth noting that after executing this operation, the
+                                <literal>device_id</literal> attribute of the port is set to the
+                            router's identifier, and the <literal>device_owner</literal> attribute
+                            is set to <literal>network:router_interface</literal>, as shown in the
+                            following example:</para>
+                        <para/>
+                  <programlisting language="json"><xi:include href="samples/router-port-res.json" parse="text"/></programlisting>
+              </section>
+              <?hard-pagebreak?>
+              <section xml:id="router_remove_interface">
+                  <title>Remove interface from router</title>
+                  <para>
+                          <informaltable rules="all" width="100%">
+                              <col width="20%"/>
+                              <col width="20%"/>
+                              <col width="60%"/>
+                              <thead>
+                                  <tr>
+                                      <td>Verb</td>
+                                      <td>URI</td>
+                                      <td>Description</td>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                  <tr>
+                                      <td>&PUT;</td>
+                                      <td>/routers/<parameter>router_id</parameter>/remove_router_interface</td>
+                                      <td>Removes an internal interface from a logical router.</td>
+                                  </tr>
+                              </tbody>
+                          </informaltable>
+                  </para>
+                  <para>whatever</para>
+              </section>
+          </section>
+          <?hard-pagebreak?>
+          <section xml:id="router_ext_ops_floatingip">
+              <title>Floating IP Operations</title>
+              <para>Write something here</para>
+              <section xml:id="floatingip_list">
+                  <title>List floating IPs</title>
+                  <para>
+                      <informaltable rules="all" width="100%">
+                          <col width="20%"/>
+                          <col width="20%"/>
+                          <col width="60%"/>
+                          <thead>
+                              <tr>
+                                  <td>Verb</td>
+                                  <td>URI</td>
+                                  <td>Description</td>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              <tr>
+                                  <td>&GET;</td>
+                                  <td>/floatingips</td>
+                                  <td>Returns a list of floating IPs accessibile to the tenant submitting the request.</td>
+                              </tr>
+                          </tbody>
+                      </informaltable>
+                  </para>
+                  <para>whatever</para>
+              </section>
+              <section xml:id="floatingip_show">
+                  <title>Show floating IP</title>
+                  <para>
+                      <informaltable rules="all" width="100%">
+                          <col width="20%"/>
+                          <col width="20%"/>
+                          <col width="60%"/>
+                          <thead>
+                              <tr>
+                                  <td>Verb</td>
+                                  <td>URI</td>
+                                  <td>Description</td>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              <tr>
+                                  <td>&GET;</td>
+                                  <td>/floatingips/<parameter>floatingip_id</parameter></td>
+                                  <td>Returns details about a specific Floating IP.</td>
+                              </tr>
+                          </tbody>
+                      </informaltable>                   
+                  </para>
+                  <para>whatever</para>
+              </section>
+              <section xml:id="floatingip_create">
+                  <title>Create floating IP</title>
+                  <para>
+                      <informaltable rules="all" width="100%">
+                          <col width="20%"/>
+                          <col width="20%"/>
+                          <col width="60%"/>
+                          <thead>
+                              <tr>
+                                  <td>Verb</td>
+                                  <td>URI</td>
+                                  <td>Description</td>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              <tr>
+                                  <td>&POST;</td>
+                                  <td>/floatingips</td>
+                                  <td>Create a new floating IP, and configures its association with an internal port, if the relevant information are specified</td>
+                              </tr>
+                          </tbody>
+                      </informaltable>
+                  </para>
+                  <para>whatever</para>
+              </section>
+              <section xml:id="floatingip_update">
+                  <title>Update floating IP</title>
+                  <para>
+                      <informaltable rules="all" width="100%">
+                          <col width="20%"/>
+                          <col width="20%"/>
+                          <col width="60%"/>
+                          <thead>
+                              <tr>
+                                  <td>Verb</td>
+                                  <td>URI</td>
+                                  <td>Description</td>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              <tr>
+                                  <td>&PUT;</td>
+                                  <td>/floatingips/<parameter>floatingip_id</parameter></td>
+                                  <td>Updates a Floating IP and its association with an internal port, if the relevant information are 
+                                      specified in the request body.</td>
+                              </tr>
+                          </tbody>
+                      </informaltable>
+                  </para>
+                  <para>whatever</para>
+              </section>
+              <section xml:id="floatingip_delete">
+                  <title>Delete floating IP</title>
+                  <para>
+                      <informaltable rules="all" width="100%">
+                          <col width="20%"/>
+                          <col width="20%"/>
+                          <col width="60%"/>
+                          <thead>
+                              <tr>
+                                  <td>Verb</td>
+                                  <td>URI</td>
+                                  <td>Description</td>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              <tr>
+                                  <td>&DELETE;</td>
+                                  <td>/floatingips/<parameter>floatingip_id</parameter></td>
+                                  <td>Removes a floating IP and its association information.</td>
+                              </tr>
+                          </tbody>
+                      </informaltable>
+                  </para>
+                  <para>whatever</para>
+              </section>
+          </section>
+      </section>
     </section>
 
     <section xml:id="quotas_ext">
