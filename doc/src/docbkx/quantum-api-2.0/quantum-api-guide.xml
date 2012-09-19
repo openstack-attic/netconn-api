@@ -485,7 +485,7 @@
                         </td>
                         <td>CR </td>
                         <td>N/A </td>
-                        <td>UUID_PATTERN </td>
+                        <td>No constraint</td>
                         <td>Owner of network. Only admin users can
                             specify a tenant_id other than its own.
                         </td>
@@ -575,9 +575,19 @@
                         <td/>
                     </tr>
                     <tr>
+                        <td>name </td>
+                        <td>String </td>
+                        <td>No </td>
+                        <td>CRU </td>
+                        <td>None </td>
+                        <td>N/A </td>
+                        <td>Human-readable name for the subnet. Might
+                            not be unique. </td>
+                    </tr>
+                    <tr>
                         <td>ip_version </td>
                         <td>int </td>
-                        <td>Yes </td>
+                        <td>No </td>
                         <td>CR </td>
                         <td>4 </td>
                         <td>{ 4 | 6 } </td>
@@ -602,7 +612,7 @@
                         <td>first address in <emphasis role="italic"
                                 >cidr</emphasis>
                         </td>
-                        <td>Valid IP address </td>
+                        <td>Valid IP address or null</td>
                         <td>default gateway used by devices in this
                             subnet </td>
                     </tr>
@@ -611,7 +621,7 @@
                         <td>list(str) </td>
                         <td>No </td>
                         <td>CRU </td>
-                        <td>None </td>
+                        <td>Empty list </td>
                         <td>No constraint </td>
                         <td>DNS name servers used by hosts in this
                             subnet. </td>
@@ -654,7 +664,7 @@
                             </footnote></td>
                         <td>CR </td>
                         <td>N/A </td>
-                        <td>UUID_PATTERN </td>
+                        <td>No constraint</td>
                         <td>Owner of network. Only admin users can
                             specify a tenant_id other than its own.
                         </td>
@@ -721,7 +731,6 @@
                     </tr>
                 </thead>
                 <tbody>
-
                     <tr>
                         <td>id </td>
                         <td>uuid-str </td>
@@ -740,6 +749,16 @@
                         <td>existing network identifier </td>
                         <td>Network that this port is associated with.
                         </td>
+                    </tr>
+                    <tr>
+                        <td>name </td>
+                        <td>String </td>
+                        <td>No </td>
+                        <td>CRU </td>
+                        <td>None </td>
+                        <td>N/A </td>
+                        <td>Human-readable name for the port. Might
+                            not be unique. </td>
                     </tr>
                     <tr>
                         <td>admin_state_up </td>
@@ -832,7 +851,7 @@
                         </td>
                         <td>CR </td>
                         <td>N/A </td>
-                        <td>UUID_PATTERN </td>
+                        <td>No constraint</td>
                         <td>Owner of network. Only admin users can
                             specify a tenant_id other than its own.
                         </td>
@@ -1573,10 +1592,8 @@ content-type: application/json
                 <simpara>Normal Response Code:
                         <returnvalue>204</returnvalue>
                 </simpara>
-                <simpara>Error Response Codes: Bad Request
-                        (<errorcode>400</errorcode>) Unauthorized
-                        (<errorcode>401</errorcode>), Forbidden
-                        (<errorcode>403</errorcode>), Not Found
+                <simpara>Error Response Codes: Unauthorized
+                        (<errorcode>401</errorcode>), Not Found
                         (<errorcode>404</errorcode>), Network In Use
                         (<errorcode>409</errorcode>) </simpara>
                 <para>This operation deletes a Quantum network and its
@@ -1759,8 +1776,7 @@ Accept: application/json</literallayout>
                         <emphasis role="italic">fields</emphasis>
                     query parameter, as discussed in <xref
                         linkend="filtering"/>. </para>
-                <para>This operation does not require a request
-                    body.</para>
+                <para>This operation does not require a request body.</para>
                 <para>This operation returns a response body.</para>
                 <!--  <example>
                     <title>Port List Details Request/Response
@@ -1818,7 +1834,8 @@ content-type: application/json </literallayout>
                         (<errorcode>400</errorcode>), Unauthorized
                         (<errorcode>401</errorcode>), Forbidden
                         (<errorcode>403</errorcode>), Not Found
-                        (<errorcode>404</errorcode>)</simpara>
+                        (<errorcode>404</errorcode>), Conflict
+                        (<errorcode>409</errorcode>)</simpara>
                 <para>This operation creates a new subnet on the
                     specified network. The network ID,
                         <parameter>network_id</parameter>, is
@@ -1848,6 +1865,13 @@ content-type: application/json </literallayout>
                     gateway. Otherwise, you can explicitly specify
                     allocation pools as shown in the following
                     example. </para>
+                 <para>
+                    When <literal>allocation_pools</literal> and
+                    <literal>gateway_ip</literal> are both specified, it
+                    is up to the user ensuring the gateway ip does not
+                    overlap with the specified allocation pools; otherwise
+                    a <literal>409 Conflict</literal> error will be returned.
+                    </para>
                 <!--  <example>
                     <title>Create Port Request/Response (XML)</title>
                     <para>Request:</para>
@@ -2034,10 +2058,8 @@ Accept: application/json
                 <simpara>Normal Response Code:
                         <returnvalue>204</returnvalue>
                 </simpara>
-                <simpara>Error Response Codes: Bad Request
-                        (<errorcode>400</errorcode>), Unauthorized
-                        (<errorcode>401</errorcode>), Forbidden
-                        (<errorcode>403</errorcode>), Not Found
+                <simpara>Error Response Codes: Unauthorized
+                        (<errorcode>401</errorcode>), Not Found
                         (<errorcode>404</errorcode>), Conflict
                         (<errorcode>409</errorcode>)</simpara>
                 <simpara>This operation removes a subnet from a
@@ -2264,7 +2286,8 @@ accept: application/json
                         (<errorcode>401</errorcode>), Forbidden
                         (<errorcode>403</errorcode>), Not Found
                         (<errorcode>404</errorcode>), Conflict
-                        (<errorcode>409</errorcode>) </simpara>
+                        (<errorcode>409</errorcode>), MAC generation failure
+                        (<errorcode>503</errorcode>) </simpara>
                 <para>This operation creates a new Quantum port. The
                     network where the port is created must be
                     specified in the <parameter>network_id</parameter>
@@ -2275,7 +2298,16 @@ accept: application/json
                         <para>A symbolic name for the port </para>
                     </listitem>
                     <listitem>
-                        <para>MAC address </para>
+                        <para>MAC address. If an invalid address is specified
+                        a <literal>400 Bad Request</literal> error will be
+                        returned, whereas a <literal>409 Conflict</literal>
+                        error will be returned if the specified MAC address is
+                        already in use.</para>
+                        <para>When the MAC address is not specified, Quantum
+                        will try to allocate one for the port being created.
+                        If there is a failure while generating the address,
+                        a <literal>503 Service Unavailable</literal> error
+                        will be returned.</para>
                     </listitem>
                     <listitem>
                         <para>Administrative state. Set to
