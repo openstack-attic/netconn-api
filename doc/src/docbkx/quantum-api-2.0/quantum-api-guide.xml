@@ -2644,13 +2644,7 @@ Content-Length: 410
       <para>Discuss attributes, resources, and actions exposed by this
       extension and how they work [salv-orlando]</para>
     </section>
-
-    <section xml:id="quotas_ext">
-      <title>The Quotas Extensions (<literal>quotas</literal>)</title>
-
-      <para>Discuss how this extension works.</para>
-    </section>
-
+    <xi:include href="quantum-quotas-ext.xml"/>
   </chapter>
 
 </book>
