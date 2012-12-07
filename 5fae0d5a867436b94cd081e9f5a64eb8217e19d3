@@ -1,0 +1,9 @@
+Verified+2: Jenkins
+Approved+1: dan wendlandt <dan@nicira.com>
+Code-Review+2: dan wendlandt <dan@nicira.com>
+Code-Review+2: Akihiro Motoki <motoki@da.jp.nec.com>
+Submitted-by: Jenkins
+Submitted-at: Fri, 07 Dec 2012 17:19:58 +0000
+Reviewed-on: https://review.openstack.org/15719
+Project: openstack/netconn-api
+Branch: refs/heads/master
