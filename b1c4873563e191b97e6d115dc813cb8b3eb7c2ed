@@ -1,0 +1,9 @@
+Verified+2: Jenkins
+Code-Review+2: Akihiro Motoki <motoki@da.jp.nec.com>
+Approved+1: gongysh <gongysh@linux.vnet.ibm.com>
+Code-Review+2: gongysh <gongysh@linux.vnet.ibm.com>
+Submitted-by: Jenkins
+Submitted-at: Mon, 07 Jan 2013 07:19:09 +0000
+Reviewed-on: https://review.openstack.org/13759
+Project: openstack/netconn-api
+Branch: refs/heads/master
