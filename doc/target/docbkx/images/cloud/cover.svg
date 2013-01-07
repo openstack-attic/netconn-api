@@ -1559,12 +1559,12 @@
 	<polygon style="fill:#ce3327;fill-opacity:1" points="576,234.106 558.138,259.834 1.167,259.834 1.167,209.834 558.138,209.834 " id="polygon2727"/>
 	<rect x="153.66701" y="259.83401" width="388.33301" height="55.833" id="rect2729" style="fill:#cccccc"/>
 	<rect x="153.66701" y="314.01501" width="388.33301" height="3.6099999" id="rect2731" style="fill:#808080"/>
-	<text transform="translate(50.5796,249.1157)" id="text2733"><tspan x="0" y="0" font-size="39.6113" id="tspan2735" style="font-size: ;fill:#f2f2f2;font-family:CartoGothic Std;font-weight:bold;">Quantum API Guide (1.0)</tspan></text>
+	<text transform="translate(50.5796,249.1157)" id="text2733"><tspan x="0" y="0" font-size="39.6113" id="tspan2735" style="font-size: ;fill:#f2f2f2;font-family:CartoGothic Std;font-weight:bold;">Quantum API Guide (v2.0)</tspan></text>
 
 
 
 
-	<text id="text2749" style="font-size:12px;text-align:end;line-height:125%;writing-mode:lr-tb;text-anchor:end" sodipodi:linespacing="125%" x="532.0896" y="306.31641"><tspan x="532.0896" y="306.31641" font-size="10.3668" id="tspan2751" style="font-size:10.36680031px;text-align:end;line-height:125%;writing-mode:lr-tb;text-anchor:end;fill:#333333;font-family:CartoGothic Std">Quantum API v1.0 (Apr 18, 2012)</tspan></text>
+	<text id="text2749" style="font-size:12px;text-align:end;line-height:125%;writing-mode:lr-tb;text-anchor:end" sodipodi:linespacing="125%" x="532.0896" y="306.31641"><tspan x="532.0896" y="306.31641" font-size="10.3668" id="tspan2751" style="font-size:10.36680031px;text-align:end;line-height:125%;writing-mode:lr-tb;text-anchor:end;fill:#333333;font-family:CartoGothic Std">Quantum API v2.0 (Aug 17, 2012)</tspan></text>
 
 
 
