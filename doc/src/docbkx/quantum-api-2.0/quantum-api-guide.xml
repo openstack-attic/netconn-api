@@ -1388,7 +1388,7 @@ Accept: application/json
                     <para>Specify a list of networks in the request
                         body, as shown in the following example: </para>
                     <example>
-                        <title>Bulk Create Servers: JSON Request </title>
+                        <title>Bulk Create Networks: JSON Request </title>
 
                         <literallayout class="monospaced">
 POST v2.0/networks.json
