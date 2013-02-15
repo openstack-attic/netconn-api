@@ -114,7 +114,7 @@
                         <th>Attribute </th>
                         <th>Type </th>
                         <th>Required </th>
-                        <th>CRUD<footnote xml:id="crud2">
+                        <th>CRUD<footnote xml:id="crud4">
                             <para>
                                 <itemizedlist>
                                     <listitem>

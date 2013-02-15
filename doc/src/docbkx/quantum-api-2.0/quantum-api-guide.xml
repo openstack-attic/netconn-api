@@ -41,8 +41,8 @@
     xmlns:svg="http://www.w3.org/2000/svg"
     xmlns:m="http://www.w3.org/1998/Math/MathML"
     xmlns:html="http://www.w3.org/1999/xhtml"
-    xmlns:db="http://docbook.org/ns/docbook" version="5.0" status="final"
-    xml:id="Quantum-api-spec">
+    xmlns:db="http://docbook.org/ns/docbook" version="5.0"
+    status="final" xml:id="Quantum-api-spec">
     <title>Quantum API Guide (v2.0)</title>
     <titleabbrev>Quantum API v2.0</titleabbrev>
     <info>
@@ -55,12 +55,14 @@
         <copyright>
             <year>2011</year>
             <year>2012</year>
+            <year>2013</year>
             <holder>OpenStack</holder>
         </copyright>
         <releaseinfo>Quantum API v2.0</releaseinfo>
         <productname>OpenStack Quantum (virtual network
             service)</productname>
-        <pubdate>2012-08-17</pubdate>
+        <pubdate>2013-02-15</pubdate>
+        <!-- <pubdate>2012-08-17</pubdate> -->
         <legalnotice role="apache2">
             <annotation>
                 <remark>Copyright details are filled in by the
@@ -75,11 +77,24 @@
         <revhistory>
             <revision>
                 <!-- ... continue addding more revisions here as you change this document using the markup shown below... -->
+                <date>2013-02-15</date>
+                <revdescription>
+                    <itemizedlist spacing="compact">
+                        <listitem>
+                            <para>Updated incorrect nova command
+                                examples in <xref linkend="Theory"/>.</para>
+                        </listitem>
+                    </itemizedlist>
+                </revdescription>
+            </revision>
+            <revision>
+                <!-- ... continue addding more revisions here as you change this document using the markup shown below... -->
                 <date>2012-09-05</date>
                 <revdescription>
                     <itemizedlist spacing="compact">
                         <listitem>
-                            <para>Removes XML as a valid request or response type.</para>
+                            <para>Removes XML as a valid request or
+                                response type.</para>
                         </listitem>
                     </itemizedlist>
                 </revdescription>
@@ -100,10 +115,16 @@
     <chapter xml:id="Overview-d1e71">
         <title>Overview</title>
         <para>The Quantum project provides virtual networking services
-            among devices that are managed by the <link xlink:href="http://wiki.openstack.org/OpenStack">OpenStack</link> compute service. </para>
-        <para>The &APIv2; combines the <link xlink:href="http://docs.openstack.org/api/openstack-network/1.0/content/">Quantum API v1.1</link> with some essential Internet
+            among devices that are managed by the <link
+                xlink:href="http://wiki.openstack.org/OpenStack"
+                >OpenStack</link> compute service. </para>
+        <para>The &APIv2; combines the <link
+                xlink:href="http://docs.openstack.org/api/openstack-network/1.0/content/"
+                >Quantum API v1.1</link> with some essential Internet
             Protocol Address Management (IPAM) capabilities from the
-                <link xlink:href="http://melange.readthedocs.org/en/latest/apidoc.html">Melange API</link>. </para>
+                <link
+                xlink:href="http://melange.readthedocs.org/en/latest/apidoc.html"
+                >Melange API</link>. </para>
         <para>These IPAM capabilities enable you to:<itemizedlist>
                 <listitem>
                     <para>Associate IP address blocks and other
@@ -255,23 +276,26 @@
                     <para>The tenant boots a virtual machine (VM) and
                         specifies a single NIC that connects to the
                         network. </para>
-                    <para>For
-                        example A:<programlisting language="bash" role="gutter: false"><prompt>$</prompt> nova boot --image <emphasis role="italic">image_name</emphasis> --nic net-id=<emphasis role="italic">id_of_net1</emphasis> <emphasis role="italic">server_name</emphasis></programlisting>
-                        example B:<programlisting language="bash" role="gutter: false"><prompt>$</prompt> nova boot --image <emphasis role="italic">image_name</emphasis> --nic port-id=<emphasis role="italic">id_of_port1</emphasis> <emphasis role="italic">server_name</emphasis></programlisting>
+                    <para>For example
+                        A:<programlisting language="bash" role="gutter: false"><prompt>$</prompt> nova boot &lt;server_name&gt; --image &lt;image&gt; --flavor &lt;flavor&gt; --nic net-id=&lt;id_of_net1&gt;</programlisting>
+                        example
+                        B:<programlisting language="bash" role="gutter: false"><prompt>$</prompt> nova boot &lt;server_name&gt; --image &lt;image&gt; --flavor &lt;flavor&gt; --nic port-id=&lt;id_of_port1&gt;</programlisting>
                     </para>
                 </listitem>
                 <listitem>
-                    <para>In example A, Nova contacts Quantum and creates the
-                            <literal>port1</literal> port on the
-                            <literal>net1</literal> network.</para>
-                    <para>In example B, You should create port before boot a VM.</para>
+                    <para>In example A, Nova contacts Quantum and
+                        creates the <literal>port1</literal> port on
+                        the <literal>net1</literal> network.</para>
+                    <para>In example B, You should create port before
+                        boot a VM.</para>
                 </listitem>
                 <listitem>
                     <para>Quantum assigns an IP address to the
                             <literal>port1</literal> port.</para>
                     <note>
-                        <para>Quantum chooses the IP address by default.
-                        </para></note>
+                        <para>Quantum chooses the IP address by
+                            default. </para>
+                    </note>
                 </listitem>
                 <listitem>
                     <para>The tenant deletes the VM. </para>
@@ -317,12 +341,14 @@
                     <para><emphasis role="bold">Subnet</emphasis>. An
                         IP version 4 or version 6 address block from
                         which IP addresses that are assigned to VMs on
-                        a specified network are selected. See <xref linkend="subnet"/>.</para>
+                        a specified network are selected. See <xref
+                            linkend="subnet"/>.</para>
                 </listitem>
                 <listitem>
                     <para><emphasis role="bold">Port</emphasis>. A
                         virtual, or logical, switch port on a
-                        specified network. See <xref linkend="Port"/>.</para>
+                        specified network. See <xref linkend="Port"
+                        />.</para>
                 </listitem>
             </itemizedlist></para>
         <para>These entities have auto-generated unique identifiers
@@ -361,20 +387,24 @@
                         <th>CRUD<footnote xml:id="crud">
                                 <para><itemizedlist>
                                    <listitem>
-                                   <para><emphasis role="bold">C</emphasis>. Use the attribute in
+                                   <para><emphasis role="bold"
+                                   >C</emphasis>. Use the attribute in
                                    create operations. </para>
                                    </listitem>
                                    <listitem>
-                                   <para><emphasis role="bold">R</emphasis>. This attribute is
+                                   <para><emphasis role="bold"
+                                   >R</emphasis>. This attribute is
                                    returned in response to show and
                                    list operations. </para>
                                    </listitem>
                                    <listitem>
-                                   <para><emphasis role="bold">U</emphasis>. You can update the
+                                   <para><emphasis role="bold"
+                                   >U</emphasis>. You can update the
                                    value of this attribute.</para>
                                    </listitem>
                                    <listitem>
-                                   <para><emphasis role="bold">D</emphasis>. You can delete the
+                                   <para><emphasis role="bold"
+                                   >D</emphasis>. You can delete the
                                    value of this attribute. </para>
                                    </listitem>
                                    </itemizedlist></para>
@@ -459,7 +489,8 @@
                         <td>CRU</td>
                         <td>False</td>
                         <td>{ True | False } </td>
-                        <td>Specifies whether the network resource can be accessed by any tenant or not.</td>
+                        <td>Specifies whether the network resource can
+                            be accessed by any tenant or not.</td>
                     </tr>
                     <tr>
                         <td>tenant_id </td>
@@ -514,20 +545,24 @@
                         <th>CRUD<footnote xml:id="crud2">
                                 <para><itemizedlist>
                                    <listitem>
-                                   <para><emphasis role="bold">C</emphasis>. Use the attribute in
+                                   <para><emphasis role="bold"
+                                   >C</emphasis>. Use the attribute in
                                    create operations. </para>
                                    </listitem>
                                    <listitem>
-                                   <para><emphasis role="bold">R</emphasis>. This attribute is
+                                   <para><emphasis role="bold"
+                                   >R</emphasis>. This attribute is
                                    returned in response to show and
                                    list operations. </para>
                                    </listitem>
                                    <listitem>
-                                   <para><emphasis role="bold">U</emphasis>. You can update the
+                                   <para><emphasis role="bold"
+                                   >U</emphasis>. You can update the
                                    value of this attribute.</para>
                                    </listitem>
                                    <listitem>
-                                   <para><emphasis role="bold">D</emphasis>. You can delete the
+                                   <para><emphasis role="bold"
+                                   >D</emphasis>. You can delete the
                                    value of this attribute. </para>
                                    </listitem>
                                    </itemizedlist></para>
@@ -593,7 +628,8 @@
                         <td>string </td>
                         <td>No </td>
                         <td>CRUD </td>
-                        <td>first address in <emphasis role="italic">cidr</emphasis>
+                        <td>first address in <emphasis role="italic"
+                                >cidr</emphasis>
                         </td>
                         <td>Valid IP address or null</td>
                         <td>default gateway used by devices in this
@@ -614,7 +650,9 @@
                         <td>list(dict) </td>
                         <td>No </td>
                         <td>CR </td>
-                        <td>Every address in <emphasis role="italic">cidr</emphasis>, excluding <emphasis role="italic">gateway_ip</emphasis> if
+                        <td>Every address in <emphasis role="italic"
+                                >cidr</emphasis>, excluding <emphasis
+                                role="italic">gateway_ip</emphasis> if
                             configured </td>
                         <td>star/end of range must be valid ip </td>
                         <td>Sub-ranges of cidr available for dynamic
@@ -641,8 +679,8 @@
                         <td>CRU </td>
                         <td>True </td>
                         <td>{ True | False } </td>
-                        <td>Specifies whether DHCP is enabled for
-			    this subnet or not. </td>
+                        <td>Specifies whether DHCP is enabled for this
+                            subnet or not. </td>
                     </tr>
                     <tr>
                         <td>tenant_id </td>
@@ -693,20 +731,24 @@
                         <th>CRUD<footnote xml:id="crud3">
                                 <para><itemizedlist>
                                    <listitem>
-                                   <para><emphasis role="bold">C</emphasis>. Use the attribute in
+                                   <para><emphasis role="bold"
+                                   >C</emphasis>. Use the attribute in
                                    create operations. </para>
                                    </listitem>
                                    <listitem>
-                                   <para><emphasis role="bold">R</emphasis>. This attribute is
+                                   <para><emphasis role="bold"
+                                   >R</emphasis>. This attribute is
                                    returned in response to show and
                                    list operations. </para>
                                    </listitem>
                                    <listitem>
-                                   <para><emphasis role="bold">U</emphasis>. You can update the
+                                   <para><emphasis role="bold"
+                                   >U</emphasis>. You can update the
                                    value of this attribute.</para>
                                    </listitem>
                                    <listitem>
-                                   <para><emphasis role="bold">D</emphasis>. You can delete the
+                                   <para><emphasis role="bold"
+                                   >D</emphasis>. You can delete the
                                    value of this attribute. </para>
                                    </listitem>
                                    </itemizedlist></para>
@@ -824,7 +866,8 @@
                         <td>CRUD </td>
                         <td>None </td>
                         <td>No constraint </td>
-                        <td>Identifies the entity (e.g.: dhcp agent) using this port. </td>
+                        <td>Identifies the entity (e.g.: dhcp agent)
+                            using this port. </td>
                     </tr>
                     <tr>
                         <td>tenant_id </td>
@@ -867,13 +910,18 @@
             for.</para>
         <section xml:id="Authentication-d1e444">
             <title>Authentication and Authorization</title>
-            <para>The &APIv2; uses the <link xlink:href="https://openstack.keystone.org">Keystone Identity Service</link> as the default
+            <para>The &APIv2; uses the <link
+                    xlink:href="https://openstack.keystone.org"
+                    >Keystone Identity Service</link> as the default
                 authentication service. When Keystone is enabled,
                 users that submit requests to the Quantum service must
-                provide an authentication token in <emphasis role="bold">X-Auth-Token</emphasis> request
+                provide an authentication token in <emphasis
+                    role="bold">X-Auth-Token</emphasis> request
                 header. You obtain the token by authenticating to the
                 Keystone endpoint. For more information about
-                Keystone, see the <link xlink:href="http://docs.openstack.org/api/openstack-identity-service/2.0/content/"><citetitle>OpenStack Identity Developer
+                Keystone, see the <link
+                    xlink:href="http://docs.openstack.org/api/openstack-identity-service/2.0/content/"
+                        ><citetitle>OpenStack Identity Developer
                         Guide</citetitle></link>. </para>
             <para>When Keystone is enabled, the
                     <literal>tenant_id</literal> attribute is not
@@ -1018,7 +1066,9 @@ Content-Length 204
                 <errortext>Bad Request</errortext> error is
                 returned.</para>
             <para>For information about how to submit bulk requests to
-                the &APIv2; see <xref linkend="bulk_create_networks"/>, <xref linkend="bulK_create_subnets"/>, and <xref linkend="bulk_create_ports"/>.</para>
+                the &APIv2; see <xref linkend="bulk_create_networks"
+                />, <xref linkend="bulK_create_subnets"/>, and <xref
+                    linkend="bulk_create_ports"/>.</para>
         </section>
         <section xml:id="extensions">
             <title>Extensions</title>
@@ -1048,8 +1098,7 @@ Content-Length 204
                 URI. Use this method to easily determine if an
                 extension is available. If the extension is not
                 available, a <errorcode>404</errorcode>
-                <errortext>Not Found</errortext> response is
-                returned. </para>
+                <errortext>Not Found</errortext> response is returned. </para>
             <para>You can extend existing core API resources with new
                 actions or extra attributes. Also, you can add new
                 resources as extensions. Extensions usually have tags
@@ -1479,8 +1528,8 @@ Accept: application/json
                         <literal>id</literal> attributes. If you try
                     to update these attributes, a
                         <errorcode>400</errorcode>
-                    <errortext>Bad Request</errortext> error
-                    is returned. </para>
+                    <errortext>Bad Request</errortext> error is
+                    returned. </para>
                 <para>This operation returns a response body.</para>
                 <note>
                     <para>Update operations in Quantum adopt patch
@@ -1686,7 +1735,8 @@ Accept: application/json </literallayout>
                     submitting the request, unless the request is
                     submitted by an user with administrative rights.
                     You can control which attributes are returned by
-                    using the <emphasis role="italic">fields</emphasis> query parameter. You can
+                    using the <emphasis role="italic"
+                        >fields</emphasis> query parameter. You can
                     filter results by using query string parameters.
                     See <xref linkend="filtering"/>. </para>
                 <para>This operation does not require a request
@@ -1745,8 +1795,10 @@ Accept: application/json</literallayout>
                     specified in the request URI. You can control
                     which attributes are returned by using the
                         <emphasis role="italic">fields</emphasis>
-                    query parameter, as discussed in <xref linkend="filtering"/>. </para>
-                <para>This operation does not require a request body.</para>
+                    query parameter, as discussed in <xref
+                        linkend="filtering"/>. </para>
+                <para>This operation does not require a request
+                    body.</para>
                 <para>This operation returns a response body.</para>
                 <!--  <example>
                     <title>Port List Details Request/Response
@@ -1835,13 +1887,12 @@ content-type: application/json </literallayout>
                     gateway. Otherwise, you can explicitly specify
                     allocation pools as shown in the following
                     example. </para>
-                 <para>
-                    When <literal>allocation_pools</literal> and
-                    <literal>gateway_ip</literal> are both specified, it
-                    is up to the user ensuring the gateway ip does not
-                    overlap with the specified allocation pools; otherwise
-                    a <literal>409 Conflict</literal> error will be returned.
-                    </para>
+                <para> When <literal>allocation_pools</literal> and
+                        <literal>gateway_ip</literal> are both
+                    specified, it is up to the user ensuring the
+                    gateway ip does not overlap with the specified
+                    allocation pools; otherwise a <literal>409
+                        Conflict</literal> error will be returned. </para>
                 <!--  <example>
                     <title>Create Port Request/Response (XML)</title>
                     <para>Request:</para>
@@ -1945,7 +1996,7 @@ Accept: application/json
                         (<errorcode>400</errorcode>), Unauthorized
                         (<errorcode>401</errorcode>), Forbidden
                         (<errorcode>403</errorcode>), Not Found
-                        (<errorcode>404</errorcode>)  </simpara>
+                        (<errorcode>404</errorcode>) </simpara>
                 <para>This operation updates the specified subnet.
                     Some attributes, such as IP version
                         (<parameter>ip_version</parameter>), CIDR
@@ -2256,8 +2307,8 @@ accept: application/json
                         (<errorcode>401</errorcode>), Forbidden
                         (<errorcode>403</errorcode>), Not Found
                         (<errorcode>404</errorcode>), Conflict
-                        (<errorcode>409</errorcode>), MAC generation failure
-                        (<errorcode>503</errorcode>) </simpara>
+                        (<errorcode>409</errorcode>), MAC generation
+                    failure (<errorcode>503</errorcode>) </simpara>
                 <para>This operation creates a new Quantum port. The
                     network where the port is created must be
                     specified in the <parameter>network_id</parameter>
@@ -2268,16 +2319,20 @@ accept: application/json
                         <para>A symbolic name for the port </para>
                     </listitem>
                     <listitem>
-                        <para>MAC address. If an invalid address is specified
-                        a <literal>400 Bad Request</literal> error will be
-                        returned, whereas a <literal>409 Conflict</literal>
-                        error will be returned if the specified MAC address is
-                        already in use.</para>
-                        <para>When the MAC address is not specified, Quantum
-                        will try to allocate one for the port being created.
-                        If there is a failure while generating the address,
-                        a <literal>503 Service Unavailable</literal> error
-                        will be returned.</para>
+                        <para>MAC address. If an invalid address is
+                            specified a <literal>400 Bad
+                                Request</literal> error will be
+                            returned, whereas a <literal>409
+                                Conflict</literal> error will be
+                            returned if the specified MAC address is
+                            already in use.</para>
+                        <para>When the MAC address is not specified,
+                            Quantum will try to allocate one for the
+                            port being created. If there is a failure
+                            while generating the address, a
+                                <literal>503 Service
+                                Unavailable</literal> error will be
+                            returned.</para>
                     </listitem>
                     <listitem>
                         <para>Administrative state. Set to
@@ -2289,9 +2344,9 @@ accept: application/json
                         <para>Fixed IPs <itemizedlist>
                                 <listitem>
                                    <para>If you specify just a subnet
-                                   ID, Quantum allocates an
-                                   available IP from that subnet to
-                                   the port.</para>
+                                   ID, Quantum allocates an available
+                                   IP from that subnet to the
+                                   port.</para>
                                 </listitem>
                                 <listitem>
                                    <para>If you specify both a subnet
@@ -2509,42 +2564,49 @@ Content-Length: 410
 
     </chapter>
 
-  <chapter xml:id="API_extensions">
-    <title>Generic API extensions</title>
+    <chapter xml:id="API_extensions">
+        <title>Generic API extensions</title>
 
-    <para>The features available in the core API, whose operations has been
-    extensively discussed in the previous chapter, can be augmented by API
-    extensions. An API extension can define any comabination of:</para>
+        <para>The features available in the core API, whose operations
+            has been extensively discussed in the previous chapter,
+            can be augmented by API extensions. An API extension can
+            define any comabination of:</para>
 
-    <itemizedlist>
-      <listitem>
-        <para>Resource extensions, which are new object classes;</para>
-      </listitem>
-      <listitem>
-        <para>Attribute extensions, whose effect is to add new attribute to
-        existing resources; attributes added by extended resources will be
-        prefixed by the extension name.</para>
-      </listitem>
-      <listitem>
-        <para>Action extensions, which define new operations (beyond the one
-        defined by the HTTP verbs) on existing or new resources</para>
-      </listitem>
-    </itemizedlist>
+        <itemizedlist>
+            <listitem>
+                <para>Resource extensions, which are new object
+                    classes;</para>
+            </listitem>
+            <listitem>
+                <para>Attribute extensions, whose effect is to add new
+                    attribute to existing resources; attributes added
+                    by extended resources will be prefixed by the
+                    extension name.</para>
+            </listitem>
+            <listitem>
+                <para>Action extensions, which define new operations
+                    (beyond the one defined by the HTTP verbs) on
+                    existing or new resources</para>
+            </listitem>
+        </itemizedlist>
 
-    <para>This chapter only discusses generic API extensions, i.e. those
-    extensions which are not plugin-specific. For plugin-specific extension
-    shipped with Quantum, please refer to the extension documentation in the
-    source code tree.</para>
+        <para>This chapter only discusses generic API extensions, i.e.
+            those extensions which are not plugin-specific. For
+            plugin-specific extension shipped with Quantum, please
+            refer to the extension documentation in the source code
+            tree.</para>
 
-    <section xml:id="retrieve_extensions">
-      <title>Retrieving Available Extensions</title>
+        <section xml:id="retrieve_extensions">
+            <title>Retrieving Available Extensions</title>
 
-      <para>Available extensions can be queried at the <filename role="bold">/v2.0/extensions</filename> URI; please note that this
-      requests must be authenticated just like any other API request.</para>
+            <para>Available extensions can be queried at the <filename
+                    role="bold">/v2.0/extensions</filename> URI;
+                please note that this requests must be authenticated
+                just like any other API request.</para>
 
-      <para>The response will look like the following:</para>
+            <para>The response will look like the following:</para>
 
-      <programlisting>
+            <programlisting>
     Status Code: 200 OK
     Connection: keep-alive
     Content-Length: 654
@@ -2573,10 +2635,11 @@ Content-Length: 410
 
 </programlisting>
 
-      <para>Also, it is possible ot query for specific extension using the extension alias. For
-                instance querying <literal>/v2.0/extensions/router</literal>, will result in the
-                following response:</para>
- <programlisting>
+            <para>Also, it is possible ot query for specific extension
+                using the extension alias. For instance querying
+                    <literal>/v2.0/extensions/router</literal>, will
+                result in the following response:</para>
+            <programlisting>
     Status Code: 200 OK
     Connection: keep-alive
     Content-Length: 350
@@ -2594,16 +2657,16 @@ Content-Length: 410
     &lt;/extension&gt;
 
 </programlisting>
-    </section>
-    <section xml:id="provider_ext">
-      <title>The Provider Networks Extensions
-      (<literal>provider</literal>)</title>
+        </section>
+        <section xml:id="provider_ext">
+            <title>The Provider Networks Extensions
+                    (<literal>provider</literal>)</title>
 
-      <para>Discuss attributes exposed by this extension and how they
-      work</para>
-    </section>
-    <xi:include href="quantum-l3-ext.xml"/>
-    <xi:include href="quantum-quotas-ext.xml"/>
-  </chapter>
+            <para>Discuss attributes exposed by this extension and how
+                they work</para>
+        </section>
+        <xi:include href="quantum-l3-ext.xml"/>
+        <xi:include href="quantum-quotas-ext.xml"/>
+    </chapter>
 
 </book>
