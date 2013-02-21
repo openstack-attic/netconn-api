@@ -1,0 +1,31 @@
+<?xml version="1.0" ?>
+<networks xmlns="http://openstack.org/quantum/api/v2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:provider="http://docs.openstack.org/ext/provider/api/v1.0" xmlns:quantum="http://openstack.org/quantum/api/v2.0" xmlns:router="http://docs.openstack.org/ext/quantum/router/api/v1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<network>
+		<status>ACTIVE</status>
+		<subnets quantum:type="list"/>
+		<name>net3</name>
+		<provider:physical_network>physnet1</provider:physical_network>
+		<admin_state_up quantum:type="bool">True</admin_state_up>
+		<tenant_id>20bd52ff3e1b40039c312395b04683cf</tenant_id>
+		<provider:network_type>vlan</provider:network_type>
+		<router:external quantum:type="bool">False</router:external>
+		<shared quantum:type="bool">False</shared>
+		<id>396f12f8-521e-4b91-8e21-2e003500433a</id>
+		<provider:segmentation_id quantum:type="long">1002</provider:segmentation_id>
+	</network>
+	<network>
+		<status>ACTIVE</status>
+		<subnets quantum:type="list"/>
+		<name>net2</name>
+		<provider:physical_network>physnet1</provider:physical_network>
+		<admin_state_up quantum:type="bool">True</admin_state_up>
+		<tenant_id>20bd52ff3e1b40039c312395b04683cf</tenant_id>
+		<provider:network_type>vlan</provider:network_type>
+		<router:external quantum:type="bool">False</router:external>
+		<shared quantum:type="bool">False</shared>
+		<id>71c1e68c-171a-4aa2-aca5-50ea153a3718</id>
+		<provider:segmentation_id quantum:type="long">1001</provider:segmentation_id>
+	</network>
+	<atom:link href="http://127.0.0.1:9696/v2.0/networks.xml?limit=2&amp;marker=71c1e68c-171a-4aa2-aca5-50ea153a3718" rel="next"/>
+	<atom:link href="http://127.0.0.1:9696/v2.0/networks.xml?limit=2&amp;marker=396f12f8-521e-4b91-8e21-2e003500433a&amp;page_reverse=True" rel="previous"/>
+</networks>
