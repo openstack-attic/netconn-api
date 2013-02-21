@@ -1012,6 +1012,117 @@ Content-Length 204
             <para>For information about how to submit bulk requests to
                 the &APIv2; see <xref linkend="bulk_create_networks"/>, <xref linkend="bulK_create_subnets"/>, and <xref linkend="bulk_create_ports"/>.</para>
         </section>
+        <section xml:id="pagination">
+            <title>Pagination</title>
+            <para>To reduce load on the service, list operations will
+                return a maximum number of items at a time. To navigate
+                the collection, the parameters limit, marker and page_reverse
+                can be set in the URI (e.g.?limit=100&amp;marker=1234&amp;page_reverse=False).
+                The marker parameter is the ID of the last item in the
+                previous list. The limit parameter sets the page size.
+                The page_reverse parameter sets the page direction. All
+                of those parameter are optional. If the client requests
+                a limit beyond maximum limit configured by the
+                deployment, the server only returns the maximum limit number
+                of items. </para>
+            <para>For convenience, list responses contain atom "next" links
+                 and "previous" links. The last page in the list requested with
+                 'page_reverse=False' will not contain "next" link, and the
+                 last page in the list requested with 'page_reverse=True' will
+                 not contain "previous" link. The following examples illustrate
+                 two pages with three items. The first page was retrieved via a
+                 GET to http://127.0.0.1:9696/v2.0/networks.json?limit=2 </para>
+            <para>
+               Pagination is optional feature of Quantum API, and it might be
+               disabled. If pagination is disabled, the pagination parameters
+               will be ignored and return all the items.
+            </para>
+            <para>
+                If a particular plugin does not support pagination operations,
+                and pagination is enabled, the &APIv2; will emulate the pagination
+                behavior so that users can expect the same behavior regardless
+                of the particular plugin running in the background.
+            </para>
+            <para>
+               Unfortunately Quantum does not expose any mechanism to tell
+               user if pagination is supported by particular plugin or enabled.
+            </para>
+             <example>
+                 <title>Network Collecion, First Page: JSON</title>
+                 <para>Request:</para>
+                 <literallayout class="monospaced">
+GET /v2.0/networks.json?limit=2 HTTP/1.1
+Host: 127.0.0.1:9696
+Content-Type: application/json
+Accept: application/json
+                 </literallayout>
+                 <para>Response:</para>
+                 <programlisting language="json"><xi:include href="samples/networks-get-first-page-res.json" parse="text"/></programlisting>
+             </example>
+             <example>
+                 <title>Network Collecion, First Page: XML</title>
+                 <para>Request:</para>
+                 <literallayout class="monospaced">
+GET /v2.0/networks.xml?limit=2 HTTP/1.1
+Host: 127.0.0.1:9696
+Content-Type: application/xml
+Accept: application/xml
+                 </literallayout>
+                 <para>Response:</para>
+                 <programlisting language="xml"><xi:include href="samples/networks-get-first-page-res.xml" parse="text"/></programlisting>
+             </example>
+             <para>The last page won't show the "next" links</para>
+             <example>
+                 <title>Network Collecion, Last Page: JSON</title>
+                 <para>Request:</para>
+                 <literallayout class="monospaced">
+GET /v2.0/networks.json?limit=2&amp;marker=71c1e68c-171a-4aa2-aca5-50ea153a3718 HTTP/1.1
+Host: 127.0.0.1:9696
+Content-Type: application/json
+Accept: application/json
+                 </literallayout>
+                 <para>Response:</para>
+                 <programlisting language="json"><xi:include href="samples/networks-get-last-page-res.json" parse="text"/></programlisting>
+             </example>
+             <example>
+                 <title>Network Collecion, Last Page: XML</title>
+                 <para>Request:</para>
+                 <literallayout class="monospaced">
+GET /v2.0/networks.xml?limit=2&amp;marker=71c1e68c-171a-4aa2-aca5-50ea153a3718 HTTP/1.1
+Host: 127.0.0.1:9696
+Content-Type: application/xml
+Accept: application/xml
+                 </literallayout>
+                 <para>Response:</para>
+                 <programlisting language="xml"><xi:include href="samples/networks-get-last-page-res.xml" parse="text"/></programlisting>
+             </example>
+        </section>
+        <section xml:id="Sorting">
+            <title>Sorting</title>
+            <para>The results of list operations can be ordered using the
+                'sort_key' and 'sort_dir' parameters. Currently sorting
+                doesn't work with extended attributes of resource. The 'sort_key'
+                and 'sort_dir' can be repeated, and the number of 'sort_key'
+                and 'sort_dir' provided must be same. The sort_dir parameter
+                indicates in which direction to sort. Acceptable values
+                are 'asc' (ascending) and 'desc' (descending).
+            </para>
+            <para>
+                Sorting is optional feature of Quantum API, and it might be
+                disabled. If sorting is disabled, the sorting parameters will
+                be ignored.
+            </para>
+            <para>
+                If a particular plugin does not support sorting operations,
+                and sorting is enabled, the &APIv2; will emulate the sorting
+                behavior so that users can expect the same behavior regardless
+                of the particular plugin running in the background.
+            </para>
+            <para>
+               Unfortunately Quantum does not expose any mechanism to tell
+               user if sorting is supported by particular plugin or enabled.
+            </para>
+        </section>
         <section xml:id="extensions">
             <title>Extensions</title>
             <para>The &APIv2; is extensible. </para>
