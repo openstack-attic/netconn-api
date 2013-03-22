@@ -1339,11 +1339,31 @@ Accept: application/json
                 <simpara>Error Response Codes: Bad Request
                         (<errorcode>400</errorcode>) Unauthorized
                         (<errorcode>401</errorcode>)</simpara>
-                <para>This operation requires a request body. The
-                    request body must contain a
-                        <literal>network</literal> object that
-                    specifies a symbolic name for the network. </para>
-                <para>This operation returns a response body.</para>
+                <simpara>This operation does not require a rest body. If specified, the body might
+                    include one or more of the following attributes:</simpara>
+                <itemizedlist>
+                    <listitem>
+                        <para><emphasis role="italic">name</emphasis>: a string specifying a
+                            symbolic name for the network, which is not required to be
+                            unique;</para>
+                    </listitem>
+                    <listitem>
+                        <para><emphasis role="italic">admin_state_up</emphasis>: a bool value
+                            specifying the administrative status of the network;</para>
+                    </listitem>
+                    <listitem>
+                        <para><emphasis role="italic">shared</emphasis>: a bool value specifying
+                            whether this network should be shared across all tenants or not. Note
+                            that the default policy setting restrict usage of this attribute to
+                            administrative users only;</para>
+                    </listitem>
+                    <listitem>
+                        <para><emphasis role="italic">tenant_id</emphasis>: a uuid identifying the
+                            tenant which will own the network. Only administrative users can set the
+                            tenant identifier; this cannot be changed using authorization
+                            policies;</para>
+                    </listitem>
+                </itemizedlist>
                 <!--  <example>
                     <title>Create Network Request/Response
                         (XML)</title>
