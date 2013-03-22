@@ -1,0 +1,9 @@
+Verified+2: Jenkins
+Approved+1: gongysh <gongysh@linux.vnet.ibm.com>
+Code-Review+2: gongysh <gongysh@linux.vnet.ibm.com>
+Code-Review+2: Aaron Rosen <arosen@nicira.com>
+Submitted-by: Jenkins
+Submitted-at: Fri, 22 Mar 2013 22:26:15 +0000
+Reviewed-on: https://review.openstack.org/25117
+Project: openstack/netconn-api
+Branch: refs/heads/master
