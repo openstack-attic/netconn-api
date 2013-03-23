@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE section [
+        <!-- Some useful entities borrowed from HTML -->
+        <!ENTITY ndash  "&#x2013;">
+        <!ENTITY mdash  "&#x2014;">
+        <!ENTITY hellip "&#x2026;">
+        <!ENTITY plusmn "&#xB1;">
+
+        <!-- Useful for describing APIs -->
+        <!ENTITY GET    '<command xmlns="http://docbook.org/ns/docbook">GET</command>'>
+        <!ENTITY PUT    '<command xmlns="http://docbook.org/ns/docbook">PUT</command>'>
+        <!ENTITY POST   '<command xmlns="http://docbook.org/ns/docbook">POST</command>'>
+        <!ENTITY DELETE '<command xmlns="http://docbook.org/ns/docbook">DELETE</command>'>
+
+        <!ENTITY CHECK  '<inlinemediaobject xmlns="http://docbook.org/ns/docbook">
+                 <imageobject>
+                  <imagedata fileref="figures/Check_mark_23x20_02.svg"
+                             format="SVG" scale="60"/>
+                </imageobject>
+              </inlinemediaobject>'>
+
+        <!ENTITY ARROW  '<inlinemediaobject xmlns="http://docbook.org/ns/docbook">
+                 <imageobject>
+                  <imagedata fileref="figures/Arrow_east.svg"
+                             format="SVG" scale="60"/>
+                </imageobject>
+              </inlinemediaobject>'>
+ <!ENTITY APIv2   'Quantum API v2.0'>
+]>
+<section xmlns="http://docbook.org/ns/docbook"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:xi="http://www.w3.org/2001/XInclude"
+    xmlns:svg="http://www.w3.org/2000/svg"
+    xmlns:m="http://www.w3.org/1998/Math/MathML"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns:db="http://docbook.org/ns/docbook" version="5.0"
+    status="final" xml:id="quotas_ext">
+      <title>The Quotas Extension</title>
+      <para>The quantum.conf configuration file defines default quota values
+      that are applied identically to all tenants. This extension adds the
+      ability for an admin user to define quotas values on a per-tenant basis
+      (e.g., allowing tenant A to create at most X networks, while allowing
+      tenant B to create at most Y networks).</para>
+      <para>If quotas per tenant is needed, the Quotas extension must
+        be enabled. To enable the Quotas extension, see the
+            <citetitle>Openstack Network Administration
+            Guide</citetitle>.</para>
+            <informaltable rules="all" width="100%">
+                <col width="20%"/>
+                <col width="20%"/>
+                <col width="60%"/>
+                <thead>
+                    <tr align="center">
+                        <td>Verb</td>
+                        <td>URI</td>
+                        <td>Description</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>&GET;</td>
+                        <td>/quotas</td>
+                        <td>List quotas of tenants who have non-default quota values.</td>
+                    </tr>
+                    <tr>
+                        <td>&GET;</td>
+                        <td>/quotas/<parameter>tenant_id</parameter></td>
+                        <td>Show quotas of a given tenant.</td>
+                    </tr>
+                    <tr>
+                        <td>&PUT;</td>
+                        <td>/quotas/<parameter>tenant_id</parameter></td>
+                        <td>Update tenant's quotas. It is used when non-default quotas are desired.</td>
+                    </tr>
+                    <tr>
+                        <td>&DELETE;</td>
+                        <td>/quotas/<parameter>tenant_id</parameter></td>
+                        <td>Reset quotas of a given tenant to default values.</td>
+                    </tr>
+                </tbody>
+            </informaltable>
+            <?hard-pagebreak?>
+            <section xml:id="List_Quotas">
+                <title>List Quotas</title>
+                <informaltable rules="all" width="100%">
+                    <col width="20%"/>
+                    <col width="20%"/>
+                    <col width="60%"/>
+                    <thead>
+                        <tr>
+                            <td>Verb</td>
+                            <td>URI</td>
+                            <td>Description</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>&GET;</td>
+                            <td>/quotas</td>
+                            <td> Lists quotas of tenants who have non-default quota values.</td>
+                        </tr>
+                    </tbody>
+                </informaltable>
+                <simpara>Normal Response Code:
+                        <returnvalue>200</returnvalue>
+                </simpara>
+                <simpara>Error Response Codes: Unauthorized
+                        (<errorcode>401</errorcode>), Forbidden
+                        (<errorcode>403</errorcode>)</simpara>
+                <para>This operation does not require a request body. </para>
+                <para>This operation returns a response body.</para>
+                <example>
+                    <title>List Quotas: JSON Request</title>
+                    <programlisting>
+GET /v2.0/quotas HTTP/1.1
+Host: controlnode:9696
+User-Agent: python-quantumclient
+Content-Type: application/json
+Accept: application/json
+X-Auth-Token: c52a1b304fec4ca0ac85dc1741eec6e2
+	                </programlisting>
+                    <para>Response:</para>
+                    <programlisting language="json"><xi:include href="samples/quotas-list-res.json" parse="text"/></programlisting>
+                </example>
+            </section>
+            <?hard-pagebreak?>
+            <section xml:id="Show_Quotas">
+                <title>Show Quotas</title>
+                <informaltable rules="all" width="100%">
+                    <col width="20%"/>
+                    <col width="20%"/>
+                    <col width="60%"/>
+                    <thead>
+                        <tr>
+                            <td>Verb</td>
+                            <td>URI</td>
+                            <td>Description</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>&GET;</td>
+                            <td>/quotas/<parameter>tenant_id</parameter></td>
+                            <td>Shows quotas for a specified tenant.</td>
+                        </tr>
+                    </tbody>
+                </informaltable>
+                <simpara>Normal Response Code:
+                        <returnvalue>200</returnvalue>
+                </simpara>
+                <simpara>Error Response Codes: Unauthorized
+                        (<errorcode>401</errorcode>), Forbidden
+                        (<errorcode>403</errorcode>)</simpara>
+                <para>This operation returns information for the quotas of the tenant
+                    specified in the request URI. </para>
+                <para>This operation does not require a request
+                    body.</para>
+                <para>This operation returns a response body.</para>
+                <example>
+                    <title>Show Quotas: JSON Request</title>
+<programlisting>
+GET /v2.0/quotas/5fcfbc3283a142a5bb6978b549a511ac.json HTTP/1.1
+Host: controlnode:9696
+User-Agent: python-quantumclient
+Content-Type: application/json
+Accept: application/json
+X-Auth-Token: a54d6fdda41341f892150e2aaf648f0d
+</programlisting>   
+<para>Response:</para>
+                    <programlisting language="json"><xi:include href="samples/quotas-show-res.json" parse="text"/></programlisting>
+                </example>
+            </section>
+            <?hard-pagebreak?>
+            <section xml:id="Update_Quotas">
+                <title>Update Quotas</title>
+                <informaltable rules="all" width="100%">
+                    <col width="20%"/>
+                    <col width="20%"/>
+                    <col width="60%"/>
+                    <thead>
+                        <tr>
+                            <td>Verb</td>
+                            <td>URI</td>
+                            <td>Description</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                        <td>&PUT;</td>
+                        <td>/quotas/<parameter>tenant_id</parameter></td>
+                        <td>Update tenant's quotas. It is used when non-default quotas are desired.</td>
+                        </tr>
+                    </tbody>
+                </informaltable>
+                <simpara>Normal Response Code:
+                        <returnvalue>200</returnvalue>
+                </simpara>
+                <simpara>Error Response Codes: Unauthorized
+                        (<errorcode>401</errorcode>), Forbidden
+                        (<errorcode>403</errorcode>)</simpara>
+                <para>This operation updates quotas for a given tenant.</para>
+                <para>This operation requires a request body. The body contains the resource names and their new quota values.
+                </para>
+                <para>This operation returns a response body.</para>
+                <example>
+                    <title>Update Quotas: JSON Request</title>
+                    <programlisting>
+PUT /v2.0/quotas/5fcfbc3283a142a5bb6978b549a511ac.json HTTP/1.1
+Host: controlnode:9696
+User-Agent: python-quantumclient
+Content-Type: application/json
+Accept: application/json
+X-Auth-Token: 4cbb09e780434b249ff596d6979fd8fc
+Content-Length: 88
+<xi:include href="samples/quotas-put-req.json" parse="text"/></programlisting>
+                </example>
+                <example>
+                    <title>Update Quotas: JSON Response</title>
+                    <programlisting language="json"><xi:include href="samples/quotas-put-res.json" parse="text"/></programlisting>
+                </example>
+                </section>
+            <?hard-pagebreak?>
+            <section xml:id="Reset_Quotas">
+                <title>Reset Quotas</title>
+                <informaltable rules="all" width="100%">
+                    <col width="20%"/>
+                    <col width="20%"/>
+                    <col width="60%"/>
+                    <thead>
+                        <tr>
+                            <td>Verb</td>
+                            <td>URI</td>
+                            <td>Description</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                        <td>&DELETE;</td>
+                        <td>/quotas/<parameter>tenant_id</parameter></td>
+                        <td>Reset quotas of a given tenant to default values.</td>
+                        </tr>
+                    </tbody>
+                </informaltable>
+                <simpara>Normal Response Code:
+                        <returnvalue>204</returnvalue>
+                </simpara>
+                <simpara>Error Response Codes: Unauthorized
+                        (<errorcode>401</errorcode>), Forbidden
+                        (<errorcode>403</errorcode>)</simpara>
+                <para>This operation resets quotas of a given tenant to default values.</para>
+                <para>This operation does not require a request
+                    body.</para>
+                <para>This operation does not return a response
+                    body.</para>
+                <example>
+                    <title>Reset Quotas: JSON Request</title>
+                    <programlisting>
+DELETE /v2.0/quotas/5fcfbc3283a142a5bb6978b549a511ac.json HTTP/1.1
+Host: controlnode:9696
+User-Agent: python-quantumclient
+Content-Type: application/json
+Accept: application/json
+X-Auth-Token: 903857de62274690911c364b60582440
+                    </programlisting>
+                </example>
+            </section>
+        </section>
