@@ -68,14 +68,19 @@
                             <para>Boolean type, default value <literal>False</literal>.</para>
                         </listitem>
                         <listitem>
-                            <para>Usage of this attribute might be restricted through authorization
-                        policies. The default setting is as follows: only admin users can set this
-                        flag to True, whereas any user can read the value of this flag. Altough
-                        regular users won't be authorized to create instances with VIFs on external
-                        networks, they will be able to see them in their network list; this is
-                        because external networks can be used by any tenant to set an external
-                        gateway for their Quantum routers or create floating IPs and associate them
-                        with ports on internal tenant networks.</para>
+                            <para>Usage of this attribute might be
+                        restricted through authorization policies. The
+                        default setting is as follows: only admin
+                        users can set this flag to True, whereas any
+                        user can read the value of this flag. Although
+                        regular users won't be authorized to create
+                        instances with VIFs on external networks, they
+                        will be able to see them in their network
+                        list; this is because external networks can be
+                        used by any tenant to set an external gateway
+                        for their Quantum routers or create floating
+                        IPs and associate them with ports on internal
+                        tenant networks.</para>
                         </listitem>
                     </itemizedlist></para>
             <para>A <emphasis role="bold">router </emphasis> is used to interconnect subnets and
@@ -302,8 +307,9 @@
                                     <tr>
                                         <td>&GET;</td>
                                         <td>/routers</td>
-                                        <td>Returns a list of logical routers accessbile to the
-                                    tenant submitting the request.</td>
+                                        <td>Returns a list of logical
+                                   routers accessible to the tenant
+                                   submitting the request.</td>
                                     </tr>
                                 </tbody>
                             </informaltable>
@@ -665,7 +671,9 @@ Accept: application/json
                               <tr>
                                   <td>&GET;</td>
                                   <td>/floatingips</td>
-                                  <td>Returns a list of floating IPs accessibile to the tenant submitting the request.</td>
+                                  <td>Returns a list of floating IPs
+                                   accessible to the tenant submitting
+                                   the request.</td>
                               </tr>
                           </tbody>
                       </informaltable>
@@ -725,7 +733,8 @@ Accept: application/json
                             attributes should be returned by using the <parameter>fields</parameter>
                             query parameter. </para>
                             <example>
-                                <title>Show Floating IP (request specfic fields):  Request</title>
+                                <title>Show Floating IP (request
+                        specific fields): Request</title>
                                 <literallayout class="monospaced">
 GET /v2.0/floatingips/2f245a7b-796b-4f26-9cf9-9e82d248fda7.json?fields=fixed_ip_address&amp;fields=floating_ip_address
 Accept: application/json
@@ -837,10 +846,12 @@ Accept: application/json
                     409 Conflict</para>
                         <para>This operation requires a request body.</para>
                         <para>This operation returns a response body.</para>
-                        <para>This operation has the name of setting, unsetting, or updating the
-                            assocation between a floating ip and a Quantum port. The association
-                            process is exactly the same as the one discussed for the <emphasis
-                                role="italic">create floating IP</emphasis> operation.</para>
+                        <para>This operation has the name of setting,
+                    unsetting, or updating the association between a
+                    floating ip and a Quantum port. The association
+                    process is exactly the same as the one discussed
+                    for the <emphasis role="italic">create floating
+                        IP</emphasis> operation.</para>
                         <para>In order to disassociate a floating IP, the <literal>port_id</literal>
                     request attribute should either be set to null or omitted in the request
                     body.</para>

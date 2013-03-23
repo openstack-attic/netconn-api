@@ -47,12 +47,13 @@
         <copyright>
             <year>2011</year>
             <year>2012</year>
+            <year>2013</year>
             <holder>OpenStack</holder>
         </copyright>
         <releaseinfo>Quantum API v2.0</releaseinfo>
         <productname>OpenStack Quantum (virtual network
             service)</productname>
-        <pubdate>2012-08-17</pubdate>
+        <pubdate></pubdate>
         <legalnotice role="apache2">
             <annotation>
                 <remark>Copyright details are filled in by the
@@ -65,6 +66,19 @@
                 &APIv2;.</para>
         </abstract>
         <revhistory>
+            <revision>
+                <!-- ... continue addding more revisions here as you change this document using the markup shown below... -->
+                <date>2013-03-23</date>
+                <revdescription>
+                    <itemizedlist spacing="compact">
+                        <listitem>
+                            <para>Updated incorrect nova command
+                                examples in <xref linkend="Theory"/>.</para>
+                        </listitem>
+                    </itemizedlist>
+                </revdescription>
+            </revision>
+            
             <revision>
                 <!-- ... continue addding more revisions here as you change this document using the markup shown below... -->
                 <date>2012-09-05</date>
@@ -227,54 +241,61 @@
         <?hard-pagebreak?>
         <section xml:id="Theory">
             <title>High-Level Task Flow</title>
-            <para>The high-level task flow for Quantum networking is
-                as follows:</para>
-            <orderedlist>
+            <para>The high-level task flow for Quantum networking
+                involves creating a network, associating a subnet with
+                that network, booting a VM that is attached to the
+                network, and deleting the VM.</para>
+            <procedure><title>To use Quantum networking:</title>
 
-                <listitem>
+                <step><title>Create a network</title>
                     <para>The tenant creates a network. </para>
                     <para>For example, the tenant creates the
-                            <literal>net1</literal> network.</para>
-                </listitem>
-                <listitem>
+                            <literal>net1</literal> network. Its ID is
+                            <emphasis role="italic"
+                        >net1_id</emphasis>.</para>
+                </step>
+                <step><title>Associate a subnet with the network</title>
                     <para>The tenant associates a subnet with that
                         network. </para>
                     <para>For example, the tenant associates the
                             <literal>10.0.0.0/24</literal> subnet with
                         the <literal>net1</literal> network.</para>
-                </listitem>
-                <listitem>
+                </step>
+                <step><title>Boot a VM and attach it to the network</title>
                     <para>The tenant boots a virtual machine (VM) and
                         specifies a single NIC that connects to the
                         network. </para>
-                    <para>For
-                        example A:<programlisting language="bash" role="gutter: false"><prompt>$</prompt> nova boot --image <emphasis role="italic">image_name</emphasis> --nic net-id=<emphasis role="italic">id_of_net1</emphasis> <emphasis role="italic">server_name</emphasis></programlisting>
-                        example B:<programlisting language="bash" role="gutter: false"><prompt>$</prompt> nova boot --image <emphasis role="italic">image_name</emphasis> --nic port-id=<emphasis role="italic">id_of_port1</emphasis> <emphasis role="italic">server_name</emphasis></programlisting>
+                    <para>In the following example, Nova contacts
+                        Quantum to create the NIC and attach it to the
+                            <db:literal>net1</db:literal> network,
+                        with the ID <emphasis role="italic"
+                            >net1_id</emphasis>:<programlisting language="bash" role="gutter: false"><prompt>$</prompt> nova boot &lt;server_name&gt; --image &lt;image&gt; --flavor &lt;flavor&gt; --nic net-id=&lt;net1_id&gt;</programlisting></para>
+                    <para>In an alternate example, you first create
+                        port, <db:literal>port1</db:literal>, and then
+                        you boot the VM with a specified NIC. Quantum
+                        creates the NIC and attaches it to the
+                            <db:literal>port1</db:literal> port, with
+                        the ID <emphasis role="italic"
+                            >port1_id</emphasis>: </para>
+                    <para>
+                        <programlisting language="bash" role="gutter: false"><prompt>$</prompt> nova boot &lt;server_name&gt; --image &lt;image&gt; --flavor &lt;flavor&gt; --nic port-id=&lt;port1_id&gt;</programlisting>
                     </para>
-                </listitem>
-                <listitem>
-                    <para>In example A, Nova contacts Quantum and creates the
-                            <literal>port1</literal> port on the
-                            <literal>net1</literal> network.</para>
-                    <para>In example B, You should create port before boot a VM.</para>
-                </listitem>
-                <listitem>
+               
                     <para>Quantum assigns an IP address to the
                             <literal>port1</literal> port.</para>
                     <note>
                         <para>Quantum chooses the IP address by default.
                         </para></note>
-                </listitem>
-                <listitem>
+                </step>
+                <step><title>Delete the VM</title>
                     <para>The tenant deletes the VM. </para>
-                </listitem>
-                <listitem>
+               
                     <para>Nova contacts Quantum and deletes the
                             <literal>port1</literal> port. </para>
                     <para>The allocated IP address is returned to the
                         pool of available IP addresses. </para>
-                </listitem>
-            </orderedlist>
+                </step>
+            </procedure>
 
         </section>
         <?hard-pagebreak?>
@@ -285,9 +306,8 @@
                 technologies to provide isolated virtual networks to
                 tenants. A plugin also provides other services, such
                 as IP address management. Because each plugin
-                implements all the operations included in &APIv2;, you
-                do not need to be concerned about which plugin is
-                used. </para>
+                implements all the operations included in &APIv2;, do
+                not be concerned about which plugin is used. </para>
             <para>However, some plugins might expose additional
                 capabilities through API extensions, which are
                 discussed in this document. For more information about
@@ -2524,9 +2544,10 @@ Content-Length: 410
   <chapter xml:id="API_extensions">
     <title>Generic API extensions</title>
 
-    <para>The features available in the core API, whose operations has been
-    extensively discussed in the previous chapter, can be augmented by API
-    extensions. An API extension can define any comabination of:</para>
+    <para>The features available in the core API, whose operations has
+            been extensively discussed in the previous chapter, can be
+            augmented by API extensions. An API extension can define
+            any combination of:</para>
 
     <itemizedlist>
       <listitem>
@@ -2585,9 +2606,10 @@ Content-Length: 410
 
 </programlisting>
 
-      <para>Also, it is possible ot query for specific extension using the extension alias. For
-                instance querying <literal>/v2.0/extensions/router</literal>, will result in the
-                following response:</para>
+      <para>Also, it is possible to query for specific extension using
+                the extension alias. For instance querying
+                    <literal>/v2.0/extensions/router</literal>, will
+                result in the following response:</para>
  <programlisting>
     Status Code: 200 OK
     Connection: keep-alive
