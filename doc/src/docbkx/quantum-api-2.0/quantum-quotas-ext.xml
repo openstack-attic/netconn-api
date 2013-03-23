@@ -41,8 +41,10 @@
       ability for an admin user to define quotas values on a per-tenant basis
       (e.g., allowing tenant A to create at most X networks, while allowing
       tenant B to create at most Y networks).</para>
-      <para>If quotas per tenant is needed, the Quotas extension must be enabled.
-      Please see Admin Guide for how to enable Quotas extension.</para>
+      <para>If quotas per tenant is needed, the Quotas extension must
+        be enabled. To enable the Quotas extension, see the
+            <citetitle>Openstack Network Administration
+            Guide</citetitle>.</para>
             <informaltable rules="all" width="100%">
                 <col width="20%"/>
                 <col width="20%"/>
