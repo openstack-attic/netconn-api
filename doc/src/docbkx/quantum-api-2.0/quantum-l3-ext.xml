@@ -39,18 +39,23 @@
         from external networks through <emphasis role="italic"> Floating IPs</emphasis>.</para>
       <para>This extension introduces two new resources: <itemizedlist>
             <listitem>
-                <para><emphasis role="bold">router</emphasis>, a logical entity for forwarding
-                    packets across internal subnets and NATting them on external networks through an
-                    appropriate external gateway.</para>
+                <para><emphasis role="bold">router</emphasis>, a
+                    logical entity for forwarding packets across
+                    internal subnets and NATting them on external
+                    networks through an appropriate external
+                    gateway.</para>
             </listitem>
             <listitem>
-                <para><emphasis role="bold">floatingip</emphasis>, representing an external IP
-                    address mapped to a Quantum port attached to an internal network.</para>
+                <para><emphasis role="bold">floatingip</emphasis>,
+                    representing an external IP address mapped to a
+                    Quantum port attached to an internal
+                    network.</para>
             </listitem>
-        </itemizedlist> Also, it extends the <emphasis role="bold">network </emphasis> resource by
-        defining a new attribute, <emphasis role="italic">router:external</emphasis>, which
-        specifies whether a network is meant to be connected to a router's external gateway and host
-        floating IPs. </para>
+        </itemizedlist>Also, it extends the <emphasis role="bold"
+            >network </emphasis> resource by defining a new attribute,
+            <emphasis role="italic">router:external</emphasis>, which
+        specifies whether a network is meant to be connected to a
+        router's external gateway and host floating IPs. </para>
       <?hard-pagebreak?>
       <section xml:id="router_ext_concepts">
           <title>Concepts</title>
@@ -68,14 +73,19 @@
                             <para>Boolean type, default value <literal>False</literal>.</para>
                         </listitem>
                         <listitem>
-                            <para>Usage of this attribute might be restricted through authorization
-                        policies. The default setting is as follows: only admin users can set this
-                        flag to True, whereas any user can read the value of this flag. Altough
-                        regular users won't be authorized to create instances with VIFs on external
-                        networks, they will be able to see them in their network list; this is
-                        because external networks can be used by any tenant to set an external
-                        gateway for their Quantum routers or create floating IPs and associate them
-                        with ports on internal tenant networks.</para>
+                            <para>Usage of this attribute might be
+                        restricted through authorization policies. The
+                        default setting is as follows: only admin
+                        users can set this flag to True, whereas any
+                        user can read the value of this flag. Although
+                        regular users won't be authorized to create
+                        instances with VIFs on external networks, they
+                        will be able to see them in their network
+                        list; this is because external networks can be
+                        used by any tenant to set an external gateway
+                        for their Quantum routers or create floating
+                        IPs and associate them with ports on internal
+                        tenant networks.</para>
                         </listitem>
                     </itemizedlist></para>
             <para>A <emphasis role="bold">router </emphasis> is used to interconnect subnets and
@@ -278,10 +288,9 @@
                 </table>
       </section>
       <?hard-pagebreak?>
-      <section xml:id="router_ext_ops">
-          <title>API operations</title>
+      
           <section xml:id="router_ext_ops_router">
-              <title>Router Operations</title>
+              <title>Router API Operations</title>
               <para>This section discusses operations for creating and managing routers through the
                 Quantum L3 API extension.</para>
                     <section xml:id="router_list">
@@ -302,8 +311,9 @@
                                     <tr>
                                         <td>&GET;</td>
                                         <td>/routers</td>
-                                        <td>Returns a list of logical routers accessbile to the
-                                    tenant submitting the request.</td>
+                                        <td>Returns a list of logical
+                                   routers accessible to the tenant
+                                   submitting the request.</td>
                                     </tr>
                                 </tbody>
                             </informaltable>
@@ -644,11 +654,11 @@ Accept: application/json
           </section>
           <?hard-pagebreak?>
           <section xml:id="router_ext_ops_floatingip">
-              <title>Floating IP Operations</title>
+              <title>Floating IP API Operations</title>
               <para>This section discusses operations for creating and managing floating IPs
                         through the Quantum L3 API extension.</para>
               <section xml:id="floatingip_list">
-                  <title>List floating IPs</title>
+                  <title>List Floating IPs</title>
                   <para>
                       <informaltable rules="all" width="100%">
                           <col width="20%"/>
@@ -665,7 +675,9 @@ Accept: application/json
                               <tr>
                                   <td>&GET;</td>
                                   <td>/floatingips</td>
-                                  <td>Returns a list of floating IPs accessibile to the tenant submitting the request.</td>
+                                  <td>Returns a list of floating IPs
+                                   accessible to the tenant submitting
+                                   the request.</td>
                               </tr>
                           </tbody>
                       </informaltable>
@@ -694,7 +706,7 @@ Accept: application/json
                         </example>
               </section>
               <section xml:id="floatingip_show">
-                  <title>Show floating IP</title>
+                  <title>Show Floating IP</title>
                   <para>
                       <informaltable rules="all" width="100%">
                         <col width="10%"/>
@@ -725,7 +737,8 @@ Accept: application/json
                             attributes should be returned by using the <parameter>fields</parameter>
                             query parameter. </para>
                             <example>
-                                <title>Show Floating IP (request specfic fields):  Request</title>
+                                <title>Show Floating IP (request
+                        specific fields): Request</title>
                                 <literallayout class="monospaced">
 GET /v2.0/floatingips/2f245a7b-796b-4f26-9cf9-9e82d248fda7.json?fields=fixed_ip_address&amp;fields=floating_ip_address
 Accept: application/json
@@ -738,7 +751,7 @@ Accept: application/json
               </section>
               <?hard-pagebreak?>
               <section xml:id="floatingip_create">
-                  <title>Create floating IP</title>
+                  <title>Create Floating IP</title>
                   <para>
                       <informaltable rules="all" width="100%">
                           <col width="20%"/>
@@ -809,7 +822,7 @@ Accept: application/json
               </section>
               <?hard-pagebreak?>
               <section xml:id="floatingip_update">
-                  <title>Update floating IP</title>
+                  <title>Update Floating IP</title>
                   <para>
                       <informaltable rules="all" width="100%">
                         <col width="10%"/>
@@ -837,12 +850,15 @@ Accept: application/json
                     409 Conflict</para>
                         <para>This operation requires a request body.</para>
                         <para>This operation returns a response body.</para>
-                        <para>This operation has the name of setting, unsetting, or updating the
-                            assocation between a floating ip and a Quantum port. The association
-                            process is exactly the same as the one discussed for the <emphasis
-                                role="italic">create floating IP</emphasis> operation.</para>
-                        <para>In order to disassociate a floating IP, the <literal>port_id</literal>
-                    request attribute should either be set to null or omitted in the request
+                        <para xml:id="para_jmc_xsv_pj">This operation
+                    updates an association between a floating IP and a
+                    Quantum port. The association process is exactly
+                    the same as the one discussed for the <emphasis
+                        role="italic">create floating IP</emphasis>
+                    operation.</para>
+                        <para>To disassociate a floating IP from a
+                    port, set the <literal>port_id</literal> request
+                    attribute to null or omit it from the request
                     body.</para>
                         <example>
                             <title>Update Floating IP (associate):  Request</title>
@@ -862,7 +878,7 @@ Accept: application/json
                   </example>
               </section>
               <section xml:id="floatingip_delete">
-                  <title>Delete floating IP</title>
+                  <title>Delete Floating IP</title>
                   <para>
                       <informaltable rules="all" width="100%">
                           <col width="20%"/>
@@ -902,5 +918,4 @@ Accept: application/json
                         </para>
               </section>
           </section>
-      </section>
     </section>
