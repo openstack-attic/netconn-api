@@ -1,0 +1,9 @@
+{
+    "member": {
+        "protocol_port": "8080",
+        "address": "10.0.0.5",
+        "pool_id": "72741b06-df4d-4715-b142-276b6bce75ab",
+        "weight": "2",
+        "admin_state_up": true
+    }
+}
