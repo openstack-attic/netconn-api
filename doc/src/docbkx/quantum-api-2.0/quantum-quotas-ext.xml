@@ -157,7 +157,7 @@ X-Auth-Token: c52a1b304fec4ca0ac85dc1741eec6e2
                     body.</para>
                 <para>This operation returns a response body.</para>
                 <example>
-                    <title>Show Port: JSON Request</title>
+                    <title>Show Quota: JSON Request</title>
                     <para>
                         <programlisting>
 GET /v2.0/quotas/5fcfbc3283a142a5bb6978b549a511ac.json HTTP/1.1
