@@ -1,0 +1,9 @@
+{
+    "health_monitor": {
+        "delay": "4",
+        "max_retries": "3",
+        "type": "TCP",
+        "timeout": "1",
+        "admin_state_up": true
+    }
+}
