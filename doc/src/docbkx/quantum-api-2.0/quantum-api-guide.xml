@@ -2616,6 +2616,7 @@ Content-Length: 410
     </section>
     <xi:include href="quantum-l3-ext.xml"/>
     <xi:include href="quantum-quotas-ext.xml"/>
+    <xi:include href="quantum-agent-ext.xml"/>
   </chapter>
 
 </book>
