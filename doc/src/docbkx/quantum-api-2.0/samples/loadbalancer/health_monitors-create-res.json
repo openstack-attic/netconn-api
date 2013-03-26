@@ -1,0 +1,12 @@
+{
+    "health_monitor": {
+        "status": "PENDING_CREATE",
+        "admin_state_up": true,
+        "tenant_id": "83657cfcdfe44cd5920adaf26c48ceea",
+        "delay": 4,
+        "max_retries": 3,
+        "timeout": 1,
+        "type": "TCP",
+        "id": "ada338f0-10d0-4326-b02e-cc123114f240"
+    }
+}
