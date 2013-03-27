@@ -2707,5 +2707,6 @@ Date: Wed, 12 Sep 2012 11:36:20 GMT</literallayout>
         <xi:include href="quantum-agent-ext.xml"/>
         <xi:include href="quantum-extraroute-ext.xml"/>
         <xi:include href="quantum-loadbalancer-ext.xml"/>
+        <xi:include href="quantum-scheduler-ext.xml"/>
     </chapter>
 </book>
