@@ -1,0 +1,512 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE section [
+        <!-- Some useful entities borrowed from HTML -->
+        <!ENTITY ndash  "&#x2013;">
+        <!ENTITY mdash  "&#x2014;">
+        <!ENTITY hellip "&#x2026;">
+        <!ENTITY plusmn "&#xB1;">
+
+        <!-- Useful for describing APIs -->
+        <!ENTITY GET    '<command xmlns="http://docbook.org/ns/docbook">GET</command>'>
+        <!ENTITY PUT    '<command xmlns="http://docbook.org/ns/docbook">PUT</command>'>
+        <!ENTITY POST   '<command xmlns="http://docbook.org/ns/docbook">POST</command>'>
+        <!ENTITY DELETE '<command xmlns="http://docbook.org/ns/docbook">DELETE</command>'>
+
+        <!ENTITY CHECK  '<inlinemediaobject xmlns="http://docbook.org/ns/docbook">
+                 <imageobject>
+                  <imagedata fileref="figures/Check_mark_23x20_02.svg"
+                             format="SVG" scale="60"/>
+                </imageobject>
+              </inlinemediaobject>'>
+
+        <!ENTITY ARROW  '<inlinemediaobject xmlns="http://docbook.org/ns/docbook">
+                 <imageobject>
+                  <imagedata fileref="figures/Arrow_east.svg"
+                             format="SVG" scale="60"/>
+                </imageobject>
+              </inlinemediaobject>'>
+ <!ENTITY APIv2   'Quantum API v2.0'>
+]>
+<section xmlns="http://docbook.org/ns/docbook"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:xi="http://www.w3.org/2001/XInclude"
+    xmlns:svg="http://www.w3.org/2000/svg"
+    xmlns:m="http://www.w3.org/1998/Math/MathML"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns:db="http://docbook.org/ns/docbook" version="5.0"
+    status="final" xml:id="agent_sche_ext">
+      <title>The Agent Schedulers Extension</title>
+      <para>The agent schedulers extension schedules resources among agents,
+      basing on the agent management extension.
+      Currently, it can schedule networks among DHCP agents and routers among L3 agents.</para>
+      <itemizedlist>
+           <listitem>
+            <para>DHCP agent scheduler API</para>
+            <informaltable rules="all" width="100%">
+                <col width="20%"/>
+                <col width="20%"/>
+                <col width="60%"/>
+                <thead>
+                    <tr align="center">
+                        <td>Verb</td>
+                        <td>URI</td>
+                        <td>Description</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>&GET;</td>
+                        <td>/agents/<parameter>agent_id</parameter>/dhcp-networks</td>
+                        <td>List networks the given DHCP agent is hosting.</td>
+                    </tr>
+                    <tr>
+                        <td>&GET;</td>
+                        <td>/networks/<parameter>network_id</parameter>/dhcp-agents</td>
+                        <td>List DHCP agents hosting the given network.</td>
+                    </tr>
+                    <tr>
+                        <td>&POST;</td>
+                        <td>/agents/<parameter>agent_id</parameter>/dhcp-networks</td>
+                        <td>Schedule one network to the given DHCP agent.</td>
+                    </tr>
+                    <tr>
+                        <td>&DELETE;</td>
+                        <td>/agents/<parameter>agent_id</parameter>/dhcp-networks/<parameter>network_id</parameter></td>
+                        <td>Remove the network from the given DHCP agent.</td>
+                    </tr>
+                </tbody>
+            </informaltable>
+            </listitem>
+           <listitem>
+            <para>L3 agent scheduler API</para>
+            <informaltable rules="all" width="100%">
+                <col width="20%"/>
+                <col width="20%"/>
+                <col width="60%"/>
+                <thead>
+                    <tr align="center">
+                        <td>Verb</td>
+                        <td>URI</td>
+                        <td>Description</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>&GET;</td>
+                        <td>/agents/<parameter>agent_id</parameter>/l3-routers</td>
+                        <td>List routers the given L3 agent is hosting.</td>
+                    </tr>
+                    <tr>
+                        <td>&GET;</td>
+                        <td>/routers/<parameter>router_id</parameter>/l3-agents</td>
+                        <td>List L3 agents hosting the given router.</td>
+                    </tr>
+                    <tr>
+                        <td>&POST;</td>
+                        <td>/agents/<parameter>agent_id</parameter>/l3-routers</td>
+                        <td>Schedule one router to the given L3 agent.</td>
+                    </tr>
+                    <tr>
+                        <td>&DELETE;</td>
+                        <td>/agents/<parameter>agent_id</parameter>/l3-routers/<parameter>router_id</parameter></td>
+                        <td>Remove the router from the given L3 agent.</td>
+                    </tr>
+                </tbody>
+            </informaltable>
+            </listitem>
+            </itemizedlist>
+            <?hard-pagebreak?>
+        <section xml:id="Scheduler_DHCP_Agent">
+            <title>DHCP Agent Scheduler</title>
+            <section xml:id="Sche_List_Networks_on_Dhcp_Agent">
+                <title>List Networks hosted by one DHCP agent</title>
+                <informaltable rules="all" width="100%">
+                    <col width="20%"/>
+                    <col width="20%"/>
+                    <col width="60%"/>
+                    <thead>
+                        <tr>
+                            <td>Verb</td>
+                            <td>URI</td>
+                            <td>Description</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>&GET;</td>
+                        <td>/agents/<parameter>agent_id</parameter>/dhcp-networks</td>
+                        <td>List networks the given DHCP agent is hosting.</td>
+                    </tr>
+                    </tbody>
+                </informaltable>
+                <simpara>Normal Response Code:
+                        <returnvalue>200</returnvalue>
+                </simpara>
+                <simpara>Error Response Codes: Unauthorized
+                        (<errorcode>401</errorcode>), Forbidden
+                        (<errorcode>403</errorcode>)</simpara>
+                <para>This operation does not require a request body. </para>
+                <para>This operation returns a response body.</para>
+                <example>
+                    <title>List Networks on DHCP agent: JSON Request</title>
+                    <programlisting>
+GET /v2.0/agents/d5724d7e-389d-4ba0-8d00-fc673a147bfa/dhcp-networks HTTP/1.1
+Host: localhost:9696
+User-Agent: python-quantumclient
+Content-Type: application/json
+Accept: application/json
+X-Auth-Token: 797f94caf0a8481c893a232cc0c1dfca
+
+	                </programlisting>
+                    <para>Response:</para>
+                    <programlisting language="json"><xi:include href="samples/sche-network-list-res.json" parse="text"/></programlisting>
+                </example>
+            </section>
+
+            <?hard-pagebreak?>
+            <section xml:id="Sche_List_DHCP_agents_Hosting_Network">
+                <title>List DHCP agents hosting network</title>
+                <informaltable rules="all" width="100%">
+                    <col width="20%"/>
+                    <col width="20%"/>
+                    <col width="60%"/>
+                    <thead>
+                        <tr>
+                            <td>Verb</td>
+                            <td>URI</td>
+                            <td>Description</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>&GET;</td>
+                        <td>/networks/<parameter>network_id</parameter>/dhcp-agents</td>
+                        <td>List DHCP agents hosting the given network.</td>
+                    </tr>
+                    </tbody>
+                </informaltable>
+                <simpara>Normal Response Code:
+                        <returnvalue>200</returnvalue>
+                </simpara>
+                <simpara>Error Response Codes: Unauthorized
+                        (<errorcode>401</errorcode>), Forbidden
+                        (<errorcode>403</errorcode>)</simpara>
+                <para>This operation does not require a request
+                    body.</para>
+                <para>This operation returns a response body.</para>
+                <example>
+                    <title>List DHCP agents hosting network: JSON Request</title>
+                    <para>
+                        <programlisting>
+GET /v2.0/networks/2d627131-c841-4e3a-ace6-f2dd75773b6d/dhcp-agents HTTP/1.1
+Host: localhost:9696
+User-Agent: python-quantumclient
+Content-Type: application/json
+Accept: application/json
+X-Auth-Token: cc0f378bdf1545fb8dea2120c89eb532
+</programlisting>
+                    </para>
+                    <para>Response:</para>
+                    <programlisting language="json"><xi:include href="samples/sche-dhcp-list-res.json" parse="text"/></programlisting>
+                </example>
+            </section>
+
+            <?hard-pagebreak?>
+            <section xml:id="Sche_Network_DHCP">
+                <title>Schedule a network to DHCP agent</title>
+                <informaltable rules="all" width="100%">
+                    <col width="20%"/>
+                    <col width="20%"/>
+                    <col width="60%"/>
+                    <thead>
+                        <tr>
+                            <td>Verb</td>
+                            <td>URI</td>
+                            <td>Description</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>&POST;</td>
+                        <td>/agents/<parameter>agent_id</parameter>/l3-routers</td>
+                        <td>Schedule one router to the given L3 agent.</td>
+                    </tr>
+                    </tbody>
+                </informaltable>
+                <simpara>Normal Response Code:
+                        <returnvalue>201</returnvalue>
+                </simpara>
+                <simpara>Error Response Codes: Unauthorized
+                        (<errorcode>401</errorcode>), Forbidden
+                        (<errorcode>403</errorcode>),
+                         Conflict (<errorcode>409</errorcode>) if the network is
+                         already hosted by the given DHCP agent.</simpara>
+                <para>This operation requires a request body.
+                </para>
+                <para>This operation returns a <literal>null</literal> body.</para>
+                <example>
+                    <title>Schedule Network: JSON Request</title>
+                    <programlisting>
+POST /v2.0/agents/d5724d7e-389d-4ba0-8d00-fc673a147bfa/dhcp-networks.json HTTP/1.1
+Host: localhost:9696
+User-Agent: python-quantumclient
+Content-Type: application/json
+Accept: application/json
+X-Auth-Token: d88f7af21ee34f6c87e23e46cf3f986d
+Content-Length: 54
+
+<xi:include href="samples/sche-network-dhcp-req.json" parse="text"/></programlisting>
+                </example>
+                <example>
+                    <title>Schedule Network: JSON Response</title>
+                    <programlisting language="json"><xi:include href="samples/sche-network-dhcp-res.json" parse="text"/></programlisting>
+                </example>
+                </section>
+            <?hard-pagebreak?>
+            <section xml:id="Sche_Remove_Network_DHCP">
+                <title>Remove Network From DHCP agent</title>
+                <informaltable rules="all" width="100%">
+                    <col width="20%"/>
+                    <col width="20%"/>
+                    <col width="60%"/>
+                    <thead>
+                        <tr>
+                            <td>Verb</td>
+                            <td>URI</td>
+                            <td>Description</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>&DELETE;</td>
+                        <td>/agents/<parameter>agent_id</parameter>/dhcp-networks/<parameter>network_id</parameter></td>
+                        <td>Remove the network from the given DHCP agent.</td>
+                    </tr>
+                    </tbody>
+                </informaltable>
+                <simpara>Normal Response Code:
+                        <returnvalue>204</returnvalue>
+                </simpara>
+                <simpara>Error Response Codes: Unauthorized
+                        (<errorcode>401</errorcode>), Forbidden
+                        (<errorcode>403</errorcode>), NotFound
+                        (<errorcode>404</errorcode>),
+                        Conflict (<errorcode>409</errorcode>) if the network is
+                         not hosted by the given DHCP agent.</simpara>
+                <para>This operation does not require a request
+                    body.</para>
+                <para>This operation does not return a response
+                    body.</para>
+                <example>
+                    <title>Remove Network From DHCP agent: JSON Request</title>
+
+                    <programlisting>
+DELETE /v2.0/agents/d5724d7e-389d-4ba0-8d00-fc673a147bfa/dhcp-networks/1ae075ca-708b-4e66-b4a7-b7698632f05f.json HTTP/1.1
+Host: localhost:9696
+User-Agent: python-quantumclient
+Content-Type: application/json
+Accept: application/json
+X-Auth-Token: 7ae91cde8f504031be5a2cd5b99d4fe9
+                    </programlisting>
+                </example>
+            </section>
+            </section>
+        <?hard-pagebreak?>
+        <section xml:id="Scheduler_L3_Agent">
+            <title>L3 Agent Scheduler</title>
+            <section xml:id="Sche_List_Routers_on_L3_Agent">
+                <title>List Routers hosted by one L3 agent</title>
+                <informaltable rules="all" width="100%">
+                    <col width="20%"/>
+                    <col width="20%"/>
+                    <col width="60%"/>
+                    <thead>
+                        <tr>
+                            <td>Verb</td>
+                            <td>URI</td>
+                            <td>Description</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>&GET;</td>
+                        <td>/agents/<parameter>agent_id</parameter>/l3-routers</td>
+                        <td>List routers the given L3 agent is hosting.</td>
+                    </tr>
+                    </tbody>
+                </informaltable>
+                <simpara>Normal Response Code:
+                        <returnvalue>200</returnvalue>
+                </simpara>
+                <simpara>Error Response Codes: Unauthorized
+                        (<errorcode>401</errorcode>), Forbidden
+                        (<errorcode>403</errorcode>)</simpara>
+                <para>This operation does not require a request body. </para>
+                <para>This operation returns a response body.</para>
+                <example>
+                    <title>List Routers on L3 agent: JSON Request</title>
+                    <programlisting>
+GET /v2.0/agents/fa24e88e-3d2f-4fc2-b038-5fb5be294c03/l3-routers.json HTTP/1.1
+Host: localhost:9696
+User-Agent: python-quantumclient
+Content-Type: application/json
+Accept: application/json
+X-Auth-Token: 6eeea6e73b68415f85d8368902a32c11
+
+	                </programlisting>
+                    <para>Response:</para>
+                    <programlisting language="json"><xi:include href="samples/sche-router-list-res.json" parse="text"/></programlisting>
+                </example>
+            </section>
+
+            <?hard-pagebreak?>
+            <section xml:id="Sche_List_L3_agents_Hosting_Router">
+                <title>List L3 agents hosting router</title>
+                <informaltable rules="all" width="100%">
+                    <col width="20%"/>
+                    <col width="20%"/>
+                    <col width="60%"/>
+                    <thead>
+                        <tr>
+                            <td>Verb</td>
+                            <td>URI</td>
+                            <td>Description</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>&GET;</td>
+                        <td>/routers/<parameter>router_id</parameter>/l3-agents</td>
+                        <td>List L3 agents hosting the given router.</td>
+                    </tr>
+                    </tbody>
+                </informaltable>
+                <simpara>Normal Response Code:
+                        <returnvalue>200</returnvalue>
+                </simpara>
+                <simpara>Error Response Codes: Unauthorized
+                        (<errorcode>401</errorcode>), Forbidden
+                        (<errorcode>403</errorcode>)</simpara>
+                <para>This operation does not require a request
+                    body.</para>
+                <para>This operation returns a response body.</para>
+                <example>
+                    <title>List L3 agents hosting router: JSON Request</title>
+                    <para>
+                        <programlisting>
+GET /v2.0/routers/8eef2388-f27d-4a17-986e-9319a77ccd9d/l3-agents.json HTTP/1.1
+Host: localhost:9696
+User-Agent: python-quantumclient
+Content-Type: application/json
+Accept: application/json
+X-Auth-Token: bce63afb1e794c70972a19a7c2d6dcab
+
+</programlisting>
+                    </para>
+                    <para>Response:</para>
+                    <programlisting language="json"><xi:include href="samples/sche-l3-list-res.json" parse="text"/></programlisting>
+                </example>
+            </section>
+
+            <?hard-pagebreak?>
+            <section xml:id="Sche_Router_L3">
+                <title>Schedule a router to L3 agent</title>
+                <informaltable rules="all" width="100%">
+                    <col width="20%"/>
+                    <col width="20%"/>
+                    <col width="60%"/>
+                    <thead>
+                        <tr>
+                            <td>Verb</td>
+                            <td>URI</td>
+                            <td>Description</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>&POST;</td>
+                        <td>/agents/<parameter>agent_id</parameter>/l3-routers</td>
+                        <td>Schedule one router to the given L3 agent.</td>
+                    </tr>
+                    </tbody>
+                </informaltable>
+                <simpara>Normal Response Code:
+                        <returnvalue>201</returnvalue>
+                </simpara>
+                <simpara>Error Response Codes: Unauthorized
+                        (<errorcode>401</errorcode>), Forbidden
+                        (<errorcode>403</errorcode>),
+                         Conflict (<errorcode>409</errorcode>) if the router is
+                         already hosted.
+                         NotFound (<errorcode>404</errorcode>)</simpara>
+                <para>This operation requires a request body.
+                </para>
+                <para>This operation returns a <literal>null</literal> body.</para>
+                <example>
+                    <title>Schedule Network: JSON Request</title>
+                    <programlisting>
+http://localhost:9696/v2.0/agents/fa24e88e-3d2f-4fc2-b038-5fb5be294c03/l3-routers.json HTTP/1.1
+Host: localhost:9696
+User-Agent: python-quantumclient
+Content-Type: application/json
+Accept: application/json
+X-Auth-Token: d88f7af21ee34f6c87e23e46cf3f986d
+Content-Length: 54
+
+<xi:include href="samples/sche-router-l3-req.json" parse="text"/></programlisting>
+                </example>
+                <example>
+                    <title>Schedule Router: JSON Response</title>
+                    <programlisting language="json"><xi:include href="samples/sche-router-l3-res.json" parse="text"/></programlisting>
+                </example>
+                </section>
+            <?hard-pagebreak?>
+            <section xml:id="Sche_Remove_Router_L3">
+                <title>Remove Router From L3 agent</title>
+                <informaltable rules="all" width="100%">
+                    <col width="20%"/>
+                    <col width="20%"/>
+                    <col width="60%"/>
+                    <thead>
+                        <tr>
+                            <td>Verb</td>
+                            <td>URI</td>
+                            <td>Description</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>&DELETE;</td>
+                        <td>/agents/<parameter>agent_id</parameter>/l3-routers/<parameter>network_id</parameter></td>
+                        <td>Remove the router from the given L3 agent.</td>
+                    </tr>
+                    </tbody>
+                </informaltable>
+                <simpara>Normal Response Code:
+                        <returnvalue>204</returnvalue>
+                </simpara>
+                <simpara>Error Response Codes: Unauthorized
+                        (<errorcode>401</errorcode>), Forbidden
+                        (<errorcode>403</errorcode>),
+                        Conflict (<errorcode>409</errorcode>) if the router is
+                         not hosted by the given L3 agent.</simpara>
+                <para>This operation does not require a request
+                    body.</para>
+                <para>This operation does not return a response
+                    body.</para>
+                <example>
+                    <title>Remove Router From L3 agent: JSON Request</title>
+
+                    <programlisting>
+DELETE /v2.0/agents/b7d7ba43-1a05-4b09-ba07-67242d4a98f4/l3-routers/8eef2388-f27d-4a17-986e-9319a77ccd9d.json HTTP/1.1
+Host: localhost:9696
+User-Agent: python-quantumclient
+Content-Type: application/json
+Accept: application/json
+X-Auth-Token: 2147ef6fe4444f0299b1c0b6b529ff47
+                    </programlisting>
+                </example>
+            </section>
+            </section>
+        </section>
+        
