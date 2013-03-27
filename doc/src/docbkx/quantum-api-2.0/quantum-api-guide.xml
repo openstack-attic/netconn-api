@@ -2596,5 +2596,7 @@ Date: Wed, 12 Sep 2012 11:36:20 GMT
         </section>
         <xi:include href="quantum-l3-ext.xml"/>
         <xi:include href="quantum-quotas-ext.xml"/>
+        <?hard-pagebreak?>
+        <xi:include href="quantum-scheduler-ext.xml"/>
     </chapter>
 </book>

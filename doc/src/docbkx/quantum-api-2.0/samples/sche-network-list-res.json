@@ -1,0 +1,45 @@
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=UTF-8
+Content-Length: 1056
+Date: Wed, 27 Mar 2013 00:55:39 GMT
+
+{
+    "networks": [{
+            "status": "ACTIVE",
+            "subnets": ["15a09f6c-87a5-4d14-b2cf-03d97cd4b456"],
+            "name": "net1",
+            "provider:physical_network": "physnet1",
+            "admin_state_up": true,
+            "tenant_id": "3671f46ec35e4bbca6ef92ab7975e463",
+            "provider:network_type": "vlan",
+            "router:external": false,
+            "shared": false,
+            "id": "2d627131-c841-4e3a-ace6-f2dd75773b6d",
+            "provider:segmentation_id": 1001
+        }, {
+            "status": "ACTIVE",
+            "subnets": [],
+            "name": "net2",
+            "provider:physical_network": null,
+            "admin_state_up": true,
+            "tenant_id": "3671f46ec35e4bbca6ef92ab7975e463",
+            "provider:network_type": "local",
+            "router:external": false,
+            "shared": false,
+            "id": "524e26ea-fad4-4bb0-b504-1ad0dc770e7a",
+            "provider:segmentation_id": null
+        }, {
+            "status": "ACTIVE",
+            "subnets": ["43671fba-c76b-4c33-bd7e-8bef54145f2f"],
+            "name": "mynet1",
+            "provider:physical_network": "physnet1",
+            "admin_state_up": true,
+            "tenant_id": "3671f46ec35e4bbca6ef92ab7975e463",
+            "provider:network_type": "vlan",
+            "router:external": false,
+            "shared": false,
+            "id": "cfa65a54-06a8-4f9f-86b0-73c700c02c41",
+            "provider:segmentation_id": 1000
+        }
+    ]
+}
