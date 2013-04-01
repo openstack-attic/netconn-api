@@ -2588,12 +2588,7 @@ Date: Wed, 12 Sep 2012 11:36:20 GMT
 &lt;description&gt;Router abstraction for basic L3 forwarding between L2 Quantum networks and access to external networks via a NAT gateway.&lt;/description&gt;
 &lt;/extension&gt;</programlisting>
         </section>
-        <section xml:id="provider_ext">
-            <title>The Provider Networks Extensions
-                    (<literal>provider</literal>)</title>
-            <para>Discuss attributes exposed by this extension and how
-                they work</para>
-        </section>
+        <xi:include href="quantum-provider-ext.xml"/>
         <xi:include href="quantum-l3-ext.xml"/>
         <xi:include href="quantum-quotas-ext.xml"/>
     </chapter>
