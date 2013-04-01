@@ -1,0 +1,28 @@
+{
+  "networks": [
+  {
+    "status": "ACTIVE",
+    "subnets": [], 
+    "name": "network-1",
+    "admin_state_up": true,
+    "tenant_id": "c1210485b2424d48804aad5d39c61b8f", 
+    "id": "3a06dfc7-d239-4aad-9a57-21cd171c72e5",
+    "shared": false,
+    "provider:network_type": "vlan",
+    "provider:physical_network": "physnet_1",
+    "provider:segmentation_id": 101
+  }, 
+  {
+    "status": "ACTIVE",
+    "subnets": [],
+    "name": "network-2",
+    "admin_state_up": true,
+    "tenant_id": "c1210485b2424d48804aad5d39c61b8f",
+    "id": "7db8c5a4-6eb0-478d-856b-7cfda2b25e13",
+    "shared": false,
+    "provider:network_type": "local",
+    "provider:physical_network": null,
+    "provider:segmentation_id": null
+  }, 
+ ]
+}

@@ -1,0 +1,13 @@
+PUT /v2.0/networks/3a06dfc7-d239-4aad-9a57-21cd171c72e5.json
+
+Content-Type: application/json
+Accept: application/json
+
+{
+ "network": 
+    {
+      "provider:network_type": "flat",
+      "provider:physical_network": "physnet_1",
+      "provider:segmentation_id": null
+    }
+}

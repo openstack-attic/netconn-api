@@ -2615,13 +2615,7 @@ Content-Length: 410
 
 </programlisting>
     </section>
-    <section xml:id="provider_ext">
-      <title>The Provider Networks Extensions
-      (<literal>provider</literal>)</title>
-
-      <para>Discuss attributes exposed by this extension and how they
-      work</para>
-    </section>
+    <xi:include href="quantum-provider-ext.xml"/>
     <xi:include href="quantum-l3-ext.xml"/>
     <xi:include href="quantum-quotas-ext.xml"/>
   </chapter>
