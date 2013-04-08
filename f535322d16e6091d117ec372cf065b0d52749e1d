@@ -1,0 +1,9 @@
+Verified+2: Jenkins
+Approved+1: Salvatore Orlando <salv.orlando@gmail.com>
+Code-Review+2: Salvatore Orlando <salv.orlando@gmail.com>
+Code-Review+2: Akihiro Motoki <motoki@da.jp.nec.com>
+Submitted-by: Jenkins
+Submitted-at: Mon, 08 Apr 2013 21:29:50 +0000
+Reviewed-on: https://review.openstack.org/22536
+Project: openstack/netconn-api
+Branch: refs/heads/master
