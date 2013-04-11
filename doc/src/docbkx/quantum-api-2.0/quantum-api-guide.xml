@@ -1,30 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE book[
-        <!-- Some useful entities borrowed from HTML -->
-        <!ENTITY ndash  "&#x2013;">
-        <!ENTITY mdash  "&#x2014;">
-        <!ENTITY hellip "&#x2026;">
-        <!ENTITY plusmn "&#xB1;">
+<!-- Some useful entities borrowed from HTML -->
+<!ENTITY ndash  "&#x2013;">
+<!ENTITY mdash  "&#x2014;">
+<!ENTITY hellip "&#x2026;">
+<!ENTITY plusmn "&#xB1;">
 
-        <!-- Useful for describing APIs -->
-        <!ENTITY GET    '<command xmlns="http://docbook.org/ns/docbook">GET</command>'>
-        <!ENTITY PUT    '<command xmlns="http://docbook.org/ns/docbook">PUT</command>'>
-        <!ENTITY POST   '<command xmlns="http://docbook.org/ns/docbook">POST</command>'>
-        <!ENTITY DELETE '<command xmlns="http://docbook.org/ns/docbook">DELETE</command>'>
+<!-- Useful for describing APIs -->
+<!ENTITY GET    '<command xmlns="http://docbook.org/ns/docbook">GET</command>'>
+<!ENTITY PUT    '<command xmlns="http://docbook.org/ns/docbook">PUT</command>'>
+<!ENTITY POST   '<command xmlns="http://docbook.org/ns/docbook">POST</command>'>
+<!ENTITY DELETE '<command xmlns="http://docbook.org/ns/docbook">DELETE</command>'>
 
-        <!ENTITY CHECK  '<inlinemediaobject xmlns="http://docbook.org/ns/docbook">
-                 <imageobject>
-                  <imagedata fileref="figures/Check_mark_23x20_02.svg"
-                             format="SVG" scale="60"/>
-                </imageobject>
-              </inlinemediaobject>'>
+<!ENTITY CHECK  '<inlinemediaobject xmlns="http://docbook.org/ns/docbook">
+ <imageobject>
+  <imagedata fileref="figures/Check_mark_23x20_02.svg"
+     format="SVG" scale="60"/>
+</imageobject>
+      </inlinemediaobject>'>
 
-        <!ENTITY ARROW  '<inlinemediaobject xmlns="http://docbook.org/ns/docbook">
-                 <imageobject>
-                  <imagedata fileref="figures/Arrow_east.svg"
-                             format="SVG" scale="60"/>
-                </imageobject>
-              </inlinemediaobject>'>
+<!ENTITY ARROW  '<inlinemediaobject xmlns="http://docbook.org/ns/docbook">
+ <imageobject>
+  <imagedata fileref="figures/Arrow_east.svg"
+     format="SVG" scale="60"/>
+</imageobject>
+      </inlinemediaobject>'>
  <!ENTITY APIv2   'Quantum API v2.0'>
 ]>
 <book xmlns="http://docbook.org/ns/docbook"
@@ -33,8 +33,8 @@
     xmlns:svg="http://www.w3.org/2000/svg"
     xmlns:m="http://www.w3.org/1998/Math/MathML"
     xmlns:html="http://www.w3.org/1999/xhtml"
-    xmlns:db="http://docbook.org/ns/docbook" version="5.0" status="final"
-    xml:id="Quantum-api-spec">
+    xmlns:db="http://docbook.org/ns/docbook" version="5.0"
+    status="final" xml:id="Quantum-api-spec">
     <title>Quantum API Guide (v2.0)</title>
     <titleabbrev>Quantum API v2.0</titleabbrev>
     <info>
@@ -47,12 +47,13 @@
         <copyright>
             <year>2011</year>
             <year>2012</year>
+            <year>2013</year>
             <holder>OpenStack</holder>
         </copyright>
         <releaseinfo>Quantum API v2.0</releaseinfo>
         <productname>OpenStack Quantum (virtual network
             service)</productname>
-        <pubdate>2012-08-17</pubdate>
+        <pubdate/>
         <legalnotice role="apache2">
             <annotation>
                 <remark>Copyright details are filled in by the
@@ -67,11 +68,25 @@
         <revhistory>
             <revision>
                 <!-- ... continue addding more revisions here as you change this document using the markup shown below... -->
+                <date>2013-03-23</date>
+                <revdescription>
+                    <itemizedlist spacing="compact">
+                        <listitem>
+                            <para>Updated incorrect nova command
+                                examples in <xref linkend="Theory"
+                                />.</para>
+                        </listitem>
+                    </itemizedlist>
+                </revdescription>
+            </revision>
+            <revision>
+                <!-- ... continue addding more revisions here as you change this document using the markup shown below... -->
                 <date>2012-09-05</date>
                 <revdescription>
                     <itemizedlist spacing="compact">
                         <listitem>
-                            <para>Removes XML as a valid request or response type.</para>
+                            <para>Removes XML as a valid request or
+                                response type.</para>
                         </listitem>
                     </itemizedlist>
                 </revdescription>
@@ -92,10 +107,16 @@
     <chapter xml:id="Overview-d1e71">
         <title>Overview</title>
         <para>The Quantum project provides virtual networking services
-            among devices that are managed by the <link xlink:href="http://wiki.openstack.org/OpenStack">OpenStack</link> compute service. </para>
-        <para>The &APIv2; combines the <link xlink:href="http://docs.openstack.org/api/openstack-network/1.0/content/">Quantum API v1.1</link> with some essential Internet
+            among devices that are managed by the <link
+                xlink:href="http://wiki.openstack.org/OpenStack"
+                >OpenStack</link> compute service. </para>
+        <para>The &APIv2; combines the <link
+                xlink:href="http://docs.openstack.org/api/openstack-network/1.0/content/"
+                >Quantum API v1.1</link> with some essential Internet
             Protocol Address Management (IPAM) capabilities from the
-                <link xlink:href="http://melange.readthedocs.org/en/latest/apidoc.html">Melange API</link>. </para>
+                <link
+                xlink:href="http://melange.readthedocs.org/en/latest/apidoc.html"
+                >Melange API</link>. </para>
         <para>These IPAM capabilities enable you to:<itemizedlist>
                 <listitem>
                     <para>Associate IP address blocks and other
@@ -125,11 +146,7 @@
                     v1.<varname>x</varname>, install an earlier
                 release of Quantum.</para>
         </note>
-
-
-
         <?hard-pagebreak?>
-
         <section xml:id="Glossary">
             <title>Glossary</title>
             <informaltable rules="all">
@@ -154,7 +171,6 @@
                             network services provided by Quantum. An
                             entity can use Quantum network services by
                             implementing a VIF. </td>
-
                     </tr>
                     <tr>
                         <td align="left">IPAM</td>
@@ -227,55 +243,88 @@
         <?hard-pagebreak?>
         <section xml:id="Theory">
             <title>High-Level Task Flow</title>
-            <para>The high-level task flow for Quantum networking is
-                as follows:</para>
-            <orderedlist>
-
-                <listitem>
+            <para>The high-level task flow for Quantum networking
+                involves creating a network, associating a subnet with
+                that network, and booting a VM that is attached to the
+                network. Clean-up includes deleting the VM, deleting
+                any ports associated with the network, and deleting
+                the networks. Quantum deletes any subnets associated
+                with the deleted network.</para>
+            <procedure>
+                <title>To use Quantum networking - high-level task
+                    flow:</title>
+                <step>
+                    <title>Create a network</title>
                     <para>The tenant creates a network. </para>
                     <para>For example, the tenant creates the
-                            <literal>net1</literal> network.</para>
-                </listitem>
-                <listitem>
+                            <literal>net1</literal> network. Its ID is
+                            <emphasis role="italic"
+                        >net1_id</emphasis>.</para>
+                    <para>See <xref linkend="Create_Network"/>.</para>
+                </step>
+                <step>
+                    <title>Associate a subnet with the network</title>
                     <para>The tenant associates a subnet with that
                         network. </para>
                     <para>For example, the tenant associates the
                             <literal>10.0.0.0/24</literal> subnet with
                         the <literal>net1</literal> network.</para>
-                </listitem>
-                <listitem>
+                    <para>See <xref linkend="create_subnet"/>.</para>
+                </step>
+                <step>
+                    <title>Boot a VM and attach it to the
+                        network</title>
                     <para>The tenant boots a virtual machine (VM) and
                         specifies a single NIC that connects to the
                         network. </para>
-                    <para>For
-                        example A:<programlisting language="bash" role="gutter: false"><prompt>$</prompt> nova boot --image <emphasis role="italic">image_name</emphasis> --nic net-id=<emphasis role="italic">id_of_net1</emphasis> <emphasis role="italic">server_name</emphasis></programlisting>
-                        example B:<programlisting language="bash" role="gutter: false"><prompt>$</prompt> nova boot --image <emphasis role="italic">image_name</emphasis> --nic port-id=<emphasis role="italic">id_of_port1</emphasis> <emphasis role="italic">server_name</emphasis></programlisting>
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>In example A, Nova contacts Quantum and creates the
-                            <literal>port1</literal> port on the
-                            <literal>net1</literal> network.</para>
-                    <para>In example B, You should create port before boot a VM.</para>
-                </listitem>
-                <listitem>
-                    <para>Quantum assigns an IP address to the
-                            <literal>port1</literal> port.</para>
-                    <note>
-                        <para>Quantum chooses the IP address by default.
-                        </para></note>
-                </listitem>
-                <listitem>
+                    <para>The following examples use the nova client
+                        to boot a VM. </para>
+                    <para>In the first example, Nova contacts Quantum
+                        to create the NIC and attach it to the
+                            <db:literal>net1</db:literal> network,
+                        with the ID <emphasis role="italic"
+                            >net1_id</emphasis>:</para>
+                    <programlisting language="bash" role="gutter: false"><prompt>$</prompt> nova boot &lt;server_name&gt; --image &lt;image&gt; --flavor &lt;flavor&gt; --nic net-id=&lt;net1_id&gt;</programlisting>
+                    <para>In a second example, you first create the
+                            <literal>port1</literal>, port and then
+                        you boot the VM with a specified port. Quantum
+                        creates a NIC and attaches it to the
+                            <literal>port1</literal> port, with the ID
+                            <emphasis role="italic"
+                            >port1_id</emphasis>: </para>
+                    <programlisting language="bash" role="gutter: false"><prompt>$</prompt> nova boot &lt;server_name&gt; --image &lt;image&gt; --flavor &lt;flavor&gt; --nic port-id=&lt;port1_id&gt;</programlisting>
+                    <para>Quantum chooses and assigns an IP address to
+                        the <literal>port1</literal> port.</para>
+                    <para>For information about how to create ports,
+                        see <xref linkend="Create_Port"/>. </para>
+                    <para>For more information about the <command>nova
+                            boot</command> command, enter:</para>
+                    <programlisting><prompt>$</prompt> nova help boot</programlisting>
+                </step>
+                <step>
+                    <title>Delete the VM</title>
                     <para>The tenant deletes the VM. </para>
-                </listitem>
-                <listitem>
                     <para>Nova contacts Quantum and deletes the
-                            <literal>port1</literal> port. </para>
+                            <literal>port1</literal> port.</para>
                     <para>The allocated IP address is returned to the
                         pool of available IP addresses. </para>
-                </listitem>
-            </orderedlist>
-
+                </step>
+                <step>
+                    <title>Delete any ports</title>
+                    <para>If the tenant created any ports and
+                        associated them with the network, the tenant
+                        deletes the ports.</para>
+                    <para>See <xref linkend="Delete_Port"/>.</para>
+                </step>
+                <step>
+                    <title>Delete the network</title>
+                    <para>The tenant deletes the network. This
+                        operation deletes a Quantum network and its
+                        associated subnets provided that no port is
+                        currently configured on the network. </para>
+                    <para>See <xref linkend="Delete_Network"/>.</para>
+                </step>
+            </procedure>
         </section>
         <?hard-pagebreak?>
         <section xml:id="plugin">
@@ -285,9 +334,8 @@
                 technologies to provide isolated virtual networks to
                 tenants. A plugin also provides other services, such
                 as IP address management. Because each plugin
-                implements all the operations included in &APIv2;, you
-                do not need to be concerned about which plugin is
-                used. </para>
+                implements all the operations included in &APIv2;, do
+                not be concerned about which plugin is used. </para>
             <para>However, some plugins might expose additional
                 capabilities through API extensions, which are
                 discussed in this document. For more information about
@@ -309,12 +357,14 @@
                     <para><emphasis role="bold">Subnet</emphasis>. An
                         IP version 4 or version 6 address block from
                         which IP addresses that are assigned to VMs on
-                        a specified network are selected. See <xref linkend="subnet"/>.</para>
+                        a specified network are selected. See <xref
+                            linkend="subnet"/>.</para>
                 </listitem>
                 <listitem>
                     <para><emphasis role="bold">Port</emphasis>. A
                         virtual, or logical, switch port on a
-                        specified network. See <xref linkend="Port"/>.</para>
+                        specified network. See <xref linkend="Port"
+                        />.</para>
                 </listitem>
             </itemizedlist></para>
         <para>These entities have auto-generated unique identifiers
@@ -353,20 +403,24 @@
                         <th>CRUD<footnote xml:id="crud">
                                 <para><itemizedlist>
                                    <listitem>
-                                   <para><emphasis role="bold">C</emphasis>. Use the attribute in
+                                   <para><emphasis role="bold"
+                                   >C</emphasis>. Use the attribute in
                                    create operations. </para>
                                    </listitem>
                                    <listitem>
-                                   <para><emphasis role="bold">R</emphasis>. This attribute is
+                                   <para><emphasis role="bold"
+                                   >R</emphasis>. This attribute is
                                    returned in response to show and
                                    list operations. </para>
                                    </listitem>
                                    <listitem>
-                                   <para><emphasis role="bold">U</emphasis>. You can update the
+                                   <para><emphasis role="bold"
+                                   >U</emphasis>. You can update the
                                    value of this attribute.</para>
                                    </listitem>
                                    <listitem>
-                                   <para><emphasis role="bold">D</emphasis>. You can delete the
+                                   <para><emphasis role="bold"
+                                   >D</emphasis>. You can delete the
                                    value of this attribute. </para>
                                    </listitem>
                                    </itemizedlist></para>
@@ -376,7 +430,6 @@
                         <th>Notes</th>
                     </tr>
                 </thead>
-
                 <tbody>
                     <tr>
                         <td>id </td>
@@ -451,7 +504,8 @@
                         <td>CRU</td>
                         <td>False</td>
                         <td>{ True | False } </td>
-                        <td>Specifies whether the network resource can be accessed by any tenant or not.</td>
+                        <td>Specifies whether the network resource can
+                            be accessed by any tenant or not.</td>
                     </tr>
                     <tr>
                         <td>tenant_id </td>
@@ -470,10 +524,8 @@
                             specify a tenant_id other than its own.
                         </td>
                     </tr>
-
                 </tbody>
             </table>
-
         </section>
         <?hard-pagebreak?>
         <section xml:id="subnet">
@@ -506,20 +558,24 @@
                         <th>CRUD<footnote xml:id="crud2">
                                 <para><itemizedlist>
                                    <listitem>
-                                   <para><emphasis role="bold">C</emphasis>. Use the attribute in
+                                   <para><emphasis role="bold"
+                                   >C</emphasis>. Use the attribute in
                                    create operations. </para>
                                    </listitem>
                                    <listitem>
-                                   <para><emphasis role="bold">R</emphasis>. This attribute is
+                                   <para><emphasis role="bold"
+                                   >R</emphasis>. This attribute is
                                    returned in response to show and
                                    list operations. </para>
                                    </listitem>
                                    <listitem>
-                                   <para><emphasis role="bold">U</emphasis>. You can update the
+                                   <para><emphasis role="bold"
+                                   >U</emphasis>. You can update the
                                    value of this attribute.</para>
                                    </listitem>
                                    <listitem>
-                                   <para><emphasis role="bold">D</emphasis>. You can delete the
+                                   <para><emphasis role="bold"
+                                   >D</emphasis>. You can delete the
                                    value of this attribute. </para>
                                    </listitem>
                                    </itemizedlist></para>
@@ -531,7 +587,6 @@
                     </tr>
                 </thead>
                 <tbody>
-
                     <tr>
                         <td>id </td>
                         <td>uuid-str </td>
@@ -585,7 +640,8 @@
                         <td>string </td>
                         <td>No </td>
                         <td>CRUD </td>
-                        <td>first address in <emphasis role="italic">cidr</emphasis>
+                        <td>first address in <emphasis role="italic"
+                                >cidr</emphasis>
                         </td>
                         <td>Valid IP address or null</td>
                         <td>default gateway used by devices in this
@@ -606,7 +662,9 @@
                         <td>list(dict) </td>
                         <td>No </td>
                         <td>CR </td>
-                        <td>Every address in <emphasis role="italic">cidr</emphasis>, excluding <emphasis role="italic">gateway_ip</emphasis> if
+                        <td>Every address in <emphasis role="italic"
+                                >cidr</emphasis>, excluding <emphasis
+                                role="italic">gateway_ip</emphasis> if
                             configured </td>
                         <td>star/end of range must be valid ip </td>
                         <td>Sub-ranges of cidr available for dynamic
@@ -633,8 +691,8 @@
                         <td>CRU </td>
                         <td>True </td>
                         <td>{ True | False } </td>
-                        <td>Specifies whether DHCP is enabled for
-			    this subnet or not. </td>
+                        <td>Specifies whether DHCP is enabled for this
+                            subnet or not. </td>
                     </tr>
                     <tr>
                         <td>tenant_id </td>
@@ -676,7 +734,6 @@
                 <col width="15%"/>
                 <col width="17%"/>
                 <col width="20%"/>
-
                 <thead>
                     <tr>
                         <th>Attribute </th>
@@ -685,20 +742,24 @@
                         <th>CRUD<footnote xml:id="crud3">
                                 <para><itemizedlist>
                                    <listitem>
-                                   <para><emphasis role="bold">C</emphasis>. Use the attribute in
+                                   <para><emphasis role="bold"
+                                   >C</emphasis>. Use the attribute in
                                    create operations. </para>
                                    </listitem>
                                    <listitem>
-                                   <para><emphasis role="bold">R</emphasis>. This attribute is
+                                   <para><emphasis role="bold"
+                                   >R</emphasis>. This attribute is
                                    returned in response to show and
                                    list operations. </para>
                                    </listitem>
                                    <listitem>
-                                   <para><emphasis role="bold">U</emphasis>. You can update the
+                                   <para><emphasis role="bold"
+                                   >U</emphasis>. You can update the
                                    value of this attribute.</para>
                                    </listitem>
                                    <listitem>
-                                   <para><emphasis role="bold">D</emphasis>. You can delete the
+                                   <para><emphasis role="bold"
+                                   >D</emphasis>. You can delete the
                                    value of this attribute. </para>
                                    </listitem>
                                    </itemizedlist></para>
@@ -787,8 +848,8 @@
                         <td>Mac address to use on this port. </td>
                     </tr>
                     <tr>
-                        <td>fixed_ips </td>
-                        <td>list(dict) </td>
+                        <td>fixed_ips</td>
+                        <td>list(dict)</td>
                         <td>No </td>
                         <td>CRU </td>
                         <td>automatically allocated from pool </td>
@@ -816,11 +877,12 @@
                         <td>CRUD </td>
                         <td>None </td>
                         <td>No constraint </td>
-                        <td>Identifies the entity (e.g.: dhcp agent) using this port. </td>
+                        <td>Identifies the entity (e.g.: dhcp agent)
+                            using this port. </td>
                     </tr>
                     <tr>
-                        <td>tenant_id </td>
-                        <td>uuid-str </td>
+                        <td>tenant_id</td>
+                        <td>uuid-str</td>
                         <td>No<footnote xml:id="tenant3">
                                 <para>If Quantum is not running with
                                    the Keystone Identity service, the
@@ -828,8 +890,8 @@
                                    attribute is required. </para>
                             </footnote>
                         </td>
-                        <td>CR </td>
-                        <td>N/A </td>
+                        <td>CR</td>
+                        <td>N/A</td>
                         <td>No constraint</td>
                         <td>Owner of network. Only admin users can
                             specify a tenant_id other than its own.
@@ -837,9 +899,6 @@
                     </tr>
                 </tbody>
             </table>
-
-
-
         </section>
     </chapter>
     <chapter xml:id="General_API_Information-d1e436">
@@ -859,13 +918,18 @@
             for.</para>
         <section xml:id="Authentication-d1e444">
             <title>Authentication and Authorization</title>
-            <para>The &APIv2; uses the <link xlink:href="https://openstack.keystone.org">Keystone Identity Service</link> as the default
+            <para>The &APIv2; uses the <link
+                    xlink:href="https://openstack.keystone.org"
+                    >Keystone Identity Service</link> as the default
                 authentication service. When Keystone is enabled,
                 users that submit requests to the Quantum service must
-                provide an authentication token in <emphasis role="bold">X-Auth-Token</emphasis> request
+                provide an authentication token in <emphasis
+                    role="bold">X-Auth-Token</emphasis> request
                 header. You obtain the token by authenticating to the
                 Keystone endpoint. For more information about
-                Keystone, see the <link xlink:href="http://docs.openstack.org/api/openstack-identity-service/2.0/content/"><citetitle>OpenStack Identity Developer
+                Keystone, see the <link
+                    xlink:href="http://docs.openstack.org/api/openstack-identity-service/2.0/content/"
+                        ><citetitle>OpenStack Identity Developer
                         Guide</citetitle></link>. </para>
             <para>When Keystone is enabled, the
                     <literal>tenant_id</literal> attribute is not
@@ -913,20 +977,16 @@
                     URI. </para>
                 <para> </para>
                 <para>Request:</para>
-                <literallayout class="monospaced">
-POST /v1.0/tenants/tenantX/networks HTTP/1.1
+                <literallayout class="monospaced">POST /v1.0/tenants/tenantX/networks HTTP/1.1
 Host 127.0.0.1:9696
 Content-Type application/json
 Accept application/json
-Content-Length 57
-                </literallayout>
+Content-Length 57</literallayout>
                 <programlisting language="json"><xi:include href="samples/networks-post-req.json" parse="text"/></programlisting>
                 <para>Response:</para>
-                <literallayout class="monospaced">
-HTTP/1.1 201 Created
+                <literallayout class="monospaced">HTTP/1.1 201 Created
 Content-Type application/json
-Content-Length 204
-                </literallayout>
+Content-Length 204</literallayout>
                 <programlisting language="json"><xi:include href="samples/networks-post-res.json" parse="text"/></programlisting>
             </example>
         </section>
@@ -1010,7 +1070,9 @@ Content-Length 204
                 <errortext>Bad Request</errortext> error is
                 returned.</para>
             <para>For information about how to submit bulk requests to
-                the &APIv2; see <xref linkend="bulk_create_networks"/>, <xref linkend="bulK_create_subnets"/>, and <xref linkend="bulk_create_ports"/>.</para>
+                the &APIv2; see <xref linkend="bulk_create_networks"
+                />, <xref linkend="bulK_create_subnets"/>, and <xref
+                    linkend="bulk_create_ports"/>.</para>
         </section>
         <section xml:id="pagination">
             <title>Pagination</title>
@@ -1152,7 +1214,7 @@ Accept: application/xml
                 extension is available. If the extension is not
                 available, a <errorcode>404</errorcode>
                 <errortext>Not Found</errortext> response is
-                returned. </para>
+                returned.</para>
             <para>You can extend existing core API resources with new
                 actions or extra attributes. Also, you can add new
                 resources as extensions. Extensions usually have tags
@@ -1161,7 +1223,7 @@ Accept: application/xml
                 and with core resources and attributes. Because an
                 extension might not be supported by all plugins, the
                 availability of an extension varies with deployments
-                and the specific plugin in use. </para>
+                and the specific plugin in use.</para>
             <para>For more information regarding specific extensions,
                 see <xref linkend="API_extensions"/></para>
         </section>
@@ -1172,84 +1234,83 @@ Accept: application/xml
                 occurs while processing a request. Quantum uses only
                 standard HTTP error codes. 4<varname>xx</varname>
                 errors indicate problems in the particular request
-                being sent from the client. <informaltable rules="all">
-                    <col width="10%"/>
-                    <col width="20%"/>
-                    <col width="70%"/>
-                    <thead>
-                        <tr>
-                            <th>Error</th>
-                            <th colspan="2">Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td rowspan="6">400 </td>
-                            <td rowspan="6">Bad Request</td>
-                            <td>Malformed request URI or body</td>
-                        </tr>
-                        <tr>
-                            <td>Requested admin state invalid</td>
-                        </tr>
-                        <tr>
-                            <td>Invalid values entered</td>
-                        </tr>
-                        <tr>
-                            <td>Bulk operations disallowed</td>
-                        </tr>
-                        <tr>
-                            <td>Validation failed</td>
-                        </tr>
-                        <tr>
-                            <td>Method not allowed for request body
-                                (such as trying to update attributes
-                                that can be specified at create-time
-                                only)</td>
-                        </tr>
-                        <tr>
-                            <td rowspan="2">404 </td>
-                            <td rowspan="2">Not Found</td>
-                            <td>Non existent URI</td>
-                        </tr>
-                        <tr>
-                            <td>Resource not found</td>
-                        </tr>
-                        <tr>
-                            <td rowspan="3">409</td>
-                            <td rowspan="3">Conflict</td>
-                            <td>Port configured on network</td>
-                        </tr>
-                        <tr>
-                            <td>IP allocated on subnet</td>
-                        </tr>
-                        <tr>
-                            <td>Conflicting IP allocation pools for
-                                subnet</td>
-                        </tr>
-                        <tr>
-                            <td>500</td>
-                            <td>Internal server error</td>
-                            <td>Internal Quantum error</td>
-                        </tr>
-                        <tr>
-                            <td>503</td>
-                            <td>Service unavailable</td>
-                            <td>Failure in Mac address generation</td>
-                        </tr>
-                    </tbody>
-                </informaltable></para>
-
+                being sent from the client.</para>
+            <informaltable rules="all">
+                <col width="10%"/>
+                <col width="20%"/>
+                <col width="70%"/>
+                <thead>
+                    <tr>
+                        <th>Error</th>
+                        <th colspan="2">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td rowspan="6">400 </td>
+                        <td rowspan="6">Bad Request</td>
+                        <td>Malformed request URI or body</td>
+                    </tr>
+                    <tr>
+                        <td>Requested admin state invalid</td>
+                    </tr>
+                    <tr>
+                        <td>Invalid values entered</td>
+                    </tr>
+                    <tr>
+                        <td>Bulk operations disallowed</td>
+                    </tr>
+                    <tr>
+                        <td>Validation failed</td>
+                    </tr>
+                    <tr>
+                        <td>Method not allowed for request body (such
+                            as trying to update attributes that can be
+                            specified at create-time only)</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="2">404 </td>
+                        <td rowspan="2">Not Found</td>
+                        <td>Non existent URI</td>
+                    </tr>
+                    <tr>
+                        <td>Resource not found</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="3">409</td>
+                        <td rowspan="3">Conflict</td>
+                        <td>Port configured on network</td>
+                    </tr>
+                    <tr>
+                        <td>IP allocated on subnet</td>
+                    </tr>
+                    <tr>
+                        <td>Conflicting IP allocation pools for
+                            subnet</td>
+                    </tr>
+                    <tr>
+                        <td>500</td>
+                        <td>Internal server error</td>
+                        <td>Internal Quantum error</td>
+                    </tr>
+                    <tr>
+                        <td>503</td>
+                        <td>Service unavailable</td>
+                        <td>Failure in Mac address generation</td>
+                    </tr>
+                </tbody>
+            </informaltable>
             <para>Users submitting requests to the &APIv2; might also
-                receive the following errors: </para>
+                receive the following errors:</para>
             <itemizedlist>
                 <listitem>
                     <para><errorcode>401</errorcode> Unauthorized - If
-                        invalid credentials are provided. </para>
+                        invalid credentials are provided.</para>
                 </listitem>
                 <listitem>
                     <para><errorcode>403</errorcode> Forbidden - If
                         the user cannot access a specific resource or
-                        perform the requested operation. </para>
+                        perform the requested operation.</para>
                 </listitem>
             </itemizedlist>
         </section>
@@ -1258,12 +1319,11 @@ Accept: application/xml
         <title>API Operations</title>
         <section xml:id="Networks">
             <title>Networks</title>
-            <para>Use the &APIv2; to manage network resources. </para>
+            <para>Use the &APIv2; to manage network resources.</para>
             <informaltable rules="all" width="100%">
                 <col width="20%"/>
                 <col width="20%"/>
                 <col width="60%"/>
-
                 <thead>
                     <tr align="center">
                         <td>Verb</td>
@@ -1336,27 +1396,15 @@ Accept: application/xml
                 <para>Lists a summary of all networks defined in
                     Quantum that are accessible to the tenant who
                     submits the request. The list provides the unique
-                    ID for each network. </para>
+                    ID for each network.</para>
                 <para>This operation does not require a request body,
                     unless the Quantum server is running without
-                    Keystone integration. </para>
+                    Keystone integration.</para>
                 <para>This operation returns a response body.</para>
-                <!-- <example>
-                    <title>List Networks: XML Request</title>
-                    <literallayout class="monospaced">GET /tenants/XYZ/networks.xml                </literallayout>
-                </example>
-                <example>
-                    <title>List Networks: XML Response</title>
-                    <programlisting language="xml"><xi:include href="samples/networks-get-res.xml" parse="text"/></programlisting>
-                </example>
-                <?hard-pagebreak?>-->
                 <example>
                     <title>List Networks: JSON Request</title>
-
-                    <literallayout class="monospaced">
-GET /v2.0/networks
-Accept: application/json
-	                </literallayout>
+                    <literallayout class="monospaced">GET /v2.0/networks
+Accept: application/json</literallayout>
                 </example>
                 <example>
                     <title>List Networks: JSON Response</title>
@@ -1394,32 +1442,18 @@ Accept: application/json
                         (<errorcode>404</errorcode>)</simpara>
                 <para>This operation returns the status, subnets,
                     name, admin state, tenant ID, and ID for the
-                    specified network ID. </para>
+                    specified network ID.</para>
                 <para>This operation does not require a request
                     body.</para>
                 <para>This operation returns a response body.</para>
-                <!--  <example>
-                    <title>Networks List Request/Response
-                        (XML)</title>
-                    <para>Request:</para>
-                    <literallayout class="monospaced">GET /tenants/XYZ/networks/detail.xml                </literallayout>
-                    <para>Response:</para>
-                    <programlisting language="xml"><xi:include href="samples/networks-get-detail-res.xml" parse="text"/>
-                    </programlisting>
-                </example>
-                <?hard-pagebreak?> -->
                 <example>
                     <title>Show Network: JSON Request</title>
-
-                    <literallayout class="monospaced">
-GET /v2.0/networks/afc75773-640e-403c-9fff-62ba98db1f19
-Accept: application/json
-</literallayout>
+                    <literallayout class="monospaced">GET /v2.0/networks/afc75773-640e-403c-9fff-62ba98db1f19
+Accept: application/json</literallayout>
                 </example>
                 <example>
                     <title>Show Network: JSON Response</title>
-
-                    <programlisting language="json"><xi:include href="samples/networks-get-detail-res.json" parse="text"/>                   </programlisting>
+                    <programlisting language="json"><xi:include href="samples/networks-get-detail-res.json" parse="text"/></programlisting>
                 </example>
             </section>
             <?hard-pagebreak?>
@@ -1450,76 +1484,69 @@ Accept: application/json
                 <simpara>Error Response Codes: Bad Request
                         (<errorcode>400</errorcode>) Unauthorized
                         (<errorcode>401</errorcode>)</simpara>
-                <simpara>This operation does not require a rest body. If specified, the body might
-                    include one or more of the following attributes:</simpara>
+                <simpara>This operation does not require a rest body.
+                    If specified, the body might include one or more
+                    of the following attributes:</simpara>
                 <itemizedlist>
                     <listitem>
-                        <para><emphasis role="italic">name</emphasis>: a string specifying a
-                            symbolic name for the network, which is not required to be
+                        <para><emphasis role="italic">name</emphasis>:
+                            a string specifying a symbolic name for
+                            the network, which is not required to be
                             unique;</para>
                     </listitem>
                     <listitem>
-                        <para><emphasis role="italic">admin_state_up</emphasis>: a bool value
-                            specifying the administrative status of the network;</para>
+                        <para><emphasis role="italic"
+                                >admin_state_up</emphasis>: a bool
+                            value specifying the administrative status
+                            of the network;</para>
                     </listitem>
                     <listitem>
-                        <para><emphasis role="italic">shared</emphasis>: a bool value specifying
-                            whether this network should be shared across all tenants or not. Note
-                            that the default policy setting restrict usage of this attribute to
-                            administrative users only;</para>
+                        <para><emphasis role="italic"
+                                >shared</emphasis>: a bool value
+                            specifying whether this network should be
+                            shared across all tenants or not. Note
+                            that the default policy setting restrict
+                            usage of this attribute to administrative
+                            users only;</para>
                     </listitem>
                     <listitem>
-                        <para><emphasis role="italic">tenant_id</emphasis>: a uuid identifying the
-                            tenant which will own the network. Only administrative users can set the
-                            tenant identifier; this cannot be changed using authorization
+                        <para><emphasis role="italic"
+                                >tenant_id</emphasis>: a uuid
+                            identifying the tenant which will own the
+                            network. Only administrative users can set
+                            the tenant identifier; this cannot be
+                            changed using authorization
                             policies;</para>
                     </listitem>
                 </itemizedlist>
-                <!--  <example>
-                    <title>Create Network Request/Response
-                        (XML)</title>
-                    <para>Request:</para>
-                    <literallayout class="monospaced">POST /tenants/XYZ/networks.xml                </literallayout>
-                    <programlisting language="xml"><xi:include href="samples/network-post-req.xml" parse="text"/>
-                    </programlisting>
-                    <para>Response:</para>
-                    <programlisting language="xml"><xi:include href="samples/network-post-res.xml" parse="text"/>                    </programlisting>
-                </example> -->
                 <example>
                     <title>Create Network: JSON Request</title>
-
-                    <literallayout class="monospaced">
-POST v2.0/networks.json
+                    <literallayout class="monospaced">POST v2.0/networks.json
 Content-Type: application/json
-Accept: application/json
-</literallayout>
-
+Accept: application/json</literallayout>
                     <programlisting language="json"><xi:include href="samples/network-post-req.json" parse="text"/>                    </programlisting>
                 </example>
                 <example>
                     <title>Create Network: JSON Response</title>
-
                     <programlisting language="json"><xi:include href="samples/network-post-res.json" parse="text"/>                    </programlisting>
                 </example>
                 <section xml:id="bulk_create_networks">
                     <title>Bulk Create Networks</title>
                     <para>This operation enables you to create several
-                        networks in a single request. </para>
+                        networks in a single request.</para>
                     <para>This operation requires a request
                         body.</para>
-                    <para>This operation returns a response body. </para>
+                    <para>This operation returns a response
+                        body.</para>
                     <para>Specify a list of networks in the request
-                        body, as shown in the following example: </para>
+                        body, as shown in the following
+                        example:</para>
                     <example>
                         <title>Bulk Create Networks: JSON Request </title>
-
-                        <literallayout class="monospaced">
-POST v2.0/networks.json
+                        <literallayout class="monospaced">POST v2.0/networks.json
 
 Content-Type: application/json
-Accept: application/json
-</literallayout>
-
+Accept: application/json</literallayout>
                         <programlisting language="json">{
 "networks": [
    {
@@ -1534,9 +1561,8 @@ Accept: application/json
                     </example>
                     <para>The bulk create operation is always atomic.
                         Either all or no networks in the request body
-                        are created. </para>
+                        are created.</para>
                 </section>
-
             </section>
             <?hard-pagebreak?>
             <section xml:id="Update_Network">
@@ -1602,8 +1628,8 @@ Accept: application/json
                         <literal>id</literal> attributes. If you try
                     to update these attributes, a
                         <errorcode>400</errorcode>
-                    <errortext>Bad Request</errortext> error
-                    is returned. </para>
+                    <errortext>Bad Request</errortext> error is
+                    returned.</para>
                 <para>This operation returns a response body.</para>
                 <note>
                     <para>Update operations in Quantum adopt patch
@@ -1611,27 +1637,14 @@ Accept: application/json
                         not require the user to send the whole
                         resource to be updated, but just the
                         attributes that the user wishes to update, as
-                        shown in the following example. </para>
+                        shown in the following example.</para>
                 </note>
-                <!--  <example>
-                    <title>Update Network Request/Response
-                    (XML)</title>
-                    <para>Request:</para>
-                    <literallayout class="monospaced">PUT /tenants/XYZ/networks/158233b0-ca9a-40b4-8614-54a4a99d47d1.xml                </literallayout>
-                    <programlisting language="xml"><xi:include href="samples/network-post-req.xml" parse="text"/>                   </programlisting>
-                    <para>Response:</para>
-                    <para><emphasis>No data is returned in the
-                            response body.</emphasis></para>
-                </example> -->
                 <example>
                     <title>Update Network: JSON Request </title>
-                    <literallayout class="monospaced">
-PUT /v2.0/networks/fc68ea2c-b60b-4b4f-bd82-94ec81110766.json
+                    <literallayout class="monospaced">PUT /v2.0/networks/fc68ea2c-b60b-4b4f-bd82-94ec81110766.json
 
 Content-Type: application/json
-Accept: application/json
-</literallayout>
-
+Accept: application/json</literallayout>
                     <programlisting language="json">{
   "network":
     {
@@ -1641,7 +1654,6 @@ Accept: application/json
                 </example>
                 <example>
                     <title>Update Network: JSON Response</title>
-
                     <programlisting language="json">status: 200
 content-length: 192
 content-type: application/json
@@ -1658,7 +1670,6 @@ content-type: application/json
      "id": "fc68ea2c-b60b-4b4f-bd82-94ec81110766"
     }
 } </programlisting>
-
                 </example>
             </section>
             <?hard-pagebreak?>
@@ -1693,44 +1704,32 @@ content-type: application/json
                         (<errorcode>409</errorcode>) </simpara>
                 <para>This operation deletes a Quantum network and its
                     associated subnets provided that no port is
-                    currently configured on the network. </para>
+                    currently configured on the network.</para>
                 <para>If ports are still configured on the network
                     that you want to delete, a
                         <errorcode>409</errorcode>
                     <errortext>Network In Use</errortext> error is
-                    returned. </para>
-                <para>This operation does not require a request body. </para>
+                    returned.</para>
+                <para>This operation does not require a request
+                    body.</para>
                 <para>This operation does not return a response
                     body.</para>
-                <!--  <example>
-                    <title>Delete Network Request/Response
-                        (XML)</title>
-                    <para>Request:</para>
-                    <literallayout class="monospaced">DELETE /tenants/XYZ/networks/158233b0-ca9a-40b4-8614-54a4a99d47d1.xml                </literallayout>
-                    <para>Response:</para>
-                    <para><emphasis>No data is returned in the
-                            response body.</emphasis></para>
-                </example> -->
                 <example>
                     <title>Delete Network: JSON Request </title>
-
                     <literallayout class="monospaced">DELETE /v2.0/networks/fc68ea2c-b60b-4b4f-bd82-94ec81110766
-
+                        
 Content-Type: application/json
-Accept: application/json </literallayout>
+Accept: application/json</literallayout>
                 </example>
                 <example>
                     <title>Delete Network: JSON Response </title>
                     <literallayout class="monospaced">status: 204</literallayout>
                 </example>
-
-
-
             </section>
         </section>
         <section xml:id="Subnets">
             <title>Subnets</title>
-            <para>Use the &APIv2; to manage subnet resources. </para>
+            <para>Use the &APIv2; to manage subnet resources.</para>
             <informaltable rules="all" width="100%">
                 <col width="20%"/>
                 <col width="20%"/>
@@ -1773,7 +1772,6 @@ Accept: application/json </literallayout>
                     </tr>
                 </tbody>
             </informaltable>
-
             <?hard-pagebreak?>
             <section xml:id="list_subnets">
                 <title>List Subnets</title>
@@ -1809,23 +1807,15 @@ Accept: application/json </literallayout>
                     submitting the request, unless the request is
                     submitted by an user with administrative rights.
                     You can control which attributes are returned by
-                    using the <emphasis role="italic">fields</emphasis> query parameter. You can
+                    using the <emphasis role="italic"
+                        >fields</emphasis> query parameter. You can
                     filter results by using query string parameters.
-                    See <xref linkend="filtering"/>. </para>
+                    See <xref linkend="filtering"/>.</para>
                 <para>This operation does not require a request
                     body.</para>
                 <para>This operation returns a response body.</para>
-                <!--  <example>
-                    <title>Port List Request/Response (XML)</title>
-                    <para>Request:</para>
-                    <literallayout class="monospaced">GET /tenants/XYZ/networks/158233b0-ca9a-40b4-8614-54a4a99d47d1/ports.xml                </literallayout>
-                    <para>Response:</para>
-                    <programlisting language="xml"><xi:include href="samples/ports-get-res.xml" parse="text"/>                    </programlisting>
-                </example>
-                <?hard-pagebreak?> -->
                 <example>
                     <title>List Subnets: JSON Request </title>
-
                     <literallayout class="monospaced">GET v2.0/subnets.json
 
 Accept: application/json</literallayout>
@@ -1868,21 +1858,13 @@ Accept: application/json</literallayout>
                     specified in the request URI. You can control
                     which attributes are returned by using the
                         <emphasis role="italic">fields</emphasis>
-                    query parameter, as discussed in <xref linkend="filtering"/>. </para>
-                <para>This operation does not require a request body.</para>
+                    query parameter, as discussed in <xref
+                        linkend="filtering"/>.</para>
+                <para>This operation does not require a request
+                    body.</para>
                 <para>This operation returns a response body.</para>
-                <!--  <example>
-                    <title>Port List Details Request/Response
-                        (XML)</title>
-                    <para>Request:</para>
-                    <literallayout class="monospaced">GET /tenants/XYZ/networks/158233b0-ca9a-40b4-8614-54a4a99d47d1/ports/detail.xml               </literallayout>
-                    <para>Response:</para>
-                    <programlisting language="xml"><xi:include href="samples/ports-get-detail-res.xml" parse="text"/>                    </programlisting>
-                </example>
-                <?hard-pagebreak?> -->
                 <example>
                     <title>Show Subnet: JSON Request</title>
-
                     <literallayout class="monospaced">GET /v2.0/subnets/4156c7a5-e8c4-4aff-a6e1-8f3c7bc83861
 
 Accept: application/json</literallayout>
@@ -1894,10 +1876,7 @@ content-length: 309
 content-type: application/json </literallayout>
                     <programlisting language="json"><xi:include href="samples/subnets-get-detail-res.json" parse="text"/>                   </programlisting>
                 </example>
-
             </section>
-
-
             <?hard-pagebreak?>
             <section xml:id="create_subnet">
                 <title>Create Subnet</title>
@@ -1936,7 +1915,7 @@ content-type: application/json </literallayout>
                         <literal>cidr</literal> attribute for the
                     subnet, in the form:
                     <programlisting><parameter>network_address</parameter>/<parameter>prefix</parameter></programlisting>The
-                    remaining attributes are optional. </para>
+                    remaining attributes are optional.</para>
                 <para>By default, Quantum creates IP v4 subnets. To
                     create an IP v6 subnet, you must specify the value
                         <literal>6</literal> for the
@@ -1946,7 +1925,7 @@ content-type: application/json </literallayout>
                     the parameter for the gateway address,
                         <parameter>gateway_ip</parameter>, is not
                     specified, Quantum allocates an address from the
-                    cidr for the gateway for the subnet. </para>
+                    cidr for the gateway for the subnet.</para>
                 <para>To specify a subnet without a gateway, specify
                     the value <literal>null</literal> for the
                         <literal>gateway_ip</literal> attribute in the
@@ -1957,29 +1936,19 @@ content-type: application/json </literallayout>
                     excluding the address reserved for the subnet
                     gateway. Otherwise, you can explicitly specify
                     allocation pools as shown in the following
-                    example. </para>
-                 <para>
-                    When <literal>allocation_pools</literal> and
-                    <literal>gateway_ip</literal> are both specified, it
-                    is up to the user ensuring the gateway ip does not
-                    overlap with the specified allocation pools; otherwise
-                    a <literal>409 Conflict</literal> error will be returned.
-                    </para>
-                <!--  <example>
-                    <title>Create Port Request/Response (XML)</title>
-                    <para>Request:</para>
-                    <literallayout class="monospaced">POST /tenants/33/networks/158233b0-ca9a-40b4-8614-54a4a99d47d1/ports.xml                </literallayout>
-                    <programlisting language="xml"><xi:include href="samples/port-post-req.xml" parse="text"/>              </programlisting>
-                    <para>Response:</para>
-                    <programlisting language="xml"><xi:include href="samples/port-post-res.xml" parse="text"/>                    </programlisting>
-                </example> -->
+                    example.</para>
+                <para> When <literal>allocation_pools</literal> and
+                        <literal>gateway_ip</literal> are both
+                    specified, it is up to the user ensuring the
+                    gateway ip does not overlap with the specified
+                    allocation pools; otherwise a <literal>409
+                        Conflict</literal> error will be
+                    returned.</para>
                 <example>
                     <title>Create Subnet: JSON Request</title>
-                    <literallayout class="monospaced">
-POST /v2.0/subnets
+                    <literallayout class="monospaced">POST /v2.0/subnets
 Content-Type: application/json
-Accept: application/json
-</literallayout>
+Accept: application/json</literallayout>
                     <programlisting language="json">{
   "subnet": {
     "network_id": "ed2e3c10-2e43-4297-9006-2863a2d1abbc",
@@ -1987,12 +1956,11 @@ Accept: application/json
     "cidr": "10.0.3.0/24",
     "allocation_pools": [{"start": "10.0.3.20", "end": "10.0.3.150"}]
   }
-} 	                </programlisting>
+}</programlisting>
                 </example>
                 <example>
                     <title>Create Subnet: JSON Response</title>
-                    <programlisting language="json"><xi:include href="samples/subnet-post-req.json" parse="text"/>                	</programlisting>
-
+                    <programlisting language="json"><xi:include href="samples/subnet-post-req.json" parse="text"/></programlisting>
                 </example>
                 <section xml:id="bulK_create_subnets">
                     <title>Bulk Create Subnets</title>
@@ -2003,16 +1971,12 @@ Accept: application/json
                     <para>This operation enables you to create several
                         subnets in a single request. Specify a list of
                         subnets in the request body, as shown in the
-                        following example: </para>
+                        following example:</para>
                     <example>
                         <title>Bulk Create Subnets: JSON Request </title>
-
-                        <literallayout class="monospaced">
-POST /v2.0/subnets
+                        <literallayout class="monospaced">POST /v2.0/subnets
 Content-Type: application/json
-Accept: application/json
-</literallayout>
-
+Accept: application/json</literallayout>
                         <programlisting language="json">{
     "subnet": {
         "allocation_pools": [
@@ -2036,8 +2000,7 @@ Accept: application/json
                     </example>
                     <para>The bulk create operation is always atomic.
                         Either all subnets or no subnets in the
-                        request body are created. </para>
-
+                        request body are created.</para>
                 </section>
             </section>
             <?hard-pagebreak?>
@@ -2068,7 +2031,7 @@ Accept: application/json
                         (<errorcode>400</errorcode>), Unauthorized
                         (<errorcode>401</errorcode>), Forbidden
                         (<errorcode>403</errorcode>), Not Found
-                        (<errorcode>404</errorcode>)  </simpara>
+                        (<errorcode>404</errorcode>) </simpara>
                 <para>This operation updates the specified subnet.
                     Some attributes, such as IP version
                         (<parameter>ip_version</parameter>), CIDR
@@ -2077,7 +2040,7 @@ Accept: application/json
                         (<parameter>allocation_pools</parameter>)
                     cannot be updated. Attempting to update these
                     attributes results in a <errorcode>400</errorcode>
-                    <errortext>Bad Request</errortext> error. </para>
+                    <errortext>Bad Request</errortext> error.</para>
                 <para>This operation requires a request body.</para>
                 <para>This operation returns a response body.</para>
                 <note>
@@ -2086,28 +2049,15 @@ Accept: application/json
                         not require you to send the whole resource to
                         be updated, but just the attributes that you
                         wish to update, as shown in the following
-                        example. </para>
+                        example.</para>
                 </note>
-                <!--  <example>
-                    <title>Set Port State Request/Response
-                        (XML)</title>
-                    <para>Request:</para>
-                    <literallayout class="monospaced">PUT tenants/33/networks/158233b0-ca9a-40b4-8614-54a4a99d47d1/ports/98017ddc-efc8-4c25-a915-774b2a633855.xml                </literallayout>
-                    <programlisting language="xml"><xi:include href="samples/port-post-req.xml" parse="text"/>
-                </programlisting>
-
-                    <para>Response:</para>
-                    <para><emphasis>No data is returned in the
-                            response body..</emphasis></para>-->
                 <example>
                     <title>Update Subnet: JSON Request</title>
 
-                    <literallayout class="monospaced">
-PUT /v2.0/subnets/9436e561-47bf-436a-b1f1-fe23a926e031
+                    <literallayout class="monospaced">PUT /v2.0/subnets/9436e561-47bf-436a-b1f1-fe23a926e031
 
 Content-Type: application/json
-Accept: application/json
-</literallayout>
+Accept: application/json</literallayout>
                     <programlisting language="json">{
   "subnet":
     {
@@ -2115,15 +2065,10 @@ Accept: application/json
       "name": "new_name"
     }
 }</programlisting>
-
-
                 </example>
                 <example>
                     <title>Update Subnet: JSON Response</title>
-
-
                     <programlisting language="json"><xi:include href="samples/subnet-post-res.json" parse="text"/></programlisting>
-
                 </example>
             </section>
             <?hard-pagebreak?>
@@ -2163,23 +2108,11 @@ Accept: application/json
                     body.</para>
                 <para>This operation does not return a response
                     body.</para>
-                <!-- <example>
-                    <title>Delete Port State Request/Response
-                        (XML)</title>
-                    <para>Request:</para>
-                    <literallayout class="monospaced">DELETE tenants/33/networks/158233b0-ca9a-40b4-8614-54a4a99d47d1/ports/98017ddc-efc8-4c25-a915-774b2a633855.xml                </literallayout>
-                    <para>Response:</para>
-                    <para><emphasis>No data is returned in the
-                            response body..</emphasis></para>
-                </example> -->
                 <example>
                     <title>Delete Subnet: JSON Request</title>
+                    <literallayout class="monospaced">DELETE /v2.0/subnets/9436e561-47bf-436a-b1f1-fe23a926e031
 
-                    <literallayout class="monospaced">
-DELETE /v2.0/subnets/9436e561-47bf-436a-b1f1-fe23a926e031
-
-Accept: application/json
-</literallayout>
+Accept: application/json</literallayout>
                 </example>
                 <example>
                     <title>Delete Subnet: Response </title>
@@ -2189,7 +2122,7 @@ Accept: application/json
         </section>
         <section xml:id="Ports">
             <title>Ports</title>
-            <para>Use the &APIv2; to manage port resources. </para>
+            <para>Use the &APIv2; to manage port resources.</para>
             <informaltable rules="all" width="100%">
                 <col width="20%"/>
                 <col width="20%"/>
@@ -2269,30 +2202,19 @@ Accept: application/json
                     be returned by using the
                         <parameter>fields</parameter> query parameter.
                     Additionally, you can filter results by using
-                    query string parameters. </para>
-                <para>This operation does not require a request body. </para>
+                    query string parameters.</para>
+                <para>This operation does not require a request
+                    body.</para>
                 <para>This operation returns a response body.</para>
-                <!-- <example>
-                    <title>Port List Request/Response (XML)</title>
-                    <para>Request:</para>
-                    <literallayout class="monospaced">GET /tenants/XYZ/networks/158233b0-ca9a-40b4-8614-54a4a99d47d1/ports.xml                </literallayout>
-                    <para>Response:</para>
-                    <programlisting language="xml"><xi:include href="samples/ports-get-res.xml" parse="text"/>                    </programlisting>
-                </example>
-                <?hard-pagebreak?> -->
                 <example>
                     <title>List Ports: JSON Request</title>
-
-                    <literallayout class="monospaced">
-GET /v2.0/ports.json HTTP/1.1
+                    <literallayout class="monospaced">GET /v2.0/ports.json HTTP/1.1
 content-type: application/json
-accept: application/json
-	                </literallayout>
+accept: application/json</literallayout>
                     <para>Response:</para>
                     <programlisting language="json"><xi:include href="samples/ports-get-res.json" parse="text"/>                    </programlisting>
                 </example>
             </section>
-
             <?hard-pagebreak?>
             <section xml:id="Show_port">
                 <title>Show Port</title>
@@ -2323,31 +2245,18 @@ accept: application/json
                         (<errorcode>401</errorcode>), Not Found
                         (<errorcode>404</errorcode>)</simpara>
                 <para>This operation returns information for the port
-                    specified in the request URI. </para>
+                    specified in the request URI.</para>
                 <para>This operation does not require a request
                     body.</para>
                 <para>This operation returns a response body.</para>
-                <!--    <example>
-                    <title>Show Port Request/Response (XML)</title>
-                    <para>Request:</para>
-                    <literallayout class="monospaced">GET /tenants/33/networks/158233b0-ca9a-40b4-8614-54a4a99d47d1/ports/98017ddc-efc8-4c25-a915-774b2a633855.xml                </literallayout>
-                    <para>Response:</para>
-                    <programlisting language="xml"><xi:include href="samples/port-get-res.xml" parse="text"/>                    </programlisting>
-                </example>
-                <?hard-pagebreak?> -->
                 <example>
                     <title>Show Port: JSON Request</title>
-                    <para>
-                        <programlisting>
-GET /v2.0/ports/ebe69f1e-bc26-4db5-bed0-c0afb4afe3db.json
-accept: application/json
-</programlisting>
-                    </para>
+                    <programlisting>GET /v2.0/ports/ebe69f1e-bc26-4db5-bed0-c0afb4afe3db.json
+accept: application/json</programlisting>
                     <para>Response:</para>
                     <programlisting language="json"><xi:include href="samples/port-get-res.json" parse="text"/>                   </programlisting>
                 </example>
             </section>
-
             <?hard-pagebreak?>
             <section xml:id="Create_Port">
                 <title>Create Port</title>
@@ -2379,28 +2288,32 @@ accept: application/json
                         (<errorcode>401</errorcode>), Forbidden
                         (<errorcode>403</errorcode>), Not Found
                         (<errorcode>404</errorcode>), Conflict
-                        (<errorcode>409</errorcode>), MAC generation failure
-                        (<errorcode>503</errorcode>) </simpara>
+                        (<errorcode>409</errorcode>), MAC generation
+                    failure (<errorcode>503</errorcode>) </simpara>
                 <para>This operation creates a new Quantum port. The
                     network where the port is created must be
                     specified in the <parameter>network_id</parameter>
                     attribute in the request body. You can also
-                    specify the following optional attributes: </para>
+                    specify the following optional attributes:</para>
                 <itemizedlist>
                     <listitem>
-                        <para>A symbolic name for the port </para>
+                        <para>A symbolic name for the port</para>
                     </listitem>
                     <listitem>
-                        <para>MAC address. If an invalid address is specified
-                        a <literal>400 Bad Request</literal> error will be
-                        returned, whereas a <literal>409 Conflict</literal>
-                        error will be returned if the specified MAC address is
-                        already in use.</para>
-                        <para>When the MAC address is not specified, Quantum
-                        will try to allocate one for the port being created.
-                        If there is a failure while generating the address,
-                        a <literal>503 Service Unavailable</literal> error
-                        will be returned.</para>
+                        <para>MAC address. If an invalid address is
+                            specified a <literal>400 Bad
+                                Request</literal> error will be
+                            returned, whereas a <literal>409
+                                Conflict</literal> error will be
+                            returned if the specified MAC address is
+                            already in use.</para>
+                        <para>When the MAC address is not specified,
+                            Quantum will try to allocate one for the
+                            port being created. If there is a failure
+                            while generating the address, a
+                                <literal>503 Service
+                                Unavailable</literal> error will be
+                            returned.</para>
                     </listitem>
                     <listitem>
                         <para>Administrative state. Set to
@@ -2412,9 +2325,9 @@ accept: application/json
                         <para>Fixed IPs <itemizedlist>
                                 <listitem>
                                    <para>If you specify just a subnet
-                                   ID, Quantum allocates an
-                                   available IP from that subnet to
-                                   the port.</para>
+                                   ID, Quantum allocates an available
+                                   IP from that subnet to the
+                                   port.</para>
                                 </listitem>
                                 <listitem>
                                    <para>If you specify both a subnet
@@ -2430,14 +2343,6 @@ accept: application/json
                             that the port is associated with.</para>
                     </listitem>
                 </itemizedlist>
-                <!--    <example>
-                    <title>Create Port Request/Response (XML)</title>
-                    <para>Request:</para>
-                    <literallayout class="monospaced">POST /tenants/33/networks/158233b0-ca9a-40b4-8614-54a4a99d47d1/ports.xml                </literallayout>
-                    <programlisting language="xml"><xi:include href="samples/port-post-req.xml" parse="text"/>              </programlisting>
-                    <para>Response:</para>
-                    <programlisting language="xml"><xi:include href="samples/port-post-res.xml" parse="text"/>                    </programlisting>
-                </example> -->
                 <para>This operation requires a request body.</para>
                 <para>This operation returns a response body.</para>
                 <example>
@@ -2446,7 +2351,6 @@ accept: application/json
 Content-Length: 158
 content-type: application/json
 accept: application/json</literallayout>
-
                     <programlisting language="json"><xi:include href="samples/port-post-req.json" parse="text"/></programlisting>
                 </example>
                 <example>
@@ -2461,13 +2365,13 @@ accept: application/json</literallayout>
                         body.</para>
                     <para>This operation enables you to create several
                         ports in a single request. Specify a list of
-                        ports in the request body. </para>
+                        ports in the request body.</para>
                     <example>
                         <title>Bulk Create Port: JSON Request</title>
                         <programlisting>xx</programlisting>
                     </example>
                     <para>The &APIv2; always guarantees the atomic
-                        completion of the bulk operation. </para>
+                        completion of the bulk operation.</para>
                 </section>
             </section>
             <?hard-pagebreak?>
@@ -2514,23 +2418,11 @@ accept: application/json</literallayout>
                     addresses are not valid, for example, they are
                     already in use, the operation fails and the
                     existing IP addresses are not removed from the
-                    port. </para>
-                <!--  <example>
-                    <title>Set Port State Request/Response
-                        (XML)</title>
-                    <para>Request:</para>
-                    <literallayout class="monospaced">PUT tenants/33/networks/158233b0-ca9a-40b4-8614-54a4a99d47d1/ports/98017ddc-efc8-4c25-a915-774b2a633855.xml                </literallayout>
-                    <programlisting language="xml"><xi:include href="samples/port-post-req.xml" parse="text"/>
-          </programlisting>
-                    <para>Response:</para>
-                    <para><emphasis>No data is returned in the
-                            response body..</emphasis></para>
-                </example> -->
+                    port.</para>
                 <para>This operation requires a request body.</para>
                 <para>This operation returns a response body.</para>
                 <example>
                     <title>Update Port: JSON Request</title>
-
                     <literallayout class="monospaced">PUT /v2.0/ports/1d8591f4-7b62-428e-857d-e82a15e5a7f1.json HTTP/1.1
 Content-Length: 63
 content-type: application/json
@@ -2540,7 +2432,6 @@ accept: application/json </literallayout>
         "device_id": "37b4f622-5e17-4dca-bf67-7338c5b7dd63"
     }
 }</programlisting>
-
                 </example>
                 <example>
                     <title>Update Port: JSON Response</title>
@@ -2567,7 +2458,6 @@ Content-Length: 410
         "tenant_id": "f667b69e4d6749749ef3bcba7251d9ce"
     }
 }</programlisting>
-
                 </example>
             </section>
             <?hard-pagebreak?>
@@ -2602,26 +2492,16 @@ Content-Length: 410
                 <para>This operation removes a port from a Quantum
                     network. If IP addresses are associated with the
                     port, they are returned to the respective subnets
-                    allocation pools. </para>
+                    allocation pools.</para>
                 <para>This operation does not require a request
                     body.</para>
                 <para>This operation does not return a response
                     body.</para>
-                <!-- <example>
-                    <title>Delete Port State Request/Response
-                        (XML)</title>
-                    <para>Request:</para>
-                    <literallayout class="monospaced">DELETE tenants/33/networks/158233b0-ca9a-40b4-8614-54a4a99d47d1/ports/98017ddc-efc8-4c25-a915-774b2a633855.xml                </literallayout>
-                    <para>Response:</para>
-                    <para><emphasis>No data is returned in the
-                            response body..</emphasis></para>
-                </example> -->
                 <example>
                     <title>Delete Port: JSON Request</title>
+                    <literallayout class="monospaced">DELETE /v2.0/ports/ebe69f1e-bc26-4db5-bed0-c0afb4afe3db.json
 
-                    <literallayout class="monospaced"> DELETE /v2.0/ports/ebe69f1e-bc26-4db5-bed0-c0afb4afe3db.json
-
- accept: application/json </literallayout>
+ accept: application/json</literallayout>
                 </example>
                 <example>
                     <title>Delete Port: JSON Response</title>
@@ -2629,104 +2509,92 @@ Content-Length: 410
                 </example>
             </section>
         </section>
-
     </chapter>
+    <chapter xml:id="API_extensions">
+        <title>Generic API extensions</title>
+        <para>The features available in the core API, whose operations
+            has been extensively discussed in the previous chapter,
+            can be augmented by API extensions. An API extension can
+            define any combination of:</para>
+        <itemizedlist>
+            <listitem>
+                <para>Resource extensions, which are new object
+                    classes;</para>
+            </listitem>
+            <listitem>
+                <para>Attribute extensions, whose effect is to add new
+                    attribute to existing resources; attributes added
+                    by extended resources will be prefixed by the
+                    extension name.</para>
+            </listitem>
+            <listitem>
+                <para>Action extensions, which define new operations
+                    (beyond the one defined by the HTTP verbs) on
+                    existing or new resources</para>
+            </listitem>
+        </itemizedlist>
+        <para>This chapter only discusses generic API extensions, i.e.
+            those extensions which are not plugin-specific. For
+            plugin-specific extension shipped with Quantum, please
+            refer to the extension documentation in the source code
+            tree.</para>
+        <section xml:id="retrieve_extensions">
+            <title>Retrieving Available Extensions</title>
+            <para>Available extensions can be queried at the <filename
+                    role="bold">/v2.0/extensions</filename> URI;
+                please note that this requests must be authenticated
+                just like any other API request.</para>
+            <para>The response will look like the following:</para>
+            <programlisting>Status Code: 200 OK
+Connection: keep-alive
+Content-Length: 654
+Content-Type: application/xml; charset=UTF-8
+Date: Wed, 12 Sep 2012 11:32:56 GMT
 
-  <chapter xml:id="API_extensions">
-    <title>Generic API extensions</title>
+&lt;extensions&gt;
+&lt;extension&gt;
+&lt;updated&gt;2012-07-20T10:00:00-00:00&lt;/updated&gt;
+&lt;name&gt;Quantum L3 Router&lt;/name&gt;
+&lt;links/&gt;
+&lt;namespace&gt;http://docs.openstack.org/ext/quantum/router/api/v1.0&lt;/namespace&gt;
+&lt;alias&gt;router&lt;/alias&gt;
+&lt;description&gt;Router abstraction for basic L3 forwarding between L2 Quantum networks and access to external networks via a NAT gateway.&lt;/description&gt;
+&lt;/extension&gt;
+&lt;extension&gt;
+&lt;updated&gt;2012-09-07T10:00:00-00:00&lt;/updated&gt;
+&lt;name&gt;Provider Network&lt;/name&gt;
+&lt;links/&gt;
+&lt;namespace&gt;http://docs.openstack.org/ext/provider/api/v1.0&lt;/namespace&gt;
+&lt;alias&gt;provider&lt;/alias&gt;
+&lt;description&gt;Expose mapping of virtual networks to physical networks&lt;/description&gt;
+&lt;/extension&gt;
+&lt;/extensions&gt;</programlisting>
+            <para>Also, it is possible to query for specific extension
+                using the extension alias. For instance querying
+                    <literal>/v2.0/extensions/router</literal>, will
+                result in the following response:</para>
+            <programlisting>Status Code: 200 OK
+Connection: keep-alive
+Content-Length: 350
+Content-Type: application/xml; charset=UTF-8
+Date: Wed, 12 Sep 2012 11:36:20 GMT
 
-    <para>The features available in the core API, whose operations has been
-    extensively discussed in the previous chapter, can be augmented by API
-    extensions. An API extension can define any comabination of:</para>
-
-    <itemizedlist>
-      <listitem>
-        <para>Resource extensions, which are new object classes;</para>
-      </listitem>
-      <listitem>
-        <para>Attribute extensions, whose effect is to add new attribute to
-        existing resources; attributes added by extended resources will be
-        prefixed by the extension name.</para>
-      </listitem>
-      <listitem>
-        <para>Action extensions, which define new operations (beyond the one
-        defined by the HTTP verbs) on existing or new resources</para>
-      </listitem>
-    </itemizedlist>
-
-    <para>This chapter only discusses generic API extensions, i.e. those
-    extensions which are not plugin-specific. For plugin-specific extension
-    shipped with Quantum, please refer to the extension documentation in the
-    source code tree.</para>
-
-    <section xml:id="retrieve_extensions">
-      <title>Retrieving Available Extensions</title>
-
-      <para>Available extensions can be queried at the <filename role="bold">/v2.0/extensions</filename> URI; please note that this
-      requests must be authenticated just like any other API request.</para>
-
-      <para>The response will look like the following:</para>
-
-      <programlisting>
-    Status Code: 200 OK
-    Connection: keep-alive
-    Content-Length: 654
-    Content-Type: application/xml; charset=UTF-8
-    Date: Wed, 12 Sep 2012 11:32:56 GMT
-
-
-    &lt;extensions&gt;
-    &lt;extension&gt;
-    &lt;updated&gt;2012-07-20T10:00:00-00:00&lt;/updated&gt;
-    &lt;name&gt;Quantum L3 Router&lt;/name&gt;
-    &lt;links/&gt;
-    &lt;namespace&gt;http://docs.openstack.org/ext/quantum/router/api/v1.0&lt;/namespace&gt;
-    &lt;alias&gt;router&lt;/alias&gt;
-    &lt;description&gt;Router abstraction for basic L3 forwarding between L2 Quantum networks and access to external networks via a NAT gateway.&lt;/description&gt;
-    &lt;/extension&gt;
-    &lt;extension&gt;
-    &lt;updated&gt;2012-09-07T10:00:00-00:00&lt;/updated&gt;
-    &lt;name&gt;Provider Network&lt;/name&gt;
-    &lt;links/&gt;
-    &lt;namespace&gt;http://docs.openstack.org/ext/provider/api/v1.0&lt;/namespace&gt;
-    &lt;alias&gt;provider&lt;/alias&gt;
-    &lt;description&gt;Expose mapping of virtual networks to physical networks&lt;/description&gt;
-    &lt;/extension&gt;
-    &lt;/extensions&gt;
-
-</programlisting>
-
-      <para>Also, it is possible ot query for specific extension using the extension alias. For
-                instance querying <literal>/v2.0/extensions/router</literal>, will result in the
-                following response:</para>
- <programlisting>
-    Status Code: 200 OK
-    Connection: keep-alive
-    Content-Length: 350
-    Content-Type: application/xml; charset=UTF-8
-    Date: Wed, 12 Sep 2012 11:36:20 GMT
-
-
-    &lt;extension&gt;
-    &lt;updated&gt;2012-07-20T10:00:00-00:00&lt;/updated&gt;
-    &lt;name&gt;Quantum L3 Router&lt;/name&gt;
-    &lt;links/&gt;
-    &lt;namespace&gt;http://docs.openstack.org/ext/quantum/router/api/v1.0&lt;/namespace&gt;
-    &lt;alias&gt;router&lt;/alias&gt;
-    &lt;description&gt;Router abstraction for basic L3 forwarding between L2 Quantum networks and access to external networks via a NAT gateway.&lt;/description&gt;
-    &lt;/extension&gt;
-
-</programlisting>
-    </section>
-    <section xml:id="provider_ext">
-      <title>The Provider Networks Extensions
-      (<literal>provider</literal>)</title>
-
-      <para>Discuss attributes exposed by this extension and how they
-      work</para>
-    </section>
-    <xi:include href="quantum-l3-ext.xml"/>
-    <xi:include href="quantum-quotas-ext.xml"/>
-  </chapter>
-
+&lt;extension&gt;
+&lt;updated&gt;2012-07-20T10:00:00-00:00&lt;/updated&gt;
+&lt;name&gt;Quantum L3 Router&lt;/name&gt;
+&lt;links/&gt;
+&lt;namespace&gt;http://docs.openstack.org/ext/quantum/router/api/v1.0&lt;/namespace&gt;
+&lt;alias&gt;router&lt;/alias&gt;
+&lt;description&gt;Router abstraction for basic L3 forwarding between L2 Quantum networks and access to external networks via a NAT gateway.&lt;/description&gt;
+&lt;/extension&gt;</programlisting>
+        </section>
+        <section xml:id="provider_ext">
+            <title>The Provider Networks Extensions
+                    (<literal>provider</literal>)</title>
+            <para>Discuss attributes exposed by this extension and how
+                they work</para>
+        </section>
+        <xi:include href="quantum-l3-ext.xml"/>
+        <xi:include href="quantum-quotas-ext.xml"/>
+    </chapter>
 </book>

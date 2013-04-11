@@ -69,25 +69,6 @@
                             
                         </configuration>
                     </execution>
-                    <execution>
-                        <id>cleanup</id>
-                        <goals>
-                            <goal>generate-webhelp</goal>
-                        </goals>
-                        <phase>generate-sources</phase>
-                        <configuration>
-                            <includes>dummy.xml</includes>
-                            <postProcess>
-                                <delete includeemptydirs="true" verbose="true">
-                                    <fileset dir="${basedir}/target/docbkx" >
-                                        <include name="**/*"/>
-                                        <exclude name="webhelp/**"/>
-                                    </fileset>
-                                </delete>
-                            </postProcess>
-                        </configuration>
-                    </execution>
-
                 </executions>
 
              <configuration>
