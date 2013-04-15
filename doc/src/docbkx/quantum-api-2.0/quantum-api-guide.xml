@@ -1717,7 +1717,7 @@ content-type: application/json
                 <example>
                     <title>Delete Network: JSON Request </title>
                     <literallayout class="monospaced">DELETE /v2.0/networks/fc68ea2c-b60b-4b4f-bd82-94ec81110766
-                        
+
 Content-Type: application/json
 Accept: application/json</literallayout>
                 </example>
@@ -2596,5 +2596,6 @@ Date: Wed, 12 Sep 2012 11:36:20 GMT
         </section>
         <xi:include href="quantum-l3-ext.xml"/>
         <xi:include href="quantum-quotas-ext.xml"/>
+        <xi:include href="quantum-extraroute-ext.xml"/>
     </chapter>
 </book>
