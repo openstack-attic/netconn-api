@@ -1399,7 +1399,7 @@ Accept: application/xml
                 <simpara>Normal Response Code:
                         <returnvalue>200</returnvalue>
                 </simpara>
-                <simpara>Error Response Codes: Unauthorized
+                <simpara>Error Response Codes:Unauthorized
                         (<errorcode>401</errorcode>)</simpara>
                 <para>Lists a summary of all networks defined in
                     Quantum that are accessible to the tenant who
@@ -2538,7 +2538,7 @@ Content-Length: 410
                     operation on an existing resource.</para>
             </listitem>
         </itemizedlist>
-        <para>Generic API extensions are not plugin-specific. For
+        <para>Generic API extensions are not plug-in-specific. For
             information about plugin-specific extensions that are
             shipped with Quantum, see the extension documentation in
             the source code tree.</para>

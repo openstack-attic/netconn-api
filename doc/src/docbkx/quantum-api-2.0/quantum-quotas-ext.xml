@@ -35,17 +35,16 @@
     xmlns:html="http://www.w3.org/1999/xhtml"
     xmlns:db="http://docbook.org/ns/docbook" version="5.0"
     status="final" xml:id="quotas_ext">
-    <title>The Quotas Extension</title>
-    <para>The quantum.conf configuration file defines default quota
-        values that are applied identically to all tenants. This
-        extension adds the ability for an admin user to define quotas
-        values on a per-tenant basis (e.g., allowing tenant A to
-        create at most X networks, while allowing tenant B to create
-        at most Y networks).</para>
-    <para>If quotas per tenant is needed, the Quotas extension must be
-        enabled. To enable the Quotas extension, see the
-            <citetitle>Openstack Network Administration
-            Guide</citetitle>.</para>
+    <title>Quotas</title>
+    <para>The <db:filename>quantum.conf</db:filename> configuration
+        file defines default quota values that are applied identically
+        to all tenants. This extension enables an admin user to define
+        quotas values on a per-tenant basis. For example, an admin
+        user can permit tenant A to create at most X networks, and
+        permit tenant B to create at most Y networks.</para>
+    <para>If quotas per tenant is needed, you must enable the Quotas
+        extension. For information, see the <citetitle>OpenStack
+            Network Administration Guide</citetitle>.</para>
     <informaltable rules="all" width="100%">
         <col width="20%"/>
         <col width="20%"/>
@@ -61,25 +60,25 @@
             <tr>
                 <td>&GET;</td>
                 <td>/quotas</td>
-                <td>List quotas of tenants who have non-default quota
-                    values.</td>
+                <td>Lists quotas for tenants who have non-default
+                    quota values.</td>
             </tr>
             <tr>
                 <td>&GET;</td>
                 <td>/quotas/<parameter>tenant_id</parameter></td>
-                <td>Show quotas of a given tenant.</td>
+                <td>Shows quotas for a specified tenant.</td>
             </tr>
             <tr>
                 <td>&PUT;</td>
                 <td>/quotas/<parameter>tenant_id</parameter></td>
-                <td>Update tenant's quotas. It is used when
+                <td>Updates quotas for a specified tenant. Use when
                     non-default quotas are desired.</td>
             </tr>
             <tr>
                 <td>&DELETE;</td>
                 <td>/quotas/<parameter>tenant_id</parameter></td>
-                <td>Reset quotas of a given tenant to default
-                    values.</td>
+                <td>Resets quotas to default values for a specified
+                    tenant.</td>
             </tr>
         </tbody>
     </informaltable>
@@ -101,7 +100,7 @@
                 <tr>
                     <td>&GET;</td>
                     <td>/quotas</td>
-                    <td> Lists quotas of tenants who have non-default
+                    <td> Lists quotas for tenants who have non-default
                         quota values.</td>
                 </tr>
             </tbody>
@@ -121,7 +120,9 @@ User-Agent: python-quantumclient
 Content-Type: application/json
 Accept: application/json
 X-Auth-Token: c52a1b304fec4ca0ac85dc1741eec6e2</programlisting>
-            <para>Response:</para>
+        </example>
+        <example>
+            <title>List Quotas: JSON Response</title>
             <programlisting language="json"><xi:include href="samples/quotas-list-res.json" parse="text"/></programlisting>
         </example>
     </section>
@@ -164,7 +165,9 @@ User-Agent: python-quantumclient
 Content-Type: application/json
 Accept: application/json
 X-Auth-Token: a54d6fdda41341f892150e2aaf648f0d</programlisting>
-            <para>Response:</para>
+        </example>
+        <example>
+            <title>Show Quotas: JSON Response:</title>
             <programlisting language="json"><xi:include href="samples/quotas-show-res.json" parse="text"/></programlisting>
         </example>
     </section>
@@ -186,8 +189,8 @@ X-Auth-Token: a54d6fdda41341f892150e2aaf648f0d</programlisting>
                 <tr>
                     <td>&PUT;</td>
                     <td>/quotas/<parameter>tenant_id</parameter></td>
-                    <td>Update tenant's quotas. It is used when
-                        non-default quotas are desired.</td>
+                    <td>Updates quotas for a specified tenant. Use
+                        when non-default quotas are desired.</td>
                 </tr>
             </tbody>
         </informaltable>
@@ -234,8 +237,8 @@ Content-Length: 88
                 <tr>
                     <td>&DELETE;</td>
                     <td>/quotas/<parameter>tenant_id</parameter></td>
-                    <td>Reset quotas of a given tenant to default
-                        values.</td>
+                    <td>Resets quotas to default values for a
+                        specified tenant.</td>
                 </tr>
             </tbody>
         </informaltable>
