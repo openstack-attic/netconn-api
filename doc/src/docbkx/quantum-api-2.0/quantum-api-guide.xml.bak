@@ -2214,7 +2214,7 @@ Accept: application/json</literallayout>
                     <tr>
                         <td>&DELETE;</td>
                         <td>/ports/<parameter>port-id</parameter></td>
-                        <td>Removes a specified port from a Quantum network.</td>
+                        <td>Removes a specified port.</td>
                     </tr>
                 </tbody>
             </informaltable>
@@ -2600,7 +2600,7 @@ accept: application/json </literallayout>
                         <tr>
                             <td>&DELETE;</td>
                             <td>/ports/<parameter>port-id</parameter></td>
-                            <td>Removes a specified port from a Quantum network.</td>
+                            <td>Removes a specified port.</td>
                         </tr>
                     </tbody>
                 </informaltable>
