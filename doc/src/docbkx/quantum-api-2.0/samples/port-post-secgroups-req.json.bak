@@ -1,0 +1,9 @@
+{
+   "port":{
+      "network_id":"abaf2e70-4305-4e8d-ac70-3e4cc5f66a07",
+      "security_groups":[
+         "85cc3048-abc3-43cc-89b3-377341426ac5"
+      ],
+      "admin_state_up":true
+   }
+}

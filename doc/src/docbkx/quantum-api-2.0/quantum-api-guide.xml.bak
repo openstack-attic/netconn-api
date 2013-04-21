@@ -2029,28 +2029,24 @@ Accept: application/json</literallayout>
 Content-Type: application/json
 Accept: application/json</literallayout>
                         <programlisting language="json">{
-   "subnet":{
-      "allocation_pools":[
-         {
-            "end":"10.0.3.254",
-            "start":"10.0.3.2"
-         }
-      ],
-      "cidr":"10.0.3.0/24",
-      "dns_nameservers":[
-
-      ],
-      "enable_dhcp":true,
-      "gateway_ip":"10.0.3.1",
-      "host_routes":[
-
-      ],
-      "id":"91e47a57-7508-46fe-afc9-fc454e8580e1",
-      "ip_version":4,
-      "name":"",
-      "network_id":"1a6f6006-9e0b-4f99-984c-96787ae66363",
-      "tenant_id":"f667b69e4d6749749ef3bcba7251d9ce"
-   }
+    "subnet": {
+        "allocation_pools": [
+            {
+                "end": "10.0.3.254",
+                "start": "10.0.3.2"
+            }
+        ],
+        "cidr": "10.0.3.0/24",
+        "dns_nameservers": [],
+        "enable_dhcp": true,
+        "gateway_ip": "10.0.3.1",
+        "host_routes": [],
+        "id": "91e47a57-7508-46fe-afc9-fc454e8580e1",
+        "ip_version": 4,
+        "name": "",
+        "network_id": "1a6f6006-9e0b-4f99-984c-96787ae66363",
+        "tenant_id": "f667b69e4d6749749ef3bcba7251d9ce"
+    }
 }</programlisting>
                     </example>
                     <para>The bulk create operation is always atomic.
@@ -2114,10 +2110,11 @@ Accept: application/json</literallayout>
 Content-Type: application/json
 Accept: application/json</literallayout>
                     <programlisting language="json">{
-   "subnet":{
-      "gateway_ip":"10.0.3.254",
-      "name":"new_name"
-   }
+  "subnet":
+    {
+      "gateway_ip": "10.0.3.254",
+      "name": "new_name"
+    }
 }</programlisting>
                 </example>
                 <example>
@@ -2165,6 +2162,7 @@ Accept: application/json</literallayout>
                 <example>
                     <title>Delete Subnet: JSON Request</title>
                     <literallayout class="monospaced">DELETE /v2.0/subnets/9436e561-47bf-436a-b1f1-fe23a926e031
+
 Accept: application/json</literallayout>
                 </example>
                 <example>

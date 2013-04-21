@@ -15,9 +15,7 @@
     <!-- ################################################ -->
     
     <build>
-
-        <plugins>
-            
+        <plugins>     
             <plugin>
                 <groupId>com.rackspace.cloud.api</groupId>
                 <artifactId>clouddocs-maven-plugin</artifactId>
@@ -51,6 +49,7 @@
                                 article   toc,title
                                 book      title,figure,table,example,equation
                                 chapter   toc,title
+                                section   toc,title
                                 part      toc,title
                                 preface   toc,title
                                 qandadiv  toc
@@ -59,20 +58,17 @@
                                 set       toc,title
                             </generateToc>
                             <!-- The following elements sets the autonumbering of sections in output for chapter numbers but no numbered sections-->
+                            <chapterAutolabel>1</chapterAutolabel>	
                             <sectionAutolabel>0</sectionAutolabel>
-                            <sectionLabelIncludesComponentLabel>0</sectionLabelIncludesComponentLabel>
-
+                            <tocSectionDepth>1</tocSectionDepth>
                             <webhelpDirname>2.0</webhelpDirname>
                             <targetDirectory>${basedir}/target/docbkx/webhelp/api/openstack-network</targetDirectory>
                             <includeDateInPdfFilename>0</includeDateInPdfFilename>
-                            <pdfFilenameBase>quantum-api-guide-2.0</pdfFilenameBase>
-                            
+                            <pdfFilenameBase>quantum-api-guide-2.0</pdfFilenameBase>                           
                         </configuration>
                     </execution>
                 </executions>
-
              <configuration>
-
                     <xincludeSupported>true</xincludeSupported>
                  <sourceDirectory>src/docbkx/quantum-api-2.0</sourceDirectory>
                     <includes>
@@ -82,8 +78,7 @@
                     <profileSecurity>reviewer</profileSecurity>
                     <branding>openstack</branding>
                 </configuration> 
-            </plugin>
-            
+            </plugin>       
         </plugins>
     </build>
     <profiles>

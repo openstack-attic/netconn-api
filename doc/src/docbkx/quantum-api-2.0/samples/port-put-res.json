@@ -1,0 +1,19 @@
+{
+   "port":{
+      "admin_state_up":true,
+      "device_id":"",
+      "device_owner":"",
+      "fixed_ips":[
+         {
+            "ip_address":"10.0.3.3",
+            "subnet_id":"91e47a57-7508-46fe-afc9-fc454e8580e1"
+         }
+      ],
+      "id":"64d913c1-bcb1-42d2-8f0a-9593dbcaf251",
+      "mac_address":"fa:16:3e:25:32:5d",
+      "name":"",
+      "network_id":"1a6f6006-9e0b-4f99-984c-96787ae66363",
+      "status":"ACTIVE",
+      "tenant_id":"f667b69e4d6749749ef3bcba7251d9ce"
+   }
+}
