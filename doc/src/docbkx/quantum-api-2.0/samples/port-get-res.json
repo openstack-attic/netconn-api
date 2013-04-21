@@ -1,22 +1,22 @@
-Status: 200
-Content-Type: application/json
-Content-Length: 410
-
 {
-    "port": {
-        "admin_state_up": true,
-        "device_id": "d6b4d3a5-c700-476f-b609-1493dd9dadc0",
-        "fixed_ips": [
-            {
-                "ip_address": "192.168.111.4",
-                "subnet_id": "22b44fc2-4ffb-4de4-b0f9-69d58b37ae27"
-            }
-        ],
-        "id": "ebe69f1e-bc26-4db5-bed0-c0afb4afe3db",
-        "mac_address": "fa:16:3e:a6:50:c1",
-        "name": "port1",
-        "network_id": "6aeaf34a-c482-4bd3-9dc3-7faf36412f12",
-        "status": "ACTIVE",
-        "tenant_id": "cf1a5775e766426cb1968766d0191908"
-    }
+   "port":{
+      "admin_state_up":true,
+      "device_id":"dhcpacb6d6f0-2d56-5c7a-9905-4c3a3d168f49-abaf2e70-4305-4e8d-ac70-3e4cc5f66a07",
+      "device_owner":"network:dhcp",
+      "fixed_ips":[
+         {
+            "ip_address":"10.0.0.2",
+            "subnet_id":"3b498f11-0a20-43ed-b992-0e4202d5f930"
+         }
+      ],
+      "id":"adf92676-97a8-4ada-b6e8-4fa7195b5eb3",
+      "mac_address":"fa:16:3e:a9:34:c3",
+      "name":"",
+      "network_id":"abaf2e70-4305-4e8d-ac70-3e4cc5f66a07",
+      "security_groups":[
+         "49258a30-81f9-44d7-9440-c60dba50e29e"
+      ],
+      "status":"ACTIVE",
+      "tenant_id":"e4f50856753b4dc6afee5fa6b9b6c550"
+   }
 }

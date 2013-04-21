@@ -35,8 +35,8 @@
     xmlns:html="http://www.w3.org/1999/xhtml"
     xmlns:db="http://docbook.org/ns/docbook" version="5.0"
     status="final" xml:id="Quantum-api-spec">
-    <title>Quantum API Guide (v2.0)</title>
-    <titleabbrev>Quantum API v2.0</titleabbrev>
+    <title>OpenStack Quantum Developer Guide</title>
+    <titleabbrev>OpenStack Quantum Dev Guide</titleabbrev>
     <info>
         <author>
             <personname>
@@ -50,9 +50,8 @@
             <year>2013</year>
             <holder>OpenStack</holder>
         </copyright>
-        <releaseinfo>Quantum API v2.0</releaseinfo>
-        <productname>OpenStack Quantum (virtual network
-            service)</productname>
+        <releaseinfo>API v2.0</releaseinfo>
+        <productname>OpenStack Quantum</productname>
         <pubdate/>
         <legalnotice role="apache2">
             <annotation>
@@ -66,6 +65,31 @@
                 &APIv2;.</para>
         </abstract>
         <revhistory>
+            <revision>
+                <!-- ... continue addding more revisions here as you change this document using the markup shown below... -->
+                <date>2013-04-26</date>
+                <revdescription>
+                    <itemizedlist spacing="compact">
+                        <listitem>
+                            <para>Added the security groups extension
+                                information to <xref
+                                   linkend="Concepts-d1e369"/>.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>Added the security groups extension
+                                information to <xref linkend="Ports"
+                                />. </para>
+                        </listitem>
+                        <listitem>
+                            <para>Added the security groups and
+                                security group rules extensions to
+                                   <xref linkend="security-groups-ext"
+                                />.</para>
+                        </listitem>
+                    </itemizedlist>
+                </revdescription>
+            </revision>
             <revision>
                 <!-- ... continue addding more revisions here as you change this document using the markup shown below... -->
                 <date>2013-03-23</date>
@@ -85,7 +109,7 @@
                 <revdescription>
                     <itemizedlist spacing="compact">
                         <listitem>
-                            <para>Removes XML as a valid request or
+                            <para>Removed XML as a valid request or
                                 response type.</para>
                         </listitem>
                     </itemizedlist>
@@ -159,17 +183,17 @@
                 <tbody>
                     <tr>
                         <td align="left">CRUD</td>
-                        <td colspan="4">In computer programming,
-                            create, read, update, and delete (CRUD)
-                            functions are the basic functions of
-                            persistent storage.</td>
+                        <td colspan="4">Create, read, update, and
+                            delete (CRUD) are the basic functions of
+                            persistent storage in computer
+                            programming.</td>
                     </tr>
                     <tr>
                         <td align="left">entity </td>
                         <td colspan="4">Any piece of hardware or
-                            software that wants to connect to the
-                            network services provided by Quantum. An
-                            entity can use Quantum network services by
+                            software that can connect to the network
+                            services provided by Quantum. An entity
+                            can use Quantum network services by
                             implementing a VIF. </td>
                     </tr>
                     <tr>
@@ -281,9 +305,9 @@
                         to boot a VM. </para>
                     <para>In the first example, Nova contacts Quantum
                         to create the NIC and attach it to the
-                            <db:literal>net1</db:literal> network,
-                        with the ID <emphasis role="italic"
-                            >net1_id</emphasis>:</para>
+                            <literal>net1</literal> network, with the
+                        ID <emphasis role="italic"
+                        >net1_id</emphasis>:</para>
                     <programlisting language="bash" role="gutter: false"><prompt>$</prompt> nova boot &lt;server_name&gt; --image &lt;image&gt; --flavor &lt;flavor&gt; --nic net-id=&lt;net1_id&gt;</programlisting>
                     <para>In a second example, you first create the
                             <literal>port1</literal>, port and then
@@ -897,6 +921,16 @@
                             specify a tenant_id other than its own.
                         </td>
                     </tr>
+                    <tr>
+                        <td>security_groups</td>
+                        <td>list(dict)</td>
+                        <td>No</td>
+                        <td>CRUD</td>
+                        <td>None</td>
+                        <td>Existing security group IDs</td>
+                        <td>Specifies the IDs of any security groups
+                            associated with a port.</td>
+                    </tr>
                 </tbody>
             </table>
         </section>
@@ -967,23 +1001,23 @@
             <title>Request/Response Types</title>
             <para>The &APIv2; supports the JSON data serialization
                 format.</para>
+
+            <para>The format for both the request and the response can
+                be specified by using the <code>Content-Type</code>
+                header, the <code>Accept</code> header or adding the
+                    <code>.json</code> extension to the request URI. </para>
+
             <example>
-                <title>Request/Response with Headers: JSON</title>
-                <para>The format for both the request and the response
-                    can be specified using the
-                        <code>Content-Type</code> header, the
-                        <code>Accept</code> header or adding the
-                        <code>.json</code> extension to the request
-                    URI. </para>
-                <para> </para>
-                <para>Request:</para>
+                <title>JSON Request with Headers</title>
                 <literallayout class="monospaced">POST /v1.0/tenants/tenantX/networks HTTP/1.1
 Host 127.0.0.1:9696
 Content-Type application/json
 Accept application/json
 Content-Length 57</literallayout>
                 <programlisting language="json"><xi:include href="samples/networks-post-req.json" parse="text"/></programlisting>
-                <para>Response:</para>
+            </example>
+            <example>
+                <title>JSON Response with Headers</title>
                 <literallayout class="monospaced">HTTP/1.1 201 Created
 Content-Type application/json
 Content-Length 204</literallayout>
@@ -1077,113 +1111,125 @@ Content-Length 204</literallayout>
         <section xml:id="pagination">
             <title>Pagination</title>
             <para>To reduce load on the service, list operations will
-                return a maximum number of items at a time. To navigate
-                the collection, the parameters limit, marker and page_reverse
-                can be set in the URI (e.g.?limit=100&amp;marker=1234&amp;page_reverse=False).
-                The marker parameter is the ID of the last item in the
-                previous list. The limit parameter sets the page size.
-                The page_reverse parameter sets the page direction. All
-                of those parameter are optional. If the client requests
-                a limit beyond maximum limit configured by the
-                deployment, the server only returns the maximum limit number
-                of items. </para>
-            <para>For convenience, list responses contain atom "next" links
-                 and "previous" links. The last page in the list requested with
-                 'page_reverse=False' will not contain "next" link, and the
-                 last page in the list requested with 'page_reverse=True' will
-                 not contain "previous" link. The following examples illustrate
-                 two pages with three items. The first page was retrieved via a
-                 GET to http://127.0.0.1:9696/v2.0/networks.json?limit=2 </para>
-            <para>
-               Pagination is optional feature of Quantum API, and it might be
-               disabled. If pagination is disabled, the pagination parameters
-               will be ignored and return all the items.
-            </para>
-            <para>
-                If a particular plugin does not support pagination operations,
-                and pagination is enabled, the &APIv2; will emulate the pagination
-                behavior so that users can expect the same behavior regardless
-                of the particular plugin running in the background.
-            </para>
-            <para>
-               Unfortunately Quantum does not expose any mechanism to tell
-               user if pagination is supported by particular plugin or enabled.
-            </para>
-             <example>
-                 <title>Network Collecion, First Page: JSON</title>
-                 <para>Request:</para>
-                 <literallayout class="monospaced">
-GET /v2.0/networks.json?limit=2 HTTP/1.1
+                return a maximum number of items at a time. To
+                navigate the collection, the parameters limit, marker
+                and page_reverse can be set in the URI. For
+                example:</para>
+            <programlisting language="bash">?limit=100&amp;marker=1234&amp;page_reverse=False</programlisting>
+            <para>The <parameter>marker</parameter> parameter is the
+                ID of the last item in the previous list. The
+                    <parameter>limit</parameter> parameter sets the
+                page size. The <parameter>page_reverse</parameter>
+                parameter sets the page direction. These parameters
+                are optional. If the client requests a limit beyond
+                the maximum limit configured by the deployment, the
+                server returns the maximum limit number of items. </para>
+            <para>For convenience, list responses contain atom "next"
+                links and "previous" links. The last page in the list
+                requested with 'page_reverse=False' will not contain
+                "next" link, and the last page in the list requested
+                with 'page_reverse=True' will not contain "previous"
+                link. The following examples illustrate two pages with
+                three items. The first page was retrieved
+                through:</para>
+            <programlisting language="bash">&GET; http://127.0.0.1:9696/v2.0/networks.json?limit=2</programlisting>
+            <para>Pagination is an optional feature of Quantum API,
+                and it might be disabled. If pagination is disabled,
+                the pagination parameters will be ignored and return
+                all the items. </para>
+            <para>If a particular plugin does not support pagination
+                operations, and pagination is enabled, the &APIv2;
+                will emulate the pagination behavior so that users can
+                expect the same behavior regardless of the particular
+                plugin running in the background. </para>
+            <para>Unfortunately Quantum does not expose any mechanism
+                to tell user if pagination is supported by particular
+                plugin or enabled. </para>
+            <example>
+                <title>Network Collection, First Page: JSON
+                    Request</title>
+
+                <literallayout class="monospaced">GET /v2.0/networks.json?limit=2 HTTP/1.1
 Host: 127.0.0.1:9696
 Content-Type: application/json
-Accept: application/json
-                 </literallayout>
-                 <para>Response:</para>
-                 <programlisting language="json"><xi:include href="samples/networks-get-first-page-res.json" parse="text"/></programlisting>
-             </example>
-             <example>
-                 <title>Network Collecion, First Page: XML</title>
-                 <para>Request:</para>
-                 <literallayout class="monospaced">
+Accept: application/json</literallayout>
+            </example>
+            <example>
+                <title>Network Collection, First Page: JSON
+                    Response</title>
+                <programlisting language="json"><xi:include href="samples/networks-get-first-page-res.json" parse="text"/></programlisting>
+            </example>
+            <example>
+                <title>Network Collection, First Page: XML
+                    Request</title>
+
+                <literallayout class="monospaced">
 GET /v2.0/networks.xml?limit=2 HTTP/1.1
 Host: 127.0.0.1:9696
 Content-Type: application/xml
 Accept: application/xml
                  </literallayout>
-                 <para>Response:</para>
-                 <programlisting language="xml"><xi:include href="samples/networks-get-first-page-res.xml" parse="text"/></programlisting>
-             </example>
-             <para>The last page won't show the "next" links</para>
-             <example>
-                 <title>Network Collecion, Last Page: JSON</title>
-                 <para>Request:</para>
-                 <literallayout class="monospaced">
+            </example>
+            <example>
+                <title>Network Collection, First Page: XML
+                    Response</title>
+                <programlisting language="xml"><xi:include href="samples/networks-get-first-page-res.xml" parse="text"/></programlisting>
+            </example>
+            <para>The last page won't show the "next" links</para>
+            <example>
+                <title>Network Collection, Last Page: JSON
+                    Request</title>
+
+                <literallayout class="monospaced">
 GET /v2.0/networks.json?limit=2&amp;marker=71c1e68c-171a-4aa2-aca5-50ea153a3718 HTTP/1.1
 Host: 127.0.0.1:9696
 Content-Type: application/json
 Accept: application/json
                  </literallayout>
-                 <para>Response:</para>
-                 <programlisting language="json"><xi:include href="samples/networks-get-last-page-res.json" parse="text"/></programlisting>
-             </example>
-             <example>
-                 <title>Network Collecion, Last Page: XML</title>
-                 <para>Request:</para>
-                 <literallayout class="monospaced">
+            </example>
+            <example>
+                <title>Network Collection, Last Page: JSON
+                    Response</title>
+                <programlisting language="json"><xi:include href="samples/networks-get-last-page-res.json" parse="text"/></programlisting>
+            </example>
+            <example>
+                <title>Network Collection, Last Page: XML
+                    Request</title>
+
+                <literallayout class="monospaced">
 GET /v2.0/networks.xml?limit=2&amp;marker=71c1e68c-171a-4aa2-aca5-50ea153a3718 HTTP/1.1
 Host: 127.0.0.1:9696
 Content-Type: application/xml
 Accept: application/xml
                  </literallayout>
-                 <para>Response:</para>
-                 <programlisting language="xml"><xi:include href="samples/networks-get-last-page-res.xml" parse="text"/></programlisting>
-             </example>
+            </example>
+            <example>
+                <title>Network Collection, Last Page: XML
+                    Response</title>
+                <programlisting language="xml"><xi:include href="samples/networks-get-last-page-res.xml" parse="text"/></programlisting>
+            </example>
         </section>
         <section xml:id="Sorting">
             <title>Sorting</title>
-            <para>The results of list operations can be ordered using the
-                'sort_key' and 'sort_dir' parameters. Currently sorting
-                doesn't work with extended attributes of resource. The 'sort_key'
-                and 'sort_dir' can be repeated, and the number of 'sort_key'
-                and 'sort_dir' provided must be same. The sort_dir parameter
-                indicates in which direction to sort. Acceptable values
-                are 'asc' (ascending) and 'desc' (descending).
-            </para>
-            <para>
-                Sorting is optional feature of Quantum API, and it might be
-                disabled. If sorting is disabled, the sorting parameters will
-                be ignored.
-            </para>
-            <para>
-                If a particular plugin does not support sorting operations,
-                and sorting is enabled, the &APIv2; will emulate the sorting
-                behavior so that users can expect the same behavior regardless
-                of the particular plugin running in the background.
-            </para>
-            <para>
-               Unfortunately Quantum does not expose any mechanism to tell
-               user if sorting is supported by particular plugin or enabled.
-            </para>
+            <para>The results of list operations can be ordered using
+                the 'sort_key' and 'sort_dir' parameters. Currently
+                sorting doesn't work with extended attributes of
+                resource. The 'sort_key' and 'sort_dir' can be
+                repeated, and the number of 'sort_key' and 'sort_dir'
+                provided must be same. The sort_dir parameter
+                indicates in which direction to sort. Acceptable
+                values are 'asc' (ascending) and 'desc' (descending). </para>
+            <para>Sorting is optional feature of Quantum API, and it
+                might be disabled. If sorting is disabled, the sorting
+                parameters will be ignored. </para>
+            <para>If a particular plugin does not support sorting
+                operations, and sorting is enabled, the &APIv2; will
+                emulate the sorting behavior so that users can expect
+                the same behavior regardless of the particular plugin
+                running in the background. </para>
+            <para>Unfortunately Quantum does provide a mechanism to
+                tell users if specific plugins support or have enabled
+                sorting. </para>
         </section>
         <section xml:id="extensions">
             <title>Extensions</title>
@@ -1391,7 +1437,7 @@ Accept: application/xml
                 <simpara>Normal Response Code:
                         <returnvalue>200</returnvalue>
                 </simpara>
-                <simpara>Error Response Codes:Unauthorized
+                <simpara>Error Response Codes: Unauthorized
                         (<errorcode>401</errorcode>)</simpara>
                 <para>Lists a summary of all networks defined in
                     Quantum that are accessible to the tenant who
@@ -1937,7 +1983,7 @@ content-type: application/json </literallayout>
                     gateway. Otherwise, you can explicitly specify
                     allocation pools as shown in the following
                     example.</para>
-                <para> When <literal>allocation_pools</literal> and
+                <para>When <literal>allocation_pools</literal> and
                         <literal>gateway_ip</literal> are both
                     specified, it is up to the user ensuring the
                     gateway ip does not overlap with the specified
@@ -1950,12 +1996,17 @@ content-type: application/json </literallayout>
 Content-Type: application/json
 Accept: application/json</literallayout>
                     <programlisting language="json">{
-  "subnet": {
-    "network_id": "ed2e3c10-2e43-4297-9006-2863a2d1abbc",
-    "ip_version": 4,
-    "cidr": "10.0.3.0/24",
-    "allocation_pools": [{"start": "10.0.3.20", "end": "10.0.3.150"}]
-  }
+   "subnet":{
+      "network_id":"ed2e3c10-2e43-4297-9006-2863a2d1abbc",
+      "ip_version":4,
+      "cidr":"10.0.3.0/24",
+      "allocation_pools":[
+         {
+            "start":"10.0.3.20",
+            "end":"10.0.3.150"
+         }
+      ]
+   }
 }</programlisting>
                 </example>
                 <example>
@@ -1978,24 +2029,28 @@ Accept: application/json</literallayout>
 Content-Type: application/json
 Accept: application/json</literallayout>
                         <programlisting language="json">{
-    "subnet": {
-        "allocation_pools": [
-            {
-                "end": "10.0.3.254",
-                "start": "10.0.3.2"
-            }
-        ],
-        "cidr": "10.0.3.0/24",
-        "dns_nameservers": [],
-        "enable_dhcp": true,
-        "gateway_ip": "10.0.3.1",
-        "host_routes": [],
-        "id": "91e47a57-7508-46fe-afc9-fc454e8580e1",
-        "ip_version": 4,
-        "name": "",
-        "network_id": "1a6f6006-9e0b-4f99-984c-96787ae66363",
-        "tenant_id": "f667b69e4d6749749ef3bcba7251d9ce"
-    }
+   "subnet":{
+      "allocation_pools":[
+         {
+            "end":"10.0.3.254",
+            "start":"10.0.3.2"
+         }
+      ],
+      "cidr":"10.0.3.0/24",
+      "dns_nameservers":[
+
+      ],
+      "enable_dhcp":true,
+      "gateway_ip":"10.0.3.1",
+      "host_routes":[
+
+      ],
+      "id":"91e47a57-7508-46fe-afc9-fc454e8580e1",
+      "ip_version":4,
+      "name":"",
+      "network_id":"1a6f6006-9e0b-4f99-984c-96787ae66363",
+      "tenant_id":"f667b69e4d6749749ef3bcba7251d9ce"
+   }
 }</programlisting>
                     </example>
                     <para>The bulk create operation is always atomic.
@@ -2059,11 +2114,10 @@ Accept: application/json</literallayout>
 Content-Type: application/json
 Accept: application/json</literallayout>
                     <programlisting language="json">{
-  "subnet":
-    {
-      "gateway_ip": "10.0.3.254",
-      "name": "new_name"
-    }
+   "subnet":{
+      "gateway_ip":"10.0.3.254",
+      "name":"new_name"
+   }
 }</programlisting>
                 </example>
                 <example>
@@ -2111,7 +2165,6 @@ Accept: application/json</literallayout>
                 <example>
                     <title>Delete Subnet: JSON Request</title>
                     <literallayout class="monospaced">DELETE /v2.0/subnets/9436e561-47bf-436a-b1f1-fe23a926e031
-
 Accept: application/json</literallayout>
                 </example>
                 <example>
@@ -2138,30 +2191,30 @@ Accept: application/json</literallayout>
                     <tr>
                         <td>&GET;</td>
                         <td>/ports</td>
-                        <td>Lists all ports to which the tenant has
+                        <td>Lists ports to which the tenant has
                             access.</td>
                     </tr>
                     <tr>
                         <td>&GET;</td>
                         <td>/ports/<parameter>port_id</parameter></td>
-                        <td>Shows information for the specified
+                        <td>Shows information for a specified
                             port.</td>
                     </tr>
                     <tr>
                         <td>&POST;</td>
                         <td>/ports</td>
-                        <td>Creates a new port for the specified
+                        <td>Creates a port for a specified
                             network.</td>
                     </tr>
                     <tr>
                         <td>&PUT;</td>
                         <td>/ports/<parameter>port-id</parameter></td>
-                        <td>Updates the specified port.</td>
+                        <td>Updates a specified port.</td>
                     </tr>
                     <tr>
                         <td>&DELETE;</td>
                         <td>/ports/<parameter>port-id</parameter></td>
-                        <td>Removes the specified port.</td>
+                        <td>Removes a specified port from a Quantum network.</td>
                     </tr>
                 </tbody>
             </informaltable>
@@ -2183,8 +2236,8 @@ Accept: application/json</literallayout>
                         <tr>
                             <td>&GET;</td>
                             <td>/ports</td>
-                            <td> Lists all ports to which the tenant
-                                has access.</td>
+                            <td>Lists ports to which the tenant has
+                                access.</td>
                         </tr>
                     </tbody>
                 </informaltable>
@@ -2193,26 +2246,100 @@ Accept: application/json</literallayout>
                 </simpara>
                 <simpara>Error Response Codes: Unauthorized
                         (<errorcode>401</errorcode>)</simpara>
-                <para>This operation returns a list of ports to which
-                    the tenant has access. Default policy settings
-                    return only those subnets that are owned by the
-                    tenant who submits the request, unless the request
-                    is submitted by an user with administrative
-                    rights. Users can control which attributes should
-                    be returned by using the
-                        <parameter>fields</parameter> query parameter.
-                    Additionally, you can filter results by using
-                    query string parameters.</para>
+                <para>This operation lists ports to which the tenant
+                    has access. Default policy settings return only
+                    those subnets that are owned by the tenant who
+                    submits the request, unless the request is
+                    submitted by an user with administrative rights. </para>
+                <para>Users can control which attributes are returned
+                    by using the <parameter>fields</parameter> query
+                    parameter. Additionally, you can filter results by
+                    using query string parameters.</para>
                 <para>This operation does not require a request
                     body.</para>
-                <para>This operation returns a response body.</para>
+                <para>This operation returns a response body. The
+                    response body contains the following
+                    fields:</para>
+                <para>
+                    <table rules="all">
+                        <caption>List Ports Response Fields</caption>
+                        <thead>
+                            <tr>
+                                <th>Field</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>admin_state_up</td>
+                                <td>Administrative state of the
+                                   router.</td>
+                            </tr>
+                            <tr>
+                                <td>device_id</td>
+                                <td>The ID of the device that uses
+                                   this port. For example, a virtual
+                                   server,</td>
+                            </tr>
+                            <tr>
+                                <td>device_owner</td>
+                                <td>The ID of the entity that uses
+                                   this port. For example, a dhcp
+                                   agent.</td>
+                            </tr>
+                            <tr>
+                                <td>fixed_ips</td>
+                                <td>IP addresses for the port.
+                                   Includes the IP address and subnet
+                                   ID. </td>
+                            </tr>
+                            <tr>
+                                <td>id</td>
+                                <td>The ID of the port.</td>
+                            </tr>
+                            <tr>
+                                <td>mac_address</td>
+                                <td>The MAC address of the port.</td>
+                            </tr>
+                            <tr>
+                                <td>name</td>
+                                <td>The name of the port.</td>
+                            </tr>
+                            <tr>
+                                <td>network_id</td>
+                                <td>The ID of the attached
+                                   network.</td>
+                            </tr>
+                            <tr>
+                                <td>security_groups</td>
+                                <td>The IDs of any attached security
+                                   groups.</td>
+                            </tr>
+                            <tr>
+                                <td>status</td>
+                                <td>The status of the port: UP or
+                                   DOWN.</td>
+                            </tr>
+                            <tr>
+                                <td>tenant_id</td>
+                                <td>The ID of the tenant who owns the
+                                   network. Only administrative users
+                                   can specify a tenant_id other than
+                                   their own. </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </para>
+
                 <example>
                     <title>List Ports: JSON Request</title>
                     <literallayout class="monospaced">GET /v2.0/ports.json HTTP/1.1
 content-type: application/json
 accept: application/json</literallayout>
-                    <para>Response:</para>
-                    <programlisting language="json"><xi:include href="samples/ports-get-res.json" parse="text"/>                    </programlisting>
+                </example>
+                <example>
+                    <title>List Ports: JSON Response</title>
+                    <programlisting language="json"><xi:include href="samples/ports-get-res.json" parse="text"/></programlisting>
                 </example>
             </section>
             <?hard-pagebreak?>
@@ -2233,7 +2360,7 @@ accept: application/json</literallayout>
                         <tr>
                             <td>&GET;</td>
                             <td>/ports/<parameter>port-id</parameter></td>
-                            <td>Shows information for the specified
+                            <td>Shows information for a specified
                                 port.</td>
                         </tr>
                     </tbody>
@@ -2253,8 +2380,10 @@ accept: application/json</literallayout>
                     <title>Show Port: JSON Request</title>
                     <programlisting>GET /v2.0/ports/ebe69f1e-bc26-4db5-bed0-c0afb4afe3db.json
 accept: application/json</programlisting>
-                    <para>Response:</para>
-                    <programlisting language="json"><xi:include href="samples/port-get-res.json" parse="text"/>                   </programlisting>
+                </example>
+                <example>
+                    <title>Show Port: JSON Response</title>
+                    <programlisting language="json"><xi:include href="samples/port-get-res.json" parse="text"/></programlisting>
                 </example>
             </section>
             <?hard-pagebreak?>
@@ -2275,7 +2404,7 @@ accept: application/json</programlisting>
                         <tr>
                             <td>&POST;</td>
                             <td>/ports</td>
-                            <td>Creates a port on the specified
+                            <td>Creates a port on a specified
                                 network.</td>
                         </tr>
                     </tbody>
@@ -2290,29 +2419,38 @@ accept: application/json</programlisting>
                         (<errorcode>404</errorcode>), Conflict
                         (<errorcode>409</errorcode>), MAC generation
                     failure (<errorcode>503</errorcode>) </simpara>
-                <para>This operation creates a new Quantum port. The
-                    network where the port is created must be
-                    specified in the <parameter>network_id</parameter>
-                    attribute in the request body. You can also
-                    specify the following optional attributes:</para>
+                <para>This operation creates a new Quantum port. You
+                    must specify the network where the port is to
+                    created on the <parameter>network_id</parameter>
+                    attribute in the request body. </para>
+                <para>If you specify a security group ID, this port is
+                    associated with the security group. You can
+                    associate more than one security group with a
+                    port.</para>
+                <para>You can also specify the following optional
+                    attributes:</para>
                 <itemizedlist>
+                    <listitem>
+                        <para>Security groups. Specify one or more
+                            security group IDs.</para>
+                    </listitem>
                     <listitem>
                         <para>A symbolic name for the port</para>
                     </listitem>
                     <listitem>
-                        <para>MAC address. If an invalid address is
-                            specified a <literal>400 Bad
-                                Request</literal> error will be
-                            returned, whereas a <literal>409
-                                Conflict</literal> error will be
-                            returned if the specified MAC address is
-                            already in use.</para>
+                        <para>MAC address. If you specify an address
+                            that is not valid, a <literal>400 Bad
+                                Request</literal> error is
+                            returned</para>
+                        <para>If the specified MAC address is already
+                            in use, a <literal>409 Conflict</literal>
+                            error is returned.</para>
                         <para>When the MAC address is not specified,
-                            Quantum will try to allocate one for the
-                            port being created. If there is a failure
-                            while generating the address, a
-                                <literal>503 Service
-                                Unavailable</literal> error will be
+                            Quantum tries to allocate one for the port
+                            being created. </para>
+                        <para>If a failure occurs while generating the
+                            address, a <literal>503 Service
+                                Unavailable</literal> error is
                             returned.</para>
                     </listitem>
                     <listitem>
@@ -2340,7 +2478,7 @@ accept: application/json</programlisting>
                     <listitem>
                         <para>Host routes for the port, in addition to
                             the host routes defined for the subnets
-                            that the port is associated with.</para>
+                            with which the port is associated.</para>
                     </listitem>
                 </itemizedlist>
                 <para>This operation requires a request body.</para>
@@ -2366,10 +2504,10 @@ accept: application/json</literallayout>
                     <para>This operation enables you to create several
                         ports in a single request. Specify a list of
                         ports in the request body.</para>
-                    <example>
+                    <!-- <example>
                         <title>Bulk Create Port: JSON Request</title>
                         <programlisting>xx</programlisting>
-                    </example>
+                    </example> -->
                     <para>The &APIv2; always guarantees the atomic
                         completion of the bulk operation.</para>
                 </section>
@@ -2392,7 +2530,7 @@ accept: application/json</literallayout>
                         <tr>
                             <td>&PUT;</td>
                             <td>/ports/<parameter>port-id</parameter></td>
-                            <td>Updates the specified port.</td>
+                            <td>Updates a specified port.</td>
                         </tr>
                     </tbody>
                 </informaltable>
@@ -2419,6 +2557,16 @@ accept: application/json</literallayout>
                     already in use, the operation fails and the
                     existing IP addresses are not removed from the
                     port.</para>
+                <para>When you update security groups for a port and
+                    the operation succeeds, any associated security
+                    groups are removed and replaced by the security
+                    groups specified in the body for the update
+                    request. Therefore, this operation replaces the
+                    security_groups attribute when you specify it in
+                    the request body. However, if the specified
+                    security groups are not valid, the operation fails
+                    and the existing security groups are not removed
+                    from the port.</para>
                 <para>This operation requires a request body.</para>
                 <para>This operation returns a response body.</para>
                 <example>
@@ -2427,37 +2575,11 @@ accept: application/json</literallayout>
 Content-Length: 63
 content-type: application/json
 accept: application/json </literallayout>
-                    <programlisting language="json">{
-    "port": {
-        "device_id": "37b4f622-5e17-4dca-bf67-7338c5b7dd63"
-    }
-}</programlisting>
+                    <programlisting language="json"><xi:include href="samples/port-put-req.json" parse="text"/></programlisting>
                 </example>
                 <example>
                     <title>Update Port: JSON Response</title>
-                    <programlisting language="json">Status: 200
-Content-Type: application/json;
-Content-Length: 410
-
-{
-    "port": {
-        "admin_state_up": true,
-        "device_id": "",
-        "device_owner": "",
-        "fixed_ips": [
-            {
-                "ip_address": "10.0.3.3",
-                "subnet_id": "91e47a57-7508-46fe-afc9-fc454e8580e1"
-            }
-        ],
-        "id": "64d913c1-bcb1-42d2-8f0a-9593dbcaf251",
-        "mac_address": "fa:16:3e:25:32:5d",
-        "name": "",
-        "network_id": "1a6f6006-9e0b-4f99-984c-96787ae66363",
-        "status": "ACTIVE",
-        "tenant_id": "f667b69e4d6749749ef3bcba7251d9ce"
-    }
-}</programlisting>
+                    <programlisting language="json"><xi:include href="samples/port-put-res.json" parse="text"/></programlisting>
                 </example>
             </section>
             <?hard-pagebreak?>
@@ -2478,7 +2600,7 @@ Content-Length: 410
                         <tr>
                             <td>&DELETE;</td>
                             <td>/ports/<parameter>port-id</parameter></td>
-                            <td>Removes the specified port.</td>
+                            <td>Removes a specified port from a Quantum network.</td>
                         </tr>
                     </tbody>
                 </informaltable>
@@ -2511,40 +2633,40 @@ Content-Length: 410
         </section>
     </chapter>
     <chapter xml:id="API_extensions">
-        <title>Generic API extensions</title>
-        <para>The features available in the core API, whose operations
-            has been extensively discussed in the previous chapter,
-            can be augmented by API extensions. An API extension can
-            define any combination of:</para>
+        <title>API Extensions</title>
+        <para>The API extensions augment the core API. An API
+            extension extends one or more of the following components
+            of the core API:</para>
         <itemizedlist>
             <listitem>
-                <para>Resource extensions, which are new object
-                    classes;</para>
+                <para>Resources. An extension defines new object
+                    classes.</para>
             </listitem>
             <listitem>
-                <para>Attribute extensions, whose effect is to add new
-                    attribute to existing resources; attributes added
-                    by extended resources will be prefixed by the
+                <para>Attributes. An extended attribute defines a new
+                    attribute on existing resources. Prefixed by the
                     extension name.</para>
             </listitem>
             <listitem>
-                <para>Action extensions, which define new operations
-                    (beyond the one defined by the HTTP verbs) on
-                    existing or new resources</para>
+                <para>Actions. An extended action defines a new
+                    operation on an existing resource.</para>
             </listitem>
         </itemizedlist>
-        <para>This chapter only discusses generic API extensions, i.e.
-            those extensions which are not plugin-specific. For
-            plugin-specific extension shipped with Quantum, please
-            refer to the extension documentation in the source code
-            tree.</para>
+        <para>Generic API extensions are not plugin-specific. For
+            information about plugin-specific extensions that are
+            shipped with Quantum, see the extension documentation in
+            the source code tree.</para>
         <section xml:id="retrieve_extensions">
-            <title>Retrieving Available Extensions</title>
-            <para>Available extensions can be queried at the <filename
-                    role="bold">/v2.0/extensions</filename> URI;
-                please note that this requests must be authenticated
-                just like any other API request.</para>
-            <para>The response will look like the following:</para>
+            <title>List Available Extensions</title>
+            <para>You can list available extensions through the
+                    <filename role="bold">/v2.0/extensions</filename>
+                URI. </para>
+            <note>
+                <para>You must authenticate these requests just like
+                    any other API request.</para>
+            </note>
+            <para>The following example response shows a list of
+                extensions:</para>
             <programlisting>Status Code: 200 OK
 Connection: keep-alive
 Content-Length: 654
@@ -2569,10 +2691,10 @@ Date: Wed, 12 Sep 2012 11:32:56 GMT
 &lt;description&gt;Expose mapping of virtual networks to physical networks&lt;/description&gt;
 &lt;/extension&gt;
 &lt;/extensions&gt;</programlisting>
-            <para>Also, it is possible to query for specific extension
-                using the extension alias. For instance querying
-                    <literal>/v2.0/extensions/router</literal>, will
-                result in the following response:</para>
+            <para>Also, you can query for specific extension using the
+                extension alias. For instance, querying
+                    <literal>/v2.0/extensions/router</literal>,
+                results in the following response:</para>
             <programlisting>Status Code: 200 OK
 Connection: keep-alive
 Content-Length: 350
@@ -2589,12 +2711,13 @@ Date: Wed, 12 Sep 2012 11:36:20 GMT
 &lt;/extension&gt;</programlisting>
         </section>
         <section xml:id="provider_ext">
-            <title>The Provider Networks Extensions
-                    (<literal>provider</literal>)</title>
+            <title>Provider Network
+                (<literal>provider</literal>)</title>
             <para>Discuss attributes exposed by this extension and how
                 they work</para>
         </section>
         <xi:include href="quantum-l3-ext.xml"/>
         <xi:include href="quantum-quotas-ext.xml"/>
+        <xi:include href="quantum-security-groups-ext.xml"/>
     </chapter>
 </book>
