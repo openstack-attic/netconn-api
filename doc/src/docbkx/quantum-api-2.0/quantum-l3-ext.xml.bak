@@ -353,12 +353,12 @@
             <para>This operation does not require a request body; this
                 operation returns a response body.</para>
             <example>
-                <title>List Routers: JSON Request</title>
+                <title>List Routers: Request</title>
                 <literallayout class="monospaced">GET /v2.0/routers
 Accept: application/json</literallayout>
             </example>
             <example>
-                <title>List Routers: JSON Response</title>
+                <title>List Routers: Response</title>
                 <programlisting language="json"><xi:include href="samples/routers-get-res.json" parse="text"/></programlisting>
             </example>
         </section>
@@ -401,12 +401,12 @@ Accept: application/json</literallayout>
             <para>This operation does not require a request body. </para>
             <para>This operation returns a response body.</para>
             <example>
-                <title>Show Router: JSON Request</title>
+                <title>Show Router: Request</title>
                 <literallayout class="monospaced">GET /v2.0/routers/a9254bdb-2613-4a13-ac4c-adc581fba50d
 Accept: application/json</literallayout>
             </example>
             <example>
-                <title>Show Router: JSON Response</title>
+                <title>Show Router: Response</title>
                 <programlisting language="json"><xi:include href="samples/routers-show-res.json" parse="text"/></programlisting>
             </example>
         </section>
@@ -461,11 +461,11 @@ Accept: application/json</literallayout>
             <para>This operation requires a request body. </para>
             <para>This operation returns a response body. </para>
             <example>
-                <title>Create Router: JSON Request</title>
+                <title>Create Router: Request</title>
                 <programlisting language="json"><xi:include href="samples/routers-post-req.json" parse="text"/></programlisting>
             </example>
             <example>
-                <title>Create Router: JSON Response</title>
+                <title>Create Router: Response</title>
                 <programlisting language="json"><xi:include href="samples/routers-post-res.json" parse="text"/></programlisting>
             </example>
         </section>
@@ -513,11 +513,11 @@ Accept: application/json</literallayout>
                     linkend="router_remove_interface">remove router
                     interface</link> should be used.</simpara>
             <example>
-                <title>Update Router: JSON Request</title>
+                <title>Update Router: Request</title>
                 <programlisting language="json"><xi:include href="samples/routers-put-req.json" parse="text"/></programlisting>
             </example>
             <example>
-                <title>Update Router: JSON Response</title>
+                <title>Update Router: Response</title>
                 <programlisting language="json"><xi:include href="samples/routers-put-res.json" parse="text"/></programlisting>
             </example>
         </section>
@@ -564,13 +564,13 @@ Accept: application/json</literallayout>
             <para>This operation does not require a request body. </para>
             <para>This operation does not return a response body. </para>
             <example>
-                <title>Delete Router: JSON Request</title>
+                <title>Delete Router: Request</title>
                 <literallayout class="monospaced">DELETE /v2.0/routers/8604a0de-7f6b-409a-a47c-a1cc7bc77b2e
 Accept: application/json</literallayout>
             </example>
         </section>
         <section xml:id="router_add_interface">
-            <title>Add Interface to Router</title>
+            <title>Add interface to router</title>
             <para>
                 <informaltable rules="all" width="100%">
                     <col width="20%"/>
@@ -587,7 +587,7 @@ Accept: application/json</literallayout>
                         <tr>
                             <td>&PUT;</td>
                             <td>/routers/<parameter>router_id</parameter>/add_router_interface</td>
-                            <td>Adds an internal interface to a
+                            <td>Add a new internal interface to a
                                 logical router.</td>
                         </tr>
                     </tbody>
@@ -618,14 +618,14 @@ Accept: application/json</literallayout>
                     <literal>409 Conflict</literal> is returned if the
                 port is already used.</para>
             <example>
-                <title>Add Router Interface: JSON Request</title>
+                <title>Add Router Interface: Request</title>
                 <programlisting language="json">PUT /v2.0/routers/8604a0de-7f6b-409a-a47c-a1cc7bc77b2e/add_router_interface
 Accept: application/json
 
 {"subnet_id": "a2f1f29d-571b-4533-907f-5803ab96ead1"}</programlisting>
             </example>
             <example>
-                <title>Add Router Interface: JSON Response</title>
+                <title>Add Router Interface: Response</title>
                 <programlisting language="json">{
     "subnet_id": "a2f1f29d-571b-4533-907f-5803ab96ead1",
     "port_id": "3a44f4e5-1694-493a-a1fb-393881c673a4"
@@ -646,7 +646,7 @@ Accept: application/json
         </section>
         <?hard-pagebreak?>
         <section xml:id="router_remove_interface">
-            <title>Remove Interface from Router</title>
+            <title>Remove interface from router</title>
             <para>
                 <informaltable rules="all" width="100%">
                     <col width="20%"/>
@@ -697,7 +697,7 @@ Accept: application/json
                 connecting the router with the subnet is removed from
                 the subnet's network.</para>
             <example>
-                <title>Remove Router Interface: JSON Request</title>
+                <title>Remove Router Interface: Request</title>
                 <programlisting language="json">PUT /v2.0/routers/8604a0de-7f6b-409a-a47c-a1cc7bc77b2e/remove_router_interface
 Accept: application/json
 
@@ -751,12 +751,12 @@ Accept: application/json
                 parameter. Additionally, results can be filtered by
                 using query string parameters.</para>
             <example>
-                <title>List Floating IPs: JSON Request</title>
+                <title>List Floating IPs: Request</title>
                 <literallayout class="monospaced">GET /v2.0/floatingips
 Accept: application/json</literallayout>
             </example>
             <example>
-                <title>List Floating IPs: JSON Response</title>
+                <title>List Floating IPs: Response</title>
                 <programlisting language="json"><xi:include href="samples/floatingips-get-res.json" parse="text"/></programlisting>
             </example>
         </section>
@@ -796,12 +796,13 @@ Accept: application/json</literallayout>
                 be returned by using the <parameter>fields</parameter>
                 query parameter. </para>
             <example>
-                <title>Show Floating IP: JSON Request</title>
+                <title>Show Floating IP (request specific fields):
+                    Request</title>
                 <literallayout class="monospaced">GET /v2.0/floatingips/2f245a7b-796b-4f26-9cf9-9e82d248fda7.json?fields=fixed_ip_address&amp;fields=floating_ip_address
 Accept: application/json</literallayout>
             </example>
             <example>
-                <title>Show Floating IP: JSON Response</title>
+                <title>Show Floating IP: Response</title>
                 <programlisting language="json"><xi:include href="samples/floatingips-show-res.json" parse="text"/></programlisting>
             </example>
         </section>
@@ -824,10 +825,10 @@ Accept: application/json</literallayout>
                         <tr>
                             <td>&POST;</td>
                             <td>/floatingips</td>
-                            <td>Creates a floating IP, and configures
-                                its association with an internal port,
-                                if the relevant information are
-                                specified</td>
+                            <td>Creates a new floating IP, and
+                                configures its association with an
+                                internal port, if the relevant
+                                information are specified</td>
                         </tr>
                     </tbody>
                 </informaltable>
@@ -886,11 +887,11 @@ Accept: application/json</literallayout>
                 for association are already associated to another
                 floating IP, a 409 error will be returned. </para>
             <example>
-                <title>Create Floating IP: JSON Request</title>
+                <title>Create Floating IP: Request</title>
                 <programlisting language="json"><xi:include href="samples/floatingips-post-req.json" parse="text"/></programlisting>
             </example>
             <example>
-                <title>Create Floating IP: JSON Response</title>
+                <title>Create Floating IP: Response</title>
                 <programlisting language="json"><xi:include href="samples/floatingips-post-res.json" parse="text"/></programlisting>
             </example>
         </section>
@@ -913,7 +914,7 @@ Accept: application/json</literallayout>
                         <tr>
                             <td>&PUT;</td>
                             <td>/floatingips/<parameter>floatingip_id</parameter></td>
-                            <td>Updates a floating IP and its
+                            <td>Updates a Floating IP and its
                                 association with an internal port, if
                                 the relevant information are specified
                                 in the request body.</td>
@@ -935,22 +936,21 @@ Accept: application/json</literallayout>
                     <literal>port_id</literal> request attribute to
                 null or omit it from the request body.</para>
             <example>
-                <title>Update Floating IP (associate): JSON
-                    Request</title>
+                <title>Update Floating IP (associate): Request</title>
                 <programlisting language="json"><xi:include href="samples/floatingips-put-ass-req.json" parse="text"/></programlisting>
             </example>
             <example>
-                <title>Update Floating IP (associate): JSON
+                <title>Update Floating IP (associate):
                     Response</title>
                 <programlisting language="json"><xi:include href="samples/floatingips-put-ass-res.json" parse="text"/></programlisting>
             </example>
             <example>
-                <title>Update Floating IP (disassociate): JSON
+                <title>Update Floating IP (disassociate):
                     Request</title>
                 <programlisting language="json"><xi:include href="samples/floatingips-put-disass-req.json" parse="text"/></programlisting>
             </example>
             <example>
-                <title>Update Floating IP (disassociate): JSON
+                <title>Update Floating IP (disassociate):
                     Response</title>
                 <programlisting language="json"><xi:include href="samples/floatingips-put-disass-res.json" parse="text"/></programlisting>
             </example>
@@ -992,7 +992,7 @@ Accept: application/json</literallayout>
                 port, the association is removed as well.</para>
             <para>
                 <example>
-                    <title>Delete Floating IP: JSON Request</title>
+                    <title>Delete Floating IP: Request</title>
                     <literallayout class="monospaced">DELETE /v2.0/floatingips/2f245a7b-796b-4f26-9cf9-9e82d248fda7
 Accept: application/json</literallayout>
                 </example>

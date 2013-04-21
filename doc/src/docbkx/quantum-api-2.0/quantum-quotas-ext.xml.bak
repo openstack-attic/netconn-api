@@ -167,7 +167,7 @@ Accept: application/json
 X-Auth-Token: a54d6fdda41341f892150e2aaf648f0d</programlisting>
         </example>
         <example>
-            <title>Show Quotas: JSON Response</title>
+            <title>Show Quotas: JSON Response:</title>
             <programlisting language="json"><xi:include href="samples/quotas-show-res.json" parse="text"/></programlisting>
         </example>
     </section>

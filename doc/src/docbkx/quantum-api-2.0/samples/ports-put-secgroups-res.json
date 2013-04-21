@@ -1,0 +1,63 @@
+Status: 200
+Content-Type: application/json
+Content-Length: 1319
+
+{
+    "ports": [
+        {
+            "admin_state_up": true,
+            "device_id": "",
+            "device_owner": "",
+            "fixed_ips": [
+                {
+                    "ip_address": "10.0.3.4",
+                    "subnet_id": "91e47a57-7508-46fe-afc9-fc454e8580e1"
+                }
+            ],
+            "id": "38f18815-8ee3-4ba4-b7fa-4c46a7e4181d",
+            "mac_address": "fa:16:3e:37:ce:91",
+            "name": "",
+            "network_id": "1a6f6006-9e0b-4f99-984c-96787ae66363",
+            "status": "ACTIVE",
+            "tenant_id": "f667b69e4d6749749ef3bcba7251d9ce"
+        },
+        {
+            "admin_state_up": true,
+            "device_id": "",
+            "device_owner": "",
+            "fixed_ips": [
+                {
+                    "ip_address": "10.0.3.3",
+                    "subnet_id": "91e47a57-7508-46fe-afc9-fc454e8580e1"
+                }
+            ],
+            "id": "64d913c1-bcb1-42d2-8f0a-9593dbcaf251",
+            "mac_address": "fa:16:3e:25:32:5d",
+            "name": "",
+            "network_id": "1a6f6006-9e0b-4f99-984c-96787ae66363",
+            "status": "ACTIVE",
+            "tenant_id": "f667b69e4d6749749ef3bcba7251d9ce"
+        },
+        {
+            "admin_state_up": true,
+            "device_id": "dhcp724fc160-2b2e-597e-b9ed-7f65313cd73f-1a6f6006-9e0b-4f99-984c-96787ae66363",
+            "device_owner": "network:dhcp",
+            "fixed_ips": [
+                {
+                    "ip_address": "10.0.2.2",
+                    "subnet_id": "e3c3620c-9d24-4470-b226-739da2f617c0"
+                },
+                {
+                    "ip_address": "10.0.3.2",
+                    "subnet_id": "91e47a57-7508-46fe-afc9-fc454e8580e1"
+                }
+            ],
+            "id": "d252d81f-2a88-41fe-aaeb-ddc3e439c277",
+            "mac_address": "fa:16:3e:c4:00:45",
+            "name": "DHCP Agent",
+            "network_id": "1a6f6006-9e0b-4f99-984c-96787ae66363",
+            "status": "ACTIVE",
+            "tenant_id": "f667b69e4d6749749ef3bcba7251d9ce"
+        }
+    ]
+}

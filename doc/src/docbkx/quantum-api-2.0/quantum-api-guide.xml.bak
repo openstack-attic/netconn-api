@@ -2415,9 +2415,9 @@ accept: application/json</programlisting>
                 <para>This operation requires a request body.</para>
                 <para>This operation returns a response body.</para>
                 <para>The first example shows how to create a port
-                    without associated security groups. </para>
+                    without security groups. </para>
                 <para>The second example shows how to create a port
-                    with associated security groups.</para>
+                    with security groups.</para>
                 <example>
                     <title>Create Port: JSON Request</title>
                     <literallayout class="monospaced">POST /v2.0/ports.json HTTP/1.1
@@ -2431,7 +2431,7 @@ accept: application/json</literallayout>
                     <programlisting language="json"><xi:include href="samples/port-post-res.json" parse="text"/></programlisting>
                 </example>
                 <example>
-                    <title>Create Port with Associated Security Groups: JSON
+                    <title>Create Port with Security Groups: JSON
                         Request</title>
                     <literallayout class="monospaced">POST /v2.0/ports.json HTTP/1.1
 Content-Length: 158
@@ -2440,7 +2440,7 @@ accept: application/json</literallayout>
                     <programlisting language="json"><xi:include href="samples/port-post-secgroups-req.json" parse="text"/></programlisting>
                 </example>
                 <example>
-                    <title>Create Port with Associated Security Groups: JSON
+                    <title>Create Port with Security Groups: JSON
                         Response</title>
                     <programlisting language="json"><xi:include href="samples/port-post-secgroups-res.json" parse="text"/></programlisting>
                 </example>
