@@ -25,7 +25,7 @@ format="SVG" scale="60"/>
 format="SVG" scale="60"/>
 </imageobject>
 </inlinemediaobject>'>
- <!ENTITY APIv2   'Quantum API v2.0'>
+ <!ENTITY APIv2   'Networking API v2.0'>
 ]>
 <preface xmlns="http://docbook.org/ns/docbook"
     xmlns:xi="http://www.w3.org/2001/XInclude"
@@ -33,7 +33,7 @@ format="SVG" scale="60"/>
     xml:id="ch_preface">
     <?dbhtml stop-chunking?>
     <title>Preface</title>
-    <para>The Quantum project provides virtual networking services
+    <para>The OpenStack Networking project provides virtual networking services
         among devices managed by the <link
             xlink:href="http://wiki.openstack.org/OpenStack"
             xmlns:svg="http://www.w3.org/2000/svg"
@@ -58,7 +58,7 @@ format="SVG" scale="60"/>
             xmlns:db="http://docbook.org/ns/docbook">This guide is for
             software developers who create applications by using the
             &APIv2;. To use this information, you should have a
-            general understanding of the OpenStack Quantum network
+            general understanding of the OpenStack Networking
             service, the OpenStack compute service, and the
             integration between the two. You should also have access
             to a plugin that implements the &APIv2;. </para>
