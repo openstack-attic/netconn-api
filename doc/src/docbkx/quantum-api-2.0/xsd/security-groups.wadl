@@ -1,0 +1,506 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE application [<!ENTITY % common  SYSTEM "../common.ent">
+%common;]>
+
+<!-- (C) 2013 OpenStack Foundation, All Rights Reserved -->
+
+<application xmlns="http://wadl.dev.java.net/2009/02"
+    xmlns:xsdxt="http://docs.rackspacecloud.com/xsd-ext/v1.0"
+    xmlns:wadl="http://wadl.dev.java.net/2009/02"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:csapi="http://www.w3.org/2001/XMLSchema"
+    xmlns:secgr="http://docs.openstack.org/quantum/api/v2.0">
+    <grammars>
+        <include href="secgr.xsd"/>
+    </grammars>
+    <resources base="https://servers.api.openstack.com/">
+        <resource id="version" path="v2">
+            <resource id="tenant_id" path="{tenant_id}">
+                <param name="tenant_id" style="template"
+                    type="csapi:uuid">
+                    <doc>
+                        <p xmlns="http://www.w3.org/1999/xhtml">The
+                            unique identifier of the tenant or
+                            account. </p>
+                    </doc>
+                </param>
+                <resource id="security_groups" path="security-groups">
+                    <method href="#listSecGroups"/>
+                    <method href="#createSecGroup"/>
+                    <resource id="get_security_group"
+                        path="{security_group_id}">
+                        <param name="security_group_id"
+                            style="template" type="csapi:uuid">
+                            <doc><p
+                                   xmlns="http://www.w3.org/1999/xhtml"
+                                   >The unique identifier of the
+                                   security group. </p></doc>
+                        </param>
+                        <method href="#getSecGroup"/>
+                        <method href="#deleteSecGroup"/>
+                    </resource>
+                </resource>
+                <resource id="security_groups_rules"
+                    path="security-group-rules">
+                    <method href="#listSecGroupRules"/>
+                    <method href="#createSecGroupRule"/>
+                    <resource path="{rules-security-groups-id}">
+                        <param name="rules-security-groups-id"
+                            style="template" type="csapi:uuid">
+                            <doc><p
+                                   xmlns="http://www.w3.org/1999/xhtml"
+                                   >The unique identifier of the
+                                   security group rule. </p></doc>
+                        </param>
+                        <method href="#getSecGroupRule"/>
+                        <method href="#deleteSecGroupRule"/>
+                    </resource>
+                </resource>
+                <resource id="Servers" path="servers">
+                    <resource path="{server_id}">
+                        <param name="server_id" style="template"
+                            type="csapi:UUID">
+                            <doc>
+                                <p
+                                   xmlns="http://www.w3.org/1999/xhtml"
+                                   >The UUID for the server of
+                                   interest to you. </p>
+                            </doc>
+                        </param>
+                        <resource path="os-security-groups">
+                            <method href="#listSecGroupsByServer"/>
+                        </resource>
+                    </resource>
+                </resource>
+            </resource>
+        </resource>
+    </resources>
+    <method name="GET" id="listSecGroups">
+        <wadl:doc xml:lang="EN" title="List Security Groups"
+            xmlns="http://docbook.org/ns/docbook">
+            <para role="shortdesc">Lists a summary of all Quantum
+                security groups that the specified tenant can
+                access.</para>
+            <para>The list includes the unique ID for each security
+                group.</para>
+            <para>This operation does not require a request
+                body.</para>
+            <para>This operation returns a response body.</para>
+        </wadl:doc>
+        <request>
+            <representation mediaType="application/json">
+                <doc xml:lang="EN"><xsdxt:code
+                        href="../samples/security-groups/security-groups-list-get-req.json"
+                    /></doc>
+            </representation>
+        </request>
+        <response status="200">
+            <representation mediaType="application/json">
+                <doc xml:lang="EN">
+                    <xsdxt:code
+                        href="../samples/security-groups/security-groups-list-get-resp.json"
+                    />
+                </doc>
+            </representation>
+        </response>
+        <response status="401"
+            xmlns="http://wadl.dev.java.net/2009/02">
+            <representation mediaType="application/xml"
+                element="secgr:unauthorized"/>
+            <representation mediaType="application/json"/>
+        </response>
+    </method>
+    <method name="POST" id="createSecGroup">
+        <wadl:doc xml:lang="EN" xmlns="http://docbook.org/ns/docbook"
+            title="Create Security Group">
+            <para role="shortdesc">Creates a Quantum security group. </para>
+            <para>This operation requires a request body. The request
+                body must include one or both of the following
+                attributes:</para>
+            <itemizedlist>
+                <listitem><para><code>name</code>. String. Specifies a
+                        symbolic name for the security group. Not
+                        required to be unique.</para></listitem>
+                <listitem>
+                    <para><code>description</code>. String. Describes
+                        the security group.</para></listitem>
+            </itemizedlist>
+            <para>This operation creates a security group with default
+                security group rules for the IPv4 and IPv6 ethertypes.
+                The following attributes of a security group rule have
+                a value of <code>null</code>:</para>
+            <itemizedlist><listitem><para><code>port_range_max</code></para></listitem>
+                <listitem><para><code>port_range_min</code></para></listitem>
+                <listitem><para><code>protocol</code></para></listitem>
+                <listitem><para><code>remote_group_id</code></para></listitem>
+                <listitem><para><code>remote_ip_prefix</code></para></listitem></itemizedlist>
+            <para>This operation returns a response body. </para>
+        </wadl:doc>
+        <request>
+            <representation mediaType="application/json">
+                <doc xml:lang="EN">
+                    <xsdxt:code
+                        href="../samples/security-groups/security-groups-create-req.json"
+                    />
+                </doc>
+            </representation>
+        </request>
+        <response status="201">
+            <representation mediaType="application/json">
+                <doc xml:lang="EN">
+                    <xsdxt:code
+                        href="../samples/security-groups/security-groups-create-resp.json"
+                    />
+                </doc>
+            </representation>
+        </response>
+        <response status="400"
+            xmlns="http://wadl.dev.java.net/2009/02">
+            <representation mediaType="application/xml"
+                element="secgr:badRequest"/>
+            <representation mediaType="application/json"/>
+        </response>
+        <response status="401"
+            xmlns="http://wadl.dev.java.net/2009/02">
+            <representation mediaType="application/xml"
+                element="secgr:unauthorized"/>
+            <representation mediaType="application/json"/>
+        </response>
+    </method>
+    <method name="GET" id="getSecGroup">
+        <wadl:doc xml:lang="EN" xmlns="http://docbook.org/ns/docbook"
+            title="Show Security Group">
+            <para role="shortdesc">Shows information for a specified
+                security group.</para>
+            <para>This operation does not require a request
+                body.</para>
+            <para>This operation returns a response body that contains
+                the description, name, ID, and security group rules
+                associated with the specified security group and
+                tenant ID.</para>
+        </wadl:doc>
+        <request>
+            <representation mediaType="application/json">
+                <doc xml:lang="EN">
+                    <xsdxt:code
+                        href="../samples/security-groups/security-groups-get-req.json"
+                    />
+                </doc>
+            </representation>
+        </request>
+        <response status="200">
+            <representation mediaType="application/json">
+                <doc xml:lang="EN">
+                    <xsdxt:code
+                        href="../samples/security-groups/security-groups-get-resp.json"
+                    />
+                </doc>
+            </representation>
+        </response>
+        <response status="401"
+            xmlns="http://wadl.dev.java.net/2009/02">
+            <representation mediaType="application/xml"
+                element="secgr:unauthorized"/>
+            <representation mediaType="application/json"/>
+        </response>
+        <response status="404"
+            xmlns="http://wadl.dev.java.net/2009/02">
+            <representation mediaType="application/xml"
+                element="secgr:itemNotFound"/>
+            <representation mediaType="application/json"/>
+        </response>
+    </method>
+    <method name="DELETE" id="deleteSecGroup">
+        <wadl:doc xml:lang="EN" xmlns="http://docbook.org/ns/docbook"
+            title="Delete Security Group">
+            <para role="shortdesc">Deletes a Quantum security
+                group.</para>
+            <para>This operation deletes a Quantum security group and
+                its associated security group rules, provided that a
+                port is not associated with the security group.</para>
+            <para>This operation does not require a request body. This
+                operation does not return a response body. </para>
+        </wadl:doc>
+        <request>
+            <representation mediaType="application/json">
+                <doc xml:lang="EN">
+                    <xsdxt:code
+                        href="../samples/security-groups/security-groups-delete-req.json"
+                    />
+                </doc>
+            </representation>
+        </request>
+        <response status="204">
+            <representation mediaType="application/json">
+                <doc xml:lang="EN">
+                    <xsdxt:code
+                        href="../samples/security-groups/security-groups-delete-resp.json"
+                    />
+                </doc>
+            </representation>
+        </response>
+        <response status="401"
+            xmlns="http://wadl.dev.java.net/2009/02">
+            <representation mediaType="application/xml"
+                element="secgr:unauthorized"/>
+            <representation mediaType="application/json"/>
+        </response>
+        <response status="404"
+            xmlns="http://wadl.dev.java.net/2009/02">
+            <representation mediaType="application/xml"
+                element="secgr:itemNotFound"/>
+            <representation mediaType="application/json"/>
+        </response>
+    </method>
+    <method name="GET" id="listSecGroupRules">
+        <wadl:doc xml:lang="EN" xmlns="http://docbook.org/ns/docbook"
+            title="List Security Group Rules">
+            <para role="shortdesc">Lists a summary of all Quantum
+                security group rules that the specified tenant can
+                access.</para>
+            <para>The list provides the unique ID for each security
+                group rule.</para>
+            <para>This operation does not require a request body. This
+                operation returns a response body. </para>
+        </wadl:doc>
+        <request>
+            <representation mediaType="application/json">
+                <doc xml:lang="EN">
+                    <xsdxt:code
+                        href="../samples/security-groups/rules-security-groups-list-get-req.json"
+                    />
+                </doc>
+            </representation>
+        </request>
+        <response status="200">
+
+            <representation mediaType="application/json">
+                <doc xml:lang="EN">
+                    <xsdxt:code
+                        href="../samples/security-groups/rules-security-groups-list-get-resp.json"
+                    />
+                </doc>
+            </representation>
+        </response>
+        <response status="401"
+            xmlns="http://wadl.dev.java.net/2009/02">
+            <representation mediaType="application/xml"
+                element="secgr:unauthorized"/>
+            <representation mediaType="application/json"/>
+        </response>
+    </method>
+    <method name="POST" id="createSecGroupRule">
+        <wadl:doc xml:lang="EN" xmlns="http://docbook.org/ns/docbook"
+            title="Create Security Group Rule">
+            <para role="shortdesc">Creates a Quantum security group
+                rule. </para>
+            <para>This operation requires a request body. </para>
+            <para>The following table describes the required and
+                optional attributes in the request body:</para>
+            <table width="75%" rules="all"><caption>Create Security
+                    Group Rule Request Attributes</caption>
+                <thead><tr><th>Attribute</th><th>Required</th><th>Description</th></tr></thead>
+                <tbody>
+                    <tr><td><para>direction</para></td>
+                        <td><para>Required</para></td>
+                        <td><para>Ingress or egress: The direction in
+                                which the security group rule is
+                                applied. For a compute instance, an
+                                ‘ingress’ security group rule matches
+                                traffic that is incoming (ingress) for
+                                that instance. An ‘egress’ rule is
+                                applied to traffic leaving the
+                                instance.</para></td></tr>
+                    <tr><td><para>security_group_id</para></td>
+                        <td><para>Required</para></td>
+                        <td><para>The security group ID to associate
+                                with this security group
+                            rule.</para></td></tr>
+                    <tr><td><para>port_range_min</para></td>
+                        <td><para>Optional</para></td><td><para>The
+                                minimum port number in the range that
+                                is matched by the security group rule.
+                                If the protocol is TCP or UDP, this
+                                value must be less than or equal to
+                                the value of the port_range_max
+                                attribute. If the protocol is ICMP,
+                                this value must be an ICMP
+                                type.</para></td></tr>
+                    <tr><td><para>port_range_max</para></td>
+                        <td><para>Optional</para></td><td><para>The
+                                maximum port number in the range that
+                                is matched by the security group rule.
+                                The port_range_min attribute
+                                constrains the port_range_max
+                                attribute. If the protocol is ICMP,
+                                this value must be an ICMP
+                                type.</para></td></tr>
+                    <tr><td><para>protocol</para></td>
+                        <td><para>Optional</para></td><td><para>The
+                                protocol that is matched by the
+                                security group rule. Valid values are
+                                null, tcp, udp, and icmp.
+                        </para></td></tr>
+                    <tr><td><para>remote_group_id</para></td>
+                        <td><para>Optional</para></td><td><para>The
+                                remote group ID to be associated with
+                                this security group rule. You can
+                                specify either remote_group_id or
+                                remote_ip_prefix in the request body.
+                            </para></td></tr>
+                    <tr><td><para>remote_ip_prefix</para></td>
+                        <td><para>Optional</para></td><td><para>The
+                                remote IP prefix to be associated with
+                                this security group rule. You can
+                                specify either remote_group_id or
+                                remote_ip_prefix in the request body.
+                                This attribute matches the specified
+                                IP prefix as the source IP address of
+                                the IP
+                    packet.</para></td></tr></tbody></table>
+            <para>This operation returns a response body. </para>
+        </wadl:doc>
+        <request>
+            <representation mediaType="application/json">
+                <doc xml:lang="EN">
+                    <xsdxt:code
+                        href="../samples/security-groups/security-groups-create-req.json"
+                    />
+                </doc>
+            </representation>
+        </request>
+        <response status="201">
+            <representation mediaType="application/json">
+                <doc xml:lang="EN">
+                    <xsdxt:code
+                        href="../samples/security-groups/security-groups-create-resp.json"
+                    />
+                </doc>
+            </representation>
+        </response>
+        <response status="400"
+            xmlns="http://wadl.dev.java.net/2009/02">
+            <representation mediaType="application/xml"
+                element="secgr:badRequest"/>
+            <representation mediaType="application/json"/>
+        </response>
+        <response status="401"
+            xmlns="http://wadl.dev.java.net/2009/02">
+            <representation mediaType="application/xml"
+                element="secgr:unauthorized"/>
+            <representation mediaType="application/json"/>
+        </response>
+        <response status="404"
+            xmlns="http://wadl.dev.java.net/2009/02">
+            <representation mediaType="application/xml"
+                element="secgr:itemNotFound"/>
+            <representation mediaType="application/json"/>
+        </response>
+        <response status="409"
+            xmlns="http://wadl.dev.java.net/2009/02">
+            <representation mediaType="application/xml"
+                element="secgr:buildInProgress"/>
+            <representation mediaType="application/json"/>
+        </response>
+    </method>
+    <method name="GET" id="getSecGroupRule">
+        <wadl:doc xml:lang="EN" xmlns="http://docbook.org/ns/docbook"
+            title="Show Security Group Rule">
+            <para role="shortdesc">Shows detailed information for a
+                specified security group rule.</para>
+            <para>This operation does not require a request
+                body.</para>
+            <para>This operation returns a response body, which
+                contains the following information about the security
+                group rule:</para>
+            <itemizedlist><listitem><para><code>direction</code>.
+                        Either ingress or egress.</para></listitem>
+                <listitem><para><code>ethertype</code>. Either IPv4 or
+                        IPv6.</para></listitem>
+                <listitem><para>The ID for the specified security
+                        group rule</para></listitem>
+                <listitem><para>The min and max port ranges
+                    </para></listitem>
+                <listitem><para>The protocol</para></listitem>
+                <listitem><para>The tenant ID</para></listitem>
+                <listitem><para>The remote group ID</para></listitem>
+                <listitem><para>The remote IP prefix</para></listitem>
+                <listitem><para>The security group ID for the security
+                        group with which the rule is
+                    associated</para></listitem>
+                <listitem><para>The tenant
+                ID</para></listitem></itemizedlist>
+        </wadl:doc>
+        <request>
+            <representation mediaType="application/json">
+                <doc xml:lang="EN">
+                    <xsdxt:code
+                        href="../samples/security-groups/rules-security-groups-get-req.json"
+                    />
+                </doc>
+            </representation>
+        </request>
+        <response status="200">
+            <representation mediaType="application/json">
+                <doc xml:lang="EN">
+                    <xsdxt:code
+                        href="../samples/security-groups/rules-security-groups-get-resp.json"
+                    />
+                </doc>
+            </representation>
+        </response>
+        <response status="401"
+            xmlns="http://wadl.dev.java.net/2009/02">
+            <representation mediaType="application/xml"
+                element="secgr:unauthorized"/>
+            <representation mediaType="application/json"/>
+        </response>
+        <response status="404"
+            xmlns="http://wadl.dev.java.net/2009/02">
+            <representation mediaType="application/xml"
+                element="secgr:itemNotFound"/>
+            <representation mediaType="application/json"/>
+        </response>
+    </method>
+    <method name="DELETE" id="deleteSecGroupRule">
+        <wadl:doc xml:lang="EN" xmlns="http://docbook.org/ns/docbook"
+            title="Delete Security Group Rule">
+            <para role="shortdesc">Deletes a specified rule from a
+                Quantum security group. </para>
+            <para>This operation does not require a request
+                body.</para>
+            <para>This operation does not return a response body.
+            </para>
+        </wadl:doc>
+        <request>
+            <representation mediaType="application/json">
+                <doc xml:lang="EN">
+                    <xsdxt:code
+                        href="../samples/security-groups/rules-security-groups-delete-req.json"
+                    />
+                </doc>
+            </representation>
+        </request>
+        <response status="204">
+            <representation mediaType="application/json">
+                <doc xml:lang="EN">
+                    <xsdxt:code
+                        href="../samples/security-groups/rules-security-groups-delete-resp.json"
+                    />
+                </doc>
+            </representation>
+        </response>
+        <response status="401"
+            xmlns="http://wadl.dev.java.net/2009/02">
+            <representation mediaType="application/xml"
+                element="secgr:unauthorized"/>
+            <representation mediaType="application/json"/>
+        </response>
+        <response status="404"
+            xmlns="http://wadl.dev.java.net/2009/02">
+            <representation mediaType="application/xml"
+                element="secgr:itemNotFound"/>
+            <representation mediaType="application/json"/>
+        </response>
+    </method>
+</application>
