@@ -30,14 +30,14 @@
 <section xml:id="router_ext" xmlns="http://docbook.org/ns/docbook"
     xmlns:xi="http://www.w3.org/2001/XInclude"
     xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
-    <title>The Layer-3 Networking Extensions
+    <title>The Layer-3 Networking Extension (router)
             (<literal>router</literal>)</title>
-    <para>The Layer-3 extension allows Quantum API users to route
-        packets between subnets, as well as forwarding packets from
-        internal networks to external ones, and allow access to
-        instances from external networks through <emphasis
-            role="italic"> Floating IPs</emphasis>.</para>
-    <para>This extension introduces two new resources: <itemizedlist>
+    <para>The Layer-3 networking extension enables Quantum API users
+        to route packets between subnets, forward packets from
+        internal networks to external ones, and access instances from
+        external networks through <emphasis role="italic"> Floating
+            IPs</emphasis>.</para>
+    <para>This extension introduces the following resources: <itemizedlist>
             <listitem>
                 <para><emphasis role="bold">router</emphasis>, a
                     logical entity for forwarding packets across
