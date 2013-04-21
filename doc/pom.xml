@@ -1,4 +1,3 @@
-
 <project xmlns="http://maven.apache.org/POM/4.0.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
@@ -15,7 +14,7 @@
     <!-- ################################################ -->
     
     <build>
-
+        
         <plugins>
             
             <plugin>
@@ -61,7 +60,7 @@
                             <!-- The following elements sets the autonumbering of sections in output for chapter numbers but no numbered sections-->
                             <sectionAutolabel>0</sectionAutolabel>
                             <sectionLabelIncludesComponentLabel>0</sectionLabelIncludesComponentLabel>
-
+                            
                             <webhelpDirname>2.0</webhelpDirname>
                             <targetDirectory>${basedir}/target/docbkx/webhelp/api/openstack-network</targetDirectory>
                             <includeDateInPdfFilename>0</includeDateInPdfFilename>
@@ -70,11 +69,11 @@
                         </configuration>
                     </execution>
                 </executions>
-
-             <configuration>
-
+                
+                <configuration>
+                    
                     <xincludeSupported>true</xincludeSupported>
-                 <sourceDirectory>src/docbkx/quantum-api-2.0</sourceDirectory>
+                    <sourceDirectory>src/docbkx/quantum-api-2.0</sourceDirectory>
                     <includes>
                         quantum-api-guide.xml
                     </includes>
