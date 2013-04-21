@@ -25,7 +25,7 @@
                              format="SVG" scale="60"/>
                 </imageobject>
               </inlinemediaobject>'>
- <!ENTITY APIv2   'Quantum API v2.0'>
+ <!ENTITY APIv2   'Networking API v2.0'>
 ]>
 <section xmlns="http://docbook.org/ns/docbook"
     xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -36,14 +36,14 @@
     xmlns:db="http://docbook.org/ns/docbook" version="5.0"
     status="final" xml:id="agent_ext">
       <title>The Agent Management Extension</title>
-      <para>In a typical quantum deployment, there will be some agents running on network or compute nodes,
-      such as quantum-dhcp-agent, quantum-ovs-agent and quantum-l3-agent. This extension provides a way for
+      <para>In a typical OpenStack Networking deployment, some agents run on network or compute nodes,
+      such as quantum-dhcp-agent, quantum-ovs-agent, and quantum-l3-agent. This extension provides a way for
       administrators(enforced by the policy engine) to view their status and update their attributes.
-      Updating agent management API attributes will affect operations of other components such as Quantum schedulers.
-      For instance administrators can disable a certain agent, and then quantum schedulers will not schedule
+      Updating agent management API attributes will affect operations of other components such as OpenStack Networking schedulers.
+      For instance administrators can disable a certain agent, and OpenStack Networking schedulers will not schedule
       resources to it.</para>
-      <para>For how to use agent management extension and quantum schedulers feature,
-      please refer to quantum admin guide.</para>
+      <para>For how to use agent management extension and OpenStack Networking schedulers feature,
+      see the <citetitle>OpenStack Networking Administration Guide</citetitle>.</para>
             <informaltable rules="all" width="100%">
                 <col width="20%"/>
                 <col width="20%"/>
@@ -59,7 +59,7 @@
                     <tr>
                         <td>&GET;</td>
                         <td>/agents</td>
-                        <td>List agents which report their status to quantum server.</td>
+                        <td>List agents which report their status to OpenStack Networking server.</td>
                     </tr>
                     <tr>
                         <td>&GET;</td>
@@ -96,7 +96,7 @@
                         <tr>
                             <td>&GET;</td>
                             <td>/agents</td>
-                            <td> List agents which report their status to quantum server.</td>
+                            <td> List agents which report their status to OpenStack Networking server.</td>
                         </tr>
                     </tbody>
                 </informaltable>

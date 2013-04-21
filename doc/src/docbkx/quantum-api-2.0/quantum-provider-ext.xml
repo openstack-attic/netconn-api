@@ -33,13 +33,13 @@
                              format="PNG" />
                 </imageobject>
               </inlinemediaobject>'>
- <!ENTITY APIv2   'Quantum API v2.0'>
+ <!ENTITY APIv2   'Networking API v2.0'>
 ]>
 <section xml:id="provider_ext" xmlns="http://docbook.org/ns/docbook" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
     <title>The Provider Networks Extension
         (<literal>provider</literal>)</title>
-    <para>The provider networks extension allows Quantum API users with the appropriate rights, to
-        specify how a Quantum network object is mapped to the underlying networking infrastructure.
+    <para>The provider networks extension allows OpenStack Networking API users with the appropriate rights, to
+        specify how an OpenStack Networking network object is mapped to the underlying networking infrastructure.
         It also allows users with the appropriate rights to view such attributes when networks are
         queried.</para>
     <para>To this aim, it extends the <emphasis role="bold">network</emphasis> resource by defining
@@ -61,7 +61,7 @@
                 <listitem>
                     <para><emphasis role="italic"> provider:physical_network</emphasis> - Identifies
                         the physical network on top of which this network object is being
-                        implemented. The Quantum API does not expose any facility for retrieving the
+                        implemented. The OpenStack Networking API does not expose any facility for retrieving the
                         list of available physical networks. As an example, in the Open vSwitch
                         plugin this is a symbolic name which is then mapped to specific bridges on
                         each compute host through the Open vSwitch plugin configuration file.</para>
@@ -79,9 +79,9 @@
             </itemizedlist>
         </para>
         <para>The actual semantics of these attributes depend on the technology backend of the
-            particular plugin. It is therefore advisable to refer to plugin document or to the
-            Quantum administration guide in order to understand which values should be specific for
-            each of these attributes when Quantum is deployed with a particular plugin. The examples
+            particular plugin. See the plugin document or the
+            <citetitle>OpenStack Networking Administration Guide</citetitle> to understand which values should be specific for
+            each of these attributes when OpenStack Networking is deployed with a particular plugin. The examples
             shown in this chapter refer to the Open vSwitch plugin.</para>
         <para>It is also worth noting that the default policy settings allow only users with
             administrative rights to specify these parameters in requests, and to see their values
@@ -209,7 +209,7 @@
                 attributes, a 403 Forbidden response will be returned.</para>
             <para>As stated earlier in this chapter, the semantics of the various provider networks
                 attribute vary with the particular plugin employed. The following example shows how
-                to create a network mapped to a specific vlan tag (the example refers to a Quantum
+                to create a network mapped to a specific vlan tag (the example refers to an OpenStack Networking
                 deployment which uses the Open vSwitch plugin).</para>
             <example>
                 <title>Create Network with provider attributes: JSON Request</title>
@@ -256,7 +256,7 @@
             <para>As stated earlier in this chapter, the semantics of the various provider networks
                 attribute vary with the particular plugin employed. The following example shows how
                 to update a network in order to map it to a flat network (ie: no vlan tag); the
-                example refers to a Quantum deployment which uses the Open vSwitch plugin.</para>
+                example refers to an OpenStack Networking deployment which uses the Open vSwitch plugin.</para>
             <example>
                 <title>Update provider attributes for a network: JSON Request</title>
                 <programlisting language="json"><xi:include href="samples/networks-put-req-prov.json" parse="text"/></programlisting>
