@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE section [
+<!-- Some useful entities borrowed from HTML -->
+<!ENTITY ndash  "&#x2013;">
+<!ENTITY mdash  "&#x2014;">
+<!ENTITY hellip "&#x2026;">
+<!ENTITY plusmn "&#xB1;">
+
+<!-- Useful for describing APIs -->
+<!ENTITY GET    '<command xmlns="http://docbook.org/ns/docbook">GET</command>'>
+<!ENTITY PUT    '<command xmlns="http://docbook.org/ns/docbook">PUT</command>'>
+<!ENTITY POST   '<command xmlns="http://docbook.org/ns/docbook">POST</command>'>
+<!ENTITY DELETE '<command xmlns="http://docbook.org/ns/docbook">DELETE</command>'>
+
+<!ENTITY CHECK  '<inlinemediaobject xmlns="http://docbook.org/ns/docbook">
+ <imageobject>
+  <imagedata fileref="figures/Check_mark_23x20_02.svg"
+     format="SVG" scale="60"/>
+</imageobject>
+      </inlinemediaobject>'>
+
+<!ENTITY ARROW  '<inlinemediaobject xmlns="http://docbook.org/ns/docbook">
+ <imageobject>
+  <imagedata fileref="figures/Arrow_east.svg"
+     format="SVG" scale="60"/>
+</imageobject>
+      </inlinemediaobject>'>
+ <!ENTITY APIv2   'Quantum API v2.0'>
+]>
+<section xmlns="http://docbook.org/ns/docbook"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:xi="http://www.w3.org/2001/XInclude"
+    xmlns:svg="http://www.w3.org/2000/svg"
+    xmlns:m="http://www.w3.org/1998/Math/MathML"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns:db="http://docbook.org/ns/docbook" version="5.0"
+    status="final" xml:id="extraroute-ext">
+    <title>The ExtraRoute Extension</title>
+    <para>
+        You can setup route configuration on the Router using this extension.
+        This extension augments the 'Router' resource by adding a new 'routes' attribute.
+    </para>
+    <para>
+        You can specify a set of nexthop IPs and destination CIDRs.
+        Note the nexthop IP must be a part of one of the subnets
+        router interfaces are connected to.
+        This is why configuration of route property is allowed only update operation on REST.
+    </para>
+   <table rules="all">
+       <caption>Router Attributes</caption>
+       <col width="20%"/>
+       <col width="8%"/>
+       <col width="10%"/>
+       <col width="7%"/>
+       <col width="15%"/>
+       <col width="15%"/>
+       <col width="25%"/>
+       <thead>
+           <tr>
+               <th>Attribute </th>
+               <th>Type </th>
+               <th>Required </th>
+               <th>CRUD<footnote xml:id="crud_extraroute">
+                       <para>
+                           <itemizedlist>
+                              <listitem>
+                              <para><emphasis role="bold"
+                              >C</emphasis>. Use the attribute in
+                              create operations. </para>
+                              </listitem>
+                              <listitem>
+                              <para><emphasis role="bold"
+                              >R</emphasis>. This attribute is
+                              returned in response to show and
+                              list operations. </para>
+                              </listitem>
+                              <listitem>
+                              <para><emphasis role="bold"
+                              >U</emphasis>. You can update the
+                              value of this attribute.</para>
+                              </listitem>
+                              <listitem>
+                              <para><emphasis role="bold"
+                              >D</emphasis>. You can delete the
+                              value of this attribute. </para>
+                              </listitem>
+                           </itemizedlist>
+                       </para>
+                   </footnote></th>
+               <th>Default Value </th>
+               <th>Validation Constraints </th>
+               <th>Notes</th>
+           </tr>
+       </thead>
+       <tbody>
+           <tr>
+               <td>routes</td>
+               <td>list of dict</td>
+               <td>No</td>
+               <td>U</td>
+               <td>None</td>
+               <td>List should be in this form.
+                  [{'nexthop':IPAddress, 'destination':CIDR}]
+               </td>
+               <td>Extra route configuration</td>
+           </tr>
+       </tbody>
+   </table>
+   <section xml:id="update_extra_route">
+       <title>Update Extra route</title>
+       <para>
+           <informaltable rules="all" width="100%">
+               <col width="20%"/>
+               <col width="20%"/>
+               <col width="60%"/>
+               <thead>
+                   <tr>
+                       <td>Verb</td>
+                       <td>URI</td>
+                       <td>Description</td>
+                   </tr>
+               </thead>
+               <tbody>
+                   <tr>
+                       <td>&PUT;</td>
+                       <td>/routers/<parameter>router_id</parameter></td>
+                       <td>Update logical router with routes attribute.</td>
+                   </tr>
+               </tbody>
+           </informaltable>
+       </para>
+       <para>Normal Response Code: <returnvalue>200</returnvalue>
+       </para>
+       <simpara>Error Response Codes: Unauthorized
+               (<errorcode>401</errorcode>), Bad Request
+               (<errorcode>400</errorcode>), Not Found
+               (<errorcode>404</errorcode>), Conflict
+               (<errorcode>409</errorcode>)</simpara>
+           <para>This operation configures extra routes on the router.
+               Note the nexthop IP must be a part of one of the subnets
+               router interfaces are connected to, otherwise quantum responds
+               <literal>400 Bad Request</literal>
+               When a validation error is detected
+               (e.g. format error of IP address or CIDR),
+               quantum responds <literal>400 Bad Request</literal>
+               When quantum get a request to delete the router interface for
+               subnets which are used by one or more routes, quantum responds
+               <literal>409 Conflict</literal>
+           </para>
+       <example>
+           <title>Update the routes attribute for a given router</title>
+           <programlisting language="json"><xi:include href="samples/extraroute-put-req.json" parse="text"/></programlisting>
+       </example>
+       <example>
+            <title>Update routes: Response</title>
+            <programlisting language="json"><xi:include href="samples/extraroute-put-res.json" parse="text"/></programlisting>
+       </example>
+   </section>
+   <?hard-pagebreak?>
+
+</section>
