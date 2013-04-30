@@ -1,0 +1,9 @@
+Verified+2: Jenkins
+Code-Review+2: Akihiro Motoki <motoki@da.jp.nec.com>
+Approved+1: Robert Kukura <rkukura@redhat.com>
+Code-Review+2: Robert Kukura <rkukura@redhat.com>
+Submitted-by: Jenkins
+Submitted-at: Tue, 30 Apr 2013 14:42:15 +0000
+Reviewed-on: https://review.openstack.org/25843
+Project: openstack/netconn-api
+Branch: refs/heads/master
