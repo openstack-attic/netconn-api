@@ -677,8 +677,7 @@ Accept: application/json
                     (<errorcode>404</errorcode>), Conflict
                     (<errorcode>409</errorcode>)</simpara>
             <simpara>This request requires a request body.</simpara>
-            <simpara>This request does not return a response
-                body.</simpara>
+            <simpara>This request returns a response body.</simpara>
             <para>This operation removes an internal router interface,
                 thus detaching a subnet from the router. Either a
                 subnet identifier (<literal>subnet_id</literal>) or a
@@ -689,7 +688,8 @@ Accept: application/json
                 the one of the first ip address on the port specified
                 by the port identifier; Otherwise a <errorcode>409
                     Conflict</errorcode> error will be
-                returned.</para>
+                returned. The response will contain information about
+                the affected router and interface.</para>
             <para>A <literal>404 Not Found</literal> error will be
                 returned either if the router or the subnet/port do
                 not exist or are not visible to the user. </para>
@@ -702,6 +702,16 @@ Accept: application/json
 Accept: application/json
 
 {"subnet_id": "a2f1f29d-571b-4533-907f-5803ab96ead1"}</programlisting>
+            </example>
+            <example>
+                <title>Remove Router Interface: Response</title>
+                <programlisting language="json">{
+    "id": "8604a0de-7f6b-409a-a47c-a1cc7bc77b2e",
+    "tenant_id": "2f245a7b-796b-4f26-9cf9-9e82d248fda7",
+    "port_id": "3a44f4e5-1694-493a-a1fb-393881c673a4",
+    "subnet_id": "a2f1f29d-571b-4533-907f-5803ab96ead1"
+}
+                </programlisting>
             </example>
         </section>
     </section>
