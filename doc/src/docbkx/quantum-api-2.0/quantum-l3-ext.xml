@@ -979,7 +979,7 @@ Accept: application/json</literallayout>
                     </tbody>
                 </informaltable>
             </para>
-            <para>Normal Response Code: 200 OK</para>
+            <para>Normal Response Code: 204</para>
             <para>Error Response Code: 401 Unauthorized, 404 Not
                 Found</para>
             <para>This operation does not require a request
