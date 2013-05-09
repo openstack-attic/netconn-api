@@ -1,0 +1,9 @@
+Verified+2: Jenkins
+Approved+1: Edgar Magana <emagana@plumgrid.com>
+Code-Review+2: Edgar Magana <emagana@plumgrid.com>
+Code-Review+2: gongysh <gongysh@linux.vnet.ibm.com>
+Submitted-by: Jenkins
+Submitted-at: Thu, 09 May 2013 21:01:44 +0000
+Reviewed-on: https://review.openstack.org/28144
+Project: openstack/netconn-api
+Branch: refs/heads/master
