@@ -49,10 +49,16 @@
                                 appendix  toc,title
                                 article/appendix  nop
                                 article   toc,title
+<<<<<<< HEAD
                                 book      title,figure,table,example,equation
                                 chapter   toc,title
+=======
+                                book      toc,title,figure,table,example,equation
+                                chapter   toc
+                                section   toc
+>>>>>>> cd346c2... Updated title to "Specification" from "Dev Guide" for consistency
                                 part      toc,title
-                                preface   toc,title
+                                preface   toc
                                 qandadiv  toc
                                 qandaset  toc
                                 reference toc,title
