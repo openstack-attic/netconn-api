@@ -35,8 +35,11 @@
     xmlns:html="http://www.w3.org/1999/xhtml"
     xmlns:db="http://docbook.org/ns/docbook" version="5.0"
     status="final" xml:id="Quantum-api-spec">
-    <title>Quantum API Guide (v2.0)</title>
-    <titleabbrev>Quantum API v2.0</titleabbrev>
+
+    <title>OpenStack Networking API Specification</title>
+    <?rax title.font.size="28px" subtitle.font.size="28px"?>
+    <titleabbrev>OpenStack Networking API Specification</titleabbrev>
+
     <info>
         <author>
             <personname>
@@ -48,11 +51,12 @@
             <year>2011</year>
             <year>2012</year>
             <year>2013</year>
-            <holder>OpenStack</holder>
+            <holder>OpenStack Foundation</holder>
         </copyright>
-        <releaseinfo>Quantum API v2.0</releaseinfo>
-        <productname>OpenStack Quantum (virtual network
-            service)</productname>
+
+        <releaseinfo>API v2.0</releaseinfo>
+        <productname>OpenStack Networking API</productname>
+
         <pubdate/>
         <legalnotice role="apache2">
             <annotation>
@@ -61,13 +65,31 @@
             </annotation>
         </legalnotice>
         <abstract>
-            <para>This document is intended for software developers
+            <para>This document is for software developers
                 who develop applications by using the OpenStack
                 &APIv2;.</para>
         </abstract>
         <revhistory>
+            <!-- ... continue adding more revisions here as you change this document using the markup shown below... -->
+            <revision> 
+                <date>2013-05-09</date>
+                <revdescription>
+                    <itemizedlist spacing="compact">
+                        <listitem>
+                            <para>Updated the title of the book and project name to "OpenStack Networking."
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>Updated the title of the book to <citetitle>Specification</citetitle> from <citetitle>Developer Guide</citetitle> for consistency.
+                            </para>
+                        </listitem>
+                    </itemizedlist>
+                </revdescription>
+            </revision>
+
             <revision>
-                <!-- ... continue addding more revisions here as you change this document using the markup shown below... -->
+           
+
                 <date>2013-03-23</date>
                 <revdescription>
                     <itemizedlist spacing="compact">
@@ -80,7 +102,6 @@
                 </revdescription>
             </revision>
             <revision>
-                <!-- ... continue addding more revisions here as you change this document using the markup shown below... -->
                 <date>2012-09-05</date>
                 <revdescription>
                     <itemizedlist spacing="compact">
@@ -1110,7 +1131,7 @@ Content-Length 204</literallayout>
                user if pagination is supported by particular plugin or enabled.
             </para>
              <example>
-                 <title>Network Collecion, First Page: JSON</title>
+                 <title>Network Collection, First Page: JSON</title>
                  <para>Request:</para>
                  <literallayout class="monospaced">
 GET /v2.0/networks.json?limit=2 HTTP/1.1
@@ -1122,7 +1143,7 @@ Accept: application/json
                  <programlisting language="json"><xi:include href="samples/networks-get-first-page-res.json" parse="text"/></programlisting>
              </example>
              <example>
-                 <title>Network Collecion, First Page: XML</title>
+                 <title>Network Collection, First Page: XML</title>
                  <para>Request:</para>
                  <literallayout class="monospaced">
 GET /v2.0/networks.xml?limit=2 HTTP/1.1
@@ -1135,7 +1156,7 @@ Accept: application/xml
              </example>
              <para>The last page won't show the "next" links</para>
              <example>
-                 <title>Network Collecion, Last Page: JSON</title>
+                 <title>Network Collection, Last Page: JSON</title>
                  <para>Request:</para>
                  <literallayout class="monospaced">
 GET /v2.0/networks.json?limit=2&amp;marker=71c1e68c-171a-4aa2-aca5-50ea153a3718 HTTP/1.1
@@ -1147,7 +1168,7 @@ Accept: application/json
                  <programlisting language="json"><xi:include href="samples/networks-get-last-page-res.json" parse="text"/></programlisting>
              </example>
              <example>
-                 <title>Network Collecion, Last Page: XML</title>
+                 <title>Network Collection, Last Page: XML</title>
                  <para>Request:</para>
                  <literallayout class="monospaced">
 GET /v2.0/networks.xml?limit=2&amp;marker=71c1e68c-171a-4aa2-aca5-50ea153a3718 HTTP/1.1
@@ -1391,7 +1412,7 @@ Accept: application/xml
                 <simpara>Normal Response Code:
                         <returnvalue>200</returnvalue>
                 </simpara>
-                <simpara>Error Response Codes:Unauthorized
+                <simpara>Error Response Codes: Unauthorized
                         (<errorcode>401</errorcode>)</simpara>
                 <para>Lists a summary of all networks defined in
                     Quantum that are accessible to the tenant who
