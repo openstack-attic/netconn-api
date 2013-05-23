@@ -5,7 +5,6 @@
 <!ENTITY mdash  "&#x2014;">
 <!ENTITY hellip "&#x2026;">
 <!ENTITY plusmn "&#xB1;">
-
 <!-- Useful for describing APIs -->
 <!ENTITY GET    '<command xmlns="http://docbook.org/ns/docbook">GET</command>'>
 <!ENTITY PUT    '<command xmlns="http://docbook.org/ns/docbook">PUT</command>'>
@@ -18,7 +17,6 @@
      format="SVG" scale="60"/>
 </imageobject>
       </inlinemediaobject>'>
-
 <!ENTITY ARROW  '<inlinemediaobject xmlns="http://docbook.org/ns/docbook">
  <imageobject>
   <imagedata fileref="figures/Arrow_east.svg"
@@ -35,8 +33,9 @@
     xmlns:html="http://www.w3.org/1999/xhtml"
     xmlns:db="http://docbook.org/ns/docbook" version="5.0"
     status="final" xml:id="Quantum-api-spec">
-    <title>OpenStack Networking Developer Guide</title>
-    <titleabbrev>OpenStack Networking Developer Guide</titleabbrev>
+    <title>OpenStack Networking API v2.0 Reference</title>
+    <?rax title.font.size="28px" subtitle.font.size="28px"?>
+    <titleabbrev>Networking API Reference</titleabbrev>
     <info>
         <author>
             <personname>
@@ -48,10 +47,10 @@
             <year>2011</year>
             <year>2012</year>
             <year>2013</year>
-            <holder>OpenStack</holder>
+            <holder>OpenStack Foundation</holder>
         </copyright>
         <releaseinfo>API v2.0</releaseinfo>
-        <productname>OpenStack Networking</productname>
+        <productname>OpenStack Networking API v2.0</productname>
         <pubdate/>
         <legalnotice role="apache2">
             <annotation>
@@ -60,50 +59,31 @@
             </annotation>
         </legalnotice>
         <abstract>
-            <para>This document is intended for software developers
-                who develop applications by using the OpenStack
-                &APIv2;.</para>
+            <para>This document is for software developers who develop
+                applications by using the OpenStack &APIv2;.</para>
         </abstract>
         <revhistory>
+            <!-- ... continue adding more revisions here as you change this document using the markup shown below... -->
             <revision>
-                <!-- ... continue addding more revisions here as you change this document using the markup shown below... -->
-                <date>2013-05-09</date>
+                <date>2013-05-22</date>
                 <revdescription>
                     <itemizedlist spacing="compact">
                         <listitem>
-                            <para>Updated the title of the book and project name to "OpenStack Networking."
+                            <para>Updated the title of the book and
+                                project name to "OpenStack
+                                Networking." </para>
+                        </listitem>
+                        <listitem>
+                            <para>Updated the title of the book to
+                                   <citetitle>Reference</citetitle>
+                                from <citetitle>Developer
+                                   Guide</citetitle> for consistency.
                             </para>
                         </listitem>
                     </itemizedlist>
                 </revdescription>
             </revision>
             <revision>
-                <!-- ... continue addding more revisions here as you change this document using the markup shown below... -->
-                <date>2013-04-26</date>
-                <revdescription>
-                    <itemizedlist spacing="compact">
-                        <listitem>
-                            <para>Added the security groups extension
-                                information to <xref
-                                   linkend="Concepts-d1e369"/>.
-                            </para>
-                        </listitem>
-                        <listitem>
-                            <para>Added the security groups extension
-                                information to <xref linkend="Ports"
-                                />. </para>
-                        </listitem>
-                        <listitem>
-                            <para>Added the security groups and
-                                security group rules extensions to
-                                   <xref linkend="security-groups-ext"
-                                />.</para>
-                        </listitem>
-                    </itemizedlist>
-                </revdescription>
-            </revision>
-            <revision>
-                <!-- ... continue addding more revisions here as you change this document using the markup shown below... -->
                 <date>2013-03-23</date>
                 <revdescription>
                     <itemizedlist spacing="compact">
@@ -116,7 +96,6 @@
                 </revdescription>
             </revision>
             <revision>
-                <!-- ... continue addding more revisions here as you change this document using the markup shown below... -->
                 <date>2012-09-05</date>
                 <revdescription>
                     <itemizedlist spacing="compact">
@@ -1176,7 +1155,6 @@ Accept: application/json</literallayout>
             <example>
                 <title>Network Collection, First Page: XML
                     Request</title>
-
                 <literallayout class="monospaced">
 GET /v2.0/networks.xml?limit=2 HTTP/1.1
 Host: 127.0.0.1:9696
@@ -1193,7 +1171,6 @@ Accept: application/xml
             <example>
                 <title>Network Collection, Last Page: JSON
                     Request</title>
-
                 <literallayout class="monospaced">
 GET /v2.0/networks.json?limit=2&amp;marker=71c1e68c-171a-4aa2-aca5-50ea153a3718 HTTP/1.1
 Host: 127.0.0.1:9696
@@ -1209,7 +1186,6 @@ Accept: application/json
             <example>
                 <title>Network Collection, Last Page: XML
                     Request</title>
-
                 <literallayout class="monospaced">
 GET /v2.0/networks.xml?limit=2&amp;marker=71c1e68c-171a-4aa2-aca5-50ea153a3718 HTTP/1.1
 Host: 127.0.0.1:9696
@@ -1220,7 +1196,7 @@ Accept: application/xml
             <example>
                 <title>Network Collection, Last Page: XML
                     Response</title>
-                <programlisting language="xml"><xi:include href="samples/networks-get-last-page-res.xml" parse="text"/></programlisting>
+                <programlisting language="json"><xi:include href="samples/networks-get-last-page-res.xml" parse="text"/></programlisting>
             </example>
         </section>
         <section xml:id="Sorting">
