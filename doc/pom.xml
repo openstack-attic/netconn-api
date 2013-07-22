@@ -32,14 +32,14 @@
                         <configuration>
                             <!-- These parameters only apply to webhelp -->
                             <enableDisqus>1</enableDisqus>
-                            <disqusShortname>os-quantum-guides</disqusShortname>
+                            <disqusShortname>os-neutron-guides</disqusShortname>
                             <enableGoogleAnalytics>1</enableGoogleAnalytics>
                             <googleAnalyticsId>UA-17511903-1</googleAnalyticsId>
                             <!-- MORE  -->
                             <xincludeSupported>true</xincludeSupported>
                             <sourceDirectory>src/docbkx</sourceDirectory>
                             <includes>
-                                quantum-api-2.0/quantum-api-guide.xml
+                                neutron-api-2.0/neutron-api-guide.xml
                             </includes>
                             <canonicalUrlBase>http://docs.openstack.org/api/openstack-network/2.0/content/</canonicalUrlBase>
                             <profileSecurity>reviewer</profileSecurity>
@@ -66,7 +66,7 @@
                             <webhelpDirname>2.0</webhelpDirname>
                             <targetDirectory>${basedir}/target/docbkx/webhelp/api/openstack-network</targetDirectory>
                             <includeDateInPdfFilename>0</includeDateInPdfFilename>
-                            <pdfFilenameBase>quantum-api-guide-2.0</pdfFilenameBase>
+                            <pdfFilenameBase>neutron-api-guide-2.0</pdfFilenameBase>
                             
                         </configuration>
                     </execution>
@@ -75,9 +75,9 @@
              <configuration>
 
                     <xincludeSupported>true</xincludeSupported>
-                 <sourceDirectory>src/docbkx/quantum-api-2.0</sourceDirectory>
+                 <sourceDirectory>src/docbkx/neutron-api-2.0</sourceDirectory>
                     <includes>
-                        quantum-api-guide.xml
+                        neutron-api-guide.xml
                     </includes>
                     <canonicalUrlBase>http://docs.openstack.org/api/openstack-network/2.0/content/</canonicalUrlBase>
                     <profileSecurity>reviewer</profileSecurity>

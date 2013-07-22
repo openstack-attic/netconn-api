@@ -32,7 +32,7 @@
     xmlns:m="http://www.w3.org/1998/Math/MathML"
     xmlns:html="http://www.w3.org/1999/xhtml"
     xmlns:db="http://docbook.org/ns/docbook" version="5.0"
-    status="final" xml:id="Quantum-api-spec">
+    status="final" xml:id="neutron-api-spec">
     <title>OpenStack Networking API v2.0 Reference</title>
     <?rax title.font.size="28px" subtitle.font.size="28px"?>
     <titleabbrev>Networking API Reference</titleabbrev>
@@ -121,7 +121,7 @@
     <xi:include href="ch_preface.xml"/>
     <chapter xml:id="Overview-d1e71">
         <title>Overview</title>
-        <para>The Quantum project provides virtual networking services
+        <para>The Neutron project provides virtual networking services
             among devices that are managed by the <link
                 xlink:href="http://wiki.openstack.org/OpenStack"
                 >OpenStack</link> compute service. </para>
@@ -159,8 +159,7 @@
         <note>
             <para>The Quantum API v1.<varname>x</varname> was removed
                 from the source code tree. To use the Quantum API
-                    v1.<varname>x</varname>, install an earlier
-                release of Quantum.</para>
+                    v1.<varname>x</varname>, install the Quantum Essex release.</para>
         </note>
         <?hard-pagebreak?>
         <section xml:id="Glossary">
@@ -2675,13 +2674,13 @@ Content-Type: application/xml; charset=UTF-8
 Date: Wed, 12 Sep 2012 11:36:20 GMT</literallayout>
             <programlisting language="xml"><xi:include href="samples/extension.xml" parse="text"/></programlisting>
         </section>
-        <xi:include href="quantum-provider-ext.xml"/>
-        <xi:include href="quantum-l3-ext.xml"/>
-        <xi:include href="quantum-quotas-ext.xml"/>
-        <xi:include href="quantum-security-groups-ext.xml"/>
-        <xi:include href="quantum-agent-ext.xml"/>
-        <xi:include href="quantum-extraroute-ext.xml"/>
-        <xi:include href="quantum-loadbalancer-ext.xml"/>
-        <xi:include href="quantum-scheduler-ext.xml"/>
+        <xi:include href="neutron-provider-ext.xml"/>
+        <xi:include href="neutron-l3-ext.xml"/>
+        <xi:include href="neutron-quotas-ext.xml"/>
+        <xi:include href="neutron-security-groups-ext.xml"/>
+        <xi:include href="neutron-agent-ext.xml"/>
+        <xi:include href="neutron-extraroute-ext.xml"/>
+        <xi:include href="neutron-loadbalancer-ext.xml"/>
+        <xi:include href="neutron-scheduler-ext.xml"/>
     </chapter>
 </book>

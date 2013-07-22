@@ -152,7 +152,7 @@
                     <programlisting>
 GET /v2.0/agents/d5724d7e-389d-4ba0-8d00-fc673a147bfa/dhcp-networks HTTP/1.1
 Host: localhost:9696
-User-Agent: python-quantumclient
+User-Agent: python-neutronclient
 Content-Type: application/json
 Accept: application/json
 X-Auth-Token: 797f94caf0a8481c893a232cc0c1dfca
@@ -202,7 +202,7 @@ X-Auth-Token: 797f94caf0a8481c893a232cc0c1dfca
                         <programlisting>
 GET /v2.0/networks/2d627131-c841-4e3a-ace6-f2dd75773b6d/dhcp-agents HTTP/1.1
 Host: localhost:9696
-User-Agent: python-quantumclient
+User-Agent: python-neutronclient
 Content-Type: application/json
 Accept: application/json
 X-Auth-Token: cc0f378bdf1545fb8dea2120c89eb532
@@ -255,7 +255,7 @@ X-Auth-Token: cc0f378bdf1545fb8dea2120c89eb532
                     <programlisting>
 POST /v2.0/agents/d5724d7e-389d-4ba0-8d00-fc673a147bfa/dhcp-networks.json HTTP/1.1
 Host: localhost:9696
-User-Agent: python-quantumclient
+User-Agent: python-neutronclient
 Content-Type: application/json
 Accept: application/json
 X-Auth-Token: d88f7af21ee34f6c87e23e46cf3f986d
@@ -309,7 +309,7 @@ Content-Length: 54
                     <programlisting>
 DELETE /v2.0/agents/d5724d7e-389d-4ba0-8d00-fc673a147bfa/dhcp-networks/1ae075ca-708b-4e66-b4a7-b7698632f05f.json HTTP/1.1
 Host: localhost:9696
-User-Agent: python-quantumclient
+User-Agent: python-neutronclient
 Content-Type: application/json
 Accept: application/json
 X-Auth-Token: 7ae91cde8f504031be5a2cd5b99d4fe9
@@ -354,7 +354,7 @@ X-Auth-Token: 7ae91cde8f504031be5a2cd5b99d4fe9
                     <programlisting>
 GET /v2.0/agents/fa24e88e-3d2f-4fc2-b038-5fb5be294c03/l3-routers.json HTTP/1.1
 Host: localhost:9696
-User-Agent: python-quantumclient
+User-Agent: python-neutronclient
 Content-Type: application/json
 Accept: application/json
 X-Auth-Token: 6eeea6e73b68415f85d8368902a32c11
@@ -404,7 +404,7 @@ X-Auth-Token: 6eeea6e73b68415f85d8368902a32c11
                         <programlisting>
 GET /v2.0/routers/8eef2388-f27d-4a17-986e-9319a77ccd9d/l3-agents.json HTTP/1.1
 Host: localhost:9696
-User-Agent: python-quantumclient
+User-Agent: python-neutronclient
 Content-Type: application/json
 Accept: application/json
 X-Auth-Token: bce63afb1e794c70972a19a7c2d6dcab
@@ -458,7 +458,7 @@ X-Auth-Token: bce63afb1e794c70972a19a7c2d6dcab
                     <programlisting>
 GET /v2.0/agents/fa24e88e-3d2f-4fc2-b038-5fb5be294c03/l3-routers.json HTTP/1.1
 Host: localhost:9696
-User-Agent: python-quantumclient
+User-Agent: python-neutronclient
 Content-Type: application/json
 Accept: application/json
 X-Auth-Token: d88f7af21ee34f6c87e23e46cf3f986d
@@ -511,7 +511,7 @@ Content-Length: 54
                     <programlisting>
 DELETE /v2.0/agents/b7d7ba43-1a05-4b09-ba07-67242d4a98f4/l3-routers/8eef2388-f27d-4a17-986e-9319a77ccd9d.json HTTP/1.1
 Host: localhost:9696
-User-Agent: python-quantumclient
+User-Agent: python-neutronclient
 Content-Type: application/json
 Accept: application/json
 X-Auth-Token: 2147ef6fe4444f0299b1c0b6b529ff47
