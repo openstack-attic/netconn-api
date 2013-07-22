@@ -25,7 +25,6 @@
      format="SVG" scale="60"/>
 </imageobject>
       </inlinemediaobject>'>
- <!ENTITY APIv2   'Quantum API v2.0'>
 ]>
 <section xmlns="http://docbook.org/ns/docbook"
     xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -136,17 +135,14 @@
                (<errorcode>400</errorcode>), Not Found
                (<errorcode>404</errorcode>), Conflict
                (<errorcode>409</errorcode>)</simpara>
-           <para>This operation configures extra routes on the router.
-               Note the nexthop IP must be a part of one of the subnets
-               router interfaces are connected to, otherwise quantum responds
-               <literal>400 Bad Request</literal>
-               When a validation error is detected
-               (e.g. format error of IP address or CIDR),
-               quantum responds <literal>400 Bad Request</literal>
-               When quantum get a request to delete the router interface for
-               subnets which are used by one or more routes, quantum responds
-               <literal>409 Conflict</literal>
-           </para>
+           <para>This operation configures extra routes on the router. Note the nexthop IP must be a
+            part of one of the subnets router interfaces are connected to, otherwise the server will
+            respond with <literal>400 Bad Request</literal>. When a validation error is detected
+            (e.g. format error of IP address or CIDR), the server will respond with <literal>400 Bad
+                Request</literal> When Neutron receives a request to delete the router interface for
+            subnets which are used by one or more routes, it willl respond with <literal>409
+                Conflict</literal>
+        </para>
        <example>
            <title>Update the routes attribute for a given router</title>
            <programlisting language="json"><xi:include href="samples/extraroute-put-req.json" parse="text"/></programlisting>

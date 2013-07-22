@@ -5,7 +5,7 @@ Date: Wed, 27 Mar 2013 01:59:44 GMT
 
 {
     "agents": [{
-            "binary": "quantum-l3-agent",
+            "binary": "neutron-l3-agent",
             "description": null,
             "admin_state_up": true,
             "heartbeat_timestamp": "2013-03-27T00:24:03.000000",
@@ -24,7 +24,7 @@ Date: Wed, 27 Mar 2013 01:59:44 GMT
                 "routers": 0,
                 "interfaces": 0,
                 "floating_ips": 0,
-                "interface_driver": "quantum.agent.linux.interface.OVSInterfaceDriver",
+                "interface_driver": "neutron.agent.linux.interface.OVSInterfaceDriver",
                 "ex_gw_ports": 0
             }
         }

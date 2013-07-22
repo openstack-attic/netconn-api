@@ -5,7 +5,7 @@ Date: Tue, 26 Mar 2013 11:20:21 GMT
 
 {
     "agent": {
-        "binary": "quantum-dhcp-agent",
+        "binary": "neutron-dhcp-agent",
         "description": null,
         "admin_state_up": false,
         "heartbeat_timestamp": "2013-03-26T09:35:13.000000",
@@ -19,7 +19,7 @@ Date: Tue, 26 Mar 2013 11:20:21 GMT
         "configurations": {
             "subnets": 2,
             "use_namespaces": true,
-            "dhcp_driver": "quantum.agent.linux.dhcp.Dnsmasq",
+            "dhcp_driver": "neutron.agent.linux.dhcp.Dnsmasq",
             "networks": 2,
             "dhcp_lease_time": 120,
             "ports": 3
