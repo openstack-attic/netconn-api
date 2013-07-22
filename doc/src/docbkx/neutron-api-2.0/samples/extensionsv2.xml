@@ -2,11 +2,11 @@
 <extensions>
     <extension>
         <updated>2012-07-20T10:00:00-00:00</updated>
-        <name>Quantum L3 Router</name>
+        <name>Neutron L3 Router</name>
         <links/>
-        <namespace>http://docs.openstack.org/ext/quantum/router/api/v1.0</namespace>
+        <namespace>http://docs.openstack.org/ext/neutron/router/api/v1.0</namespace>
         <alias>router</alias>
-        <description>Router abstraction for basic L3 forwarding between L2 Quantum networks and access to external networks via a NAT gateway.</description>
+        <description>Router abstraction for basic L3 forwarding between L2 Neutron networks and access to external networks via a NAT gateway.</description>
     </extension>
     <extension>
         <updated>2012-09-07T10:00:00-00:00</updated>

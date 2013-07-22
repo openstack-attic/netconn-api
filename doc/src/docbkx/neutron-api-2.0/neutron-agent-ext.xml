@@ -36,12 +36,14 @@
     xmlns:db="http://docbook.org/ns/docbook" version="5.0"
     status="final" xml:id="agent_ext">
       <title>The Agent Management Extension</title>
-      <para>In a typical OpenStack Networking deployment, some agents run on network or compute nodes,
-      such as quantum-dhcp-agent, quantum-ovs-agent, and quantum-l3-agent. This extension provides a way for
-      administrators(enforced by the policy engine) to view their status and update their attributes.
-      Updating agent management API attributes will affect operations of other components such as OpenStack Networking schedulers.
-      For instance administrators can disable a certain agent, and OpenStack Networking schedulers will not schedule
-      resources to it.</para>
+      <para>In a typical OpenStack Networking deployment, some agents run on network or compute
+        nodes, such as <literal>neutron-dhcp-agent</literal>, <literal>neutron-ovs-agent</literal>,
+        and <literal>neutron-l3-agent</literal>. This extension provides a way for
+        administrators(enforced by the policy engine) to view their status and update their
+        attributes. Updating agent management API attributes will affect operations of other
+        components such as OpenStack Networking schedulers. For instance administrators can disable
+        a certain agent, and OpenStack Networking schedulers will not schedule resources to
+        it.</para>
       <para>For how to use agent management extension and OpenStack Networking schedulers feature,
       see the <citetitle>OpenStack Networking Administration Guide</citetitle>.</para>
             <informaltable rules="all" width="100%">
@@ -113,7 +115,7 @@
                     <programlisting>
 GET /v2.0/agents HTTP/1.1
 Host: controlnode:9696
-User-Agent: python-quantumclient
+User-Agent: python-neutronclient
 Content-Type: application/json
 Accept: application/json
 X-Auth-Token: c52a1b304fec4ca0ac85dc1741eec6e2
@@ -161,7 +163,7 @@ X-Auth-Token: c52a1b304fec4ca0ac85dc1741eec6e2
                         <programlisting>
 GET /v2.0/agents/af4567ad-c2e6-4311-944d-22efc12f89af HTTP/1.1
 Host: controlnode:9696
-User-Agent: python-quantumclient
+User-Agent: python-neutronclient
 Content-Type: application/json
 Accept: application/json
 X-Auth-Token: a54d6fdda41341f892150e2aaf648f0d
@@ -211,7 +213,7 @@ X-Auth-Token: a54d6fdda41341f892150e2aaf648f0d
                     <programlisting>
 PUT /v2.0/agents/af4567ad-c2e6-4311-944d-22efc12f89af HTTP/1.1
 Host: controlnode:9696
-User-Agent: python-quantumclient
+User-Agent: python-neutronclient
 Content-Type: application/json
 Accept: application/json
 X-Auth-Token: 4cbb09e780434b249ff596d6979fd8fc
@@ -260,7 +262,7 @@ Content-Length: 38
                     <programlisting>
 DELETE /v2.0/agents/44002aeb-2817-4cb8-9306-34308b4b40d9 HTTP/1.1
 Host: controlnode:9696
-User-Agent: python-quantumclient
+User-Agent: python-neutronclient
 Content-Type: application/json
 Accept: application/json
 X-Auth-Token: 4cbb09e780434b249ff596d6979fd8fc

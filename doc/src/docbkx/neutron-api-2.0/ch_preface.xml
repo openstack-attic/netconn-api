@@ -44,12 +44,9 @@ format="SVG" scale="60"/>
     <para>This document describes the features available with the
         &APIv2;.</para>
     <para>We welcome feedback, comments, and bug reports at <link
-            xlink:href="http://bugs.launchpad.net/Quantum"
-            xmlns:svg="http://www.w3.org/2000/svg"
-            xmlns:m="http://www.w3.org/1998/Math/MathML"
-            xmlns:html="http://www.w3.org/1999/xhtml"
-            xmlns:db="http://docbook.org/ns/docbook"
-            >bugs.launchpad.net/Quantum</link>. </para>
+            xlink:href="http://bugs.launchpad.net/Neutron" xmlns:svg="http://www.w3.org/2000/svg"
+            xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:html="http://www.w3.org/1999/xhtml"
+            xmlns:db="http://docbook.org/ns/docbook">bugs.launchpad.net/Neutron</link>. </para>
     <section xml:id="Intended_Audience-d1e85">
         <title>Intended Audience</title>
         <para xmlns:svg="http://www.w3.org/2000/svg"
@@ -119,11 +116,10 @@ format="SVG" scale="60"/>
                     </tr>
                     <tr>
                         <td>
-                            <para>OpenStack Quantum Wiki</para>
+                            <para>OpenStack Neutron Wiki</para>
                         </td>
-                        <td><link
-                                xlink:href="http://wiki.openstack.org/Quantum"
-                                >http://wiki.openstack.org/Quantum</link></td>
+                        <td><link xlink:href="http://wiki.openstack.org/Neutron"
+                                >http://wiki.openstack.org/Neutron</link></td>
                     </tr>
                 </tbody>
             </informaltable></para>

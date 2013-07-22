@@ -36,12 +36,10 @@
     xmlns:db="http://docbook.org/ns/docbook" version="5.0"
     status="final" xml:id="quotas_ext">
     <title>Quotas</title>
-    <para>The <db:filename>quantum.conf</db:filename> configuration
-        file defines default quota values that are applied identically
-        to all tenants. This extension enables an admin user to define
-        quotas values on a per-tenant basis. For example, an admin
-        user can permit tenant A to create at most X networks, and
-        permit tenant B to create at most Y networks.</para>
+    <para>The <db:filename>neutron.conf</db:filename> configuration file defines default quota
+        values that are applied identically to all tenants. This extension enables an admin user to
+        define quotas values on a per-tenant basis. For example, an admin user can permit tenant A
+        to create at most X networks, and permit tenant B to create at most Y networks.</para>
     <para>If quotas per tenant is needed, you must enable the Quotas
         extension. For information, see the <citetitle>OpenStack
             Network Administration Guide</citetitle>.</para>
@@ -116,7 +114,7 @@
             <title>List Quotas: JSON Request</title>
             <programlisting>GET /v2.0/quotas HTTP/1.1
 Host: controlnode:9696
-User-Agent: python-quantumclient
+User-Agent: python-neutronclient
 Content-Type: application/json
 Accept: application/json
 X-Auth-Token: c52a1b304fec4ca0ac85dc1741eec6e2</programlisting>
@@ -161,7 +159,7 @@ X-Auth-Token: c52a1b304fec4ca0ac85dc1741eec6e2</programlisting>
             <title>Show Quotas: JSON Request</title>
             <programlisting>GET /v2.0/quotas/5fcfbc3283a142a5bb6978b549a511ac.json HTTP/1.1
 Host: controlnode:9696
-User-Agent: python-quantumclient
+User-Agent: python-neutronclient
 Content-Type: application/json
 Accept: application/json
 X-Auth-Token: a54d6fdda41341f892150e2aaf648f0d</programlisting>
@@ -207,7 +205,7 @@ X-Auth-Token: a54d6fdda41341f892150e2aaf648f0d</programlisting>
             <title>Update Quotas: JSON Request</title>
             <programlisting>PUT /v2.0/quotas/5fcfbc3283a142a5bb6978b549a511ac.json HTTP/1.1
 Host: controlnode:9696
-User-Agent: python-quantumclient
+User-Agent: python-neutronclient
 Content-Type: application/json
 Accept: application/json
 X-Auth-Token: 4cbb09e780434b249ff596d6979fd8fc
@@ -255,7 +253,7 @@ Content-Length: 88
             <title>Reset Quotas: JSON Request</title>
             <programlisting>DELETE /v2.0/quotas/5fcfbc3283a142a5bb6978b549a511ac.json HTTP/1.1
 Host: controlnode:9696
-User-Agent: python-quantumclient
+User-Agent: python-neutronclient
 Content-Type: application/json
 Accept: application/json
 X-Auth-Token: 903857de62274690911c364b60582440</programlisting>
