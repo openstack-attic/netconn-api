@@ -435,7 +435,7 @@
 
                 <programlisting>
 GET /v2.0/lb/vips.json HTTP/1.1
-User-Agent: python-quantumclient
+User-Agent: python-neutronclient
 Accept: application/json
                 </programlisting>
             </example>
@@ -482,7 +482,7 @@ Accept: application/json
 
                 <programlisting>
 GET /v2.0/lb/vips/4ec89087-d057-4e2c-911f-60a3b47ee304.json HTTP/1.1
-User-Agent: python-quantumclient
+User-Agent: python-neutronclient
 Accept: application/json
                 </programlisting>
             </example>
@@ -525,7 +525,7 @@ Accept: application/json
                 <title>Create VIP: Request</title>
                 <programlisting>
 POST /v2.0/lb/vips.json HTTP/1.1
-User-Agent: python-quantumclient
+User-Agent: python-neutronclient
 Accept: application/json
                 </programlisting>
                 <programlisting language="json"><xi:include href="samples/loadbalancer/vips-create-req.json" parse="text"/></programlisting>
@@ -570,7 +570,7 @@ Content-Type: application/json; charset=UTF-8
                 <title>Update VIP: Request</title>
                 <programlisting>
 PUT /v2.0/lb/vips/c987d2be-9a3c-4ac9-a046-e8716b1350e2.json
-User-Agent: python-quantumclient
+User-Agent: python-neutronclient
 Accept: application/json
                 </programlisting>
                 <programlisting language="json"><xi:include href="samples/loadbalancer/vips-update-req.json" parse="text"/></programlisting>
@@ -833,7 +833,7 @@ Content-Length: 0
 
                 <programlisting>
 GET /v2.0/lb/pools.json HTTP/1.1
-User-Agent: python-quantumclient
+User-Agent: python-neutronclient
 Accept: application/json
                 </programlisting>
             </example>
@@ -884,7 +884,7 @@ Content-Type: application/json; charset=UTF-8
 
                 <programlisting>
 GET /v2.0/lb/pools/72741b06-df4d-4715-b142-276b6bce75ab.json HTTP/1.1
-User-Agent: python-quantumclient
+User-Agent: python-neutronclient
 Accept: application/json
                 </programlisting>
             </example>
@@ -931,7 +931,7 @@ Content-Type: application/json; charset=UTF-8
                 <title>Create Pool: Request</title>
                 <programlisting>
 POST /v2.0/lb/pools.json HTTP/1.1
-User-Agent: python-quantumclient
+User-Agent: python-neutronclient
 Accept: application/json
                 </programlisting>
                 <programlisting language="json"><xi:include href="samples/loadbalancer/pools-create-req.json" parse="text"/></programlisting>
@@ -976,7 +976,7 @@ Content-Type: application/json; charset=UTF-8
                 <title>Update Pool: Request</title>
                 <programlisting>
 PUT /v2.0/lb/pools/61b1f87a-7a21-4ad3-9dda-7f81d249944f.json
-User-Agent: python-quantumclient
+User-Agent: python-neutronclient
 Accept: application/json
                 </programlisting>
                 <programlisting language="json"><xi:include href="samples/loadbalancer/pools-update-req.json" parse="text"/></programlisting>
@@ -1203,7 +1203,7 @@ persistent connections.</td>
 
                 <programlisting>
 GET /v2.0/lb/members.json HTTP/1.1
-User-Agent: python-quantumclient
+User-Agent: python-neutronclient
 Accept: application/json
                 </programlisting>
             </example>
@@ -1254,7 +1254,7 @@ Content-Type: application/json; charset=UTF-8
 
                 <programlisting>
 GET /v2.0/lb/members/701b531b-111a-4f21-ad85-4795b7b12af6.json HTTP/1.1
-User-Agent: python-quantumclient
+User-Agent: python-neutronclient
 Accept: application/json
                 </programlisting>
             </example>
@@ -1301,7 +1301,7 @@ Content-Type: application/json; charset=UTF-8
                 <title>Create Member: Request</title>
                 <programlisting>
 POST /v2.0/lb/members.json HTTP/1.1
-User-Agent: python-quantumclient
+User-Agent: python-neutronclient
 Accept: application/json
                 </programlisting>
                 <programlisting language="json"><xi:include href="samples/loadbalancer/members-create-req.json" parse="text"/></programlisting>
@@ -1346,7 +1346,7 @@ Content-Type: application/json; charset=UTF-8
                 <title>Update Member: Request</title>
                 <programlisting>
 PUT /v2.0/lb/members/b9a7012a-1097-45b2-a973-6572973619bc.json
-User-Agent: python-quantumclient
+User-Agent: python-neutronclient
 Accept: application/json
                 </programlisting>
                 <programlisting language="json"><xi:include href="samples/loadbalancer/members-update-req.json" parse="text"/></programlisting>
@@ -1601,7 +1601,7 @@ Content-Length: 0
 
                 <programlisting>
 GET /v2.0/lb/health_monitors.json HTTP/1.1
-User-Agent: python-quantumclient
+User-Agent: python-neutronclient
 Accept: application/json
                 </programlisting>
             </example>
@@ -1652,7 +1652,7 @@ Content-Type: application/json; charset=UTF-8
 
                 <programlisting>
 GET /v2.0/lb/health_monitors/701b531b-111a-4f21-ad85-4795b7b12af6.json HTTP/1.1
-User-Agent: python-quantumclient
+User-Agent: python-neutronclient
 Accept: application/json
                 </programlisting>
             </example>
@@ -1699,7 +1699,7 @@ Content-Type: application/json; charset=UTF-8
                 <title>Create Health Monitor: Request</title>
                 <programlisting>
 POST /v2.0/lb/health_monitors.json HTTP/1.1
-User-Agent: python-quantumclient
+User-Agent: python-neutronclient
 Accept: application/json
                 </programlisting>
                 <programlisting language="json"><xi:include href="samples/loadbalancer/health_monitors-create-req.json" parse="text"/></programlisting>
@@ -1744,7 +1744,7 @@ Content-Type: application/json; charset=UTF-8
                 <title>Update Health Monitor: Request</title>
                 <programlisting>
 PUT /v2.0/lb/health_monitors/466c8345-28d8-4f84-a246-e04380b0461d.json HTTP/1.1
-User-Agent: python-quantumclient
+User-Agent: python-neutronclient
 Accept: application/json
                 </programlisting>
                 <programlisting language="json"><xi:include href="samples/loadbalancer/health_monitors-update-req.json" parse="text"/></programlisting>
@@ -1835,7 +1835,7 @@ Content-Length: 0
                 <title>Associate Health Monitor: Request</title>
                 <programlisting>
 POST /v2.0/lb/pools/72741b06-df4d-4715-b142-276b6bce75ab/health_monitors.json HTTP/1.1
-User-Agent: python-quantumclient
+User-Agent: python-neutronclient
 Accept: application/json
                 </programlisting>
                 <programlisting language="json"><xi:include href="samples/loadbalancer/healthmonitors-associate-req.json" parse="text"/></programlisting>

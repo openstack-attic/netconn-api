@@ -1,16 +1,16 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<network xmlns="http://openstack.org/quantum/api/v2.0"
+<network xmlns="http://openstack.org/neutron/api/v2.0"
     xmlns:provider="http://docs.openstack.org/ext/provider/api/v1.0"
-    xmlns:quantum="http://openstack.org/quantum/api/v2.0"
+    xmlns:neutron="http://openstack.org/neutron/api/v2.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <status>ACTIVE</status>
     <name>network-1</name>
-    <admin_state_up quantum:type="bool">True</admin_state_up>
+    <admin_state_up neutron:type="bool">True</admin_state_up>
     <tenant_id>c1210485b2424d48804aad5d39c61b8f</tenant_id>
-    <shared quantum:type="bool">False</shared>
+    <shared neutron:type="bool">False</shared>
     <id>3a06dfc7-d239-4aad-9a57-21cd171c72e5</id>
     <provider:network_type>vlan</provider:network_type>
     <provider:physical_network>physnet_1</provider:physical_network>
-    <provider:segmentation_id quantum:type="int">101</provider:segmentation_id>
+    <provider:segmentation_id neutron:type="int">101</provider:segmentation_id>
 </network>
 

@@ -9,7 +9,7 @@
     xmlns:wadl="http://wadl.dev.java.net/2009/02"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema"
     xmlns:csapi="http://www.w3.org/2001/XMLSchema"
-    xmlns:secgr="http://docs.openstack.org/quantum/api/v2.0">
+    xmlns:secgr="http://docs.openstack.org/neutron/api/v2.0">
     <grammars>
         <include href="secgr.xsd"/>
     </grammars>
