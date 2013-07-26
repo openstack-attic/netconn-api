@@ -1,0 +1,9 @@
+Verified+2: Jenkins
+Code-Review+2: Anne Gentle <anne@openstack.org>
+Approved+1: mark mcclain <mark.mcclain@dreamhost.com>
+Code-Review+2: mark mcclain <mark.mcclain@dreamhost.com>
+Submitted-by: Jenkins
+Submitted-at: Fri, 26 Jul 2013 14:28:10 +0000
+Reviewed-on: https://review.openstack.org/38199
+Project: openstack/netconn-api
+Branch: refs/heads/master
