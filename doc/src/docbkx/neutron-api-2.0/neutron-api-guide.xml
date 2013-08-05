@@ -634,7 +634,7 @@
                     <tr>
                         <td>ip_version </td>
                         <td>int </td>
-                        <td>No </td>
+                        <td>Yes </td>
                         <td>CR </td>
                         <td>4 </td>
                         <td>{ 4 | 6 } </td>
