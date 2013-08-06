@@ -1,0 +1,10 @@
+{
+  "ipsecpolicy": {
+    "name": "ipsecpolicy1", 
+    "transform_protocol": "esp", 
+    "auth_algorithm": "sha1", 
+    "encapsulation_mode": "tunnel", 
+    "encryption_algorithm": "aes-128", 
+    "pfs": "group5"
+  }
+}

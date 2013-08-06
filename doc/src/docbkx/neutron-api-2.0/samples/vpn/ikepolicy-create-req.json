@@ -1,0 +1,10 @@
+{
+  "ikepolicy": {
+    "phase1_negotiation_mode": "main", 
+    "auth_algorithm": "sha1", 
+    "name": "ikepolicy1", 
+    "encryption_algorithm": "aes-128", 
+    "pfs": "group5", 
+    "ike_version": "v1"
+  }
+}
