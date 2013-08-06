@@ -1,0 +1,17 @@
+{
+  "ipsec_site_connection": {
+    "psk": "secret",
+    "peer_cidrs": [
+      "10.1.0.0/24"
+    ],
+    "name": "vpnconnection1",
+    "admin_state_up": true,
+    "initiator": "bi-directional",
+    "mtu": "1500",
+    "ikepolicy_id": "bf5612ac-15fb-460c-9b3d-6453da2fafa2",
+    "vpnservice_id": "c2f3178d-5530-4c4a-89fc-050ecd552636",
+    "peer_address": "172.24.4.226",
+    "peer_id": "172.24.4.226",
+    "ipsecpolicy_id": "8ba867b2-67eb-4835-bb61-c226804a1584"
+  }
+}
