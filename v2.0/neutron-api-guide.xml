@@ -2676,6 +2676,7 @@ Date: Wed, 12 Sep 2012 11:36:20 GMT</literallayout>
         </section>
         <xi:include href="neutron-provider-ext.xml"/>
         <xi:include href="neutron-l3-ext.xml"/>
+        <xi:include href="neutron-extgwmodes-ext.xml"/>
         <xi:include href="neutron-quotas-ext.xml"/>
         <xi:include href="neutron-security-groups-ext.xml"/>
         <xi:include href="neutron-agent-ext.xml"/>
