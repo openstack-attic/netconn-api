@@ -1,0 +1,563 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE section [
+        <!-- Some useful entities borrowed from HTML -->
+        <!ENTITY ndash  "&#x2013;">
+        <!ENTITY mdash  "&#x2014;">
+        <!ENTITY hellip "&#x2026;">
+        <!ENTITY plusmn "&#xB1;">
+
+        <!-- Useful for describing APIs -->
+        <!ENTITY GET    '<command xmlns="http://docbook.org/ns/docbook">GET</command>'>
+        <!ENTITY PUT    '<command xmlns="http://docbook.org/ns/docbook">PUT</command>'>
+        <!ENTITY POST   '<command xmlns="http://docbook.org/ns/docbook">POST</command>'>
+        <!ENTITY DELETE '<command xmlns="http://docbook.org/ns/docbook">DELETE</command>'>
+
+        <!ENTITY CHECK  '<inlinemediaobject xmlns="http://docbook.org/ns/docbook">
+                 <imageobject>
+                  <imagedata fileref="figures/Check_mark_23x20_02.svg"
+                             format="SVG" scale="60"/>
+                </imageobject>
+              </inlinemediaobject>'>
+
+        <!ENTITY ARROW  '<inlinemediaobject xmlns="http://docbook.org/ns/docbook">
+                 <imageobject>
+                  <imagedata fileref="figures/Arrow_east.svg"
+                             format="SVG" scale="60"/>
+                </imageobject>
+              </inlinemediaobject>'>
+]>
+<section xmlns="http://docbook.org/ns/docbook"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:xi="http://www.w3.org/2001/XInclude"
+    xmlns:svg="http://www.w3.org/2000/svg"
+    xmlns:m="http://www.w3.org/1998/Math/MathML"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns:db="http://docbook.org/ns/docbook" version="5.0"
+    status="final" xml:id="lbaas_ext">
+
+    <title>The Firewall as a Service (FWaaS) Extension</title>
+    <para>The FWaaS extension provides OpenStack tenants
+        with the ability to deploy firewalls to protect
+        their networks.
+
+        The current features provided by the FWaaS extension are:
+        <itemizedlist>
+            <listitem>
+                <para>Apply firewall rules on data traffic entering and leaving
+                    tenant networks.
+                </para>
+            </listitem>
+            <listitem>
+                <para>Support for applying tcp, udp, icmp, or protocol agnostic
+                rules.</para>
+            </listitem>
+            <listitem>
+                <para>Creation and sharing of firewall policies which hold an
+                ordered collection of the firewall rules.</para>
+            </listitem>
+            <listitem>
+                <para>Abitlity to audit firewall rules and policies.</para>
+            </listitem>
+        </itemizedlist>
+    </para>
+
+    <para>This extension introduces new resources:
+        <itemizedlist>
+            <listitem>
+                <para><emphasis role="bold">firewall</emphasis>, represents
+                    a logical firewall resource that a tenant can instantiate
+                    and manage. A firewall is associated with one firewall_policy.
+                </para>
+            </listitem>
+            <listitem>
+                <para><emphasis role="bold">firewall_policy</emphasis>, a
+                    firewall_policy is an ordered collection of firewall_rules.
+                    A firewall_policy can be shared across tenants. Thus it can
+                    also be made part of an audit workflow wherein the
+                    firewall_policy can be audited by the relevant entity that
+                    (and can be different from the tenants which create or use
+                    the firewall_policy).
+                </para>
+            </listitem>
+            <listitem>
+                <para><emphasis role="bold">firewall_rule</emphasis>, represents
+                    a collection of attributes like ports, ip addresses which
+                    define match criteria and action (allow, or deny) that needs
+                    to be taken on the matched data traffic.
+                </para>
+            </listitem>
+        </itemizedlist>
+    </para>
+
+    <?hard-pagebreak?>
+
+    <section xml:id="fwaas_ext_ops_service">
+        <title>Firewall Rule Operations</title>
+        <para>This section discusses operations for managing a Firewall Rule
+              through this extension.
+        </para>
+
+        <table rules="all">
+            <caption>Firewall Rule Attributes</caption>
+            <col width="20%"/>
+            <col width="8%"/>
+            <col width="10%"/>
+            <col width="7%"/>
+            <col width="15%"/>
+            <col width="15%"/>
+            <col width="25%"/>
+            <thead>
+                <tr>
+                    <th>Attribute</th>
+                    <th>Type</th>
+                    <th>Required</th>
+                    <th>CRUD
+                        <footnote xml:id="fwaas_rule_crud_note">
+                            <para>
+                                <itemizedlist>
+                                    <listitem>
+                                        <para><emphasis role="bold">C</emphasis>. Use the attribute in create operations.</para>
+                                    </listitem>
+                                    <listitem>
+                                        <para><emphasis role="bold">R</emphasis>. This attribute is returned in response to show and list operations.</para>
+                                    </listitem>
+                                    <listitem>
+                                        <para><emphasis role="bold">U</emphasis>. You can update the value of this attribute.</para>
+                                    </listitem>
+                                    <listitem>
+                                        <para><emphasis role="bold">D</emphasis>. You can delete the value of this attribute.</para>
+                                    </listitem>
+                                </itemizedlist>
+                            </para>
+                        </footnote>
+                    </th>
+                    <th>Default Value</th>
+                    <th>Validation Constraints</th>
+                    <th>Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>id</td>
+                    <td>uuid-str</td>
+                    <td>N/A</td>
+                    <td>R</td>
+                    <td>generated</td>
+                    <td>N/A</td>
+                    <td>Unique identifier for the Firewall Rule object.</td>
+                </tr>
+                <tr>
+                    <td>tenant_id</td>
+                    <td>uuid-str</td>
+                    <td>Yes</td>
+                    <td>CR</td>
+                    <td>Derived from Authentication token</td>
+                    <td>valid tenant_id</td>
+                    <td>Owner of the Firewall Rule. Only admin users can
+                        specify a tenant identifier other than their own.</td>
+                </tr>
+                <tr>
+                    <td>name</td>
+                    <td>String</td>
+                    <td>No</td>
+                    <td>CRU</td>
+                    <td>None</td>
+                    <td>N/A</td>
+                    <td>Human readable name for the Firewall Rule (255
+                        characters limit). Does not have to be unique.</td>
+                </tr>
+                <tr>
+                    <td>description</td>
+                    <td>String</td>
+                    <td>No</td>
+                    <td>CRU</td>
+                    <td>None</td>
+                    <td>N/A</td>
+                    <td>Human readable description for the Firewall Rule (1024
+                        characters limit).</td>
+                </tr>
+                <tr>
+                    <td>firewall_policy_id</td>
+                    <td>uuid-str</td>
+                    <td>No</td>
+                    <td>R</td>
+                    <td>None</td>
+                    <td>N/A</td>
+                    <td>This is a readonly attribute which gets popluated
+                        with the uuid of the Firewall Policy when this
+                        Firewall Rule is associated with a Firewall
+                        Policy. A Firewall Rule can be associated
+                        with one Firewall Policy at a time. The association
+                        can however be updated to a different Firewall Policy.
+                    </td>
+                </tr>
+                <tr>
+                    <td>shared</td>
+                    <td>Bool</td>
+                    <td>No</td>
+                    <td>CRU</td>
+                    <td>false</td>
+                    <td>{true | false}</td>
+                    <td>When set to True makes this Firewall Rule visible
+                        to tenants other than it's owner, and can be used
+                        in Firewall Policies not owned by it's tenant.</td>
+                </tr>
+                <tr>
+                    <td>protocol</td>
+                    <td>String</td>
+                    <td>No</td>
+                    <td>CRU</td>
+                    <td>None</td>
+                    <td>{icmp | tcp | udp | None}</td>
+                    <td>IP Protocol.</td>
+                </tr>
+                <tr>
+                    <td>ip_version</td>
+                    <td>Integer or String</td>
+                    <td>No</td>
+                    <td>CRU</td>
+                    <td>4</td>
+                    <td>{4 | 6}.</td>
+                    <td>IP Protocol Version.</td>
+                </tr>
+                <tr>
+                    <td>source_ip_address</td>
+                    <td>String (IP address or CIDR)</td>
+                    <td>No</td>
+                    <td>CRU</td>
+                    <td>None</td>
+                    <td>valid IP address (v4 or v6), or CIDR.</td>
+                    <td>Source IP address or CIDR.</td>
+                </tr>
+                <tr>
+                    <td>destination_ip_address</td>
+                    <td>String (IP address or CIDR)</td>
+                    <td>No</td>
+                    <td>CRU</td>
+                    <td>None</td>
+                    <td>valid IP address (v4 or v6), or CIDR.</td>
+                    <td>Destination IP address or CIDR.</td>
+                </tr>
+                <tr>
+                    <td>source_port</td>
+                    <td>Integer or String</td>
+                    <td>No</td>
+                    <td>CRU</td>
+                    <td>None</td>
+                    <td>Valid port number (integer or string), or port range
+                        in the format of a ':' separated range).</td>
+                    <td>Source port number or a range.</td>
+                </tr>
+                <tr>
+                    <td>destination_port</td>
+                    <td>Integer or String</td>
+                    <td>No</td>
+                    <td>CRU</td>
+                    <td>None</td>
+                    <td>Valid port number (integer or string), or port range
+                        in the format of a ':' separated range).</td>
+                    <td>Destination port number or a range.</td>
+                </tr>
+                <tr>
+                    <td>position</td>
+                    <td>Integer</td>
+                    <td>N/A</td>
+                    <td>R</td>
+                    <td>None</td>
+                    <td>N/A</td>
+                    <td>This is a readonly attribute that gets assigned
+                        to this rule when the rule is assocated with
+                        a Firewall Policy. It indicates the position of
+                        this rule in that Firewall Policy.</td>
+                </tr>
+                <tr>
+                    <td>action</td>
+                    <td>String</td>
+                    <td>No</td>
+                    <td>CRU</td>
+                    <td>deny</td>
+                    <td>{allow | deny}</td>
+                    <td>Action to be performed on the traffic matching
+                        the rule (allow, deny).</td>
+                </tr>
+                <tr>
+                    <td>enabled</td>
+                    <td>Bool</td>
+                    <td>No</td>
+                    <td>CRU</td>
+                    <td>true</td>
+                    <td>{true | false}</td>
+                    <td>When set to False will disable this rule in the
+                        Firewall Policy. Facilitates selectively turning
+                        off rules without having to disassociate the rule
+                        from the Firewall Policy.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <title>Firewall Policy Operations</title>
+        <para>This section discusses operations for managing a Firewall Policy
+              through this extension.
+        </para>
+
+        <table rules="all">
+            <caption>Firewall Policy Attributes</caption>
+            <col width="20%"/>
+            <col width="8%"/>
+            <col width="10%"/>
+            <col width="7%"/>
+            <col width="15%"/>
+            <col width="15%"/>
+            <col width="25%"/>
+            <thead>
+                <tr>
+                    <th>Attribute</th>
+                    <th>Type</th>
+                    <th>Required</th>
+                    <th>CRUD
+                        <footnote xml:id="fwaas_policy_crud_note">
+                            <para>
+                                <itemizedlist>
+                                    <listitem>
+                                        <para><emphasis role="bold">C</emphasis>. Use the attribute in create operations.</para>
+                                    </listitem>
+                                    <listitem>
+                                        <para><emphasis role="bold">R</emphasis>. This attribute is returned in response to show and list operations.</para>
+                                    </listitem>
+                                    <listitem>
+                                        <para><emphasis role="bold">U</emphasis>. You can update the value of this attribute.</para>
+                                    </listitem>
+                                    <listitem>
+                                        <para><emphasis role="bold">D</emphasis>. You can delete the value of this attribute.</para>
+                                    </listitem>
+                                </itemizedlist>
+                            </para>
+                        </footnote>
+                    </th>
+                    <th>Default Value</th>
+                    <th>Validation Constraints</th>
+                    <th>Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>id</td>
+                    <td>uuid-str</td>
+                    <td>N/A</td>
+                    <td>R</td>
+                    <td>generated</td>
+                    <td>N/A</td>
+                    <td>Unique identifier for the Firewall Policy object.</td>
+                </tr>
+                <tr>
+                    <td>tenant_id</td>
+                    <td>uuid-str</td>
+                    <td>Yes</td>
+                    <td>CR</td>
+                    <td>Derived from Authentication token</td>
+                    <td>valid tenant_id</td>
+                    <td>Owner of the Firewall Policy. Only admin users can
+                        specify a tenant identifier other than their own.</td>
+                </tr>
+                <tr>
+                    <td>name</td>
+                    <td>String</td>
+                    <td>No</td>
+                    <td>CRU</td>
+                    <td>None</td>
+                    <td>N/A</td>
+                    <td>Human readable name for the Firewall Policy (255
+                        characters limit). Does not have to be unique.</td>
+                </tr>
+                <tr>
+                    <td>description</td>
+                    <td>String</td>
+                    <td>No</td>
+                    <td>CRU</td>
+                    <td>None</td>
+                    <td>N/A</td>
+                    <td>Human readable description for the Firewall Rule (1024
+                        characters limit).</td>
+                </tr>
+                <tr>
+                    <td>shared</td>
+                    <td>Bool</td>
+                    <td>No</td>
+                    <td>CRU</td>
+                    <td>false</td>
+                    <td>{true | false}</td>
+                    <td>When set to True makes this Firewall Rule visible
+                        to tenants other than it's owner, and can be used
+                        in Firewall Policies not owned by it's tenant.</td>
+                </tr>
+                <tr>
+                    <td>firewall_rules</td>
+                    <td>List</td>
+                    <td>No</td>
+                    <td>CRU</td>
+                    <td>None</td>
+                    <td>Validate comma separates list of Firewall Rule
+                        uuids.</td>
+                    <td>This is an ordered list of Firewall Rule uuids.
+                        The Firewall applies the rules in the order in
+                        which they appear in this list.</td>
+                </tr>
+                <tr>
+                    <td>audited</td>
+                    <td>Bool</td>
+                    <td>N/A</td>
+                    <td>CRU</td>
+                    <td>false</td>
+                    <td>{true | false}</td>
+                    <td>When set to True by the policy owner indicates
+                        that the Firewall Policy has been audited.This
+                        attribute is meant to aid in the firewall
+                        policy audit workflows. Each time the Firewall
+                        Policy or the associated Firewall Rules are
+                        changed, this attribute will be set to False and
+                        will have to be explicitly set to True through an
+                        update operation.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <title>Firewall Operations</title>
+        <para>This section discusses operations for managing a Firewall
+              through this extension.
+        </para>
+
+        <table rules="all">
+            <caption>Firewall Attributes</caption>
+            <col width="20%"/>
+            <col width="8%"/>
+            <col width="10%"/>
+            <col width="7%"/>
+            <col width="15%"/>
+            <col width="15%"/>
+            <col width="25%"/>
+            <thead>
+                <tr>
+                    <th>Attribute</th>
+                    <th>Type</th>
+                    <th>Required</th>
+                    <th>CRUD
+                        <footnote xml:id="fwaas_firewall_crud_note">
+                            <para>
+                                <itemizedlist>
+                                    <listitem>
+                                        <para><emphasis role="bold">C</emphasis>. Use the attribute in create operations.</para>
+                                    </listitem>
+                                    <listitem>
+                                        <para><emphasis role="bold">R</emphasis>. This attribute is returned in response to show and list operations.</para>
+                                    </listitem>
+                                    <listitem>
+                                        <para><emphasis role="bold">U</emphasis>. You can update the value of this attribute.</para>
+                                    </listitem>
+                                    <listitem>
+                                        <para><emphasis role="bold">D</emphasis>. You can delete the value of this attribute.</para>
+                                    </listitem>
+                                </itemizedlist>
+                            </para>
+                        </footnote>
+                    </th>
+                    <th>Default Value</th>
+                    <th>Validation Constraints</th>
+                    <th>Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>id</td>
+                    <td>uuid-str</td>
+                    <td>N/A</td>
+                    <td>R</td>
+                    <td>generated</td>
+                    <td>N/A</td>
+                    <td>Unique identifier for the Firewall object.</td>
+                </tr>
+                <tr>
+                    <td>tenant_id</td>
+                    <td>uuid-str</td>
+                    <td>Yes</td>
+                    <td>CR</td>
+                    <td>Derived from Authentication token</td>
+                    <td>valid tenant_id</td>
+                    <td>Owner of the Firewall. Only admin users can
+                        specify a tenant identifier other than their own.</td>
+                </tr>
+                <tr>
+                    <td>name</td>
+                    <td>String</td>
+                    <td>No</td>
+                    <td>CRU</td>
+                    <td>None</td>
+                    <td>N/A</td>
+                    <td>Human readable name for the Firewall (255
+                        characters limit). Does not have to be unique.</td>
+                </tr>
+                <tr>
+                    <td>description</td>
+                    <td>String</td>
+                    <td>No</td>
+                    <td>CRU</td>
+                    <td>None</td>
+                    <td>N/A</td>
+                    <td>Human readable description for the Firewall (1024
+                        characters limit).</td>
+                </tr>
+                <tr>
+                    <td>admin_state_up</td>
+                    <td>Bool</td>
+                    <td>N/A</td>
+                    <td>CRU</td>
+                    <td>true</td>
+                    <td>{true | false }</td>
+                    <td>Administrative state of the Firewall. If false
+                       (down), Firewall does not forward packets.</td>
+                </tr>
+                <tr>
+                    <td>status</td>
+                    <td>String</td>
+                    <td>N/A</td>
+                    <td>R</td>
+                    <td>N/A</td>
+                    <td>N/A</td>
+                    <td>Indicates whether Firewall resource is currently
+                        operational. Possible values include:
+                        ACTIVE, DOWN, BUILD, ERROR, PENDING_CREATE,
+                        PENDING_UPDATE, or PENDING_DELETE.</td>
+                </tr>
+                <tr>
+                    <td>shared</td>
+                    <td>Bool</td>
+                    <td>No</td>
+                    <td>CRU</td>
+                    <td>false</td>
+                    <td>{true | false}</td>
+                    <td>When set to True makes this Firewall Rule visible
+                        to tenants other than it's owner, and can be used
+                        in Firewall Policies not owned by it's tenant.</td>
+                </tr>
+                <tr>
+                    <td>firewall_policy_id</td>
+                    <td>uuid-str</td>
+                    <td>No</td>
+                    <td>CRU</td>
+                    <td>None</td>
+                    <td>valid Firewall Policy uuid</td>
+                    <td>The Firewall Policy uuid that this Firewall
+                        is associated with. This Firewall will implement
+                        the rules contained in the Firewall Policy
+                        represented by this uuid.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <?hard-pagebreak?>
+
+
+    </section> <!-- end of fwaasservice section-->
+
+    <?hard-pagebreak?>
+
+</section> <!-- end of fwaas section -->
