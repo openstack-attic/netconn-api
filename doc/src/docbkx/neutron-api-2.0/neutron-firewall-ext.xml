@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE section [
+        <!-- Some useful entities borrowed from HTML -->
+        <!ENTITY ndash  "&#x2013;">
+        <!ENTITY mdash  "&#x2014;">
+        <!ENTITY hellip "&#x2026;">
+        <!ENTITY plusmn "&#xB1;">
+
+        <!-- Useful for describing APIs -->
+        <!ENTITY GET    '<command xmlns="http://docbook.org/ns/docbook">GET</command>'>
+        <!ENTITY PUT    '<command xmlns="http://docbook.org/ns/docbook">PUT</command>'>
+        <!ENTITY POST   '<command xmlns="http://docbook.org/ns/docbook">POST</command>'>
+        <!ENTITY DELETE '<command xmlns="http://docbook.org/ns/docbook">DELETE</command>'>
+
+        <!ENTITY CHECK  '<inlinemediaobject xmlns="http://docbook.org/ns/docbook">
+                 <imageobject>
+                  <imagedata fileref="figures/Check_mark_23x20_02.svg"
+                             format="SVG" scale="60"/>
+                </imageobject>
+              </inlinemediaobject>'>
+
+        <!ENTITY ARROW  '<inlinemediaobject xmlns="http://docbook.org/ns/docbook">
+                 <imageobject>
+                  <imagedata fileref="figures/Arrow_east.svg"
+                             format="SVG" scale="60"/>
+                </imageobject>
+              </inlinemediaobject>'>
+]>
+<section xmlns="http://docbook.org/ns/docbook"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:xi="http://www.w3.org/2001/XInclude"
+    xmlns:svg="http://www.w3.org/2000/svg"
+    xmlns:m="http://www.w3.org/1998/Math/MathML"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns:db="http://docbook.org/ns/docbook" version="5.0"
+    status="final" xml:id="lbaas_ext">
+
+    <title>The Firewall as a Service (FWaaS) Extension</title>
+    <para>The FWaaS extension provides OpenStack tenants
+        with the ability to deploy firewalls to protect
+        their networks.
+
+        The current features provided by the FWaaS extension are:
+        <itemizedlist>
+            <listitem>
+                <para>Apply firewall rules on data traffic entering and leaving
+                    tenant networks.
+                </para>
+            </listitem>
+            <listitem>
+                <para>Support for applying tcp, udp, icmp, or protocol agnostic
+                rules.</para>
+            </listitem>
+            <listitem>
+                <para>Creation and sharing of firewall policies which hold an
+                ordered collection of the firewall rules.</para>
+            </listitem>
+            <listitem>
+                <para>Abitlity to audit firewall rules and policies.</para>
+            </listitem>
+        </itemizedlist>
+    </para>
+
+    <para>This extension introduces new resources:
+        <itemizedlist>
+            <listitem>
+                <para><emphasis role="bold">firewall</emphasis>, represents
+                    a logical firewall resource that a tenant can instantiate
+                    and manage. A firewall is associated with one firewall_policy.
+                </para>
+            </listitem>
+            <listitem>
+                <para><emphasis role="bold">firewall_policy</emphasis>, a
+                    firewall_policy is an ordered collection of firewall_rules.
+                    A firewall_policy can be shared across tenants. Thus it can
+                    also be made part of an audit workflow wherein the 
+                    firewall_policy can be audited by the relevant entity that
+                    (and can be different from the tenants which create or use the
+                    firewall_policy).
+                </para>
+            </listitem>
+            <listitem>
+                <para><emphasis role="bold">firewall_rule</emphasis>, represents
+                    a collection of attributes like ports, ip addresses which
+                    define match criteria and action (allow, or deny) that needs
+                    to be taken on the matched flows.
+                </para>
+            </listitem>
+        </itemizedlist>
+    </para>
+
+    <?hard-pagebreak?>
+
+</section> <!-- end of lbaas section -->
