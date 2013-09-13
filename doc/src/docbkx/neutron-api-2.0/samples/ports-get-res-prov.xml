@@ -12,8 +12,7 @@
         <id>3a06dfc7-d239-4aad-9a57-21cd171c72e5</id>
         <provider:network_type>vlan</provider:network_type>
         <provider:physical_network>physnet_1</provider:physical_network>
-        <provider:segmentation_id neutron:type="int"
-            >101</provider:segmentation_id>
+        <provider:segmentation_id neutron:type="int">101</provider:segmentation_id>
     </network>
     <network>
         <status>ACTIVE</status>
@@ -23,7 +22,8 @@
         <shared neutron:type="bool">False</shared>
         <id>7db8c5a4-6eb0-478d-856b-7cfda2b25e13</id>
         <provider:network_type>local</provider:network_type>
-        <provider:physical_network xsi:nil="true"/>
-        <provider:segmentation_id xsi:nil="true"/>
+        <provider:physical_network xsi:nil="true" />
+        <provider:segmentation_id xsi:nil="true" />
     </network>
 </networks>
+

@@ -1,0 +1,624 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE book[
+        <!-- Some useful entities borrowed from HTML -->
+        <!ENTITY ndash  "&#x2013;">
+        <!ENTITY mdash  "&#x2014;">
+        <!ENTITY hellip "&#x2026;">
+        <!ENTITY plusmn "&#xB1;">
+
+        <!-- Useful for describing APIs -->
+        <!ENTITY GET    '<command xmlns="http://docbook.org/ns/docbook">GET</command>'>
+        <!ENTITY PUT    '<command xmlns="http://docbook.org/ns/docbook">PUT</command>'>
+        <!ENTITY POST   '<command xmlns="http://docbook.org/ns/docbook">POST</command>'>
+        <!ENTITY DELETE '<command xmlns="http://docbook.org/ns/docbook">DELETE</command>'>
+
+        <!ENTITY CHECK  '<inlinemediaobject xmlns="http://docbook.org/ns/docbook">
+                 <imageobject role="fo">
+                  <imagedata fileref="figures/Check_mark_23x20_02.svg"
+                             format="SVG" scale="60"/>
+                </imageobject>
+                 <imageobject role="html">
+                  <imagedata fileref="../figures/Check_mark_23x20_02.png"
+                             format="PNG" />
+                </imageobject>
+              </inlinemediaobject>'>
+
+        <!ENTITY ARROW  '<inlinemediaobject xmlns="http://docbook.org/ns/docbook">
+                 <imageobject role="fo">
+                  <imagedata fileref="figures/Arrow_east.svg"
+                             format="SVG" scale="60"/>
+                </imageobject>
+                 <imageobject role="html">
+                  <imagedata fileref="../figures/Arrow_east.png"
+                             format="PNG" />
+                </imageobject>
+              </inlinemediaobject>'>
+ <!ENTITY APIv2   'Networking API v2.0'>
+]>
+<section xml:id="provider_ext_ports"
+    xmlns="http://docbook.org/ns/docbook"
+    xmlns:xi="http://www.w3.org/2001/XInclude"
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    <title>Port API Operations</title>
+    <para>Use the &APIv2; with the <parameter>provider</parameter>
+        extended attributes to get information about, create, and
+        update port objects.</para>
+    <para>The <parameter>provider</parameter>-prefixed extended
+        attributes for ports are:</para>
+    <table rules="all">
+        <caption><parameter>provider</parameter> Extended Attributes
+            for Ports</caption>
+        <col width="25%"/>
+        <col width="75%"/>
+        <thead>
+            <tr>
+                <th>Attribute</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><para><parameter>provider:vif_type</parameter></para></td>
+                <td><para>The vif type for the specified port.</para>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <para><parameter>provider:host_id</parameter></para></td>
+                <td><para>The host where the port is allocated. In
+                        some cases different implementations can run
+                        on different hosts. </para>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <para><parameter>provider:profile</parameter></para></td>
+                <td><para>A dictionary that enables the application
+                        running on the specified host to pass and
+                        receive vif port-specific information to the
+                        plug-in.</para>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <para><parameter>provider:capabilities</parameter></para></td>
+                <td><para>A dictionary that enables the application to
+                        pass information about functions that &APIv2;
+                        provides. Specify the following value:
+                        port_filter : Boolean to define whether
+                        &APIv2; provides port filtering features such
+                        as security group and anti-MAC/IP
+                        spoofing.</para>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <!--<informaltable rules="all" width="100%">
+        <col width="20%"/>
+        <col width="20%"/>
+        <col width="60%"/>
+        <thead>
+            <tr align="center">
+                <td>Verb</td>
+                <td>URI</td>
+                <td>Description</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>&GET;</td>
+                <td>/ports</td>
+                <td>Lists ports to which the tenant has access. The
+                        <parameter>provider</parameter> extended
+                    attributes are visible to only administrative
+                    users.</td>
+            </tr>
+            <tr>
+                <td>&GET;</td>
+                <td>/ports/<parameter>port_id</parameter></td>
+                <td>Shows information for a specified port. The
+                        <parameter>provider</parameter> extended
+                    attributes are visible to only administrative
+                    users.</td>
+            </tr>
+            <tr>
+                <td>&POST;</td>
+                <td>/ports</td>
+                <td>Creates a port for a specified network. Only
+                    administrative users can add the
+                        <parameter>provider</parameter> extended
+                    attributes.</td>
+            </tr>
+            <tr>
+                <td>&PUT;</td>
+                <td>/ports/<parameter>port-id</parameter></td>
+                <td>Updates a specified port. Only administrative
+                    users can update the
+                        <parameter>provider</parameter> extended
+                    attributes.</td>
+            </tr>
+        </tbody>
+    </informaltable>-->
+    <section xml:id="List_Ports_provider">
+        <title>List Ports</title>
+        <informaltable rules="all" width="100%">
+            <col width="20%"/>
+            <col width="20%"/>
+            <col width="60%"/>
+            <thead>
+                <tr>
+                    <td>Verb</td>
+                    <td>URI</td>
+                    <td>Description</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>&GET;</td>
+                    <td>/ports</td>
+                    <td>Lists ports to which the tenant has access.
+                        The <parameter>provider</parameter> extended
+                        attributes are visible to only administrative
+                        users.</td>
+                </tr>
+            </tbody>
+        </informaltable>
+        <simpara>Normal Response Code: <returnvalue>200</returnvalue>
+        </simpara>
+        <simpara>Error Response Codes: Unauthorized
+                (<errorcode>401</errorcode>)</simpara>
+        <para>This operation lists ports to which the tenant has
+            access. Default policy settings return only those subnets
+            that are owned by the tenant who submits the request,
+            unless the request is submitted by an administrative user.
+            The <parameter>provider</parameter> extended attributes
+            are visible to only administrative users.</para>
+        <para>Users can control which attributes are returned by using
+            the <parameter>fields</parameter> query parameter.
+            Additionally, you can filter results by using query string
+            parameters.</para>
+        <para>This operation does not require a request body.</para>
+        <para>This operation returns a response body. The response
+            body contains the following fields:</para>
+        <para>
+            <table rules="all">
+                <caption>List Ports Response Fields</caption>
+                <thead>
+                    <tr>
+                        <th>Field</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><para><parameter>admin_state_up</parameter></para></td>
+                        <td><para>Administrative state of the
+                                router.</para></td>
+                    </tr>
+                    <tr>
+                        <td><para><parameter>device_id</parameter></para></td>
+                        <td><para>The ID of the device that uses this
+                                port. For example, a virtual
+                                server.</para></td>
+                    </tr>
+                    <tr>
+                        <td><para><parameter>device_owner</parameter></para></td>
+                        <td><para>The ID of the entity that uses this
+                                port. For example, a dhcp
+                                agent.</para></td>
+                    </tr>
+                    <tr>
+                        <td><para><parameter>fixed_ips</parameter></para></td>
+                        <td><para>IP addresses for the port. Includes
+                                the IP address and subnet ID.</para>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><para><parameter>id</parameter></para></td>
+                        <td><para>The ID of the port.</para></td>
+                    </tr>
+                    <tr>
+                        <td><para><parameter>mac_address</parameter></para></td>
+                        <td><para>The MAC address of the
+                            port.</para></td>
+                    </tr>
+                    <tr>
+                        <td><para><parameter>name</parameter></para></td>
+                        <td><para>The name of the port.</para></td>
+                    </tr>
+                    <tr>
+                        <td><para><parameter>network_id</parameter></para></td>
+                        <td><para>The ID of the attached
+                                network.</para>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><para><parameter>security_groups</parameter></para></td>
+                        <td><para>The IDs of any attached security
+                                groups.</para></td>
+                    </tr>
+                    <tr>
+                        <td><para><parameter>status</parameter></para></td>
+                        <td><para>The status of the port: UP or
+                                DOWN.</para></td>
+                    </tr>
+                    <tr>
+                        <td><para><parameter>tenant_id</parameter></para></td>
+                        <td><para>The ID of the tenant who owns the
+                                network. Only administrative users can
+                                specify a tenant_id other than their
+                                own. </para></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <para><parameter>provider:host_id</parameter></para></td>
+                        <td><para>The host where the port is
+                                allocated. In some cases different
+                                implementations can run on different
+                                hosts.</para>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <para><parameter>provider:profile</parameter></para></td>
+                        <td><para>A dictionary that enables the
+                                application running on the specified
+                                host to pass and receive vif
+                                port-specific information to the
+                                plug-in.</para>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <para><parameter>provider:capabilities</parameter></para></td>
+                        <td><para>A dictionary that enables the
+                                application to pass information about
+                                functions that &APIv2; provides.
+                                Specify the following value:
+                                port_filter : Boolean to define
+                                whether &APIv2; provides port
+                                filtering features such as security
+                                group and anti-MAC/IP spoofing.</para>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </para>
+
+        <example>
+            <title>List Ports with provider extended attributes:
+                Request</title>
+            <literallayout class="monospaced">GET /v2.0/ports.json HTTP/1.1
+content-type: application/json
+accept: application/json</literallayout>
+        </example>
+        <example>
+            <title>List Ports with provider extended attributes: JSON
+                Response</title>
+            <programlisting language="json"><xi:include href="samples/ports-get-res.json" parse="text"/></programlisting>
+        </example>
+    </section>
+    <?hard-pagebreak?>
+    <section xml:id="Show_port_provider">
+        <title>Show Port</title>
+        <informaltable rules="all" width="100%">
+            <col width="20%"/>
+            <col width="20%"/>
+            <col width="60%"/>
+            <thead>
+                <tr>
+                    <td>Verb</td>
+                    <td>URI</td>
+                    <td>Description</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>&GET;</td>
+                    <td>/ports/<parameter>port-id</parameter></td>
+                    <td>Shows information for a specified port. The
+                            <parameter>provider</parameter> extended
+                        attributes are visible to only administrative
+                        users.</td>
+                </tr>
+            </tbody>
+        </informaltable>
+        <simpara>Normal Response Code: <returnvalue>200</returnvalue>
+        </simpara>
+        <simpara>Error Response Codes: Unauthorized
+                (<errorcode>401</errorcode>), Not Found
+                (<errorcode>404</errorcode>)</simpara>
+        <para>This operation returns information for the port
+            specified in the request URI. </para>
+        <para>The following <parameter>provider</parameter>-prefixed
+            extended attributes are visible to administrative
+            users:</para>
+        <itemizedlist>
+            <listitem>
+                <para><emphasis role="italic"
+                        >provider:vif_type</emphasis>. The vif type
+                    for the specified port.</para>
+            </listitem>
+            <listitem>
+                <para><emphasis role="italic"
+                        >provider:host_id</emphasis>. The host where
+                    the port is allocated. In some cases different
+                    implementations can run on different hosts.
+                </para>
+            </listitem>
+            <listitem>
+                <para><emphasis role="italic"
+                        >provider:profile</emphasis>. A dictionary
+                    that enables the application running on the
+                    specified host to pass and receive vif
+                    port-specific information to the plug-in.</para>
+            </listitem>
+            <listitem>
+                <para><emphasis role="italic"
+                        >provider:capabilities</emphasis>. A
+                    dictionary that enables the application to pass
+                    information about functions that Networking API
+                    v2.0 provides. Specify the following value:
+                    port_filter : Boolean to define whether Networking
+                    API v2.0 provides port filtering features such as
+                    security group and anti-MAC/IP spoofing.</para>
+            </listitem>
+        </itemizedlist>
+
+        <para>This operation does not require a request body.</para>
+        <para>This operation returns a response body.</para>
+        <example>
+            <title>Show Port with provider extended attributes: JSON
+                Request</title>
+            <programlisting>GET /v2.0/ports/ebe69f1e-bc26-4db5-bed0-c0afb4afe3db.json
+accept: application/json</programlisting>
+        </example>
+        <example>
+            <title>Show Port with provider extended attributes: JSON
+                Response</title>
+            <programlisting language="json"><xi:include href="samples/port-get-res.json" parse="text"/></programlisting>
+        </example>
+    </section>
+
+    <section xml:id="Create_Port_provider">
+        <title>Create Port</title>
+        <informaltable rules="all" width="100%">
+            <col width="20%"/>
+            <col width="20%"/>
+            <col width="60%"/>
+            <thead>
+                <tr>
+                    <td>Verb</td>
+                    <td>URI</td>
+                    <td>Description</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>&POST;</td>
+                    <td>/ports</td>
+                    <td>Creates a port on a specified network. Only
+                        administrative users can add the
+                            <parameter>provider</parameter> extended
+                        attributes.</td>
+                </tr>
+            </tbody>
+        </informaltable>
+        <simpara>Normal Response Code: <returnvalue>201</returnvalue>
+        </simpara>
+        <simpara>Error Response Codes: Bad Request
+                (<errorcode>400</errorcode>), Unauthorized
+                (<errorcode>401</errorcode>), Forbidden
+                (<errorcode>403</errorcode>), Not Found
+                (<errorcode>404</errorcode>), Conflict
+                (<errorcode>409</errorcode>), MAC generation failure
+                (<errorcode>503</errorcode>) </simpara>
+        <para>This operation creates a new OpenStack Networking port.
+            You must specify the network where the port is to created
+            on the <parameter>network_id</parameter> attribute in the
+            request body.</para>
+        <para>If you specify a security group ID, this port is
+            associated with the security group. You can associate more
+            than one security group with a port.</para>
+        <para>You can also specify the following optional
+            attributes:</para>
+        <itemizedlist>
+            <listitem>
+                <para>Security groups. Specify one or more security
+                    group IDs.</para>
+            </listitem>
+            <listitem>
+                <para>A symbolic name for the port</para>
+            </listitem>
+            <listitem>
+                <para>MAC address. If you specify an address that is
+                    not valid, a <literal>400 Bad Request</literal>
+                    error is returned</para>
+                <para>If the specified MAC address is already in use,
+                    a <literal>409 Conflict</literal> error is
+                    returned.</para>
+                <para>When the MAC address is not specified, OpenStack
+                    Networking tries to allocate one for the port
+                    being created.</para>
+                <para>If a failure occurs while generating the
+                    address, a <literal>503 Service
+                        Unavailable</literal> error is
+                    returned.</para>
+            </listitem>
+            <listitem>
+                <para>Administrative state. Set to
+                        <literal>true</literal> for up, and
+                        <literal>false</literal> for down. </para>
+            </listitem>
+            <listitem>
+                <para>Fixed IPs <itemizedlist>
+                        <listitem>
+                            <para>If you specify just a subnet ID,
+                                OpenStack Networking allocates an
+                                available IP from that subnet to the
+                                port.</para>
+                        </listitem>
+                        <listitem>
+                            <para>If you specify both a subnet ID and
+                                an IP address, OpenStack Networking
+                                tries to allocate the specified
+                                address to the port.</para>
+                        </listitem>
+                    </itemizedlist></para>
+            </listitem>
+            <listitem>
+                <para>Host routes for the port, in addition to the
+                    host routes defined for the subnets with which the
+                    port is associated.</para>
+            </listitem>
+            <listitem>
+
+                <para><emphasis role="italic"
+                        >provider:vif_type</emphasis>. The vif type
+                    for the specified port.</para>
+            </listitem>
+            <listitem>
+                <para><emphasis role="italic"
+                        >provider:host_id</emphasis>. The host where
+                    the port is allocated. In some cases different
+                    implementations can run on different hosts.
+                </para>
+            </listitem>
+            <listitem>
+                <para><emphasis role="italic"
+                        >provider:profile</emphasis>. A dictionary
+                    that enables the application running on the
+                    specified host to pass and receive vif
+                    port-specific information to the plug-in.</para>
+            </listitem>
+            <listitem>
+                <para><emphasis role="italic"
+                        >provider:capabilities</emphasis>. A
+                    dictionary that enables the application to pass
+                    information about functions that Networking API
+                    v2.0 provides. Specify the following value:
+                    port_filter : Boolean to define whether Networking
+                    API v2.0 provides port filtering features such as
+                    security group and anti-MAC/IP spoofing.</para>
+            </listitem>
+
+        </itemizedlist>
+        <para>This operation requires a request body.</para>
+        <para>This operation returns a response body.</para>
+        <example>
+            <title>Create Port with provider extended attributes: JSON
+                Request</title>
+            <literallayout class="monospaced">POST /v2.0/ports.json HTTP/1.1
+Content-Length: 158
+content-type: application/json
+accept: application/json</literallayout>
+            <programlisting language="json"><xi:include href="samples/port-post-req.json" parse="text"/></programlisting>
+        </example>
+        <example>
+            <title>Create Port with provider extended attributes: JSON
+                Response</title>
+            <programlisting language="json"><xi:include href="samples/port-post-res.json" parse="text"/></programlisting>
+        </example>
+    </section>
+    <section xml:id="Update_Port_provider">
+        <title>Update Port</title>
+        <informaltable rules="all" width="100%">
+            <col width="20%"/>
+            <col width="20%"/>
+            <col width="60%"/>
+            <thead>
+                <tr>
+                    <td>Verb</td>
+                    <td>URI</td>
+                    <td>Description</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>&PUT;</td>
+                    <td>/ports/<parameter>port-id</parameter></td>
+                    <td>Updates a specified port. Only administrative
+                        users can update the
+                            <parameter>provider</parameter> extended
+                        attributes.</td>
+                </tr>
+            </tbody>
+        </informaltable>
+        <simpara>Normal Response Code: <returnvalue>200</returnvalue>
+        </simpara>
+        <simpara>Error Response Codes: Bad Request
+                (<errorcode>400</errorcode>), Unauthorized
+                (<errorcode>401</errorcode>), Forbidden
+                (<errorcode>403</errorcode>), Not Found
+                (<errorcode>404</errorcode>), Conflict
+                (<errorcode>409</errorcode>) </simpara>
+        <para>You can use this operation to update information for a
+            port, such as its symbolic name and associated IPs. When
+            you update IPs for a port, the previously associated IPs
+            are removed, returned to the respective subnets allocation
+            pools, and replaced by the IPs specified in the body for
+            the update request. Therefore, this operation replaces the
+                <parameter>fixed_ip</parameter> attribute when it is
+            specified in the request body. If the new IP addresses are
+            not valid, for example, they are already in use, the
+            operation fails and the existing IP addresses are not
+            removed from the port.</para>
+        <para>When you update security groups for a port and the
+            operation succeeds, any associated security groups are
+            removed and replaced by the security groups specified in
+            the body for the update request. Therefore, this operation
+            replaces the security_groups attribute when you specify it
+            in the request body. However, if the specified security
+            groups are not valid, the operation fails and the existing
+            security groups are not removed from the port.</para>
+        <para>Administrative users can also update the following
+            provider-prefixed extended attributes:</para>
+        <itemizedlist>
+            <listitem>
+                <para><emphasis role="italic"
+                        >provider:vif_type</emphasis>. The vif type
+                    for the specified port.</para>
+            </listitem>
+            <listitem>
+                <para><emphasis role="italic"
+                        >provider:host_id</emphasis>. The host where
+                    the port is allocated. In some cases different
+                    implementations can run on different hosts.
+                </para>
+            </listitem>
+            <listitem>
+                <para><emphasis role="italic"
+                        >provider:profile</emphasis>. A dictionary
+                    that enables the application running on the
+                    specified host to pass and receive vif
+                    port-specific information to the plug-in.</para>
+            </listitem>
+            <listitem>
+                <para><emphasis role="italic"
+                        >provider:capabilities</emphasis>. A
+                    dictionary that enables the application to pass
+                    information about functions that Networking API
+                    v2.0 provides. Specify the following value:
+                    port_filter : Boolean to define whether Networking
+                    API v2.0 provides port filtering features such as
+                    security group and anti-MAC/IP spoofing.</para>
+            </listitem>
+        </itemizedlist>
+        <para>This operation requires a request body.</para>
+        <para>This operation returns a response body.</para>
+        <example>
+            <title>Update Port with provider extended attributes: JSON
+                Request</title>
+            <literallayout class="monospaced">PUT /v2.0/ports/1d8591f4-7b62-428e-857d-e82a15e5a7f1.json HTTP/1.1
+Content-Length: 63
+content-type: application/json
+accept: application/json </literallayout>
+            <programlisting language="json"><xi:include href="samples/port-put-req.json" parse="text"/></programlisting>
+        </example>
+        <example>
+            <title>Update Port with provider extended attributes: JSON
+                Response</title>
+            <programlisting language="json"><xi:include href="samples/port-put-res.json" parse="text"/></programlisting>
+        </example>
+    </section>
+</section>
