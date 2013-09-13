@@ -65,13 +65,24 @@
         <revhistory>
             <!-- ... continue adding more revisions here as you change this document using the markup shown below... -->
             <revision>
+                <date>2013-09-12</date>
+                <revdescription>
+                    <itemizedlist spacing="compact">
+                        <listitem>
+                            <para>Added the Networking API provider
+                                ports extension.</para>
+                        </listitem>
+                    </itemizedlist>
+                </revdescription>
+            </revision>
+            <revision>
                 <date>2013-05-22</date>
                 <revdescription>
                     <itemizedlist spacing="compact">
                         <listitem>
                             <para>Updated the title of the book and
                                 project name to "OpenStack
-                                Networking." </para>
+                                Networking."</para>
                         </listitem>
                         <listitem>
                             <para>Updated the title of the book to
@@ -124,14 +135,14 @@
         <para>The Neutron project provides virtual networking services
             among devices that are managed by the <link
                 xlink:href="http://wiki.openstack.org/OpenStack"
-                >OpenStack</link> compute service. </para>
+                >OpenStack</link> compute service.</para>
         <para>The &APIv2; combines the <link
                 xlink:href="http://docs.openstack.org/api/openstack-network/1.0/content/"
                 >Quantum API v1.1</link> with some essential Internet
             Protocol Address Management (IPAM) capabilities from the
                 <link
                 xlink:href="http://melange.readthedocs.org/en/latest/apidoc.html"
-                >Melange API</link>. </para>
+                >Melange API</link>.</para>
         <para>These IPAM capabilities enable you to:<itemizedlist>
                 <listitem>
                     <para>Associate IP address blocks and other
@@ -148,18 +159,20 @@
                 </listitem>
             </itemizedlist>To do this, the &APIv2; introduces the
             subnet entity. A subnet can represent either an IP version
-            4 or version 6 address block. Each OpenStack Networking network
-            commonly has one or more subnets. When you create a port
-            on the network, an available fixed IP address is allocated
-            to it from one the designated subnets for each IP version.
-            When you delete the port, the allocated addresses return
-            to the pool of available IPs on the subnet. &APIv2; users
-            can choose a specific IP address from the block or let
-            OpenStack Networking choose the first available IP address. </para>
+            4 or version 6 address block. Each OpenStack Networking
+            network commonly has one or more subnets. When you create
+            a port on the network, an available fixed IP address is
+            allocated to it from one the designated subnets for each
+            IP version. When you delete the port, the allocated
+            addresses return to the pool of available IPs on the
+            subnet. &APIv2; users can choose a specific IP address
+            from the block or let OpenStack Networking choose the
+            first available IP address.</para>
         <note>
             <para>The Quantum API v1.<varname>x</varname> was removed
                 from the source code tree. To use the Quantum API
-                    v1.<varname>x</varname>, install the Quantum Essex release.</para>
+                    v1.<varname>x</varname>, install the Quantum Essex
+                release.</para>
         </note>
         <?hard-pagebreak?>
         <section xml:id="Glossary">
@@ -183,9 +196,9 @@
                         <td align="left">entity </td>
                         <td colspan="4">Any piece of hardware or
                             software that can connect to the network
-                            services provided by OpenStack Networking. An entity
-                            can use OpenStack Networking services by
-                            implementing a VIF. </td>
+                            services provided by OpenStack Networking.
+                            An entity can use OpenStack Networking
+                            services by implementing a VIF. </td>
                     </tr>
                     <tr>
                         <td align="left">IPAM</td>
@@ -200,9 +213,10 @@
                         <td align="left">layer-2 network </td>
                         <!-- <td colspan="4" bgcolor="#4F91BD"> -->
                         <td colspan="4">A virtual Ethernet network
-                            that is managed by the OpenStack Networking service.
-                            Currently, OpenStack Networking manages only Ethernet
-                            networks. </td>
+                            that is managed by the OpenStack
+                            Networking service. Currently, OpenStack
+                            Networking manages only Ethernet networks.
+                        </td>
                     </tr>
                     <tr>
                         <td align="left">network </td>
@@ -263,14 +277,14 @@
                 that network, and booting a VM that is attached to the
                 network. Clean-up includes deleting the VM, deleting
                 any ports associated with the network, and deleting
-                the networks. OpenStack Networking deletes any subnets associated
-                with the deleted network.</para>
+                the networks. OpenStack Networking deletes any subnets
+                associated with the deleted network.</para>
             <procedure>
                 <title>To use OpenStack Networking - high-level task
                     flow:</title>
                 <step>
                     <title>Create a network</title>
-                    <para>The tenant creates a network. </para>
+                    <para>The tenant creates a network.</para>
                     <para>For example, the tenant creates the
                             <literal>net1</literal> network. Its ID is
                             <emphasis role="italic"
@@ -280,7 +294,7 @@
                 <step>
                     <title>Associate a subnet with the network</title>
                     <para>The tenant associates a subnet with that
-                        network. </para>
+                        network.</para>
                     <para>For example, the tenant associates the
                             <literal>10.0.0.0/24</literal> subnet with
                         the <literal>net1</literal> network.</para>
@@ -291,38 +305,40 @@
                         network</title>
                     <para>The tenant boots a virtual machine (VM) and
                         specifies a single NIC that connects to the
-                        network. </para>
+                        network.</para>
                     <para>The following examples use the nova client
-                        to boot a VM. </para>
-                    <para>In the first example, Nova contacts OpenStack Networking
-                        to create the NIC and attach it to the
-                            <literal>net1</literal> network, with the
-                        ID <emphasis role="italic"
-                        >net1_id</emphasis>:</para>
+                        to boot a VM.</para>
+                    <para>In the first example, Nova contacts
+                        OpenStack Networking to create the NIC and
+                        attach it to the <literal>net1</literal>
+                        network, with the ID <emphasis role="italic"
+                            >net1_id</emphasis>:</para>
                     <programlisting language="bash" role="gutter: false"><prompt>$</prompt> nova boot &lt;server_name&gt; --image &lt;image&gt; --flavor &lt;flavor&gt; --nic net-id=&lt;net1_id&gt;</programlisting>
                     <para>In a second example, you first create the
                             <literal>port1</literal>, port and then
-                        you boot the VM with a specified port. OpenStack Networking
-                        creates a NIC and attaches it to the
-                            <literal>port1</literal> port, with the ID
-                            <emphasis role="italic"
-                            >port1_id</emphasis>: </para>
+                        you boot the VM with a specified port.
+                        OpenStack Networking creates a NIC and
+                        attaches it to the <literal>port1</literal>
+                        port, with the ID <emphasis role="italic"
+                            >port1_id</emphasis>:</para>
                     <programlisting language="bash" role="gutter: false"><prompt>$</prompt> nova boot &lt;server_name&gt; --image &lt;image&gt; --flavor &lt;flavor&gt; --nic port-id=&lt;port1_id&gt;</programlisting>
-                    <para>OpenStack Networking chooses and assigns an IP address to
-                        the <literal>port1</literal> port.</para>
+                    <para>OpenStack Networking chooses and assigns an
+                        IP address to the <literal>port1</literal>
+                        port.</para>
                     <para>For information about how to create ports,
-                        see <xref linkend="Create_Port"/>. </para>
+                        see <xref linkend="Create_Port"/>.</para>
                     <para>For more information about the <command>nova
                             boot</command> command, enter:</para>
                     <programlisting><prompt>$</prompt> nova help boot</programlisting>
                 </step>
                 <step>
                     <title>Delete the VM</title>
-                    <para>The tenant deletes the VM. </para>
-                    <para>Nova contacts OpenStack Networking and deletes the
-                            <literal>port1</literal> port.</para>
+                    <para>The tenant deletes the VM.</para>
+                    <para>Nova contacts OpenStack Networking and
+                        deletes the <literal>port1</literal>
+                        port.</para>
                     <para>The allocated IP address is returned to the
-                        pool of available IP addresses. </para>
+                        pool of available IP addresses.</para>
                 </step>
                 <step>
                     <title>Delete any ports</title>
@@ -337,7 +353,7 @@
                         operation deletes an OpenStack Networking
                         network and its associated subnets provided
                         that no port is currently configured on the
-                        network. </para>
+                        network.</para>
                     <para>See <xref linkend="Delete_Network"/>.</para>
                 </step>
             </procedure>
@@ -351,12 +367,12 @@
                 tenants. A plugin also provides other services, such
                 as IP address management. Because each plugin
                 implements all the operations included in &APIv2;, do
-                not be concerned about which plugin is used. </para>
+                not be concerned about which plugin is used.</para>
             <para>However, some plugins might expose additional
                 capabilities through API extensions, which are
                 discussed in this document. For more information about
                 the extensions exposed by a particular plugin, see the
-                plugin documentation. </para>
+                plugin documentation.</para>
         </section>
     </chapter>
     <chapter xml:id="Concepts-d1e369">
@@ -386,7 +402,7 @@
         <para>These entities have auto-generated unique identifiers
             and support basic create, read, update, and delete (CRUD)
             functions with the &POST;, &GET;, &PUT;, and &DELETE;
-            verbs. </para>
+            verbs.</para>
         <?hard-pagebreak?>
         <section xml:id="Network">
             <title>Network</title>
@@ -398,10 +414,10 @@
                 quotas. See <xref linkend="quotas_ext"/>.</para>
             <para>In the &APIv2;, the network is the main entity.
                 Ports and subnets are always associated with a
-                network. </para>
+                network.</para>
             <?hard-pagebreak?>
             <para>The following table describes the attributes for
-                network objects. </para>
+                network objects.</para>
             <table rules="all" width="95%">
                 <caption>Network Attributes</caption>
                 <col width="20%"/>
@@ -421,13 +437,13 @@
                                    <listitem>
                                    <para><emphasis role="bold"
                                    >C</emphasis>. Use the attribute in
-                                   create operations. </para>
+                                   create operations.</para>
                                    </listitem>
                                    <listitem>
                                    <para><emphasis role="bold"
                                    >R</emphasis>. This attribute is
                                    returned in response to show and
-                                   list operations. </para>
+                                   list operations.</para>
                                    </listitem>
                                    <listitem>
                                    <para><emphasis role="bold"
@@ -437,7 +453,7 @@
                                    <listitem>
                                    <para><emphasis role="bold"
                                    >D</emphasis>. You can delete the
-                                   value of this attribute. </para>
+                                   value of this attribute.</para>
                                    </listitem>
                                    </itemizedlist></para>
                             </footnote></th>
@@ -501,7 +517,7 @@
                                    </listitem>
                                 </itemizedlist>
                             </para><para>Plugins might define
-                                additional values. </para></td>
+                                additional values.</para></td>
                     </tr>
                     <tr>
                         <td>subnets </td>
@@ -527,10 +543,11 @@
                         <td>tenant_id </td>
                         <td>uuid-str </td>
                         <td>No<footnote xml:id="tenant">
-                                <para>If OpenStack Networking is not running with
-                                   the Keystone Identity service, the
+                                <para>If OpenStack Networking is not
+                                   running with the Keystone Identity
+                                   service, the
                                    <literal>tenant_id</literal>
-                                   attribute is required. </para>
+                                   attribute is required.</para>
                             </footnote>
                         </td>
                         <td>CR </td>
@@ -551,11 +568,11 @@
                 subnet must have a CIDR and must be associated with a
                 network. IPs can be either selected from the whole
                 subnet CIDR or from allocation pools that can be
-                specified by the user. </para>
+                specified by the user.</para>
             <para>A subnet can also optionally have a gateway, a list
                 of dns name servers, and host routes. This information
                 is pushed to instances whose interfaces are associated
-                with the subnet. </para>
+                with the subnet.</para>
             <?hard-pagebreak?>
             <table rules="all" width="95%">
                 <caption>Subnet Attributes</caption>
@@ -576,13 +593,13 @@
                                    <listitem>
                                    <para><emphasis role="bold"
                                    >C</emphasis>. Use the attribute in
-                                   create operations. </para>
+                                   create operations.</para>
                                    </listitem>
                                    <listitem>
                                    <para><emphasis role="bold"
                                    >R</emphasis>. This attribute is
                                    returned in response to show and
-                                   list operations. </para>
+                                   list operations.</para>
                                    </listitem>
                                    <listitem>
                                    <para><emphasis role="bold"
@@ -592,7 +609,7 @@
                                    <listitem>
                                    <para><emphasis role="bold"
                                    >D</emphasis>. You can delete the
-                                   value of this attribute. </para>
+                                   value of this attribute.</para>
                                    </listitem>
                                    </itemizedlist></para>
                             </footnote>
@@ -714,10 +731,11 @@
                         <td>tenant_id </td>
                         <td>uuid-str </td>
                         <td>No<footnote xml:id="tenant2">
-                                <para>If OpenStack Networking is not running with
-                                   the Keystone Identity service, the
+                                <para>If OpenStack Networking is not
+                                   running with the Keystone Identity
+                                   service, the
                                    <literal>tenant_id</literal>
-                                   attribute is required. </para>
+                                   attribute is required.</para>
                             </footnote></td>
                         <td>CR </td>
                         <td>N/A </td>
@@ -739,7 +757,8 @@
                 to the interfaces plugged into them. When IP addresses
                 are associated to a port, this also implies the port
                 is associated with a subnet, as the IP address was
-                taken from the allocation pool for a specific subnet. </para>
+                taken from the allocation pool for a specific
+                subnet.</para>
             <?hard-pagebreak?>
             <table rules="all" width="95%">
                 <caption>Port Attributes</caption>
@@ -760,13 +779,13 @@
                                    <listitem>
                                    <para><emphasis role="bold"
                                    >C</emphasis>. Use the attribute in
-                                   create operations. </para>
+                                   create operations.</para>
                                    </listitem>
                                    <listitem>
                                    <para><emphasis role="bold"
                                    >R</emphasis>. This attribute is
                                    returned in response to show and
-                                   list operations. </para>
+                                   list operations.</para>
                                    </listitem>
                                    <listitem>
                                    <para><emphasis role="bold"
@@ -776,7 +795,7 @@
                                    <listitem>
                                    <para><emphasis role="bold"
                                    >D</emphasis>. You can delete the
-                                   value of this attribute. </para>
+                                   value of this attribute.</para>
                                    </listitem>
                                    </itemizedlist></para>
                             </footnote>
@@ -851,7 +870,7 @@
                                    </listitem>
                                 </itemizedlist>
                             </para><para>Plugins might define
-                                additional values. </para></td>
+                                additional values.</para></td>
                     </tr>
                     <tr>
                         <td>mac_address </td>
@@ -900,10 +919,11 @@
                         <td>tenant_id</td>
                         <td>uuid-str</td>
                         <td>No<footnote xml:id="tenant3">
-                                <para>If OpenStack Networking is not running with
-                                   the Keystone Identity service, the
+                                <para>If OpenStack Networking is not
+                                   running with the Keystone Identity
+                                   service, the
                                    <literal>tenant_id</literal>
-                                   attribute is required. </para>
+                                   attribute is required.</para>
                             </footnote>
                         </td>
                         <td>CR</td>
@@ -948,25 +968,26 @@
                     xlink:href="https://openstack.keystone.org"
                     >Keystone Identity Service</link> as the default
                 authentication service. When Keystone is enabled,
-                users that submit requests to the OpenStack Networking service must
-                provide an authentication token in <emphasis
-                    role="bold">X-Auth-Token</emphasis> request
-                header. You obtain the token by authenticating to the
-                Keystone endpoint. For more information about
+                users that submit requests to the OpenStack Networking
+                service must provide an authentication token in
+                    <emphasis role="bold">X-Auth-Token</emphasis>
+                request header. You obtain the token by authenticating
+                to the Keystone endpoint. For more information about
                 Keystone, see the <link
                     xlink:href="http://docs.openstack.org/api/openstack-identity-service/2.0/content/"
                         ><citetitle>OpenStack Identity Developer
-                        Guide</citetitle></link>. </para>
+                        Guide</citetitle></link>.</para>
             <para>When Keystone is enabled, the
                     <literal>tenant_id</literal> attribute is not
                 required in create requests because the tenant ID is
-                derived from the authentication token. </para>
+                derived from the authentication token.</para>
             <para>The default authorization settings allow only
                 administrative users to create resources on behalf of
-                a different tenant. </para>
-            <para>OpenStack Networking uses information received from Keystone to
-                authorize user requests. OpenStack Networking handles the following
-                types of authorization policies: <itemizedlist>
+                a different tenant.</para>
+            <para>OpenStack Networking uses information received from
+                Keystone to authorize user requests. OpenStack
+                Networking handles the following types of
+                authorization policies: <itemizedlist>
                     <listitem>
                         <para><emphasis role="bold">Operation-based
                                 policies</emphasis></para>
@@ -985,8 +1006,8 @@
                     </listitem>
                 </itemizedlist></para>
             <para>The actual authorization policies enforced in
-                OpenStack Networking might vary from deployment to deployment.
-            </para>
+                OpenStack Networking might vary from deployment to
+                deployment.</para>
         </section>
         <?hard-pagebreak?>
         <section xml:id="Request_Response_Types">
@@ -997,7 +1018,8 @@
             <para>The format for both the request and the response can
                 be specified by using the <code>Content-Type</code>
                 header, the <code>Accept</code> header or adding the
-                    <code>.json</code> extension to the request URI. </para>
+                    <code>.json</code> extension to the request
+                URI.</para>
 
             <example>
                 <title>JSON Request with Headers</title>
@@ -1020,7 +1042,7 @@ Content-Length 204</literallayout>
             <title>Filtering and Column Selection</title>
             <para>The &APIv2; supports filtering based on all top
                 level attributes of a resource. Filters are applicable
-                to all list requests. </para>
+                to all list requests.</para>
             <para>For example, the following request returns all
                 networks named <literal>foobar</literal>:</para>
             <programlisting language="bash" role="gutter: false">GET /v2.0/networks?name=foobar</programlisting>
@@ -1029,19 +1051,19 @@ Content-Length 204</literallayout>
                 The operation applies an AND condition among the
                 filters.</para>
             <note>
-                <para>OpenStack Networking does not offer an OR mechanism for
-                    filters.</para>
+                <para>OpenStack Networking does not offer an OR
+                    mechanism for filters.</para>
             </note>
             <para>Alternatively, you can issue a distinct request for
                 each filter and build a response set from the received
-                responses on the client-side. </para>
-            <para>By default, OpenStack Networking returns all attributes for any
-                show or list call. The &APIv2; has a mechanism to
-                limit the set of attributes returned. For example,
-                return <literal>id</literal>. </para>
+                responses on the client-side.</para>
+            <para>By default, OpenStack Networking returns all
+                attributes for any show or list call. The &APIv2; has
+                a mechanism to limit the set of attributes returned.
+                For example, return <literal>id</literal>.</para>
             <para>You can use the <literal>fields</literal> query
                 parameter to control the attributes returned from the
-                &APIv2;. </para>
+                &APIv2;.</para>
             <para>For example, the following request returns only
                     <literal>id</literal> and <literal>name</literal>
                 for each network:</para>
@@ -1052,28 +1074,30 @@ Content-Length 204</literallayout>
                 Behavior</title>
             <para>The &APIv2; presents a logical model of network
                 connectivity consisting of networks, ports, and
-                subnets. It is up to the OpenStack Networking plugin to communicate
-                with the underlying infrastructure to ensure packet
-                forwarding is consistent with the logical model. A
-                plugin might perform these operations asynchronously. </para>
+                subnets. It is up to the OpenStack Networking plugin
+                to communicate with the underlying infrastructure to
+                ensure packet forwarding is consistent with the
+                logical model. A plugin might perform these operations
+                asynchronously.</para>
             <para>When an API client modifies the logical model by
                 issuing an HTTP &POST;, &PUT;, or &DELETE; request,
                 the API call might return before the plugin modifies
                 underlying virtual and physical switching devices.
                 However, an API client is guaranteed that all
                 subsequent API calls properly reflect the changed
-                logical model. </para>
+                logical model.</para>
             <para>For example, if a client issues an HTTP &PUT;
                 request to set the attachment for a port, there is no
                 guarantee that packets sent by the interface named in
                 the attachment are forwarded immediately when the HTTP
                 call returns. However, it is guaranteed that a
                 subsequent HTTP &GET; request to view the attachment
-                on that port returns the new attachment value. </para>
+                on that port returns the new attachment value.</para>
             <para>You can use the <literal>status</literal> attribute
                 with the network and port resources to determine
-                whether the OpenStack Networking plugin has successfully completed
-                the configuration of the resource. </para>
+                whether the OpenStack Networking plugin has
+                successfully completed the configuration of the
+                resource.</para>
         </section>
         <section xml:id="bulk_create_operations">
             <title>Bulk Create Operations</title>
@@ -1082,17 +1106,18 @@ Content-Length 204</literallayout>
                 operations use exactly the same API syntax as single
                 create operations except that you specify a list of
                 objects rather than a single object in the request
-                body. </para>
+                body.</para>
             <para>Bulk operations are always performed atomically,
                 meaning that either all or none of the objects in the
                 request body are created. If a particular plugin does
                 not support atomic operations, the &APIv2; emulates
                 the atomic behavior so that users can expect the same
                 behavior regardless of the particular plugin running
-                in the background. </para>
-            <para>OpenStack Networking might be deployed without support for bulk
-                operations and when the client attempts a bulk create
-                operation, a <errorcode>400</errorcode>
+                in the background.</para>
+            <para>OpenStack Networking might be deployed without
+                support for bulk operations and when the client
+                attempts a bulk create operation, a
+                    <errorcode>400</errorcode>
                 <errortext>Bad Request</errortext> error is
                 returned.</para>
             <para>For information about how to submit bulk requests to
@@ -1115,7 +1140,8 @@ Content-Length 204</literallayout>
                 parameter sets the page direction. These parameters
                 are optional. If the client requests a limit beyond
                 the maximum limit configured by the deployment, the
-                server returns the maximum limit number of items. </para>
+                server returns the maximum limit number of
+                items.</para>
             <para>For convenience, list responses contain atom "next"
                 links and "previous" links. The last page in the list
                 requested with 'page_reverse=False' will not contain
@@ -1125,18 +1151,18 @@ Content-Length 204</literallayout>
                 three items. The first page was retrieved
                 through:</para>
             <programlisting language="bash">&GET; http://127.0.0.1:9696/v2.0/networks.json?limit=2</programlisting>
-            <para>Pagination is an optional feature of OpenStack Networking API,
-                and it might be disabled. If pagination is disabled,
-                the pagination parameters will be ignored and return
-                all the items. </para>
+            <para>Pagination is an optional feature of OpenStack
+                Networking API, and it might be disabled. If
+                pagination is disabled, the pagination parameters will
+                be ignored and return all the items.</para>
             <para>If a particular plugin does not support pagination
                 operations, and pagination is enabled, the &APIv2;
                 will emulate the pagination behavior so that users can
                 expect the same behavior regardless of the particular
-                plugin running in the background. </para>
-            <para>Unfortunately OpenStack Networking does not expose any mechanism
-                to tell user if pagination is supported by particular
-                plugin or enabled. </para>
+                plugin running in the background.</para>
+            <para>Unfortunately OpenStack Networking does not expose
+                any mechanism to tell user if pagination is supported
+                by particular plugin or enabled.</para>
             <example>
                 <title>Network Collection, First Page: JSON
                     Request</title>
@@ -1207,23 +1233,24 @@ Accept: application/xml
                 repeated, and the number of 'sort_key' and 'sort_dir'
                 provided must be same. The sort_dir parameter
                 indicates in which direction to sort. Acceptable
-                values are 'asc' (ascending) and 'desc' (descending). </para>
-            <para>Sorting is optional feature of OpenStack Networking API, and it
-                might be disabled. If sorting is disabled, the sorting
-                parameters will be ignored. </para>
+                values are 'asc' (ascending) and 'desc'
+                (descending).</para>
+            <para>Sorting is optional feature of OpenStack Networking
+                API, and it might be disabled. If sorting is disabled,
+                the sorting parameters will be ignored.</para>
             <para>If a particular plugin does not support sorting
                 operations, and sorting is enabled, the &APIv2; will
                 emulate the sorting behavior so that users can expect
                 the same behavior regardless of the particular plugin
-                running in the background. </para>
-            <para>Unfortunately OpenStack Networking does provide a mechanism to
-                tell users if specific plugins support or have enabled
-                sorting. </para>
+                running in the background.</para>
+            <para>Unfortunately OpenStack Networking does provide a
+                mechanism to tell users if specific plugins support or
+                have enabled sorting.</para>
         </section>
         <section xml:id="extensions">
             <title>Extensions</title>
-            <para>The &APIv2; is extensible. </para>
-            <para>The purpose of &APIv2; extensions is to: </para>
+            <para>The &APIv2; is extensible.</para>
+            <para>The purpose of &APIv2; extensions is to:</para>
             <itemizedlist>
                 <listitem>
                     <para>Introduce new features in the API without
@@ -1231,17 +1258,17 @@ Accept: application/xml
                 </listitem>
                 <listitem>
                     <para>Introduce vendor-specific niche
-                        functionality. </para>
+                        functionality.</para>
                 </listitem>
                 <listitem>
                     <para>Act as a proving ground for experimental
                         functionalities that might be included in a
-                        future version of the API. </para>
+                        future version of the API.</para>
                 </listitem>
             </itemizedlist>
             <para>To programmatically determine which extensions are
                 available, issue a &GET; request on the
-                    <command>v2.0/extensions</command> URI. </para>
+                    <command>v2.0/extensions</command> URI.</para>
             <para>To query extensions individually by unique alias,
                 issue a &GET; request on the
                         <command>/v2.0/extensions/<replaceable>alias_name</replaceable></command>
@@ -1266,10 +1293,11 @@ Accept: application/xml
         <section xml:id="faults">
             <title>Faults</title>
             <para>The &APIv2; returns an error response if a failure
-                occurs while processing a request. OpenStack Networking uses only
-                standard HTTP error codes. 4<varname>xx</varname>
-                errors indicate problems in the particular request
-                being sent from the client.</para>
+                occurs while processing a request. OpenStack
+                Networking uses only standard HTTP error codes.
+                    4<varname>xx</varname> errors indicate problems in
+                the particular request being sent from the
+                client.</para>
             <informaltable rules="all">
                 <col width="10%"/>
                 <col width="20%"/>
@@ -1370,30 +1398,29 @@ Accept: application/xml
                     <tr>
                         <td>&GET;</td>
                         <td>/networks</td>
-                        <td>Lists a summary of all networks defined in
-                            OpenStack Networking that are accessible to the tenant
-                            who submits the request.</td>
+                        <td>Lists networks that he tenant who submits
+                            the request can access.</td>
                     </tr>
                     <tr>
                         <td>&GET;</td>
                         <td>/networks/<parameter>network_id</parameter></td>
-                        <td>Lists detailed information for the
-                            specified network.</td>
+                        <td>Shows information for a specified
+                            network.</td>
                     </tr>
                     <tr>
                         <td>&POST;</td>
                         <td>/networks</td>
-                        <td>Creates a new OpenStack Networking network.</td>
+                        <td>Creates a network.</td>
                     </tr>
                     <tr>
                         <td>&PUT;</td>
                         <td>/networks/<parameter>network-id</parameter></td>
-                        <td>Updates the specified network.</td>
+                        <td>Updates a specified network.</td>
                     </tr>
                     <tr>
                         <td>&DELETE;</td>
                         <td>/networks/<parameter>network-id</parameter></td>
-                        <td>Destroys the specified network and all
+                        <td>Deletes a specified network and its
                             associated resources.</td>
                     </tr>
                 </tbody>
@@ -1416,10 +1443,8 @@ Accept: application/xml
                         <tr>
                             <td>&GET;</td>
                             <td>/networks</td>
-                            <td>Lists a summary of all networks
-                                defined in OpenStack Networking that are accessible
-                                to the tenant who submits the request.
-                            </td>
+                            <td>Lists networks that he tenant who
+                                submits the request can access.</td>
                         </tr>
                     </tbody>
                 </informaltable>
@@ -1428,13 +1453,12 @@ Accept: application/xml
                 </simpara>
                 <simpara>Error Response Codes: Unauthorized
                         (<errorcode>401</errorcode>)</simpara>
-                <para>Lists a summary of all networks defined in
-                    OpenStack Networking that are accessible to the tenant who
-                    submits the request. The list provides the unique
-                    ID for each network.</para>
+                <para>Lists networks that he tenant who submits the
+                    request can access. The list show the ID for each
+                    network.</para>
                 <para>This operation does not require a request body,
-                    unless the OpenStack Networking server is running without
-                    Keystone integration.</para>
+                    unless the OpenStack Networking server is running
+                    without Keystone integration.</para>
                 <para>This operation returns a response body.</para>
                 <example>
                     <title>List Networks: JSON Request</title>
@@ -1443,7 +1467,16 @@ Accept: application/json</literallayout>
                 </example>
                 <example>
                     <title>List Networks: JSON Response</title>
-                    <programlisting language="json"><xi:include href="samples/networks-get-res.json" parse="text"/></programlisting>
+                    <programlisting language="json"><xi:include href="samples/networks-get-resp.json" parse="text"/></programlisting>
+                </example>
+                <example>
+                    <title>List Networks: XML Request</title>
+                    <literallayout class="monospaced">GET /v2.0/networks
+Accept: application/xml</literallayout>
+                </example>
+                <example>
+                    <title>List Networks: XML Response</title>
+                    <programlisting language="xml"><xi:include href="samples/networks-get-resp.xml" parse="text"/></programlisting>
                 </example>
             </section>
             <?hard-pagebreak?>
@@ -1464,8 +1497,8 @@ Accept: application/json</literallayout>
                         <tr>
                             <td>&GET;</td>
                             <td>/networks/<parameter>network_id</parameter></td>
-                            <td>Lists detailed information for the
-                                specified network ID.</td>
+                            <td>Shows information for a specified
+                                network.</td>
                         </tr>
                     </tbody>
                 </informaltable>
@@ -1509,7 +1542,7 @@ Accept: application/json</literallayout>
                         <tr>
                             <td>&POST;</td>
                             <td>/networks</td>
-                            <td>Creates a new OpenStack Networking network.</td>
+                            <td>Creates a network.</td>
                         </tr>
                     </tbody>
                 </informaltable>
@@ -1519,9 +1552,9 @@ Accept: application/json</literallayout>
                 <simpara>Error Response Codes: Bad Request
                         (<errorcode>400</errorcode>) Unauthorized
                         (<errorcode>401</errorcode>)</simpara>
-                <simpara>This operation does not require a rest body.
-                    If specified, the body might include one or more
-                    of the following attributes:</simpara>
+                <simpara>This operation does not require a request
+                    body. If specified, the body might include one or
+                    more of the following attributes:</simpara>
                 <itemizedlist>
                     <listitem>
                         <para><emphasis role="italic">name</emphasis>:
@@ -1559,11 +1592,11 @@ Accept: application/json</literallayout>
                     <literallayout class="monospaced">POST v2.0/networks.json
 Content-Type: application/json
 Accept: application/json</literallayout>
-                    <programlisting language="json"><xi:include href="samples/network-post-req.json" parse="text"/>                    </programlisting>
+                    <programlisting language="json"><xi:include href="samples/network-post-req.json" parse="text"/></programlisting>
                 </example>
                 <example>
                     <title>Create Network: JSON Response</title>
-                    <programlisting language="json"><xi:include href="samples/network-post-res.json" parse="text"/>                    </programlisting>
+                    <programlisting language="json"><xi:include href="samples/network-post-res.json" parse="text"/></programlisting>
                 </example>
                 <section xml:id="bulk_create_networks">
                     <title>Bulk Create Networks</title>
@@ -1617,7 +1650,7 @@ Accept: application/json</literallayout>
                         <tr>
                             <td>&PUT;</td>
                             <td>/networks/<parameter>network-id</parameter></td>
-                            <td>Updates the specified network.</td>
+                            <td>Updates a specified network.</td>
                         </tr>
                     </tbody>
                 </informaltable>
@@ -1667,10 +1700,10 @@ Accept: application/json</literallayout>
                     returned.</para>
                 <para>This operation returns a response body.</para>
                 <note>
-                    <para>Update operations in OpenStack Networking adopt patch
-                        semantics. This implies that the &APIv2; does
-                        not require the user to send the whole
-                        resource to be updated, but just the
+                    <para>Update operations in OpenStack Networking
+                        adopt patch semantics. This implies that the
+                        &APIv2; does not require the user to send the
+                        whole resource to be updated, but just the
                         attributes that the user wishes to update, as
                         shown in the following example.</para>
                 </note>
@@ -1725,7 +1758,7 @@ content-type: application/json
                         <tr>
                             <td>&DELETE;</td>
                             <td>/networks/<parameter>network-id</parameter></td>
-                            <td>Deletes the specified network and all
+                            <td>Deletes a specified network and its
                                 associated resources.</td>
                         </tr>
                     </tbody>
@@ -1952,26 +1985,27 @@ content-type: application/json </literallayout>
                     subnet, in the form:
                     <programlisting><parameter>network_address</parameter>/<parameter>prefix</parameter></programlisting>The
                     remaining attributes are optional.</para>
-                <para>By default, OpenStack Networking creates IP v4 subnets. To
-                    create an IP v6 subnet, you must specify the value
-                        <literal>6</literal> for the
+                <para>By default, OpenStack Networking creates IP v4
+                    subnets. To create an IP v6 subnet, you must
+                    specify the value <literal>6</literal> for the
                         <parameter>ip_version</parameter> attribute in
-                    the request body. OpenStack Networking does not try to derive
-                    the correct IP version from the provided CIDR. If
-                    the parameter for the gateway address,
-                        <parameter>gateway_ip</parameter>, is not
-                    specified, OpenStack Networking allocates an address from the
-                    cidr for the gateway for the subnet.</para>
+                    the request body. OpenStack Networking does not
+                    try to derive the correct IP version from the
+                    provided CIDR. If the parameter for the gateway
+                    address, <parameter>gateway_ip</parameter>, is not
+                    specified, OpenStack Networking allocates an
+                    address from the cidr for the gateway for the
+                    subnet.</para>
                 <para>To specify a subnet without a gateway, specify
                     the value <literal>null</literal> for the
                         <literal>gateway_ip</literal> attribute in the
                     request body. If allocation pools attribute,
                         <literal>allocation_pools</literal>, is not
-                    specified, OpenStack Networking automatically allocates pools
-                    for covering all IP addresses in the CIDR,
-                    excluding the address reserved for the subnet
-                    gateway. Otherwise, you can explicitly specify
-                    allocation pools as shown in the following
+                    specified, OpenStack Networking automatically
+                    allocates pools for covering all IP addresses in
+                    the CIDR, excluding the address reserved for the
+                    subnet gateway. Otherwise, you can explicitly
+                    specify allocation pools as shown in the following
                     example.</para>
                 <para>When <literal>allocation_pools</literal> and
                         <literal>gateway_ip</literal> are both
@@ -2088,12 +2122,12 @@ Accept: application/json</literallayout>
                 <para>This operation requires a request body.</para>
                 <para>This operation returns a response body.</para>
                 <note>
-                    <para>Update operations in OpenStack Networking adopt patch
-                        semantics. This implies that the &APIv2; does
-                        not require you to send the whole resource to
-                        be updated, but just the attributes that you
-                        wish to update, as shown in the following
-                        example.</para>
+                    <para>Update operations in OpenStack Networking
+                        adopt patch semantics. This implies that the
+                        &APIv2; does not require you to send the whole
+                        resource to be updated, but just the
+                        attributes that you wish to update, as shown
+                        in the following example.</para>
                 </note>
                 <example>
                     <title>Update Subnet: JSON Request</title>
@@ -2144,9 +2178,9 @@ Accept: application/json</literallayout>
                         (<errorcode>404</errorcode>), Conflict
                         (<errorcode>409</errorcode>)</simpara>
                 <simpara>This operation removes a subnet from a
-                    OpenStack Networking network. The operation fails if IP
-                    addresses from the subnet that you want to delete
-                    are still allocated. </simpara>
+                    OpenStack Networking network. The operation fails
+                    if IP addresses from the subnet that you want to
+                    delete are still allocated. </simpara>
                 <para>This operation does not require a request
                     body.</para>
                 <para>This operation does not return a response
@@ -2240,7 +2274,8 @@ Accept: application/json</literallayout>
                     has access. Default policy settings return only
                     those subnets that are owned by the tenant who
                     submits the request, unless the request is
-                    submitted by an user with administrative rights. </para>
+                    submitted by an user with administrative
+                    rights.</para>
                 <para>Users can control which attributes are returned
                     by using the <parameter>fields</parameter> query
                     parameter. Additionally, you can filter results by
@@ -2409,10 +2444,11 @@ accept: application/json</programlisting>
                         (<errorcode>404</errorcode>), Conflict
                         (<errorcode>409</errorcode>), MAC generation
                     failure (<errorcode>503</errorcode>) </simpara>
-                <para>This operation creates a new OpenStack Networking port. You
-                    must specify the network where the port is to
-                    created on the <parameter>network_id</parameter>
-                    attribute in the request body. </para>
+                <para>This operation creates a new OpenStack
+                    Networking port. You must specify the network
+                    where the port is to created on the
+                        <parameter>network_id</parameter> attribute in
+                    the request body.</para>
                 <para>If you specify a security group ID, this port is
                     associated with the security group. You can
                     associate more than one security group with a
@@ -2436,8 +2472,8 @@ accept: application/json</programlisting>
                             in use, a <literal>409 Conflict</literal>
                             error is returned.</para>
                         <para>When the MAC address is not specified,
-                            OpenStack Networking tries to allocate one for the port
-                            being created. </para>
+                            OpenStack Networking tries to allocate one
+                            for the port being created.</para>
                         <para>If a failure occurs while generating the
                             address, a <literal>503 Service
                                 Unavailable</literal> error is
@@ -2453,15 +2489,16 @@ accept: application/json</programlisting>
                         <para>Fixed IPs <itemizedlist>
                                 <listitem>
                                    <para>If you specify just a subnet
-                                   ID, OpenStack Networking allocates an available
-                                   IP from that subnet to the
-                                   port.</para>
+                                   ID, OpenStack Networking allocates
+                                   an available IP from that subnet to
+                                   the port.</para>
                                 </listitem>
                                 <listitem>
                                    <para>If you specify both a subnet
-                                   ID and an IP address, OpenStack Networking tries
-                                   to allocate the specified address
-                                   to the port.</para>
+                                   ID and an IP address, OpenStack
+                                   Networking tries to allocate the
+                                   specified address to the
+                                   port.</para>
                                 </listitem>
                             </itemizedlist></para>
                     </listitem>
@@ -2644,13 +2681,13 @@ accept: application/json</literallayout>
         </itemizedlist>
         <para>Generic API extensions are not plugin-specific. For
             information about plugin-specific extensions that are
-            shipped with OpenStack Networking, see the extension documentation in
-            the source code tree.</para>
+            shipped with OpenStack Networking, see the extension
+            documentation in the source code tree.</para>
         <section xml:id="retrieve_extensions">
             <title>List Available Extensions</title>
             <para>You can list available extensions through the
                     <filename role="bold">/v2.0/extensions</filename>
-                URI. </para>
+                URI.</para>
             <note>
                 <para>You must authenticate these requests just like
                     any other API request.</para>
@@ -2674,7 +2711,7 @@ Content-Type: application/xml; charset=UTF-8
 Date: Wed, 12 Sep 2012 11:36:20 GMT</literallayout>
             <programlisting language="xml"><xi:include href="samples/extension.xml" parse="text"/></programlisting>
         </section>
-        <xi:include href="neutron-provider-ext.xml"/>
+        <xi:include href="section_provider_extended_attrs.xml"/>
         <xi:include href="neutron-l3-ext.xml"/>
         <xi:include href="neutron-quotas-ext.xml"/>
         <xi:include href="neutron-security-groups-ext.xml"/>
