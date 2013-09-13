@@ -7,6 +7,6 @@
     <admin_state_up neutron:type="bool">True</admin_state_up>
     <provider:network_type>vlan</provider:network_type>
     <provider:physical_network>physnet_1</provider:physical_network>
-    <provider:segmentation_id neutron:type="int">201</provider:segmentation_id>
+    <provider:segmentation_id neutron:type="int"
+        >201</provider:segmentation_id>
 </network>
-
