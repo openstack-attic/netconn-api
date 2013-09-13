@@ -35,18 +35,12 @@ format="SVG" scale="60"/>
     <title>Preface</title>
     <para>The OpenStack Networking project provides virtual networking services
         among devices managed by the <link
-            xlink:href="http://wiki.openstack.org/OpenStack"
-            xmlns:svg="http://www.w3.org/2000/svg"
-            xmlns:m="http://www.w3.org/1998/Math/MathML"
-            xmlns:html="http://www.w3.org/1999/xhtml"
-            xmlns:db="http://docbook.org/ns/docbook">OpenStack</link>
+            xlink:href="http://wiki.openstack.org/OpenStack">OpenStack</link>
         compute service. </para>
-    <para>This document describes the features available with the
-        &APIv2;.</para>
+    <para>This document describes the
+        &APIv2; features.</para>
     <para>We welcome feedback, comments, and bug reports at <link
-            xlink:href="http://bugs.launchpad.net/Neutron" xmlns:svg="http://www.w3.org/2000/svg"
-            xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:html="http://www.w3.org/1999/xhtml"
-            xmlns:db="http://docbook.org/ns/docbook">bugs.launchpad.net/Neutron</link>. </para>
+            xlink:href="http://bugs.launchpad.net/Neutron">bugs.launchpad.net/Neutron</link>.</para>
     <section xml:id="Intended_Audience-d1e85">
         <title>Intended Audience</title>
         <para xmlns:svg="http://www.w3.org/2000/svg"
@@ -58,17 +52,13 @@ format="SVG" scale="60"/>
             general understanding of the OpenStack Networking
             service, the OpenStack compute service, and the
             integration between the two. You should also have access
-            to a plugin that implements the &APIv2;. </para>
+            to a plug-in that implements the &APIv2;.</para>
         <para xmlns:svg="http://www.w3.org/2000/svg"
             xmlns:m="http://www.w3.org/1998/Math/MathML"
             xmlns:html="http://www.w3.org/1999/xhtml"
             xmlns:db="http://docbook.org/ns/docbook">You should also
-            be familiar with: </para>
-        <itemizedlist spacing="compact"
-            xmlns:svg="http://www.w3.org/2000/svg"
-            xmlns:m="http://www.w3.org/1998/Math/MathML"
-            xmlns:html="http://www.w3.org/1999/xhtml"
-            xmlns:db="http://docbook.org/ns/docbook">
+            be familiar with:</para>
+        <itemizedlist spacing="compact">
             <listitem>
                 <para>ReSTful web services</para>
             </listitem>
@@ -93,13 +83,8 @@ format="SVG" scale="60"/>
     <section xml:id="Additional_Resources-d1e346">
         <title>Resources</title>
         <para>Use the following resources in conjunction with this
-            guide: <informaltable rules="all"
-                xmlns:svg="http://www.w3.org/2000/svg"
-                xmlns:m="http://www.w3.org/1998/Math/MathML"
-                xmlns:html="http://www.w3.org/1999/xhtml"
-                xmlns:db="http://docbook.org/ns/docbook">
-                <col width="32%"/>
-                <col width="68%"/>
+            guide:</para>
+        <informaltable rules="all">
                 <thead>
                     <tr>
                         <th>Resource</th>
@@ -122,7 +107,6 @@ format="SVG" scale="60"/>
                                 >http://wiki.openstack.org/Neutron</link></td>
                     </tr>
                 </tbody>
-            </informaltable></para>
+            </informaltable>
     </section>
-
 </preface>

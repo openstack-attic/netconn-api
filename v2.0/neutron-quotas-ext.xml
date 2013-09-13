@@ -42,7 +42,7 @@
         to create at most X networks, and permit tenant B to create at most Y networks.</para>
     <para>If quotas per tenant is needed, you must enable the Quotas
         extension. For information, see the <citetitle>OpenStack
-            Network Administration Guide</citetitle>.</para>
+            Cloud Administrator Guide</citetitle>.</para>
     <informaltable rules="all" width="100%">
         <col width="20%"/>
         <col width="20%"/>

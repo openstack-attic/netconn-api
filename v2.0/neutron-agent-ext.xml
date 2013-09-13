@@ -45,7 +45,7 @@
         a certain agent, and OpenStack Networking schedulers will not schedule resources to
         it.</para>
       <para>For how to use agent management extension and OpenStack Networking schedulers feature,
-      see the <citetitle>OpenStack Networking Administration Guide</citetitle>.</para>
+      see the <citetitle>OpenStack Cloud Administrator Guide</citetitle>.</para>
             <informaltable rules="all" width="100%">
                 <col width="20%"/>
                 <col width="20%"/>
