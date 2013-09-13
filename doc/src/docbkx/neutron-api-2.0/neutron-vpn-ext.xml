@@ -1394,12 +1394,12 @@ Content-Length: 0
               </tr>
               <tr>
                 <td>peer_address</td>
-                <td>IP address(v4 or v6)</td>
+                <td>string</td>
                 <td>yes</td>
                 <td>CRU</td>
                 <td>N/A</td>
-                <td>valid IP address (v4 or v6)</td>
-                <td>Peer VPN gateway public address or FQDN</td>
+                <td>N/A</td>
+                <td>Peer gateway public IPv4/IPv6 address or FQDN.</td>
               </tr>
               <tr>
                 <td>peer_id</td>
@@ -1408,7 +1408,8 @@ Content-Length: 0
                 <td>CRU</td>
                 <td>N/A</td>
                 <td>N/A</td>
-                <td>Peer identifier. Can be name, string, or FQDN</td>
+                <td>Peer router identity for authentication. Can be
+                    IPv4/IPv6 address, e-mail address, key id, or FQDN.</td>
               </tr>
               <tr>
                 <td>peer_cidrs</td>
