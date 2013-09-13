@@ -12,3 +12,4 @@ Accept: application/xml
     <provider:physical_network>physnet_1</provider:physical_network>
     <provider:segmentation_id xsi:nil="true"/>
 </network>
+
