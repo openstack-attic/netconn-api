@@ -1,4 +1,4 @@
-This repository contains the RESTful API information for the OpenStack Network Connectivity project, also known as Quantum. The Quantum project provides open source network connectivity to OpenStack Compute, the project named Nova.
+This repository contains the RESTful API information for the OpenStack Network Connectivity project, also known as Neutron. The Neutron project provides open source network connectivity to OpenStack Compute, the project named Nova.
 
 Contributing
 ============
@@ -6,4 +6,4 @@ Our community welcomes all people interested in open source cloud computing, and
 
 Installing
 ==========
-Refer to http://docs.openstack.org/incubation to learn more about installing OpenStack Quantum so that you can test these API commands. 
+Refer to http://docs.openstack.org/incubation to learn more about installing OpenStack Neutron so that you can test these API commands.
