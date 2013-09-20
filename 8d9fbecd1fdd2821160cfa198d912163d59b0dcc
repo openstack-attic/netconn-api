@@ -1,0 +1,9 @@
+Verified+2: Jenkins
+Approved+1: Salvatore Orlando <salv.orlando@gmail.com>
+Code-Review+2: Salvatore Orlando <salv.orlando@gmail.com>
+Code-Review+2: Anne Gentle <anne@openstack.org>
+Submitted-by: Jenkins
+Submitted-at: Fri, 20 Sep 2013 10:19:54 +0000
+Reviewed-on: https://review.openstack.org/47436
+Project: openstack/netconn-api
+Branch: refs/heads/master
