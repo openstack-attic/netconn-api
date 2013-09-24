@@ -2683,5 +2683,6 @@ Date: Wed, 12 Sep 2012 11:36:20 GMT</literallayout>
         <xi:include href="neutron-loadbalancer-ext.xml"/>
         <xi:include href="neutron-scheduler-ext.xml"/>
         <xi:include href="neutron-vpn-ext.xml"/>
+        <xi:include href="neutron-allowed-address-pair-ext.xml"/>
     </chapter>
 </book>
