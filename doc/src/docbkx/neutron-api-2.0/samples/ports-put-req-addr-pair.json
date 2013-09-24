@@ -1,0 +1,14 @@
+PUT /v2.0/ports/port/493199d2-d792-4017-b015-894e85a8e32a.json
+
+Content-Type: application/json
+Accept: application/json
+
+{
+    "port": {
+        "allowed_address_pairs":
+         [
+            {"ip_address": "10.0.0.1"}
+         ]
+    }
+}
+
