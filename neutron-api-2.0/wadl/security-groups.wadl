@@ -11,7 +11,7 @@
     xmlns:csapi="http://www.w3.org/2001/XMLSchema"
     xmlns:secgr="http://docs.openstack.org/neutron/api/v2.0">
     <grammars>
-        <include href="secgr.xsd"/>
+        <include href="../xsd/secgr.xsd"/>
     </grammars>
     <resources base="https://servers.api.openstack.com/">
         <resource id="version">
@@ -76,7 +76,7 @@
         <request>
             <representation mediaType="application/json">
                 <doc xml:lang="EN"><xsdxt:code
-                        href="../samples//security-groups-list-get-req.json"
+                        href="../samples/security-groups-list-get-req.json"
                     /></doc>
             </representation>
         </request>
@@ -84,7 +84,7 @@
             <representation mediaType="application/json">
                 <doc xml:lang="EN">
                     <xsdxt:code
-                        href="../samples//security-groups-list-get-resp.json"
+                        href="../samples/security-groups-list-get-resp.json"
                     />
                 </doc>
             </representation>
@@ -127,7 +127,7 @@
             <representation mediaType="application/json">
                 <doc xml:lang="EN">
                     <xsdxt:code
-                        href="../samples//security-groups-create-req.json"
+                        href="../samples/security-groups-create-req.json"
                     />
                 </doc>
             </representation>
@@ -136,7 +136,7 @@
             <representation mediaType="application/json">
                 <doc xml:lang="EN">
                     <xsdxt:code
-                        href="../samples//security-groups-create-resp.json"
+                        href="../samples/security-groups-create-resp.json"
                     />
                 </doc>
             </representation>
@@ -170,7 +170,7 @@
             <representation mediaType="application/json">
                 <doc xml:lang="EN">
                     <xsdxt:code
-                        href="../samples//security-groups-get-req.json"
+                        href="../samples/security-groups-get-req.json"
                     />
                 </doc>
             </representation>
@@ -179,7 +179,7 @@
             <representation mediaType="application/json">
                 <doc xml:lang="EN">
                     <xsdxt:code
-                        href="../samples//security-groups-get-resp.json"
+                        href="../samples/security-groups-get-resp.json"
                     />
                 </doc>
             </representation>
@@ -213,7 +213,7 @@
             <representation mediaType="application/json">
                 <doc xml:lang="EN">
                     <xsdxt:code
-                        href="../samples//security-groups-delete-req.json"
+                        href="../samples/security-groups-delete-req.json"
                     />
                 </doc>
             </representation>
@@ -222,7 +222,7 @@
             <representation mediaType="application/json">
                 <doc xml:lang="EN">
                     <xsdxt:code
-                        href="../samples//security-groups-delete-resp.json"
+                        href="../samples/security-groups-delete-resp.json"
                     />
                 </doc>
             </representation>
@@ -255,7 +255,7 @@
             <representation mediaType="application/json">
                 <doc xml:lang="EN">
                     <xsdxt:code
-                        href="../samples//rules-security-groups-list-get-req.json"
+                        href="../samples/rules-security-groups-list-get-req.json"
                     />
                 </doc>
             </representation>
@@ -265,7 +265,7 @@
             <representation mediaType="application/json">
                 <doc xml:lang="EN">
                     <xsdxt:code
-                        href="../samples//rules-security-groups-list-get-resp.json"
+                        href="../samples/rules-security-groups-list-get-resp.json"
                     />
                 </doc>
             </representation>
@@ -352,7 +352,7 @@
             <representation mediaType="application/json">
                 <doc xml:lang="EN">
                     <xsdxt:code
-                        href="../samples//security-groups-create-req.json"
+                        href="../samples/security-groups-create-req.json"
                     />
                 </doc>
             </representation>
@@ -361,7 +361,7 @@
             <representation mediaType="application/json">
                 <doc xml:lang="EN">
                     <xsdxt:code
-                        href="../samples//security-groups-create-resp.json"
+                        href="../samples/security-groups-create-resp.json"
                     />
                 </doc>
             </representation>
