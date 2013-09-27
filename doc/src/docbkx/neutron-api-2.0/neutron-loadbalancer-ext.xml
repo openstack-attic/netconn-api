@@ -1561,9 +1561,6 @@ Content-Length: 0
                 </tr>
             </tbody>
         </table>
-
-        <?hard-pagebreak?>
-
         <section xml:id="lbaas_ext_ops_health_monitor_list">
             <title>List Health Monitors</title>
             <informaltable rules="all" width="100%">

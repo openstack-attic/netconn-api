@@ -1633,9 +1633,6 @@ Content-Type: application/json; charset=UTF-8
                 <programlisting language="json"><xi:include href="samples/vpn/ipsec-site-connection-show-res.json" parse="text"/></programlisting>
             </example>
         </section>
-
-        <?hard-pagebreak?>
-
         <section xml:id="vpnaas_ext_ops_ipsec_site_connection_create">
             <title>Create IPSec Site Connection</title>
                 <informaltable rules="all" width="100%">
@@ -1681,9 +1678,6 @@ Content-Type: application/json; charset=UTF-8
                 <programlisting language="json"><xi:include href="samples/vpn/ipsec-site-connection-create-res.json" parse="text"/></programlisting>
             </example>
         </section>
-
-        <?hard-pagebreak?>
-
         <section xml:id="vpnaas_ext_ops_ipsec_site_connection_update">
             <title>Update IPSec Site Connection</title>
                 <informaltable rules="all" width="100%">
@@ -1727,9 +1721,6 @@ Content-Type: application/json; charset=UTF-8
                 <programlisting language="json"><xi:include href="samples/vpn/ipsec-site-connection-update-res.json" parse="text"/></programlisting>
             </example>
         </section>
-
-        <?hard-pagebreak?>
-
         <section xml:id="vpnaas_ext_ops_ipsec_site_connection_delete">
             <title>Delete IPSec Site Connection</title>
             <informaltable rules="all" width="100%">
