@@ -1,0 +1,28 @@
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=UTF-8
+Content-Length: 520
+Date: Tue, 26 Mar 2013 09:57:51 GMT
+
+{
+    "agent": {
+        "binary": "neutron-dhcp-agent",
+        "description": null,
+        "admin_state_up": false,
+        "heartbeat_timestamp": "2013-03-26T09:35:13.000000",
+        "alive": false,
+        "id": "af4567ad-c2e6-4311-944d-22efc12f89af",
+        "topic": "dhcp_agent",
+        "host": "HostC",
+        "agent_type": "DHCP agent",
+        "started_at": "2013-03-26T09:35:01.000000",
+        "created_at": "2013-03-26T09:35:01.000000",
+        "configurations": {
+            "subnets": 2,
+            "use_namespaces": true,
+            "dhcp_driver": "neutron.agent.linux.dhcp.Dnsmasq",
+            "networks": 2,
+            "dhcp_lease_time": 120,
+            "ports": 3
+        }
+    }
+}

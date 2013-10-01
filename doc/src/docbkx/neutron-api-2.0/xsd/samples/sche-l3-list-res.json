@@ -1,0 +1,32 @@
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=UTF-8
+Content-Length: 630
+Date: Wed, 27 Mar 2013 01:59:44 GMT
+
+{
+    "agents": [{
+            "binary": "neutron-l3-agent",
+            "description": null,
+            "admin_state_up": true,
+            "heartbeat_timestamp": "2013-03-27T00:24:03.000000",
+            "alive": false,
+            "topic": "l3_agent",
+            "host": "HostC",
+            "agent_type": "L3 agent",
+            "created_at": "2013-03-26T23:54:26.000000",
+            "started_at": "2013-03-26T23:54:26.000000",
+            "id": "fa24e88e-3d2f-4fc2-b038-5fb5be294c03",
+            "configurations": {
+                "router_id": "",
+                "gateway_external_network_id": "",
+                "handle_internal_only_routers": true,
+                "use_namespaces": true,
+                "routers": 0,
+                "interfaces": 0,
+                "floating_ips": 0,
+                "interface_driver": "neutron.agent.linux.interface.OVSInterfaceDriver",
+                "ex_gw_ports": 0
+            }
+        }
+    ]
+}
