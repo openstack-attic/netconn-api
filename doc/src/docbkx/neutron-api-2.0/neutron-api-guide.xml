@@ -2675,6 +2675,7 @@ Date: Wed, 12 Sep 2012 11:36:20 GMT</literallayout>
             <programlisting language="xml"><xi:include href="samples/extension.xml" parse="text"/></programlisting>
         </section>
         <xi:include href="neutron-provider-ext.xml"/>
+        <xi:include href="neutron-external-net.xml"/>
         <xi:include href="neutron-l3-ext.xml"/>
         <xi:include href="neutron-quotas-ext.xml"/>
         <xi:include href="neutron-security-groups-ext.xml"/>
