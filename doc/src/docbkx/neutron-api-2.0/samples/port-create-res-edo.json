@@ -1,0 +1,25 @@
+{
+    "port": 
+    {
+        "status": "DOWN", 
+        "binding:host_id": null, 
+        "name": "", 
+        "allowed_address_pairs": [], 
+        "admin_state_up": true, 
+        "network_id": "87733bcc-8144-41b1-bb6b-d011d7a5168e", 
+        "tenant_id": "7ea98790cd854fb5a82ef3d41e5c156b", 
+        "extra_dhcp_opts": [
+            {"opt_value": "123.123.123.123", "opt_name": "tftp-server"}, 
+            {"opt_value": "pxelinux.0", "opt_name": "bootfile-name"}, 
+            {"opt_value": "123.123.123.45", "opt_name": "server-ip-address"}
+        ], 
+        "binding:vif_type": "ovs", 
+        "device_owner": "", 
+        "binding:capabilities": {"port_filter": true}, 
+        "mac_address": "fa:16:3e:43:3c:b7", 
+        "fixed_ips": [{"subnet_id": "99a8aea3-b9da-409d-a5e5-f45338ceb4d3", "ip_address": "172.24.4.230"}], 
+        "id": "055d27c0-0194-4782-be45-275ff2c95c61", 
+        "security_groups": ["9bf6f19a-ba4a-470f-b8ce-28c9ad66556c"], 
+        "device_id": ""
+    }
+}
