@@ -30,8 +30,7 @@
 <section xml:id="router_ext" xmlns="http://docbook.org/ns/docbook"
     xmlns:xi="http://www.w3.org/2001/XInclude"
     xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
-    <title>The Layer-3 Networking Extension (router)
-            (<literal>router</literal>)</title>
+    <title>Layer-3 Networking Extension (<literal>router</literal>)</title>
     <para>The Layer-3 networking extension enables OpenStack Networking API users
         to route packets between subnets, forward packets from
         internal networks to external ones, and access instances from
@@ -51,47 +50,15 @@
                     OpenStack Networking port attached to an internal
                     network.</para>
             </listitem>
-        </itemizedlist>Also, it extends the <emphasis role="bold"
-            >network </emphasis> resource by defining a new attribute,
-            <emphasis role="italic">router:external</emphasis>, which
-        specifies whether a network is meant to be connected to a
-        router's external gateway and host floating IPs. </para>
+          </itemizedlist>
+    </para>
     <?hard-pagebreak?>
     <section xml:id="router_ext_concepts">
         <title>Concepts</title>
-        <para>The OpenStack Networking layer-3 extension is both a resource and
-            attribute extension. As an attribute extension, it adds
-            the <emphasis role="italic">router:external</emphasis>
-            attribute to the network resource; as a resource extension
-            it defines two new resources: <emphasis role="bold"
-                >router</emphasis> and <emphasis role="bold"
-                >floatingip</emphasis>.</para>
-        <para>The <emphasis role="italic">router:external</emphasis>
-            attribute is characterized as follows: <itemizedlist>
-                <listitem>
-                    <para>Available in Create, Update,and Get
-                        requests.</para>
-                </listitem>
-                <listitem>
-                    <para>Boolean type, default value
-                            <literal>False</literal>.</para>
-                </listitem>
-                <listitem>
-                    <para>Usage of this attribute might be restricted
-                        through authorization policies. The default
-                        setting is as follows: only admin users can
-                        set this flag to True, whereas any user can
-                        read the value of this flag. Although regular
-                        users won't be authorized to create instances
-                        with VIFs on external networks, they will be
-                        able to see them in their network list; this
-                        is because external networks can be used by
-                        any tenant to set an external gateway for
-                        their OpenStack Networking routers or create floating IPs
-                        and associate them with ports on internal
-                        tenant networks.</para>
-                </listitem>
-            </itemizedlist></para>
+        <para>The OpenStack Networking layer-3 extension is a resource
+            extension. It defines two new resources:
+            <emphasis role="bold">router</emphasis> and
+            <emphasis role="bold">floatingip</emphasis>.</para>
         <para>A <emphasis role="bold">router </emphasis> is used to
             interconnect subnets and forward traffic among them.
             Another feature of the router is to NAT internal traffic
@@ -107,9 +74,9 @@
             private OpenStack Networking network. Therefore a floating IP allows
             access to an instance on a private network from an
             external network. Floating IPs can only be defined on
-            networks for which the attribute <emphasis role="italic"
-                >router:external</emphasis> has been set to
-            True.</para>
+            networks for which the attribute <emphasis role="italic">
+            router:external</emphasis> (by the external network extension)
+            has been set to True.</para>
         <?hard-pagebreak?>
         <table rules="all">
             <caption>Router Attributes</caption>
