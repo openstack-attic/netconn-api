@@ -2708,6 +2708,7 @@ Date: Wed, 12 Sep 2012 11:36:20 GMT</literallayout>
         </section>
         <xi:include href="section_provider_extended_attrs.xml"/>
         <xi:include href="section_binding_ext_ports.xml"/>
+        <xi:include href="neutron-external-net.xml"/>
         <xi:include href="neutron-l3-ext.xml"/>
         <xi:include href="neutron-extgwmodes-ext.xml"/>
         <xi:include href="neutron-quotas-ext.xml"/>
