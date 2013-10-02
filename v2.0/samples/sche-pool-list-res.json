@@ -1,0 +1,21 @@
+{
+    "pools": [
+        {
+            "admin_state_up": true,
+            "description": "",
+            "health_monitors": [],
+            "health_monitors_status": [],
+            "id": "28296abb-e675-4288-9cd0-6c112c720db0",
+            "lb_method": "ROUND_ROBIN",
+            "members": [],
+            "name": "pool1",
+            "protocol": "HTTP",
+            "provider": "haproxy",
+            "status": "PENDING_CREATE",
+            "status_description": null,
+            "subnet_id": "f8fd83d3-2080-4ab9-9814-391fe7b8a7a4",
+            "tenant_id": "54d7b6253c8c4e64862fbd08b3fc08cd",
+            "vip_id": null
+        }
+    ]
+}
