@@ -3,10 +3,10 @@
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.openstack.docs</groupId>
-    <artifactId>openstack-api-reference</artifactId>
+    <artifactId>openstack-network-api-v1</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>jar</packaging>
-    <name>OpenStack API Reference</name>
+    <name>OpenStack Networking API v1.0 Reference</name>
     <properties>
         <!-- This is set by Jenkins according to the branch. -->
         <release.path.name>local</release.path.name>
@@ -22,7 +22,7 @@
                 <artifactId>clouddocs-maven-plugin</artifactId>
                 <version>1.11.0</version>
                 <executions>
-                    <!-- Configuration for OpenStack End User Guide -->
+                    <!-- Configuration for OpenStack Networking API Reference -->
                     <execution>
                         <id>goal1</id>
                         <goals>
