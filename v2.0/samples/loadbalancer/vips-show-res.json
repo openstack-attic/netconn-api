@@ -1,6 +1,7 @@
 {
     "vip": {
         "status": "ACTIVE",
+        "status_description": "The VIP is active."
         "protocol": "HTTP",
         "description": "",
         "admin_state_up": true,

@@ -1,6 +1,7 @@
 {
     "pool": {
         "status": "ACTIVE",
+        "status_description": "The Pool is active."
         "lb_method": "ROUND_ROBIN",
         "protocol": "HTTP",
         "description": "",

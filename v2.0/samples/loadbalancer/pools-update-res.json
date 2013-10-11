@@ -1,6 +1,7 @@
 {
     "pool": {
         "status": "PENDING_UPDATE",
+        "status_description": "The Pool is updating."
         "lb_method": "ROUND_ROBIN",
         "protocol": "TCP",
         "description": "",

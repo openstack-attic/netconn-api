@@ -1,6 +1,7 @@
 {
     "vip": {
         "status": "PENDING_UPDATE",
+        "status_description": "The VIP is updating."
         "protocol": "HTTP",
         "description": "",
         "admin_state_up": true,

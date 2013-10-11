@@ -2,6 +2,7 @@
     "members": [
         {
             "status": "ACTIVE",
+            "status_description": "The Member is active."
             "weight": 1,
             "admin_state_up": true,
             "tenant_id": "83657cfcdfe44cd5920adaf26c48ceea",
@@ -12,6 +13,7 @@
         },
         {
             "status": "ACTIVE",
+            "status_description": "The Member is active."
             "weight": 1,
             "admin_state_up": true,
             "tenant_id": "83657cfcdfe44cd5920adaf26c48ceea",

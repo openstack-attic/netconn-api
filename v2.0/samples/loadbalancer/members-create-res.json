@@ -1,6 +1,7 @@
 {
     "member": {
         "status": "PENDING_CREATE",
+        "status_description": "The Member is being created."
         "weight": 2,
         "admin_state_up": true,
         "tenant_id": "83657cfcdfe44cd5920adaf26c48ceea",

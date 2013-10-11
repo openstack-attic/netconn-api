@@ -1,6 +1,7 @@
 {
     "vip": {
         "status": "PENDING_CREATE",
+        "status_description": "The VIP is being created."
         "protocol": "HTTP",
         "description": "",
         "admin_state_up": true,

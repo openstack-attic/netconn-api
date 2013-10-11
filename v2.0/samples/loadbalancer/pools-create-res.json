@@ -1,6 +1,7 @@
 {
     "pool": {
         "status": "PENDING_CREATE",
+        "status_description": "The Pool is being created."
         "lb_method": "STATIC_IP",
         "protocol": "TCP",
         "description": "",

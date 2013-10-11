@@ -1,6 +1,7 @@
 {
     "member": {
         "status": "PENDING_UPDATE",
+        "status_description": "The Member is updating."
         "weight": 5,
         "admin_state_up": false,
         "tenant_id": "83657cfcdfe44cd5920adaf26c48ceea",
