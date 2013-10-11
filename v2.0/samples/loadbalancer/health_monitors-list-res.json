@@ -1,7 +1,6 @@
 {
     "health_monitors": [
         {
-            "status": "ACTIVE",
             "admin_state_up": true,
             "tenant_id": "83657cfcdfe44cd5920adaf26c48ceea",
             "delay": 10,
@@ -11,7 +10,6 @@
             "id": "466c8345-28d8-4f84-a246-e04380b0461d"
         },
         {
-            "status": "ACTIVE",
             "admin_state_up": true,
             "tenant_id": "83657cfcdfe44cd5920adaf26c48ceea",
             "delay": 5,

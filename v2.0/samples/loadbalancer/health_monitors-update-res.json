@@ -1,9 +1,11 @@
 {
     "health_monitor": {
-        "status": "PENDING_UPDATE",
         "admin_state_up": true,
         "tenant_id": "83657cfcdfe44cd5920adaf26c48ceea",
         "delay": 30,
+        "url_path": "/",
+        "expected_codes": "200",
+        "http_method": "GET",
         "max_retries": 1,
         "timeout": 1,
         "type": "PING",

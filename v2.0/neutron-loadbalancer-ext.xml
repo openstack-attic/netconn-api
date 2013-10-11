@@ -394,6 +394,15 @@
                     <td>N/A</td>
                     <td>Indicates whether a vip is currently operational or not</td>
                 </tr>
+                <tr>
+                    <td>status_description</td>
+                    <td>String</td>
+                    <td>N/A</td>
+                    <td>R</td>
+                    <td>N/A</td>
+                    <td>N/A</td>
+                    <td>High-level description of the status</td>
+                </tr>
             </tbody>
         </table>
 
@@ -791,6 +800,15 @@ Content-Length: 0
                     <td>N/A</td>
                     <td>Indicates whether a pool is currently operational or not</td>
                 </tr>
+                <tr>
+                    <td>status_description</td>
+                    <td>String</td>
+                    <td>N/A</td>
+                    <td>R</td>
+                    <td>N/A</td>
+                    <td>N/A</td>
+                    <td>High-level description of the status</td>
+                </tr>
             </tbody>
         </table>
 
@@ -1160,6 +1178,15 @@ persistent connections.</td>
                     <td>N/A</td>
                     <td>N/A</td>
                     <td>Indicates whether a member is currently operational or not</td>
+                </tr>
+                <tr>
+                    <td>status_description</td>
+                    <td>String</td>
+                    <td>N/A</td>
+                    <td>R</td>
+                    <td>N/A</td>
+                    <td>N/A</td>
+                    <td>High-level description of the status</td>
                 </tr>
             </tbody>
         </table>
@@ -1549,15 +1576,6 @@ Content-Length: 0
                     <td>true</td>
                     <td>{true | false }</td>
                     <td>Administrative state of the health monitor</td>
-                </tr>
-                <tr>
-                    <td>status</td>
-                    <td>String</td>
-                    <td>N/A</td>
-                    <td>R</td>
-                    <td>N/A</td>
-                    <td>N/A</td>
-                    <td>Indicates whether a health monitor is currently operational or not</td>
                 </tr>
             </tbody>
         </table>
