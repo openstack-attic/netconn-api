@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE chapter[
+<!-- Some useful entities borrowed from HTML -->
+<!ENTITY ndash  "&#x2013;">
+<!ENTITY mdash  "&#x2014;">
+<!ENTITY hellip "&#x2026;">
+<!ENTITY plusmn "&#xB1;">
+<!-- Useful for describing APIs -->
+<!ENTITY GET    '<command xmlns="http://docbook.org/ns/docbook">GET</command>'>
+<!ENTITY PUT    '<command xmlns="http://docbook.org/ns/docbook">PUT</command>'>
+<!ENTITY POST   '<command xmlns="http://docbook.org/ns/docbook">POST</command>'>
+<!ENTITY DELETE '<command xmlns="http://docbook.org/ns/docbook">DELETE</command>'>
+<!ENTITY CHECK  '<inlinemediaobject xmlns="http://docbook.org/ns/docbook">
+ <imageobject>
+  <imagedata fileref="figures/Check_mark_23x20_02.svg"
+     format="SVG" scale="60"/>
+</imageobject>
+      </inlinemediaobject>'>
+<!ENTITY ARROW  '<inlinemediaobject xmlns="http://docbook.org/ns/docbook">
+ <imageobject>
+  <imagedata fileref="figures/Arrow_east.svg"
+     format="SVG" scale="60"/>
+</imageobject>
+      </inlinemediaobject>'>
+ <!ENTITY APIv2   'Networking API v2.0'>
+]>
+<chapter xmlns="http://docbook.org/ns/docbook"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:xi="http://www.w3.org/2001/XInclude"
+    xmlns:svg="http://www.w3.org/2000/svg"
+    xmlns:m="http://www.w3.org/1998/Math/MathML"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns:xsdxt="http://docs.rackspacecloud.com/xsd-ext/v1.0"
+    xmlns:db="http://docbook.org/ns/docbook" version="5.0"
+    xml:id="API_Operations" role="api-reference">
+    <title>API Operations</title>
+    <para>Provides virtual networking services among devices that are
+        managed by the OpenStack compute service. The Networking API
+        v2.0 combines the API v1.1 functionality with some essential
+        Internet Protocol Address Management (IPAM). Enables users to
+        associate IP address blocks and other network configuration
+        settings with a neutron network. You can choose a specific IP
+        address from the block or let neutron choose the first
+        available IP address.</para>
+    <section xml:id="networks">
+        <title>Networks</title>
+        <para>Lists, shows information for, creates, updates, and
+            deletes networks.</para>
+        <wadl:resources
+            href="http://git.openstack.org/cgit/openstack/api-site/plain/api-ref/src/wadls/netconn-api/src/os-networks.wadl"
+            xmlns:wadl="http://wadl.dev.java.net/2009/02"/>
+        <section xml:id="bulk_create_networks">
+            <title>Bulk Create Networks</title>
+            <para>This operation enables you to create several
+                networks in a single request.</para>
+            <para>This operation requires a request body.</para>
+            <para>This operation returns a response body.</para>
+            <para>The bulk create operation is always atomic. Either
+                all or no networks in the request body are
+                created.</para>
+            <para>Specify a list of networks in the request body, as
+                shown in the following example:</para>
+            <programlisting language="json"><xi:include href="samples/networks-post-create-bulk-req.json" parse="text"/></programlisting>
+            <programlisting language="xml"><xi:include href="samples/networks-post-create-bulk-req.xml" parse="text"/></programlisting>
+            <programlisting language="json"><xi:include href="samples/networks-create-bulk-resp.json" parse="text"/></programlisting>
+            <programlisting language="xml"><xi:include href="samples/networks-create-bulk-resp.xml" parse="text"/></programlisting>
+
+
+        </section>
+    </section>
+    <section xml:id="subnets">
+        <title>Subnets</title>
+        <para>Lists, shows information for, creates, updates, and
+            deletes subnet resources.</para>
+        <wadl:resources
+            href="http://git.openstack.org/cgit/openstack/api-site/plain/api-ref/src/wadls/netconn-api/src/os-subnets.wadl"
+            xmlns:wadl="http://wadl.dev.java.net/2009/02"/>
+        <section xml:id="bulK_create_subnets">
+            <title>Bulk Create Subnets</title>
+            <para>This operation requires a request body.</para>
+            <para>This operation returns a response body.</para>
+            <para>The bulk create operation is always atomic. Either
+                all or no subnets in the request body are
+                created.</para>
+            <para>This operation enables you to create several subnets
+                in a single request. Specify a list of subnets in the
+                request body, as shown in the following
+                example:</para>
+            <programlisting language="json"><xi:include href="samples/subnets-post-create-bulk-req.json" parse="text"/></programlisting>
+            <programlisting language="xml"><xi:include href="samples/subnets-post-create-bulk-req.xml" parse="text"/></programlisting>
+            <programlisting language="json"><xi:include href="samples/subnets-create-bulk-resp.json" parse="text"/></programlisting>
+            <programlisting language="xml"><xi:include href="samples/subnets-create-bulk-resp.xml" parse="text"/></programlisting>
+        </section>
+    </section>
+    <section xml:id="ports">
+        <title>Ports</title>
+        <para>Lists, shows information for, creates, updates, and
+            deletes ports.</para>
+        <wadl:resources
+            href="http://git.openstack.org/cgit/openstack/api-site/plain/api-ref/src/wadls/netconn-api/src/os-ports.wadl"
+            xmlns:wadl="http://wadl.dev.java.net/2009/02"/>
+        <section xml:id="bulk_create_ports">
+            <title>Bulk Create Ports</title>
+            <para>This operation requires a request body.</para>
+            <para>This operation returns a response body.</para>
+            <para>This operation enables you to create several ports
+                in a single request. Specify a list of ports in the
+                request body.</para>
+            <para>The &APIv2; always guarantees the atomic completion
+                of the bulk operation.</para>
+            <programlisting language="json"><xi:include href="samples/ports-post-create-bulk-req.json" parse="text"/></programlisting>
+            <programlisting language="xml"><xi:include href="samples/ports-post-create-bulk-req.xml" parse="text"/></programlisting>
+            <programlisting language="json"><xi:include href="samples/ports-create-bulk-resp.json" parse="text"/></programlisting>
+            <programlisting language="xml"><xi:include href="samples/ports-create-bulk-resp.xml" parse="text"/></programlisting>
+        </section>
+    </section>
+</chapter>
