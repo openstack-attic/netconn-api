@@ -1,0 +1,464 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE book[
+        <!-- Some useful entities borrowed from HTML -->
+        <!ENTITY ndash  "&#x2013;">
+        <!ENTITY mdash  "&#x2014;">
+        <!ENTITY hellip "&#x2026;">
+        <!ENTITY plusmn "&#xB1;">
+
+        <!-- Useful for describing APIs -->
+        <!ENTITY GET    '<command xmlns="http://docbook.org/ns/docbook">GET</command>'>
+        <!ENTITY PUT    '<command xmlns="http://docbook.org/ns/docbook">PUT</command>'>
+        <!ENTITY POST   '<command xmlns="http://docbook.org/ns/docbook">POST</command>'>
+        <!ENTITY DELETE '<command xmlns="http://docbook.org/ns/docbook">DELETE</command>'>
+
+        <!ENTITY CHECK  '<inlinemediaobject xmlns="http://docbook.org/ns/docbook">
+                 <imageobject role="fo">
+                  <imagedata fileref="figures/Check_mark_23x20_02.svg"
+                             format="SVG" scale="60"/>
+                </imageobject>
+                 <imageobject role="html">
+                  <imagedata fileref="../figures/Check_mark_23x20_02.png"
+                             format="PNG" />
+                </imageobject>
+              </inlinemediaobject>'>
+
+        <!ENTITY ARROW  '<inlinemediaobject xmlns="http://docbook.org/ns/docbook">
+                 <imageobject role="fo">
+                  <imagedata fileref="figures/Arrow_east.svg"
+                             format="SVG" scale="60"/>
+                </imageobject>
+                 <imageobject role="html">
+                  <imagedata fileref="../figures/Arrow_east.png"
+                             format="PNG" />
+                </imageobject>
+              </inlinemediaobject>'>
+ <!ENTITY APIv2   'Networking API v2.0'>
+]>
+<section xml:id="binding_ext_ports"
+    xmlns="http://docbook.org/ns/docbook"
+    xmlns:xi="http://www.w3.org/2001/XInclude"
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    <title>The <literal>binding</literal> Extended Attributes for
+        Ports</title>
+    <para>Use the &APIv2; with the <parameter>binding</parameter>
+        extended attributes to get information about, create, and
+        update port objects.</para>
+    <para>The <parameter>binding</parameter>-prefixed extended
+        attributes for ports are:</para>
+    <table rules="all" width="95%">
+        <caption><parameter>binding</parameter> Extended Attributes
+            for Ports</caption>
+        <col width="30%"/>
+        <col width="10%"/>
+        <col width="10%"/>
+        <col width="10%"/>
+        <col width="10%"/>
+        <col width="10%"/>
+        <col width="20%"/>
+        <thead>
+            <tr>
+                <th>Attribute </th>
+                <th>Type </th>
+                <th>Required </th>
+                <th>CRUD<footnote xml:id="crud_network">
+                        <para><itemizedlist>
+                                <listitem>
+                                   <para><emphasis role="bold"
+                                   >C</emphasis>. Use the attribute in
+                                   create operations.</para>
+                                </listitem>
+                                <listitem>
+                                   <para><emphasis role="bold"
+                                   >R</emphasis>. This attribute is
+                                   returned in response to show and
+                                   list operations.</para>
+                                </listitem>
+                                <listitem>
+                                   <para><emphasis role="bold"
+                                   >U</emphasis>. You can update the
+                                   value of this attribute.</para>
+                                </listitem>
+                                <listitem>
+                                   <para><emphasis role="bold"
+                                   >D</emphasis>. You can delete the
+                                   value of this attribute.</para>
+                                </listitem>
+                            </itemizedlist></para>
+                    </footnote></th>
+                <th>Default Value</th>
+                <th>Validation Constraints</th>
+                <th>Notes</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><para><parameter>binding:vif_type</parameter></para></td>
+                <td><para>String</para></td>
+                <td><para>N/A</para></td>
+                <td><para>R</para></td>
+                <td><para>None</para></td>
+                <td><para>N/A</para></td>
+                <td><para>Read-only. The vif type for the specified
+                        port.</para>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <para><parameter>binding:host_id</parameter></para></td>
+                <td><para>uuid-str</para></td>
+                <td><para>N/A</para></td>
+                <td><para>CRU</para></td>
+                <td><para>None</para></td>
+                <td><para>N/A</para></td>
+                <td><para>The ID of the host where the port is
+                        allocated. In some cases different
+                        implementations can run on different
+                        hosts.</para>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <para><parameter>binding:profile</parameter></para></td>
+                <td>list(dict)</td>
+                <td>N/A</td>
+                <td>CRU</td>
+                <td>None</td>
+                <td>N/A</td>
+                <td><para>A dictionary that enables the application
+                        running on the specified host to pass and
+                        receive vif port-specific information to the
+                        plug-in.</para>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <para><parameter>binding:capabilities</parameter></para></td>
+                <td>list(dict)</td>
+
+                <td>N/A</td>
+                <td>R</td>
+                <td>None</td>
+                <td>N/A</td>
+                <td><para>Read-only. A dictionary that enables the
+                        application to pass information about
+                        functions that &APIv2; provides. Specify the
+                        following value: port_filter : Boolean to
+                        define whether &APIv2; provides port filtering
+                        features such as security group and
+                        anti-MAC/IP spoofing.</para></td>
+            </tr>
+        </tbody>
+    </table>
+    <section xml:id="List_Ports_binding">
+        <title>List Ports</title>
+        <informaltable rules="all" width="100%">
+            <col width="20%"/>
+            <col width="20%"/>
+            <col width="60%"/>
+            <thead>
+                <tr>
+                    <td>Verb</td>
+                    <td>URI</td>
+                    <td>Description</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>&GET;</td>
+                    <td>/ports</td>
+                    <td>Lists ports to which the tenant has access.
+                        The <parameter>binding</parameter> extended
+                        attributes are visible to only administrative
+                        users.</td>
+                </tr>
+            </tbody>
+        </informaltable>
+        <simpara>Normal Response Code: <returnvalue>200</returnvalue>
+        </simpara>
+        <simpara>Error Response Codes: Unauthorized
+                (<errorcode>401</errorcode>)</simpara>
+        <para>This operation lists ports to which the tenant has
+            access.</para>
+        <para>This operation does not require a request body.</para>
+        <para>This operation returns a response body.</para>
+        <para>In addition to any other fields returned in the list ports response, the following
+                <parameter>binding</parameter>-prefixed fields are
+            visible to administrative users:</para>
+        <informaltable rules="all">
+            <thead>
+                <tr>
+                    <th>Field</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><para><parameter>binding:vif_type</parameter></para></td>
+
+                    <td><para>Read-only. The vif type for the
+                            specified port.</para>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <para><parameter>binding:host_id</parameter></para></td>
+                    <td><para>The ID of the host where the port is
+                            allocated. In some cases different
+                            implementations can run on different
+                            hosts.</para>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <para><parameter>binding:profile</parameter></para></td>
+                    <td><para>A dictionary that enables the
+                            application running on the specified host
+                            to pass and receive vif port-specific
+                            information to the plug-in.</para>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <para><parameter>binding:capabilities</parameter></para></td>
+                    <td><para>Read-only. A dictionary that enables the
+                            application to pass information about
+                            functions that &APIv2; provides. Specify
+                            the following value: port_filter : Boolean
+                            to define whether &APIv2; provides port
+                            filtering features such as security group
+                            and anti-MAC/IP spoofing.</para>
+                    </td>
+                </tr>
+            </tbody>
+        </informaltable>
+    </section>
+    <?hard-pagebreak?>
+    <section xml:id="Show_port_binding">
+        <title>Show Port</title>
+        <informaltable rules="all" width="100%">
+            <col width="20%"/>
+            <col width="20%"/>
+            <col width="60%"/>
+            <thead>
+                <tr>
+                    <td>Verb</td>
+                    <td>URI</td>
+                    <td>Description</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>&GET;</td>
+                    <td>/ports/<parameter>port-id</parameter></td>
+                    <td>Shows information for a specified port. The
+                            <parameter>binding</parameter> extended
+                        attributes are visible to only administrative
+                        users.</td>
+                </tr>
+            </tbody>
+        </informaltable>
+        <simpara>Normal Response Code: <returnvalue>200</returnvalue>
+        </simpara>
+        <simpara>Error Response Codes: Unauthorized
+                (<errorcode>401</errorcode>), Not Found
+                (<errorcode>404</errorcode>)</simpara>
+        <para>This operation returns information for the port
+            specified in the request URI. </para>
+        <para>This operation does not require a request body.</para>
+        <para>This operation returns a response body.</para>
+        <para>In addition to any fields returned in the show port response, the following
+                <parameter>binding</parameter>-prefixed extended
+            attributes are visible to administrative users:</para>
+        <informaltable rules="all">
+            <thead>
+                <tr>
+                    <th>Field</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><para><parameter>binding:vif_type</parameter></para></td>
+
+                    <td><para>Read-only. The vif type for the
+                            specified port.</para>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <para><parameter>binding:host_id</parameter></para></td>
+                    <td><para>The ID of the host where the port is
+                            allocated. In some cases different
+                            implementations can run on different
+                            hosts.</para>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <para><parameter>binding:profile</parameter></para></td>
+                    <td><para>A dictionary that enables the
+                            application running on the specified host
+                            to pass and receive vif port-specific
+                            information to the plug-in.</para>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <para><parameter>binding:capabilities</parameter></para></td>
+                    <td><para>Read-only. A dictionary that enables the
+                            application to pass information about
+                            functions that &APIv2; provides. Specify
+                            the following value: port_filter : Boolean
+                            to define whether &APIv2; provides port
+                            filtering features such as security group
+                            and anti-MAC/IP spoofing.</para>
+                    </td>
+                </tr>
+            </tbody>
+        </informaltable>
+    </section>
+
+    <section xml:id="Create_Port_binding">
+        <title>Create Port</title>
+        <informaltable rules="all" width="100%">
+            <col width="20%"/>
+            <col width="20%"/>
+            <col width="60%"/>
+            <thead>
+                <tr>
+                    <td>Verb</td>
+                    <td>URI</td>
+                    <td>Description</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>&POST;</td>
+                    <td>/ports</td>
+                    <td>Creates a port on a specified network. Only
+                        administrative users can add the
+                            <parameter>binding</parameter> extended
+                        attributes.</td>
+                </tr>
+            </tbody>
+        </informaltable>
+        <simpara>Normal Response Code: <returnvalue>201</returnvalue>
+        </simpara>
+        <simpara>Error Response Codes: Bad Request
+                (<errorcode>400</errorcode>), Unauthorized
+                (<errorcode>401</errorcode>), Forbidden
+                (<errorcode>403</errorcode>), Not Found
+                (<errorcode>404</errorcode>), Conflict
+                (<errorcode>409</errorcode>), MAC generation failure
+                (<errorcode>503</errorcode>) </simpara>
+        <para>This operation creates an OpenStack Networking port. You
+            must specify the network where the port is to created on
+            the <parameter>network_id</parameter> attribute in the
+            request body.</para>
+        <para>This operation requires a request body.</para>
+        <para>This operation returns a response body.</para>
+        <para>In addition to any attributes that can be set in a create port operation, administrative
+            users can also set the following
+                <parameter>binding</parameter>-prefixed extended
+            attributes:</para>
+        <informaltable rules="all">
+            <thead>
+                <tr>
+                    <th>Field</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <para><parameter>binding:host_id</parameter></para></td>
+                    <td><para>The ID of the host where the port is
+                            allocated. In some cases different
+                            implementations can run on different
+                            hosts.</para>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <para><parameter>binding:profile</parameter></para></td>
+                    <td><para>A dictionary that enables the
+                            application running on the specified host
+                            to pass and receive vif port-specific
+                            information to the plug-in.</para>
+                    </td>
+                </tr>
+            </tbody>
+        </informaltable>
+    </section>
+    <section xml:id="Update_Port_binding">
+        <title>Update Port</title>
+        <informaltable rules="all" width="100%">
+            <col width="20%"/>
+            <col width="20%"/>
+            <col width="60%"/>
+            <thead>
+                <tr>
+                    <td>Verb</td>
+                    <td>URI</td>
+                    <td>Description</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>&PUT;</td>
+                    <td>/ports/<parameter>port-id</parameter></td>
+                    <td>Updates a specified port. Only administrative
+                        users can update the
+                            <parameter>binding</parameter> extended
+                        attributes.</td>
+                </tr>
+            </tbody>
+        </informaltable>
+        <simpara>Normal Response Code: <returnvalue>200</returnvalue>
+        </simpara>
+        <simpara>Error Response Codes: Bad Request
+                (<errorcode>400</errorcode>), Unauthorized
+                (<errorcode>401</errorcode>), Forbidden
+                (<errorcode>403</errorcode>), Not Found
+                (<errorcode>404</errorcode>), Conflict
+                (<errorcode>409</errorcode>) </simpara>
+        <para>Use this operation to update information for a
+            port.</para>
+        <para>This operation requires a request body.</para>
+        <para>This operation returns a response body.</para>
+        <para>In addition to any attributes that can be updated in
+                an update port operation,
+            administrative users can also update the following
+                <parameter>binding</parameter>-prefixed extended
+            attributes:</para>
+        <informaltable rules="all">
+            <thead>
+                <tr>
+                    <th>Field</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <para><parameter>binding:host_id</parameter></para></td>
+                    <td><para>The ID of the host where the port is
+                            allocated. In some cases different
+                            implementations can run on different
+                            hosts.</para>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <para><parameter>binding:profile</parameter></para></td>
+                    <td><para>A dictionary that enables the
+                            application running on the specified host
+                            to pass and receive vif port-specific
+                            information to the plug-in.</para>
+                    </td>
+                </tr>
+            </tbody>
+        </informaltable>
+    </section>
+</section>
