@@ -13,8 +13,8 @@
     </xsd:appinfo>
     <xsd:documentation xml:lang="EN"
       xmlns="http://www.w3.org/1999/xhtml">
-      <p> This is the main index XML Schema document for Security Groups API
-        Schema Types Version 1.0. </p>
+      <p>This is the main index XML Schema document for Security
+        Groups API Schema Types Version 1.0.</p>
     </xsd:documentation>
   </annotation>
 
@@ -259,7 +259,7 @@
       <annotation>
         <xsd:documentation xml:lang="EN"
           xmlns="http://www.w3.org/1999/xhtml">
-          <p>The hostname attached to the instance.</p>
+          <p>The host name attached to the instance.</p>
         </xsd:documentation>
       </annotation>
     </attribute>
@@ -549,8 +549,8 @@
         <annotation>
           <xsd:documentation xml:lang="EN"
             xmlns="http://www.w3.org/1999/xhtml">
-            <p> A human readable message that is appropriate for
-              display to the end user. </p>
+            <p>A human readable message that is appropriate for
+              display to the end user.</p>
           </xsd:documentation>
         </annotation>
       </element>
@@ -558,10 +558,10 @@
         <annotation>
           <xsd:documentation xml:lang="EN"
             xmlns="http://www.w3.org/1999/xhtml">
-            <p> The optional &lt;details&gt; element may contain
-              useful information for tracking down errors (e.g a stack
+            <p>The optional &lt;details&gt; element may contain useful
+              information for tracking down errors (such as, a stack
               trace). This information may or may not be appropriate
-              for display to an end user. </p>
+              for display to an end user.</p>
           </xsd:documentation>
         </annotation>
       </element>
@@ -572,8 +572,7 @@
       <annotation>
         <xsd:documentation xml:lang="EN"
           xmlns="http://www.w3.org/1999/xhtml">
-          <p> The HTTP status code associated with the current fault.
-          </p>
+          <p>The HTTP status code associated with the current fault.</p>
         </xsd:documentation>
       </annotation>
     </attribute>
@@ -582,25 +581,25 @@
 
   <complexType name="BadRequestFault">
     <complexContent>
-      <extension base="secgr:BaseFault"> </extension>
+      <extension base="secgr:BaseFault"/>
     </complexContent>
   </complexType>
 
   <complexType name="UnauthorizedFault">
     <complexContent>
-      <extension base="secgr:BaseFault"> </extension>
+      <extension base="secgr:BaseFault"/>
     </complexContent>
   </complexType>
 
   <complexType name="ForbiddenFault">
     <complexContent>
-      <extension base="secgr:BaseFault"> </extension>
+      <extension base="secgr:BaseFault"/>
     </complexContent>
   </complexType>
 
   <complexType name="BadMethodFault">
     <complexContent>
-      <extension base="secgr:BaseFault"> </extension>
+      <extension base="secgr:BaseFault"/>
     </complexContent>
   </complexType>
 
@@ -611,8 +610,8 @@
           <annotation>
             <xsd:documentation xml:lang="EN"
               xmlns="http://www.w3.org/1999/xhtml">
-              <p> An optional dateTime denoting when an operation
-                should be retried. </p>
+              <p>An optional dateTime denoting when an operation
+                should be retried.</p>
             </xsd:documentation>
           </annotation>
         </attribute>
@@ -622,39 +621,38 @@
 
   <complexType name="UnprocessableEntityFault">
     <complexContent>
-      <extension base="secgr:BaseFault"> </extension>
+      <extension base="secgr:BaseFault"/>
     </complexContent>
   </complexType>
 
   <complexType name="InstanceFault">
     <complexContent>
-      <extension base="secgr:BaseFault"> </extension>
+      <extension base="secgr:BaseFault"/>
     </complexContent>
   </complexType>
 
   <complexType name="NotImplementedFault">
     <complexContent>
-      <extension base="secgr:BaseFault"> </extension>
+      <extension base="secgr:BaseFault"/>
     </complexContent>
   </complexType>
 
   <complexType name="ServiceUnavailableFault">
     <complexContent>
-      <extension base="secgr:BaseFault"> </extension>
+      <extension base="secgr:BaseFault"/>
     </complexContent>
   </complexType>
 
   <complexType name="ItemNotFoundFault">
     <complexContent>
-      <extension base="secgr:BaseFault"> </extension>
+      <extension base="secgr:BaseFault"/>
     </complexContent>
   </complexType>
 
   <complexType name="BadMediaTypeFault">
     <complexContent>
-      <extension base="secgr:BaseFault"> </extension>
+      <extension base="secgr:BaseFault"/>
     </complexContent>
   </complexType>
 
 </schema>
-

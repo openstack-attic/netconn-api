@@ -18,7 +18,6 @@
      format="SVG" scale="60"/>
 </imageobject>
       </inlinemediaobject>'>
-
 <!ENTITY ARROW  '<inlinemediaobject xmlns="http://docbook.org/ns/docbook">
  <imageobject>
   <imagedata fileref="figures/Arrow_east.svg"
@@ -34,11 +33,15 @@
     xmlns:m="http://www.w3.org/1998/Math/MathML"
     xmlns:html="http://www.w3.org/1999/xhtml"
     xmlns:db="http://docbook.org/ns/docbook" version="5.0"
-    status="final" xml:id="security-groups-ext"
-    xmlns:wadl="http://wadl.dev.java.net/2009/02">
-
-    <title>Security Groups and Rules</title>
-    <para>Creates, modifies, and deletes OpenStack Networking security groups and
-        rules. </para>
-    <wadl:resources href="wadl/security-groups.wadl"/>
+    status="final" xml:id="quotas_ext">
+    <title>Quotas</title>
+    <para>The <filename>neutron.conf</filename> configuration file
+        defines default quota values that are applied to all tenants.
+        This extension enables an administrative user to define quotas
+        values on a per-tenant basis. For example, an administrative
+        user can permit tenant A to create at most X networks and
+        tenant B to create at most Y networks.</para>
+    <wadl:resources
+        href="http://git.openstack.org/cgit/openstack/api-site/plain/api-ref/src/wadls/netconn-api/src/os-quotas.wadl"
+        xmlns:wadl="http://wadl.dev.java.net/2009/02"/>
 </section>

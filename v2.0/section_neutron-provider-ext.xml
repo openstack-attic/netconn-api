@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE book[
+        <!-- Some useful entities borrowed from HTML -->
+        <!ENTITY ndash  "&#x2013;">
+        <!ENTITY mdash  "&#x2014;">
+        <!ENTITY hellip "&#x2026;">
+        <!ENTITY plusmn "&#xB1;">
+
+        <!-- Useful for describing APIs -->
+        <!ENTITY GET    '<command xmlns="http://docbook.org/ns/docbook">GET</command>'>
+        <!ENTITY PUT    '<command xmlns="http://docbook.org/ns/docbook">PUT</command>'>
+        <!ENTITY POST   '<command xmlns="http://docbook.org/ns/docbook">POST</command>'>
+        <!ENTITY DELETE '<command xmlns="http://docbook.org/ns/docbook">DELETE</command>'>
+
+        <!ENTITY CHECK  '<inlinemediaobject xmlns="http://docbook.org/ns/docbook">
+                 <imageobject role="fo">
+                  <imagedata fileref="figures/Check_mark_23x20_02.svg"
+                             format="SVG" scale="60"/>
+                </imageobject>
+                 <imageobject role="html">
+                  <imagedata fileref="../figures/Check_mark_23x20_02.png"
+                             format="PNG" />
+                </imageobject>
+              </inlinemediaobject>'>
+
+        <!ENTITY ARROW  '<inlinemediaobject xmlns="http://docbook.org/ns/docbook">
+                 <imageobject role="fo">
+                  <imagedata fileref="figures/Arrow_east.svg"
+                             format="SVG" scale="60"/>
+                </imageobject>
+                 <imageobject role="html">
+                  <imagedata fileref="../figures/Arrow_east.png"
+                             format="PNG" />
+                </imageobject>
+              </inlinemediaobject>'>
+ <!ENTITY APIv2   'Networking API v2.0'>
+]>
+<section xml:id="provider_ext" xmlns="http://docbook.org/ns/docbook"
+    xmlns:xi="http://www.w3.org/2001/XInclude"
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    <title>The Provider Networks Extension
+            (<literal>provider</literal>)</title>
+    <para>The provider networks extension allows OpenStack Networking
+        API users with the appropriate rights, to specify how an
+        OpenStack Networking network object is mapped to the
+        underlying networking infrastructure. It also allows users
+        with the appropriate rights to view such attributes when
+        networks are queried.</para>
+    <para>To this aim, it extends the <emphasis role="bold"
+            >network</emphasis> resource by defining a set of
+        attributes prefixed with the <emphasis role="italic"
+            >provider</emphasis> prefix, which specify these
+        attributes.</para>
+    <?hard-pagebreak?>
+    <section xml:id="provider_ext_concepts">
+        <title>Concepts</title>
+        <para>The provider networks extension is an attribute
+            extension which adds the following set of attributes to
+            the <emphasis role="bold">network</emphasis>
+            resource:</para>
+        <para>
+            <itemizedlist>
+                <listitem>
+                    <para><emphasis role="italic">
+                            provider:network_type</emphasis> -
+                        Specifies the nature of the physical network
+                        mapped to this network resource. Examples are
+                            <literal>flat</literal>,
+                            <literal>vlan</literal>, or
+                            <literal>gre</literal>.</para>
+                </listitem>
+                <listitem>
+                    <para><emphasis role="italic">
+                            provider:physical_network</emphasis> -
+                        Identifies the physical network on top of
+                        which this network object is being
+                        implemented. The OpenStack Networking API does
+                        not expose any facility for retrieving the
+                        list of available physical networks. As an
+                        example, in the Open vSwitch plug-in this is a
+                        symbolic name which is then mapped to specific
+                        bridges on each compute host through the Open
+                        vSwitch plug-in configuration file.</para>
+                </listitem>
+                <listitem>
+                    <para><emphasis role="italic">
+                            provider:segmentation_id</emphasis> -
+                        Identifies an isolated segment on the physical
+                        network; the nature of the segment depends on
+                        the segmentation model defined by
+                            <literal>network_type</literal>. For
+                        instance, if <literal>network_type</literal>
+                        is <literal>vlan</literal>, then this is a
+                            <literal>vlan</literal> identifier;
+                        otherwise, if <literal>network_type</literal>
+                        is <literal>gre</literal>, then this will be a
+                            <literal>gre</literal> key.</para>
+                </listitem>
+            </itemizedlist>
+        </para>
+        <para>The actual semantics of these attributes depend on the
+            technology back end of the particular plug-in. See the
+            plug-in documentation and the <citetitle>OpenStack Cloud
+                Administrator Guide</citetitle> to understand which
+            values should be specific for each of these attributes
+            when OpenStack Networking is deployed with a particular
+            plug-in. The examples shown in this chapter refer to the
+            Open vSwitch plug-in.</para>
+        <para>It is also worth noting that the default policy settings
+            allow only users with administrative rights to specify
+            these parameters in requests, and to see their values in
+            responses. By default, the provider network extension
+            attributes are completely hidden from regular tenants. As
+            a rule of thumb, if these attributes are not visible in a
+                <emphasis role="italic">GET
+                /networks/&lt;network-id></emphasis> operation, this
+            implies the user submitting the request is not authorized
+            to view or manipulate provider network attributes.</para>
+    </section>
+    <?hard-pagebreak?>
+    <section xml:id="provider_ext_ops">
+        <title>Network API operations with provider network
+            extension</title>
+        <para>This section discusses operations for setting and
+            retrieving the provider networks extension attributes for
+            network objects.</para>
+       <!-- <wadl:resources
+            href="http://git.openstack.org/cgit/openstack/api-site/plain/api-ref/src/wadls/netconn-api/src/os-networks-provider-ext.wadl"
+            xmlns:wadl="http://wadl.dev.java.net/2009/02"/> -->
+        <section xml:id="provider_network_list">
+            <title>List Networks</title>
+            <para>
+                <informaltable rules="all" width="100%">
+                    <col width="20%"/>
+                    <col width="20%"/>
+                    <col width="60%"/>
+                    <thead>
+                        <tr>
+                            <td>Verb</td>
+                            <td>URI</td>
+                            <td>Description</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>&GET;</td>
+                            <td>/networks</td>
+                            <td>Returns a list of networks with their
+                                provider networks attributes.</td>
+                        </tr>
+                    </tbody>
+                </informaltable>
+            </para>
+            <para>Normal Response Code: 200 OK</para>
+            <para>Error Response Codes: 401 Unauthorized</para>
+            <para>This operation returns, for each network, its
+                provider network attributes as well as all the
+                attributes normally returned by the list networks
+                operation. Provider networks
+                attribute are returned only if the user is authorized
+                to view them.</para>
+            <example>
+                <title>List Networks with provider attributes: JSON
+                    Response</title>
+                <programlisting language="json"><xi:include href="samples/networks-get-res-prov.json" parse="text"/></programlisting>
+            </example>
+            <example>
+                <title>List Networks with provider attributes: XML
+                    Response</title>
+                <programlisting language="json"><xi:include href="samples/networks-get-res-prov.xml" parse="text"/></programlisting>
+            </example>
+        </section>
+        <section xml:id="provider_network_show">
+            <title>Show Network</title>
+            <para>
+                <informaltable rules="all" width="100%">
+                    <col width="10%"/>
+                    <col width="30%"/>
+                    <col width="60%"/>
+                    <thead>
+                        <tr>
+                            <td>Verb</td>
+                            <td>URI</td>
+                            <td>Description</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>&GET;</td>
+                            <td>/networks/<parameter>network_id</parameter></td>
+                            <td>Returns details about a specific
+                                network, including provider networks
+                                attributes.</td>
+                        </tr>
+                    </tbody>
+                </informaltable>
+            </para>
+            <para>Normal Response Code: 200 OK</para>
+            <para>Error Response Code: 401 Unauthorized, 404 Not
+                Found</para>
+            <para>When the provider networks extension is enabled, and
+                the user submitting the request is authorized to see
+                provider networks mapping, this operation returns, for
+                the network specified in the request URI, its provider
+                network attributes, as well as all the attributes
+                normally retuned by the show networks
+                operation.</para>
+            <example>
+                <title>Show network with provider attributes: JSON
+                    Response</title>
+                <programlisting language="json"><xi:include href="samples/networks-show-res-prov.json" parse="text"/></programlisting>
+            </example>
+            <example>
+                <title>Show network with provider attributes: XML
+                    Response</title>
+                <programlisting language="json"><xi:include href="samples/networks-show-res-prov.xml" parse="text"/></programlisting>
+            </example>
+        </section>
+        <section xml:id="provider_network_create">
+            <title>Create Network</title>
+            <para>
+                <informaltable rules="all" width="100%">
+                    <col width="20%"/>
+                    <col width="20%"/>
+                    <col width="60%"/>
+                    <thead>
+                        <tr>
+                            <td>Verb</td>
+                            <td>URI</td>
+                            <td>Description</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>&POST;</td>
+                            <td>/networks</td>
+                            <td>Creates a new network and explicitly
+                                specify attributes with the underlying
+                                infrastructure using the provider
+                                network extension attributes.</td>
+                        </tr>
+                    </tbody>
+                </informaltable>
+            </para>
+            <para>Normal Response Code: 200 OK</para>
+            <para>Error Response Code: 400 Bad Request, 401
+                Unauthorized, 403 Forbidden</para>
+            <para>When the provider networks extension is enabled, and
+                the user submitting the request is authorized to set
+                provider networks mapping, this operation allows for
+                specifying how a new network should be mapped on the
+                underlying network infrastructure.</para>
+            <para>If the user submitting the request is not allowed to
+                set provider networks attributes, a 403 Forbidden
+                response will be returned.</para>
+            <para>As stated earlier in this chapter, the semantics of
+                the various provider networks attribute vary with the
+                particular plug-in employed. The following example
+                shows how to create a network mapped to a specific
+                vlan tag (the example refers to an OpenStack
+                Networking deployment which uses the Open vSwitch
+                plug-in).</para>
+            <example>
+                <title>Create Network with provider attributes: JSON
+                    Request</title>
+                <programlisting language="json"><xi:include href="samples/networks-post-req-prov.json" parse="text"/></programlisting>
+            </example>
+            <example>
+                <title>Create Network with provider attributes: XML
+                    Request</title>
+                <programlisting language="json"><xi:include href="samples/networks-post-req-prov.xml" parse="text"/></programlisting>
+            </example>
+        </section>
+        <section xml:id="provider_network_update">
+            <title>Update Network</title>
+            <informaltable rules="all" width="100%">
+                <col width="10%"/>
+                <col width="30%"/>
+                <col width="60%"/>
+                <thead>
+                    <tr>
+                        <td>Verb</td>
+                        <td>URI</td>
+                        <td>Description</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>&PUT;</td>
+                        <td>/networks/<parameter>network_id</parameter></td>
+                        <td>Updates a network, including its mapping
+                            with the underlying infrastructure using
+                            the provider network extension
+                            attributes.</td>
+                    </tr>
+                </tbody>
+            </informaltable>
+            <para>Normal Response Code: 200 OK</para>
+            <para>Error Response Code: 400 Bad Request, 401
+                Unauthorized, 404 Not Found, 403 Forbidden</para>
+            <para>When the provider networks extension is enabled, and
+                the user submitting the request is authorized to see
+                provider networks mapping, this operation allows for
+                specifying how an existing network should be mapped on
+                the underlying network infrastructure.</para>
+            <para>If the user submitting the request is not allowed to
+                set provider networks attributes, a 403 Forbidden
+                response will be returned.</para>
+            <para>As stated earlier in this chapter, the semantics of
+                the various provider networks attribute vary with the
+                particular plug-in employed. The following example
+                shows how to update a network in order to map it to a
+                flat network (such as, no vlan tag); the example
+                refers to an OpenStack Networking deployment that uses
+                the Open vSwitch plug-in.</para>
+            <example>
+                <title>Update provider attributes for a network: JSON
+                    Request</title>
+                <programlisting language="json"><xi:include href="samples/networks-put-req-prov.json" parse="text"/></programlisting>
+            </example>
+            <example>
+                <title>Update provider attributes for a network: XML
+                    Request</title>
+                <programlisting language="json"><xi:include href="samples/networks-put-req-prov.xml" parse="text"/></programlisting>
+            </example>
+        </section>
+    </section>
+</section>

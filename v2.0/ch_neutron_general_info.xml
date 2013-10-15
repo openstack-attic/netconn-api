@@ -1,0 +1,448 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE chapter[
+<!-- Some useful entities borrowed from HTML -->
+<!ENTITY ndash  "&#x2013;">
+<!ENTITY mdash  "&#x2014;">
+<!ENTITY hellip "&#x2026;">
+<!ENTITY plusmn "&#xB1;">
+<!-- Useful for describing APIs -->
+<!ENTITY GET    '<command xmlns="http://docbook.org/ns/docbook">GET</command>'>
+<!ENTITY PUT    '<command xmlns="http://docbook.org/ns/docbook">PUT</command>'>
+<!ENTITY POST   '<command xmlns="http://docbook.org/ns/docbook">POST</command>'>
+<!ENTITY DELETE '<command xmlns="http://docbook.org/ns/docbook">DELETE</command>'>
+<!ENTITY CHECK  '<inlinemediaobject xmlns="http://docbook.org/ns/docbook">
+ <imageobject>
+  <imagedata fileref="figures/Check_mark_23x20_02.svg"
+     format="SVG" scale="60"/>
+</imageobject>
+      </inlinemediaobject>'>
+<!ENTITY ARROW  '<inlinemediaobject xmlns="http://docbook.org/ns/docbook">
+ <imageobject>
+  <imagedata fileref="figures/Arrow_east.svg"
+     format="SVG" scale="60"/>
+</imageobject>
+      </inlinemediaobject>'>
+ <!ENTITY APIv2   'Networking API v2.0'>
+]>
+<chapter xmlns="http://docbook.org/ns/docbook"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:xi="http://www.w3.org/2001/XInclude"
+    xmlns:svg="http://www.w3.org/2000/svg"
+    xmlns:m="http://www.w3.org/1998/Math/MathML"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns:xsdxt="http://docs.rackspacecloud.com/xsd-ext/v1.0"
+    xmlns:db="http://docbook.org/ns/docbook" version="5.0"
+    xml:id="General_API_Information-d1e436">
+    <?dbhtml stop-chunking?>
+    <title>General API Information</title>
+    <para>The &APIv2; is a ReSTful HTTP service that uses all aspects
+        of the HTTP protocol including methods, URIs, media types,
+        response codes, and so on. Providers can use existing features
+        of the protocol including caching, persistent connections, and
+        content compression. For example, providers who employ a
+        caching layer can respond with a <errorcode>203</errorcode>
+        code instead of a <errorcode>200</errorcode> code when a
+        request is served from the cache. Additionally, providers can
+        offer support for conditional &GET; requests by using ETags,
+        or they may send a redirect in response to a &GET; request.
+        Create clients so that these differences are accounted
+        for.</para>
+    <section xml:id="Authentication-d1e444">
+        <title>Authentication and Authorization</title>
+        <para>The &APIv2; uses the <link
+                xlink:href="https://openstack.keystone.org">Keystone
+                Identity Service</link> as the default authentication
+            service. When Keystone is enabled, users that submit
+            requests to the OpenStack Networking service must provide
+            an authentication token in <emphasis role="bold"
+                >X-Auth-Token</emphasis> request header. You obtain
+            the token by authenticating to the Keystone endpoint. For
+            more information about Keystone, see the <link
+                xlink:href="http://docs.openstack.org/api/openstack-identity-service/2.0/content/"
+                    ><citetitle>OpenStack Identity Service API v2.0
+                    Reference</citetitle></link>.</para>
+        <para>When Keystone is enabled, the
+                <literal>tenant_id</literal> attribute is not required
+            in create requests because the tenant ID is derived from
+            the authentication token.</para>
+        <para>The default authorization settings allow only
+            administrative users to create resources on behalf of a
+            different tenant.</para>
+        <para>OpenStack Networking uses information received from
+            Keystone to authorize user requests. OpenStack Networking
+            handles the following types of authorization policies: <itemizedlist>
+                <listitem>
+                    <para><emphasis role="bold">Operation-based
+                            policies</emphasis> specify access
+                        criteria for specific operations, possibly
+                        with fine-grained control over specific
+                        attributes.</para>
+                </listitem>
+                <listitem>
+                    <para><emphasis role="bold">Resource-based
+                            policies</emphasis> access a specific
+                        resource. Permissions might or might not be
+                        granted depending on the permissions
+                        configured for the resource. Currently
+                        available for only the network
+                        resource.</para>
+                </listitem>
+            </itemizedlist></para>
+        <para>The actual authorization policies enforced in OpenStack
+            Networking might vary from deployment to
+            deployment.</para>
+    </section>
+    <?hard-pagebreak?>
+    <section xml:id="Request_Response_Types">
+        <title>Request/Response Types</title>
+        <para>The &APIv2; supports the JSON data serialization
+            format.</para>
+        <para>The format for both the request and the response can be
+            specified by using the <code>Content-Type</code> header,
+            the <code>Accept</code> header or adding the
+                <code>.json</code> extension to the request
+            URI.</para>
+        <example>
+            <title>JSON Request with Headers</title>
+            <literallayout class="monospaced">POST /v1.0/tenants/tenantX/networks HTTP/1.1
+Host 127.0.0.1:9696
+Content-Type application/json
+Accept application/json
+Content-Length 57</literallayout>
+            <programlisting language="json"><xi:include href="samples/networks-post-req.json" parse="text"/></programlisting>
+        </example>
+        <example>
+            <title>JSON Response with Headers</title>
+            <literallayout class="monospaced">HTTP/1.1 201 Created
+Content-Type application/json
+Content-Length 204</literallayout>
+            <programlisting language="json"><xi:include href="samples/networks-post-res.json" parse="text"/></programlisting>
+        </example>
+    </section>
+    <section xml:id="filtering">
+        <title>Filtering and Column Selection</title>
+        <para>The &APIv2; supports filtering based on all top level
+            attributes of a resource. Filters are applicable to all
+            list requests.</para>
+        <para>For example, the following request returns all networks
+            named <literal>foobar</literal>:</para>
+        <programlisting language="bash" role="gutter: false">GET /v2.0/networks?name=foobar</programlisting>
+        <para>When you specify multiple filters, the &APIv2; returns
+            only objects that meet all filtering criteria. The
+            operation applies an AND condition among the
+            filters.</para>
+        <note>
+            <para>OpenStack Networking does not offer an OR mechanism
+                for filters.</para>
+        </note>
+        <para>Alternatively, you can issue a distinct request for each
+            filter and build a response set from the received
+            responses on the client-side.</para>
+        <para>By default, OpenStack Networking returns all attributes
+            for any show or list call. The &APIv2; has a mechanism to
+            limit the set of attributes returned. For example, return
+                <literal>id</literal>.</para>
+        <para>You can use the <literal>fields</literal> query
+            parameter to control the attributes returned from the
+            &APIv2;.</para>
+        <para>For example, the following request returns only
+                <literal>id</literal> and <literal>name</literal> for
+            each network:</para>
+        <programlisting language="bash" role="gutter: false">GET /v2.0/networks.json?fields=id&amp;fields=name</programlisting>
+    </section>
+    <section xml:id="Async_behaviour">
+        <title>Synchronous versus Asynchronous Plug-in
+            Behavior</title>
+        <para>The &APIv2; presents a logical model of network
+            connectivity consisting of networks, ports, and subnets.
+            It is up to the OpenStack Networking plug-in to
+            communicate with the underlying infrastructure to ensure
+            packet forwarding is consistent with the logical model. A
+            plug-in might perform these operations
+            asynchronously.</para>
+        <para>When an API client modifies the logical model by issuing
+            an HTTP &POST;, &PUT;, or &DELETE; request, the API call
+            might return before the plug-in modifies underlying
+            virtual and physical switching devices. However, an API
+            client is guaranteed that all subsequent API calls
+            properly reflect the changed logical model.</para>
+        <para>For example, if a client issues an HTTP &PUT; request to
+            set the attachment for a port, there is no guarantee that
+            packets sent by the interface named in the attachment are
+            forwarded immediately when the HTTP call returns. However,
+            it is guaranteed that a subsequent HTTP &GET; request to
+            view the attachment on that port returns the new
+            attachment value.</para>
+        <para>You can use the <literal>status</literal> attribute with
+            the network and port resources to determine whether the
+            OpenStack Networking plug-in has successfully completed
+            the configuration of the resource.</para>
+    </section>
+    <section xml:id="bulk_create_operations">
+        <title>Bulk Create Operations</title>
+        <para>The &APIv2; enables you to create several objects of the
+            same type in the same API request. Bulk create operations
+            use exactly the same API syntax as single create
+            operations except that you specify a list of objects
+            rather than a single object in the request body.</para>
+        <para>Bulk operations are always performed atomically, meaning
+            that either all or none of the objects in the request body
+            are created. If a particular plug-in does not support
+            atomic operations, the &APIv2; emulates the atomic
+            behavior so that users can expect the same behavior
+            regardless of the particular plug-in running in the
+            background.</para>
+        <para>OpenStack Networking might be deployed without support
+            for bulk operations and when the client attempts a bulk
+            create operation, a <errorcode>400</errorcode>
+            <errortext>Bad Request</errortext> error is
+            returned.</para>
+       <!-- <para>For information about how to submit bulk requests to the
+            &APIv2; see <xref linkend="bulk_create_networks"/>, <xref
+                linkend="bulK_create_subnets"/>, and <xref
+                linkend="bulk_create_ports"/>.</para> -->
+    </section>
+    <section xml:id="pagination">
+        <title>Pagination</title>
+        <para>To reduce load on the service, list operations will
+            return a maximum number of items at a time. To navigate
+            the collection, the parameters limit, marker and
+            page_reverse can be set in the URI. For example:</para>
+        <programlisting language="bash">?limit=100&amp;marker=1234&amp;page_reverse=False</programlisting>
+        <para>The <parameter>marker</parameter> parameter is the ID of
+            the last item in the previous list. The
+                <parameter>limit</parameter> parameter sets the page
+            size. The <parameter>page_reverse</parameter> parameter
+            sets the page direction. These parameters are optional. If
+            the client requests a limit beyond the maximum limit
+            configured by the deployment, the server returns the
+            maximum limit number of items.</para>
+        <para>For convenience, list responses contain atom "next"
+            links and "previous" links. The last page in the list
+            requested with 'page_reverse=False' will not contain
+            "next" link, and the last page in the list requested with
+            'page_reverse=True' will not contain "previous" link. The
+            following examples illustrate two pages with three items.
+            The first page was retrieved through:</para>
+        <programlisting language="bash">&GET; http://127.0.0.1:9696/v2.0/networks.json?limit=2</programlisting>
+        <para>Pagination is an optional feature of OpenStack
+            Networking API, and it might be disabled. If pagination is
+            disabled, the pagination parameters will be ignored and
+            return all the items.</para>
+        <para>If a particular plug-in does not support pagination
+            operations, and pagination is enabled, the &APIv2; will
+            emulate the pagination behavior so that users can expect
+            the same behavior regardless of the particular plug-in
+            running in the background.</para>
+        <para>Unfortunately OpenStack Networking does not expose any
+            mechanism to tell user if pagination is supported by
+            particular plug-in or enabled.</para>
+        <example>
+            <title>Network Collection, First Page: JSON
+                Request</title>
+
+            <literallayout class="monospaced">GET /v2.0/networks.json?limit=2 HTTP/1.1
+Host: 127.0.0.1:9696
+Content-Type: application/json
+Accept: application/json</literallayout>
+        </example>
+        <example>
+            <title>Network Collection, First Page: JSON
+                Response</title>
+            <programlisting language="json"><xi:include href="samples/networks-get-first-page-res.json" parse="text"/></programlisting>
+        </example>
+        <example>
+            <title>Network Collection, First Page: XML Request</title>
+            <literallayout class="monospaced">
+GET /v2.0/networks.xml?limit=2 HTTP/1.1
+Host: 127.0.0.1:9696
+Content-Type: application/xml
+Accept: application/xml
+                 </literallayout>
+        </example>
+        <example>
+            <title>Network Collection, First Page: XML
+                Response</title>
+            <programlisting language="xml"><xi:include href="samples/networks-get-first-page-res.xml" parse="text"/></programlisting>
+        </example>
+        <para>The last page won't show the "next" links</para>
+        <example>
+            <title>Network Collection, Last Page: JSON Request</title>
+            <literallayout class="monospaced">
+GET /v2.0/networks.json?limit=2&amp;marker=71c1e68c-171a-4aa2-aca5-50ea153a3718 HTTP/1.1
+Host: 127.0.0.1:9696
+Content-Type: application/json
+Accept: application/json
+                 </literallayout>
+        </example>
+        <example>
+            <title>Network Collection, Last Page: JSON
+                Response</title>
+            <programlisting language="json"><xi:include href="samples/networks-get-last-page-res.json" parse="text"/></programlisting>
+        </example>
+        <example>
+            <title>Network Collection, Last Page: XML Request</title>
+            <literallayout class="monospaced">
+GET /v2.0/networks.xml?limit=2&amp;marker=71c1e68c-171a-4aa2-aca5-50ea153a3718 HTTP/1.1
+Host: 127.0.0.1:9696
+Content-Type: application/xml
+Accept: application/xml
+                 </literallayout>
+        </example>
+        <example>
+            <title>Network Collection, Last Page: XML Response</title>
+            <programlisting language="json"><xi:include href="samples/networks-get-last-page-res.xml" parse="text"/></programlisting>
+        </example>
+    </section>
+    <section xml:id="Sorting">
+        <title>Sorting</title>
+        <para>The results of list operations can be ordered using the
+            'sort_key' and 'sort_dir' parameters. Currently sorting
+            doesn't work with extended attributes of resource. The
+            'sort_key' and 'sort_dir' can be repeated, and the number
+            of 'sort_key' and 'sort_dir' provided must be same. The
+            sort_dir parameter indicates in which direction to sort.
+            Acceptable values are 'asc' (ascending) and 'desc'
+            (descending).</para>
+        <para>Sorting is optional feature of OpenStack Networking API,
+            and it might be disabled. If sorting is disabled, the
+            sorting parameters will be ignored.</para>
+        <para>If a particular plug-in does not support sorting
+            operations, and sorting is enabled, the &APIv2; will
+            emulate the sorting behavior so that users can expect the
+            same behavior regardless of the particular plug-in running
+            in the background.</para>
+        <para>Unfortunately OpenStack Networking does provide a
+            mechanism to tell users if specific plug-ins support or
+            have enabled sorting.</para>
+    </section>
+    <section xml:id="extensions">
+        <title>Extensions</title>
+        <para>The &APIv2; is extensible.</para>
+        <para>The purpose of &APIv2; extensions is to:</para>
+        <itemizedlist>
+            <listitem>
+                <para>Introduce new features in the API without
+                    requiring a version change.</para>
+            </listitem>
+            <listitem>
+                <para>Introduce vendor-specific niche
+                    functionality.</para>
+            </listitem>
+            <listitem>
+                <para>Act as a proving ground for experimental
+                    functionalities that might be included in a future
+                    version of the API.</para>
+            </listitem>
+        </itemizedlist>
+        <para>To programmatically determine which extensions are
+            available, issue a &GET; request on the
+                <command>v2.0/extensions</command> URI.</para>
+        <para>To query extensions individually by unique alias, issue
+            a &GET; request on the
+                    <command>/v2.0/extensions/<replaceable>alias_name</replaceable></command>
+            URI. Use this method to easily determine if an extension
+            is available. If the extension is not available, a
+                <errorcode>404</errorcode>
+            <errortext>Not Found</errortext> response is
+            returned.</para>
+        <para>You can extend existing core API resources with new
+            actions or extra attributes. Also, you can add new
+            resources as extensions. Extensions usually have tags that
+            prevent conflicts with other extensions that define
+            attributes or resources with the same names, and with core
+            resources and attributes. Because an extension might not
+            be supported by all plug-ins, the availability of an
+            extension varies with deployments and the specific plug-in
+            in use.</para>
+        <para>For more information regarding specific extensions, see
+                <xref linkend="API_extensions"/></para>
+    </section>
+    <?hard-pagebreak?>
+    <section xml:id="faults">
+        <title>Faults</title>
+        <para>The &APIv2; returns an error response if a failure
+            occurs while processing a request. OpenStack Networking
+            uses only standard HTTP error codes.
+                4<varname>xx</varname> errors indicate problems in the
+            particular request being sent from the client.</para>
+        <informaltable rules="all">
+            <col width="10%"/>
+            <col width="20%"/>
+            <col width="70%"/>
+            <thead>
+                <tr>
+                    <th>Error</th>
+                    <th colspan="2">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td rowspan="6">400</td>
+                    <td rowspan="6">Bad Request</td>
+                    <td>Malformed request URI or body</td>
+                </tr>
+                <tr>
+                    <td>Requested admin state invalid</td>
+                </tr>
+                <tr>
+                    <td>Invalid values entered</td>
+                </tr>
+                <tr>
+                    <td>Bulk operations disallowed</td>
+                </tr>
+                <tr>
+                    <td>Validation failed</td>
+                </tr>
+                <tr>
+                    <td>Method not allowed for request body (such as
+                        trying to update attributes that can be
+                        specified at create-time only)</td>
+                </tr>
+                <tr>
+                    <td rowspan="2">404</td>
+                    <td rowspan="2">Not Found</td>
+                    <td>Non existent URI</td>
+                </tr>
+                <tr>
+                    <td>Resource not found</td>
+                </tr>
+                <tr>
+                    <td rowspan="3">409</td>
+                    <td rowspan="3">Conflict</td>
+                    <td>Port configured on network</td>
+                </tr>
+                <tr>
+                    <td>IP allocated on subnet</td>
+                </tr>
+                <tr>
+                    <td>Conflicting IP allocation pools for
+                        subnet</td>
+                </tr>
+                <tr>
+                    <td>500</td>
+                    <td>Internal server error</td>
+                    <td>Internal OpenStack Networking error</td>
+                </tr>
+                <tr>
+                    <td>503</td>
+                    <td>Service unavailable</td>
+                    <td>Failure in Mac address generation</td>
+                </tr>
+            </tbody>
+        </informaltable>
+        <para>Users submitting requests to the &APIv2; might also
+            receive the following errors:</para>
+        <itemizedlist>
+            <listitem>
+                <para><errorcode>401</errorcode> Unauthorized - If
+                    invalid credentials are provided.</para>
+            </listitem>
+            <listitem>
+                <para><errorcode>403</errorcode> Forbidden - If the
+                    user cannot access a specific resource or perform
+                    the requested operation.</para>
+            </listitem>
+        </itemizedlist>
+    </section>
+</chapter>
