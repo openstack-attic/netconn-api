@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE chapter[
+<!-- Some useful entities borrowed from HTML -->
+<!ENTITY ndash  "&#x2013;">
+<!ENTITY mdash  "&#x2014;">
+<!ENTITY hellip "&#x2026;">
+<!ENTITY plusmn "&#xB1;">
+<!-- Useful for describing APIs -->
+<!ENTITY GET    '<command xmlns="http://docbook.org/ns/docbook">GET</command>'>
+<!ENTITY PUT    '<command xmlns="http://docbook.org/ns/docbook">PUT</command>'>
+<!ENTITY POST   '<command xmlns="http://docbook.org/ns/docbook">POST</command>'>
+<!ENTITY DELETE '<command xmlns="http://docbook.org/ns/docbook">DELETE</command>'>
+<!ENTITY CHECK  '<inlinemediaobject xmlns="http://docbook.org/ns/docbook">
+ <imageobject>
+  <imagedata fileref="figures/Check_mark_23x20_02.svg"
+     format="SVG" scale="60"/>
+</imageobject>
+      </inlinemediaobject>'>
+<!ENTITY ARROW  '<inlinemediaobject xmlns="http://docbook.org/ns/docbook">
+ <imageobject>
+  <imagedata fileref="figures/Arrow_east.svg"
+     format="SVG" scale="60"/>
+</imageobject>
+      </inlinemediaobject>'>
+ <!ENTITY APIv2   'Networking API v2.0'>
+]>
+<chapter xmlns="http://docbook.org/ns/docbook"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:xi="http://www.w3.org/2001/XInclude"
+    xmlns:svg="http://www.w3.org/2000/svg"
+    xmlns:m="http://www.w3.org/1998/Math/MathML"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns:xsdxt="http://docs.rackspacecloud.com/xsd-ext/v1.0"
+    xmlns:db="http://docbook.org/ns/docbook" version="5.0"
+    xml:id="Overview-d1e71">
+    <?dbhtml stop-chunking?>
+    <title>Overview</title>
+    <para>The Neutron project provides virtual networking services
+        among devices that are managed by the <link
+            xlink:href="http://wiki.openstack.org/OpenStack"
+            >OpenStack</link> compute service.</para>
+    <para>The &APIv2; combines the <link
+            xlink:href="http://docs.openstack.org/api/openstack-network/1.0/content/"
+            >Quantum API v1.1</link> with some essential Internet
+        Protocol Address Management (IPAM) capabilities from the <link
+            xlink:href="http://melange.readthedocs.org/en/latest/apidoc.html"
+            >Melange API</link>. </para>
+    <para>These IPAM capabilities enable you to:</para>
+    <itemizedlist>
+        <listitem>
+            <para>Associate IP address blocks and other network
+                configuration settings required by a network device,
+                such as a default gateway and dns-servers settings,
+                with an OpenStack Networking network.</para>
+        </listitem>
+        <listitem>
+            <para>Allocate an IP address from a block and associate it
+                with a device that is attached to the network through
+                an OpenStack Networking port.</para>
+        </listitem>
+    </itemizedlist>
+    <para>To do this, the &APIv2; introduces the subnet entity. A
+        subnet can represent either an IP version 4 or version 6
+        address block. Each OpenStack Networking network commonly has
+        one or more subnets. When you create a port on the network, an
+        available fixed IP address is allocated to it from one the
+        designated subnets for each IP version. When you delete the
+        port, the allocated addresses return to the pool of available
+        IPs on the subnet. &APIv2; users can choose a specific IP
+        address from the block or let OpenStack Networking choose the
+        first available IP address.</para>
+    <note>
+        <para>The Quantum API v1.<varname>x</varname> was removed from
+            the source code tree. To use the Quantum API
+                v1.<varname>x</varname>, install the Quantum Essex
+            release.</para>
+    </note>
+    <?hard-pagebreak?>
+    <section xml:id="Glossary">
+        <title>Glossary</title>
+        <informaltable rules="all">
+            <thead>
+                <tr>
+                    <td align="left">Term</td>
+                    <td colspan="4" align="left">Description</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">CRUD</td>
+                    <td colspan="4">Create, read, update, and delete
+                        (CRUD) are the basic functions of persistent
+                        storage in computer programming.</td>
+                </tr>
+                <tr>
+                    <td align="left">entity</td>
+                    <td colspan="4">Any piece of hardware or software
+                        that can connect to the network services
+                        provided by OpenStack Networking. An entity
+                        can use OpenStack Networking services by
+                        implementing a VIF.</td>
+                </tr>
+                <tr>
+                    <td align="left">IPAM</td>
+                    <td colspan="4">Internet Protocol Address
+                        Management (IPAM) is a means of planning,
+                        tracking, and managing the Internet Protocol
+                        (IP) address space that is used in a
+                        network.</td>
+                </tr>
+                <tr>
+                    <!-- <td align="left" bgcolor="#4F91BD"> -->
+                    <td align="left">layer-2 network</td>
+                    <!-- <td colspan="4" bgcolor="#4F91BD"> -->
+                    <td colspan="4">A virtual Ethernet network that is
+                        managed by the OpenStack Networking service.
+                        Currently, OpenStack Networking manages only
+                        Ethernet networks. </td>
+                </tr>
+                <tr>
+                    <td align="left">network</td>
+                    <td colspan="4">An isolated virtual layer-2
+                        broadcast domain that is typically reserved
+                        for the tenant who created it unless the
+                        network is configured to be shared. Tenants
+                        can create multiple networks until they reach
+                        the thresholds specified by per-tenant
+                        quotas.</td>
+                </tr>
+                <tr>
+                    <!-- <td align="left" bgcolor="#4F91BD"> -->
+                    <td align="left">plug-in</td>
+                    <!-- <td colspan="4" bgcolor="#4F91BD"> -->
+                    <td colspan="4">A software component that
+                        implements &APIv2;.</td>
+                </tr>
+                <tr>
+                    <td align="left">port</td>
+                    <td colspan="4">A virtual switch port on a logical
+                        network switch. Virtual instances attach their
+                        interfaces into ports. The logical port also
+                        defines the MAC address and the IP addresses
+                        to be assigned to the interfaces plugged into
+                        them. When IP addresses are associated to a
+                        port, this also implies the port is associated
+                        with a subnet, as the IP address was taken
+                        from the allocation pool for a specific
+                        subnet. </td>
+                </tr>
+                <tr>
+                    <td align="left">subnet</td>
+                    <td colspan="4">An IP address block that can be
+                        used to assign IP addresses to virtual
+                        instances. Each subnet must have a CIDR and
+                        must be associated with a network. IPs can be
+                        either selected from the whole subnet CIDR or
+                        from allocation pools that can be specified by
+                        the user.</td>
+                </tr>
+                <tr>
+                    <td align="left">VM</td>
+                    <td colspan="4">A virtual machine (VM) is a
+                        completely isolated guest operating system
+                        installation within a normal host operating
+                        system.</td>
+                </tr>
+            </tbody>
+        </informaltable>
+    </section>
+    <?hard-pagebreak?>
+    <xi:include href="section_neutron_concepts.xml"/>
+    <section xml:id="Theory">
+        <title>High-Level Task Flow</title>
+        <para>The high-level task flow for OpenStack Networking
+            involves creating a network, associating a subnet with
+            that network, and booting a VM that is attached to the
+            network. Clean-up includes deleting the VM, deleting any
+            ports associated with the network, and deleting the
+            networks. OpenStack Networking deletes any subnets
+            associated with the deleted network.</para>
+        <procedure>
+            <title>To use OpenStack Networking - high-level task
+                flow</title>
+            <step>
+                <title>Create a network</title>
+                <para>The tenant creates a network.</para>
+                <para>For example, the tenant creates the
+                        <literal>net1</literal> network. Its ID is
+                        <emphasis role="italic"
+                    >net1_id</emphasis>.</para>
+                <!--  <para>See <xref linkend="Create_Network"/>.</para> -->
+            </step>
+            <step>
+                <title>Associate a subnet with the network</title>
+                <para>The tenant associates a subnet with that
+                    network.</para>
+                <para>For example, the tenant associates the
+                        <literal>10.0.0.0/24</literal> subnet with the
+                        <literal>net1</literal> network.</para>
+                <!-- <para>See <xref linkend="create_subnet"/>.</para> -->
+            </step>
+            <step>
+                <title>Boot a VM and attach it to the network</title>
+                <para>The tenant boots a virtual machine (VM) and
+                    specifies a single NIC that connects to the
+                    network.</para>
+                <para>The following examples use the nova client to
+                    boot a VM.</para>
+                <para>In the first example, Nova contacts OpenStack
+                    Networking to create the NIC and attach it to the
+                        <literal>net1</literal> network, with the ID
+                        <emphasis role="italic"
+                    >net1_id</emphasis>:</para>
+                <screen><prompt>$</prompt> <userinput>nova boot &lt;server_name&gt; --image &lt;image&gt; --flavor &lt;flavor&gt; --nic net-id=&lt;net1_id&gt;</userinput></screen>
+                <para>In a second example, you first create the
+                        <literal>port1</literal>, port and then you
+                    boot the VM with a specified port. OpenStack
+                    Networking creates a NIC and attaches it to the
+                        <literal>port1</literal> port, with the ID
+                        <emphasis role="italic"
+                    >port1_id</emphasis>:</para>
+                <screen><prompt>$</prompt> <userinput>nova boot &lt;server_name&gt; --image &lt;image&gt; --flavor &lt;flavor&gt; --nic port-id=&lt;port1_id&gt;</userinput></screen>
+                <para>OpenStack Networking chooses and assigns an IP
+                    address to the <literal>port1</literal>
+                    port.</para>
+                <para>For more information about the <command>nova
+                        boot</command> command, enter:</para>
+                <screen><prompt>$</prompt> <userinput>nova help boot</userinput></screen>
+            </step>
+            <step>
+                <title>Delete the VM</title>
+                <para>The tenant deletes the VM.</para>
+                <para>Nova contacts OpenStack Networking and deletes
+                    the <literal>port1</literal> port.</para>
+                <para>The allocated IP address is returned to the pool
+                    of available IP addresses.</para>
+            </step>
+            <step>
+                <title>Delete any ports</title>
+                <para>If the tenant created any ports and associated
+                    them with the network, the tenant deletes the
+                    ports.</para>
+                <!--  <para>See <xref linkend="Delete_Port"/>.</para>-->
+            </step>
+            <step>
+                <title>Delete the network</title>
+                <para>The tenant deletes the network. This operation
+                    deletes an OpenStack Networking network and its
+                    associated subnets provided that no port is
+                    currently configured on the network.</para>
+            </step>
+        </procedure>
+    </section>
+    <?hard-pagebreak?>
+    <section xml:id="plugin">
+        <title>Plug-ins</title>
+        <para>Virtual networking services are implemented through a
+            plug-in. A plug-in can use different techniques and
+            technologies to provide isolated virtual networks to
+            tenants. A plug-in also provides other services, such as
+            IP address management. Because each plug-in implements all
+            the operations included in &APIv2;, do not be concerned
+            about which plug-in is used.</para>
+        <para>However, some plug-ins might expose additional
+            capabilities through API extensions, which this document
+            discusses. For more information about the extensions
+            exposed by a particular plug-in, see the plug-in
+            documentation.</para>
+    </section>
+</chapter>
