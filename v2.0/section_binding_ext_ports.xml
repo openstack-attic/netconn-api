@@ -182,8 +182,8 @@
             access.</para>
         <para>This operation does not require a request body.</para>
         <para>This operation returns a response body.</para>
-        <para>In addition to any other fields returned in <xref
-                linkend="List_Ports"/> response, the following
+        <para>In addition to any other fields returned in the list
+            port response, the following
                 <parameter>binding</parameter>-prefixed fields are
             visible to administrative users:</para>
         <informaltable rules="all">
@@ -268,9 +268,9 @@
             specified in the request URI. </para>
         <para>This operation does not require a request body.</para>
         <para>This operation returns a response body.</para>
-        <para>In addition to any fields returned in the <xref
-                linkend="Show_port"/> response, the following
-                <parameter>binding</parameter>-prefixed extended
+        <para>In addition to any fields returned in the show port
+            response, the following
+            <parameter>binding</parameter>-prefixed extended
             attributes are visible to administrative users:</para>
         <informaltable rules="all">
             <thead>
@@ -360,11 +360,10 @@
             request body.</para>
         <para>This operation requires a request body.</para>
         <para>This operation returns a response body.</para>
-        <para>In addition to any attributes that can be set in a <xref
-                linkend="Create_Port"/> operation, administrative
-            users can also set the following
-                <parameter>binding</parameter>-prefixed extended
-            attributes:</para>
+        <para>In addition to any attributes that can be set in a
+            create port operation, administrative users can also set
+            the following <parameter>binding</parameter>-prefixed
+            extended attributes:</para>
         <informaltable rules="all">
             <thead>
                 <tr>
@@ -430,10 +429,10 @@
             port.</para>
         <para>This operation requires a request body.</para>
         <para>This operation returns a response body.</para>
-        <para>In addition to any attributes that can be updated in
-                <xref linkend="Update_Port"/> operation,
-            administrative users can also update the following
-                <parameter>binding</parameter>-prefixed extended
+        <para>In addition to any attributes that can be updated in the
+            update port operation, administrative users can also
+            update the following
+            <parameter>binding</parameter>-prefixed extended
             attributes:</para>
         <informaltable rules="all">
             <thead>
