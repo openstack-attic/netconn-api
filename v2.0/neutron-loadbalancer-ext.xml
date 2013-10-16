@@ -349,23 +349,26 @@
                     <td>
                         composite
                         <footnote xml:id="lbaas_vip_session_persistence_note">
-                            <para>
-                                Session persistence is a dictionary with the following attributes:
-                                <itemizedlist>
+                            <para> Session persistence is a dictionary with the following
+                                attributes: <itemizedlist>
                                     <listitem>
-                                        <para><emphasis role="bold">type</emphasis> -
-                                            any of <constant>APP_COOKIE</constant>,
-                                            <constant>HTTP_COOKIE</constant> or <constant>SOURCE_IP</constant></para>
+                                        <para><emphasis role="bold">type</emphasis> - any of
+                                                <constant>APP_COOKIE</constant>,
+                                                <constant>HTTP_COOKIE</constant> or
+                                                <constant>SOURCE_IP</constant></para>
                                     </listitem>
                                     <listitem>
-                                        <para><emphasis role="bold">cookie_name</emphasis> -
-                                            any string, required if type is <constant>APP_COOKIE</constant></para>
+                                        <para><emphasis role="bold">cookie_name</emphasis> - any
+                                            string, required if type is
+                                                <constant>APP_COOKIE</constant></para>
                                     </listitem>
-                                </itemizedlist>
-                            </para>
+                                </itemizedlist></para>
                         </footnote>
                     </td>
-                    <td>Session persistence parameters of the vip</td>
+                    <td>Session persistence parameters of the vip. If session persistence is not
+                        set, then a session persistence mechanism is not used and  the attribute
+                        does not exist in the API response. Clear the session persistence by sending
+                        "null" as the session_persistence attribute when updating VIP.</td>
                 </tr>
                 <tr>
                     <td>connection_limit</td>
