@@ -31,7 +31,7 @@
     xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:html="http://www.w3.org/1999/xhtml"
     xmlns:db="http://docbook.org/ns/docbook" version="5.0" status="final"
     xml:id="extra-dhcp-opt-ext">
-    <title>The Extra DHCP Options Extension (extra-dhcp-opt)</title>
+    <title>The Extra DHCP Options Extension <literal>(extra-dhcp-opt)</literal></title>
     <para>The Neutron DHCP options extension allows adding DHCP options that are associated to a
         Neutron Port. They are tagged such that they can be associated from the hosts file to
         designate a specific network interface and port. The DHCP tag scheme used to associate

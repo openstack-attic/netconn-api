@@ -35,7 +35,7 @@
     xmlns:html="http://www.w3.org/1999/xhtml"
     xmlns:db="http://docbook.org/ns/docbook" version="5.0"
     status="final" xml:id="quotas_ext">
-    <title>Quotas</title>
+    <title>The quota extension <literal>(quotas)</literal></title>
     <para>The <db:filename>neutron.conf</db:filename> configuration file defines default quota
         values that are applied identically to all tenants. This extension enables an admin user to
         define quotas values on a per-tenant basis. For example, an admin user can permit tenant A

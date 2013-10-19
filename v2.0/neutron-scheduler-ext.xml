@@ -34,7 +34,7 @@
     xmlns:html="http://www.w3.org/1999/xhtml"
     xmlns:db="http://docbook.org/ns/docbook" version="5.0"
     status="final" xml:id="agent_sche_ext">
-      <title>The Agent Schedulers Extension</title>
+      <title>Agent Schedulers</title>
       <para>The agent schedulers extension schedules resources among agents on top of
       the agent management extension.
       In Grizzly, it can schedule networks among DHCP agents and routers among L3 agents.</para>
@@ -116,7 +116,7 @@
             </itemizedlist>
             <?hard-pagebreak?>
         <section xml:id="Scheduler_DHCP_Agent">
-            <title>DHCP Agent Scheduler</title>
+            <title>DHCP Agent Scheduler <literal>(dhcp_agent_scheduler)</literal></title>
             <section xml:id="Sche_List_Networks_on_Dhcp_Agent">
                 <title>List Networks hosted by one DHCP agent</title>
                 <informaltable rules="all" width="100%">
@@ -318,7 +318,7 @@ X-Auth-Token: 7ae91cde8f504031be5a2cd5b99d4fe9
             </section>
         <?hard-pagebreak?>
         <section xml:id="Scheduler_L3_Agent">
-            <title>L3 Agent Scheduler</title>
+            <title>L3 Agent Scheduler <literal>(l3_agent_scheduler)</literal></title>
             <section xml:id="Sche_List_Routers_on_L3_Agent">
                 <title>List Routers hosted by one L3 agent</title>
                 <informaltable rules="all" width="100%">

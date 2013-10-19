@@ -35,7 +35,7 @@
     xmlns:html="http://www.w3.org/1999/xhtml"
     xmlns:db="http://docbook.org/ns/docbook" version="5.0"
     status="final" xml:id="agent_ext">
-      <title>The Agent Management Extension</title>
+      <title>The Agent Management Extension <literal>(agent)</literal></title>
       <para>In a typical OpenStack Networking deployment, some agents run on network or compute
         nodes, such as <literal>neutron-dhcp-agent</literal>, <literal>neutron-ovs-agent</literal>,
         and <literal>neutron-l3-agent</literal>. This extension provides a way for
