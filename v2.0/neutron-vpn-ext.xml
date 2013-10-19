@@ -35,7 +35,7 @@
     xmlns:db="http://docbook.org/ns/docbook" version="5.0"
     status="final" xml:id="vpnaas_ext">
 
-    <title>The Virtual Private Network as a Service (VPNaaS) Extension</title>
+    <title>The virtual private network as a service extension (<literal>vpnaas</literal>)</title>
     <para>The VPNaaS extension provides OpenStack tenants
         with the ability to extend private networks across the public
         telecommunication infrastructure.

@@ -34,7 +34,7 @@
     xmlns:html="http://www.w3.org/1999/xhtml"
     xmlns:db="http://docbook.org/ns/docbook" version="5.0"
     status="final" xml:id="extraroute-ext">
-    <title>The ExtraRoute Extension</title>
+    <title>Extraroute extension (<literal>extraroute</literal>)</title>
     <para>You can set up route configuration on the Router using this
         extension. This extension augments the 'Router' resource by
         adding a new 'routes' attribute. </para>

@@ -35,7 +35,7 @@
     xmlns:db="http://docbook.org/ns/docbook" version="5.0"
     status="final" xml:id="fwaas_ext">
 
-    <title>Firewall as a Service (FWaaS) Extension</title>
+    <title>Firewall as a service extension (<literal>fwaas</literal>)</title>
     <para>The FWaaS extension provides OpenStack users
         with the ability to deploy firewalls to protect
         their networks.

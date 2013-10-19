@@ -30,7 +30,7 @@
 <section xml:id="router_ext" xmlns="http://docbook.org/ns/docbook"
     xmlns:xi="http://www.w3.org/2001/XInclude"
     xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
-    <title>Layer-3 Networking Extension (<literal>router</literal>)</title>
+    <title>Layer-3 networking extension (<literal>router</literal>)</title>
     <para>The Layer-3 networking extension enables OpenStack Networking API users
         to route packets between subnets, forward packets from
         internal networks to external ones, and access instances from

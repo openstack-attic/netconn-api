@@ -35,7 +35,7 @@
     xmlns:html="http://www.w3.org/1999/xhtml"
     xmlns:db="http://docbook.org/ns/docbook" version="5.0"
     status="final" xml:id="agent_sche_ext">
-  <title>Agent Schedulers</title>
+  <title>Agent schedulers</title>
   <para>The agent scheduler extensions schedule resources among agents on top of
       the agent management extension.
   </para>
@@ -54,7 +54,7 @@
     The Load Balancer Agent Scheduler extension is added in Havana.
   </para>
   <section xml:id="Scheduler_DHCP_Agent">
-    <title>DHCP Agent Scheduler (<literal>dhcp_agent_scheduler</literal>)</title>
+    <title>DHCP agent scheduler (<literal>dhcp_agent_scheduler</literal>)</title>
     <para>The DHCP Agent Scheduler extension allows administrators to assign DHCP servers
     for Neutron networks to given Neutron DHCP agents, and retrieve mappings between Neutron
     networks and DHCP agents.
@@ -288,7 +288,7 @@ X-Auth-Token: 7ae91cde8f504031be5a2cd5b99d4fe9
             </section>
             </section>
         <section xml:id="Scheduler_L3_Agent">
-    <title>L3 Agent Scheduler (<literal>l3_agent_scheduler</literal>)</title>
+    <title>L3 agent scheduler (<literal>l3_agent_scheduler</literal>)</title>
     <para>The L3 Agent Scheduler extension allows administrators to assign Neutron routers
     to Neutron L3 agents, and retrieve mappings between Neutron routers and L3 agents.
     This feature is implemented on top of Agent Management extension.

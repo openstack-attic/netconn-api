@@ -35,7 +35,7 @@
     xmlns:db="http://docbook.org/ns/docbook" version="5.0"
     status="final" xml:id="lbaas_ext">
 
-    <title>The Load Balancer as a Service (LBaaS) Extension</title>
+    <title>Load balancer as a service extension (<literal>lbaas</literal>)</title>
     <para>The LBaaS extension provides OpenStack tenants
         with a feature of balancing traffic to their VMs.
 
