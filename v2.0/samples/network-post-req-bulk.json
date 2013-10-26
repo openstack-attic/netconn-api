@@ -1,0 +1,12 @@
+{
+    "networks": [
+        {
+            "admin_state_up": true,
+            "name": "sample_network_1"
+        },
+        {
+            "admin_state_up": false,
+            "name": "sample_network_2"
+        }
+    ]
+}

@@ -1,0 +1,22 @@
+{
+    "networks": [
+        {
+            "admin_state_up": true,
+            "id": "e6031bc2-901a-4c66-82da-f4c32ed89406",
+            "name": "sample_network_1",
+            "shared": false,
+            "status": "ACTIVE",
+            "subnets": [],
+            "tenant_id": "d19231fc08ec4bc4829b668040d34512"
+        },
+        {
+            "admin_state_up": false,
+            "id": "64239a54-dcc4-4b39-920b-b37c2144effa",
+            "name": "sample_network_2",
+            "shared": false,
+            "status": "ACTIVE",
+            "subnets": [],
+            "tenant_id": "d19231fc08ec4bc4829b668040d34512"
+        }
+    ]
+}

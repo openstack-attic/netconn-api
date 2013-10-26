@@ -1579,20 +1579,16 @@ Accept: application/json</literallayout>
                     <example>
                         <title>Bulk Create Networks: JSON Request </title>
                         <literallayout class="monospaced">POST v2.0/networks.json
-
 Content-Type: application/json
 Accept: application/json</literallayout>
-                        <programlisting language="json">{
-"networks": [
-   {
-     "name": "sample_network_1",
-     "admin_state_up": false
-   },
-   {
-     "name": "sample_network_2",
-     "admin_state_up": false
-   }]
-}</programlisting>
+                        <programlisting language="json"><xi:include href="samples/network-post-req-bulk.json" parse="text"/></programlisting>
+                    </example>
+                    <example>
+                        <title>Bulk Create Networks: JSON Response </title>
+                        <literallayout class="monospaced">HTTP/1.1 201 OK
+Content-Type: application/json; charset=UTF-8
+</literallayout>
+                        <programlisting language="json"><xi:include href="samples/network-post-res-bulk.json" parse="text"/></programlisting>
                     </example>
                     <para>The bulk create operation is always atomic.
                         Either all or no networks in the request body
@@ -1707,7 +1703,6 @@ content-type: application/json
 } </programlisting>
                 </example>
             </section>
-            <?hard-pagebreak?>
             <section xml:id="Delete_Network">
                 <title>Delete Network</title>
                 <informaltable rules="all" width="100%">
@@ -1853,12 +1848,11 @@ Accept: application/json</literallayout>
                 <example>
                     <title>List Subnets: JSON Request </title>
                     <literallayout class="monospaced">GET v2.0/subnets.json
-
 Accept: application/json</literallayout>
                 </example>
                 <example>
                     <title>List Subnets: JSON Response</title>
-                    <programlisting language="json"><xi:include href="samples/subnets_get_resp.json" parse="text"/>                    </programlisting>
+                    <programlisting language="json"><xi:include href="samples/subnets-get-res.json" parse="text"/></programlisting>
                 </example>
             </section>
             <?hard-pagebreak?>
@@ -2018,29 +2012,14 @@ Accept: application/json</literallayout>
                         <literallayout class="monospaced">POST /v2.0/subnets
 Content-Type: application/json
 Accept: application/json</literallayout>
-                        <programlisting language="json">{
-   "subnet":{
-      "allocation_pools":[
-         {
-            "end":"10.0.3.254",
-            "start":"10.0.3.2"
-         }
-      ],
-      "cidr":"10.0.3.0/24",
-      "dns_nameservers":[
-
-      ],
-      "enable_dhcp":true,
-      "gateway_ip":"10.0.3.1",
-      "host_routes":[
-
-      ],
-      "ip_version":4,
-      "name":"",
-      "network_id":"1a6f6006-9e0b-4f99-984c-96787ae66363",
-      "tenant_id":"f667b69e4d6749749ef3bcba7251d9ce"
-   }
-}</programlisting>
+                        <programlisting language="json"><xi:include href="samples/subnet-post-req-bulk.json" parse="text"/></programlisting>
+                    </example>
+                    <example>
+                        <title>Bulk Create Subnets: JSON Response </title>
+                        <literallayout class="monospaced">HTTP/1.1 201 OK
+Content-Type: application/json; charset=UTF-8
+</literallayout>
+                        <programlisting language="json"><xi:include href="samples/subnet-post-res-bulk.json" parse="text"/></programlisting>
                     </example>
                     <para>The bulk create operation is always atomic.
                         Either all subnets or no subnets in the
@@ -2494,10 +2473,20 @@ accept: application/json</literallayout>
                     <para>This operation enables you to create several
                         ports in a single request. Specify a list of
                         ports in the request body.</para>
-                    <!-- <example>
-                        <title>Bulk Create Port: JSON Request</title>
-                        <programlisting>xx</programlisting>
-                    </example> -->
+                    <example>
+                        <title>Bulk Create Ports: JSON Request </title>
+                        <literallayout class="monospaced">POST /v2.0/ports
+Content-Type: application/json
+Accept: application/json</literallayout>
+                        <programlisting language="json"><xi:include href="samples/port-post-req-bulk.json" parse="text"/></programlisting>
+                    </example>
+                    <example>
+                        <title>Bulk Create Ports: JSON Response </title>
+                        <literallayout class="monospaced">HTTP/1.1 201 OK
+Content-Type: application/json; charset=UTF-8
+</literallayout>
+                        <programlisting language="json"><xi:include href="samples/port-post-res-bulk.json" parse="text"/></programlisting>
+                    </example>
                     <para>The &APIv2; always guarantees the atomic
                         completion of the bulk operation.</para>
                 </section>
