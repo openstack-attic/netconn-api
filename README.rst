@@ -31,16 +31,16 @@ Building
 ========
 To build::
 
-    cd netconn-api
+    cd v2.0
     mvn clean generate-sources
 
 The generated PDF documentation file is::
 
-    netconn-api/target/docbkx/webhelp/api/openstack-network/2.0/neutron-api-guide-2.0.pdf
+    v2.0/target/docbkx/webhelp/openstack-network/openstack-network.pdf
 
 The root of the generated HTML documentation is::
 
-    netconn-api/target/docbkx/webhelp/api/openstack-network/2.0/index.html
+    v2.0/target/docbkx/webhelp/openstack-network/index.html
 
 Installing
 ==========
