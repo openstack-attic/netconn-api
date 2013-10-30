@@ -1,0 +1,9 @@
+Verified+2: Jenkins
+Approved+1: Andreas Jaeger <jaegerandi@gmail.com>
+Code-Review+2: Andreas Jaeger <jaegerandi@gmail.com>
+Code-Review+1: Maty Grosz <maty.grosz@alcatel-lucent.com>
+Submitted-by: Jenkins
+Submitted-at: Wed, 30 Oct 2013 20:21:19 +0000
+Reviewed-on: https://review.openstack.org/52959
+Project: openstack/netconn-api
+Branch: refs/heads/master
