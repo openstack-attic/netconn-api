@@ -75,12 +75,12 @@
             </listitem>
             <listitem>
                 <para><emphasis role="bold">member</emphasis>, a representation
-                    of the application running on backend server.
+                    of the application running on back end server.
                 </para>
             </listitem>
             <listitem>
                 <para><emphasis role="bold">health_monitor</emphasis>, which is used
-                    to determine whether or not back-end members of the pool
+                    to determine whether or not back end members of the pool
                     are usable for processing traffic.
                 </para>
             </listitem>
@@ -110,32 +110,32 @@
         </para>
 
         <para>
-        A pool <emphasis role="bold">member</emphasis> represents the application running on the backend server.
+        A pool <emphasis role="bold">member</emphasis> represents the application running on the back end server.
         </para>
 
         <para>
             A
             <emphasis role="bold">Health Monitor</emphasis>
-            is used to determine whether or not back-end members of the VIP's
+            is used to determine whether or not back end members of the VIP's
             pool are usable for processing a request. A pool can have several
             health monitors associated with it. There are different types of
-            health monitors supported by the LBaaS extension:
+            health monitors supported by the LBaaS extension:</para>
             <itemizedlist>
                 <listitem>
-                    <para><emphasis>PING</emphasis>: used to ping the members using ICMP.</para>
+                    <para><emphasis>PING</emphasis>: pings the members by using ICMP.</para>
                 </listitem>
                 <listitem>
-                    <para><emphasis>TCP</emphasis>: used to connect to the members using TCP.</para>
+                    <para><emphasis>TCP</emphasis>: connects to the members by using TCP.</para>
                 </listitem>
                 <listitem>
-                    <para><emphasis>HTTP</emphasis>: used to send an HTTP request to the member.</para>
+                    <para><emphasis>HTTP</emphasis>: sends an HTTP request to the member.</para>
                 </listitem>
                 <listitem>
-                    <para><emphasis>HTTPS</emphasis>: used to send a secure HTTP request to the member.</para>
+                    <para><emphasis>HTTPS</emphasis>: sends a secure HTTP request to the member.</para>
                 </listitem>
             </itemizedlist>
 
-            When a pool has several monitors associated with it, each member of
+            <para>When a pool has several monitors associated with it, each member of
             the pool is monitored by all these monitors. If any monitor
             declares the member as unhealthy, then the member status is changed
             to <emphasis>inactive</emphasis> and the member won't participate in its pool's load
@@ -147,35 +147,32 @@
             Session persistence is a feature of the load balancing service. It
             attempts to force connections or requests in the same session to be
             processed by the same member as long as it is active. The
-            LBaaS extension supports three types of persistence:
+            LBaaS extension supports three types of persistence:</para>
 
             <itemizedlist>
                 <listitem>
                     <para><emphasis>SOURCE_IP</emphasis>: With this persistence
                         mode, all connections originating from the same source
-                        IP address will be handled by the same member of the
+                        IP address are handled by the same member of the
                         pool.
                     </para>
                 </listitem>
                 <listitem>
                     <para><emphasis>HTTP_COOKIE</emphasis>: With this
-                        persistence mode, the load balancing function will
-                        create a cookie on the first request from a client.
+                        persistence mode, the load balancing function creates a cookie on the first request from a client.
                         Subsequent requests containing the same cookie value
                         will be handled by the same member of the pool.
                     </para>
                 </listitem>
                 <listitem>
                     <para><emphasis>APP_COOKIE</emphasis>: With this
-                        persistence mode, the load balancing function will rely
-                        on a cookie established by the backend application. All
-                        requests carrying the same cookie value will be handled
+                        persistence mode, the load balancing function relies
+                        on a cookie established by the back end application. All
+                        requests carrying the same cookie value is handled
                         by the same member of the pool.
                     </para>
                 </listitem>
             </itemizedlist>
-        </para>
-
     </section>
 
     <?hard-pagebreak?>
@@ -185,17 +182,17 @@
 
         <para>
             The high-level task flow for using LBaaS API to configure load
-            balancing is as follows:
+            balancing is as follows:</para>
 
             <orderedlist>
                 <listitem>
-                    <para>The tenant creates a Pool, which is initially empty</para>
+                    <para>The tenant creates a pool, which is initially empty</para>
                 </listitem>
                 <listitem>
-                    <para>The tenant creates one or several Members in the Pool</para>
+                    <para>The tenant creates one or several members in the pool</para>
                 </listitem>
                 <listitem>
-                    <para>The tenant create one or several Health Monitors</para>
+                    <para>The tenant create one or several health monitors</para>
                 </listitem>
                 <listitem>
                     <para>The tenant associates the Health Monitors with the Pool</para>
@@ -204,7 +201,6 @@
                     <para>The tenant finally creates a VIP associated with the Pool</para>
                 </listitem>
             </orderedlist>
-        </para>
 
     </section>
 

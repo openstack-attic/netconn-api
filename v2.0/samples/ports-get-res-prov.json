@@ -23,6 +23,6 @@
     "provider:network_type": "local",
     "provider:physical_network": null,
     "provider:segmentation_id": null
-  }
+  },
  ]
 }

@@ -63,8 +63,8 @@
                         the physical network on top of which this network object is being
                         implemented. The OpenStack Networking API does not expose any facility for retrieving the
                         list of available physical networks. As an example, in the Open vSwitch
-                        plugin this is a symbolic name which is then mapped to specific bridges on
-                        each compute host through the Open vSwitch plugin configuration file.</para>
+                        plug-in this is a symbolic name which is then mapped to specific bridges on
+                        each compute host through the Open vSwitch plug-in configuration file.</para>
                 </listitem>
                 <listitem>
                     <para><emphasis role="italic"> provider:segmentation_id</emphasis> - Identifies
@@ -78,11 +78,11 @@
                 </listitem>
             </itemizedlist>
         </para>
-        <para>The actual semantics of these attributes depend on the technology backend of the
-            particular plugin. See the plugin document or the
-            <citetitle>OpenStack Networking Administration Guide</citetitle> to understand which values should be specific for
-            each of these attributes when OpenStack Networking is deployed with a particular plugin. The examples
-            shown in this chapter refer to the Open vSwitch plugin.</para>
+        <para>The actual semantics of these attributes depend on the technology back end of the
+            particular plug-in. See the plug-in documentation and the
+            <citetitle>OpenStack Cloud Administrator Guide</citetitle> to understand which values should be specific for
+            each of these attributes when OpenStack Networking is deployed with a particular plug-in. The examples
+            shown in this chapter refer to the Open vSwitch plug-in.</para>
         <para>It is also worth noting that the default policy settings allow only users with
             administrative rights to specify these parameters in requests, and to see their values
             in responses. By default, the provider network extension attributes are completely
@@ -208,9 +208,9 @@
             <para>If the user submitting the request is not allowed to set provider networks
                 attributes, a 403 Forbidden response will be returned.</para>
             <para>As stated earlier in this chapter, the semantics of the various provider networks
-                attribute vary with the particular plugin employed. The following example shows how
+                attribute vary with the particular plug-in employed. The following example shows how
                 to create a network mapped to a specific vlan tag (the example refers to an OpenStack Networking
-                deployment which uses the Open vSwitch plugin).</para>
+                deployment which uses the Open vSwitch plug-in).</para>
             <example>
                 <title>Create Network with provider attributes: JSON Request</title>
                 <programlisting language="json"><xi:include href="samples/networks-post-req-prov.json" parse="text"/></programlisting>
@@ -254,9 +254,9 @@
             <para>If the user submitting the request is not allowed to set provider networks
                 attributes, a 403 Forbidden response will be returned.</para>
             <para>As stated earlier in this chapter, the semantics of the various provider networks
-                attribute vary with the particular plugin employed. The following example shows how
-                to update a network in order to map it to a flat network (ie: no vlan tag); the
-                example refers to an OpenStack Networking deployment which uses the Open vSwitch plugin.</para>
+                attribute vary with the particular plug-in employed. The following example shows how
+                to update a network in order to map it to a flat network (such as, no vlan tag); the
+                example refers to an OpenStack Networking deployment that uses the Open vSwitch plug-in.</para>
             <example>
                 <title>Update provider attributes for a network: JSON Request</title>
                 <programlisting language="json"><xi:include href="samples/networks-put-req-prov.json" parse="text"/></programlisting>
