@@ -361,7 +361,7 @@ Accept: application/json
                     <tr>
                         <td>&GET;
                         </td>
-                        <td>/vpn/services/<parameter>service-id</parameter></td>
+                        <td>/vpn/vpnservices/<parameter>service-id</parameter></td>
                         <td>Returns details about a specific VPN service.</td>
                     </tr>
                 </tbody>
@@ -407,7 +407,7 @@ Accept: application/json
                 <tbody>
                     <tr>
                         <td>&POST;</td>
-                        <td>/vpn/vpnservice</td>
+                        <td>/vpn/vpnservices</td>
                         <td>Creates a new VPN service.</td>
                     </tr>
                 </tbody>
@@ -455,7 +455,7 @@ Content-Type: application/json; charset=UTF-8
                 <tbody>
                     <tr>
                         <td>&PUT;</td>
-                        <td>/vpn/vpnservice/<parameter>service-id</parameter></td>
+                        <td>/vpn/vpnservices/<parameter>service-id</parameter></td>
                         <td>Updates a VPN service, provided status is not
                             indicating a PENDING_* state.</td>
                     </tr>
@@ -501,7 +501,7 @@ Content-Type: application/json; charset=UTF-8
                 <tbody>
                     <tr>
                         <td>&DELETE;</td>
-                        <td>/vpn/vpnservice/<parameter>service-id</parameter></td>
+                        <td>/vpn/vpnservices/<parameter>service-id</parameter></td>
                         <td>Removes a VPN service.</td>
                     </tr>
                 </tbody>
@@ -1602,7 +1602,7 @@ Content-Type: application/json; charset=UTF-8
                     <tr>
                         <td>&GET;
                         </td>
-                        <td>/vpn/ipsec-site-connection/<parameter>connection-id</parameter></td>
+                        <td>/vpn/ipsec-site-connections/<parameter>connection-id</parameter></td>
                         <td>Returns details about a specific IPSec site-to-site connection.</td>
                     </tr>
                 </tbody>
