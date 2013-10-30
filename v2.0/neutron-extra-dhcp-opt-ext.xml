@@ -36,16 +36,16 @@
         Neutron Port. They are tagged such that they can be associated from the hosts file to
         designate a specific network interface and port. The DHCP tag scheme used to associate
         options to the host files is the port_id (UUID - in the form of 8-4-4-4-12 for a total of 36
-        characters), these associate options to a to Neutron Ports and its network. The Dynamic Host
+        characters), these associate options to a Neutron Port and its network. The Dynamic Host
         Configuration Protocol (DHCP) provides a framework for passing configuration information to
         hosts on a TCP/IP network. Configuration parameters and other information are carried in
         tagged data items that are stored in the 'options' field of the DHCP message.</para>
-    <para>You can specify a DHCP options when defining or updating a Port by specifing the
+    <para>You can specify a DHCP options when defining or updating a Port by specifying the
         extra_dhcp_opts tag and providing its options as name value pairs e.g.
         opt_name='bootfile-name', opt_value='pxelinux.0'. </para>
     <section xml:id="extra_dhcp_opt-concepts">
         <title>Concepts</title>
-        <para>The extra-dhp-opt extension is an attribute extension which adds the following set of
+        <para>The extra-dhcp-opt extension is an attribute extension which adds the following set of
             attributes to the <emphasis role="bold">port</emphasis> resource:</para>
         <para>
             <itemizedlist>
@@ -66,7 +66,7 @@
         </para>
         <para>The actual semantics of extra-dhcp-opt attributes depend on the name of the dhcp
             option being used that defines the vendor extension to DHCP. For example reference RFC:
-            http://tools.ietf.org/html/rfc2132, contains specfic detail on BOOTP Vendor Extensions. </para>
+            http://tools.ietf.org/html/rfc2132, contains specific detail on BOOTP Vendor Extensions. </para>
         <para> </para>
     </section>
     <section xml:id="extra-dhcp-opt-ext-port-ops">
@@ -75,7 +75,6 @@
             extension attributes for port objects.</para>
         <section xml:id="extra-dhcp-opts-ext-list">
             <title>List Ports</title>
-           
                     <informaltable rules="all" width="100%">
                         <col width="20%"/>
                         <col width="20%"/>
