@@ -96,7 +96,7 @@ format="SVG" scale="60"/>
                         <td>
                             <para>Related documents</para>
                         </td>
-                        <td><link xlink:href="docs.openstack.org"
+                        <td><link xlink:href="http://docs.openstack.org"
                                 >OpenStack Manuals</link></td>
                     </tr>
                     <tr>
