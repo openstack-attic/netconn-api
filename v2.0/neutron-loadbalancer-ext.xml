@@ -1131,7 +1131,7 @@ Content-Length: 0
                 <tr>
                     <td>weight</td>
                     <td>Integer</td>
-                    <td>Yes</td>
+                    <td>No</td>
                     <td>CRU</td>
                     <td>1</td>
                     <td>[0..256]</td>
