@@ -1,0 +1,14 @@
+{
+    "network": {
+        "admin_state_up": true,
+        "id": "8d05a1b1-297a-46ca-8974-17debf51ca3c",
+        "name": "ext_net",
+        "router:external": true,
+        "shared": false,
+        "status": "ACTIVE",
+        "subnets": [
+            "2f1fb918-9b0e-4bf9-9a50-6cebbb4db2c5"
+        ],
+        "tenant_id": "5eb8995cf717462c9df8d1edfa498010"
+    }
+}

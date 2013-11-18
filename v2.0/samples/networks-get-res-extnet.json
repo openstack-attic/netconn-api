@@ -1,0 +1,28 @@
+{
+    "networks": [
+        {
+            "admin_state_up": true,
+            "id": "0f38d5ad-10a6-428f-a5fc-825cfe0f1970",
+            "name": "net1",
+            "router:external": false,
+            "shared": false,
+            "status": "ACTIVE",
+            "subnets": [
+                "25778974-48a8-46e7-8998-9dc8c70d2f06"
+            ],
+            "tenant_id": "b575417a6c444a6eb5cc3a58eb4f714a"
+        },
+        {
+            "admin_state_up": true,
+            "id": "8d05a1b1-297a-46ca-8974-17debf51ca3c",
+            "name": "ext_net",
+            "router:external": true,
+            "shared": false,
+            "status": "ACTIVE",
+            "subnets": [
+                "2f1fb918-9b0e-4bf9-9a50-6cebbb4db2c5"
+            ],
+            "tenant_id": "5eb8995cf717462c9df8d1edfa498010"
+        }
+    ]
+}
