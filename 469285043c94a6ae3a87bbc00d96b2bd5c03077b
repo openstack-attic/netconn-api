@@ -1,0 +1,10 @@
+Verified+2: Jenkins
+Code-Review+2: Edgar Magana <emagana@plumgrid.com>
+Approved+1: Emilien Macchi <emilien.macchi@enovance.com>
+Code-Review+2: Emilien Macchi <emilien.macchi@enovance.com>
+Code-Review+1: Lana Brindley <openstack@lanabrindley.com>
+Submitted-by: Jenkins
+Submitted-at: Tue, 19 Nov 2013 14:42:55 +0000
+Reviewed-on: https://review.openstack.org/56609
+Project: openstack/netconn-api
+Branch: refs/heads/master
