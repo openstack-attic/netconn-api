@@ -1397,7 +1397,7 @@ Accept: application/xml
                     <tr>
                         <td>&GET;</td>
                         <td>/networks</td>
-                        <td>Lists networks that he tenant who submits
+                        <td>Lists networks that the tenant who submits
                             the request can access.</td>
                     </tr>
                     <tr>
@@ -1442,7 +1442,7 @@ Accept: application/xml
                         <tr>
                             <td>&GET;</td>
                             <td>/networks</td>
-                            <td>Lists networks that he tenant who
+                            <td>Lists networks that the tenant who
                                 submits the request can access.</td>
                         </tr>
                     </tbody>
@@ -1452,8 +1452,8 @@ Accept: application/xml
                 </simpara>
                 <simpara>Error Response Codes: Unauthorized
                         (<errorcode>401</errorcode>)</simpara>
-                <para>Lists networks that he tenant who submits the
-                    request can access. The list show the ID for each
+                <para>Lists networks that the tenant who submits the
+                    request can access. The list shows the ID for each
                     network.</para>
                 <para>This operation does not require a request body,
                     unless the OpenStack Networking server is running
