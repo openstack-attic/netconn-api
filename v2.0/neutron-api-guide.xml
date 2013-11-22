@@ -2247,7 +2247,7 @@ Accept: application/json</literallayout>
                         (<errorcode>401</errorcode>)</simpara>
                 <para>This operation lists ports to which the tenant
                     has access. Default policy settings return only
-                    those subnets that are owned by the tenant who
+                    those ports that are owned by the tenant who
                     submits the request, unless the request is
                     submitted by an user with administrative
                     rights.</para>
