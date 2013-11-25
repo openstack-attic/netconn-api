@@ -929,7 +929,7 @@
                         <td>CR</td>
                         <td>N/A</td>
                         <td>No constraint</td>
-                        <td>Owner of network. Only admin users can
+                        <td>Owner of port. Only admin users can
                             specify a tenant_id other than its own.
                         </td>
                     </tr>
