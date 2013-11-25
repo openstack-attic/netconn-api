@@ -1220,7 +1220,7 @@ Accept: application/xml
             <example>
                 <title>Network Collection, Last Page: XML
                     Response</title>
-                <programlisting language="json"><xi:include href="samples/networks-get-last-page-res.xml" parse="text"/></programlisting>
+                <programlisting language="xml"><xi:include href="samples/networks-get-last-page-res.xml" parse="text"/></programlisting>
             </example>
         </section>
         <section xml:id="Sorting">
