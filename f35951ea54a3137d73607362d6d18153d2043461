@@ -1,0 +1,8 @@
+Verified+2: Jenkins
+Approved+1: Tom Fifield <tom@openstack.org>
+Code-Review+2: Tom Fifield <tom@openstack.org>
+Submitted-by: Jenkins
+Submitted-at: Mon, 25 Nov 2013 11:55:32 +0000
+Reviewed-on: https://review.openstack.org/57886
+Project: openstack/netconn-api
+Branch: refs/heads/master
