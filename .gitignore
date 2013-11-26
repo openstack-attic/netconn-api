@@ -1,2 +1,5 @@
 .DS_Store
 target/
+
+# NetBeans user-specific build actions
+nbactions.xml
