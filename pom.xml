@@ -7,6 +7,7 @@
   <artifactId>parent-pom</artifactId>
   <version>1.0.0-SNAPSHOT</version>
   <packaging>pom</packaging>
+  <name>OpenStack Networking API Parent</name>
 
   <modules>
     <module>v1.0</module>
