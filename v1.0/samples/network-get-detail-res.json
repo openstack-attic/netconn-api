@@ -2,7 +2,7 @@
    "network":
        {
            "id": "8bec1293-16bd-4568-ba75-1f58bec0b4c3",
-           "name": "test_network"
+           "name": "test_network",
            "ports":
                [
                 {
@@ -10,7 +10,7 @@
                     "state": "DOWN"
                 },
                 {
-                    "id": b832be00-6553-4f69-af33-acd554e36d08",
+                    "id": "b832be00-6553-4f69-af33-acd554e36d08",
                     "state": "ACTIVE",
                     "attachment":
                         {
