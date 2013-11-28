@@ -2,7 +2,7 @@
  "port":
     {
       "network_id": "3537e809-8bec-4ae4-a5ab-2c6477760195",
-      "allowed_address_pairs": [{"ip_address": "10.3.3.3"}],
+      "allowed_address_pairs": [{"ip_address": "10.3.3.3"}]
     }
 }
 

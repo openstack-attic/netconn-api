@@ -13,6 +13,6 @@ content-type: application/json
      "ip_version": 4,
      "cidr": "10.10.0.0/24", 
      "id": "4156c7a5-e8c4-4aff-a6e1-8f3c7bc83861",
-     "enable_dhcp": false,
+     "enable_dhcp": false
     }
 }
