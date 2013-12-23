@@ -35,17 +35,23 @@
               </inlinemediaobject>'>
  <!ENTITY APIv2   'Networking API v2.0'>
 ]>
-<section xml:id="allowed_address_pair_ext" xmlns="http://docbook.org/ns/docbook" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+<section xml:id="allowed_address_pair_ext"
+    xmlns="http://docbook.org/ns/docbook"
+    xmlns:xi="http://www.w3.org/2001/XInclude"
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
     <title>The Allowed Address Pair Extension</title>
-    <para>The Allowed Address Pair extension extends the port attribute to
-          allow one to specify arbitrary mac_address/ip_address(cidr) pairs
-          that are allowed to pass through a port regardness of the subnet
-          associated with the network. </para>
+    <para>The Allowed Address Pair extension extends the port
+        attribute to allow one to specify arbitrary
+        mac_address/ip_address(cidr) pairs that are allowed to pass
+        through a port regardness of the subnet associated with the
+        network. </para>
     <?hard-pagebreak?>
     <section xml:id="allowed_address_pair_ext_ops">
-        <title>Port API operations with allowed address pair extension</title>
-        <para>This section discusses operations for setting and retrieving the allowed address pair
-            extension attributes for port objects.</para>
+        <title>Port API operations with allowed address pair
+            extension</title>
+        <para>This section discusses operations for setting and
+            retrieving the allowed address pair extension attributes
+            for port objects.</para>
         <section xml:id="allowed_address_pair_ext_port_list">
             <title>List Ports</title>
             <para>
@@ -64,22 +70,25 @@
                         <tr>
                             <td>&GET;</td>
                             <td>/ports</td>
-                            <td>Returns a list of ports with their allowed address pair
-                                attributes.</td>
+                            <td>Returns a list of ports with their
+                                allowed address pair attributes.</td>
                         </tr>
                     </tbody>
                 </informaltable>
             </para>
             <para>Normal Response Code: 200 OK</para>
             <para>Error Response Codes: 401 Unauthorized</para>
-            <para>This operation returns, for each port, its allowed address pair attributes as well as
-                all the attributes normally returned by the list port operation.</para>
+            <para>This operation returns, for each port, its allowed
+                address pair attributes as well as all the attributes
+                normally returned by the list port operation.</para>
             <example>
-                <title>List Ports with allowed address pair attributes: JSON Response</title>
+                <title>List Ports with allowed address pair
+                    attributes: JSON Response</title>
                 <programlisting language="json"><xi:include href="samples/ports-get-res-addr-pairs.json" parse="text"/></programlisting>
             </example>
             <example>
-                <title>List Ports with allowed address pair attributes: XML Response</title>
+                <title>List Ports with allowed address pair
+                    attributes: XML Response</title>
                 <programlisting language="json"><xi:include href="samples/ports-get-res-addr-pairs.xml" parse="text"/></programlisting>
             </example>
         </section>
@@ -101,20 +110,24 @@
                         <tr>
                             <td>&GET;</td>
                             <td>/ports/<parameter>port_id</parameter></td>
-                            <td>Returns details about a specific port, including allowed address
-                                pair attributes.</td>
+                            <td>Returns details about a specific port,
+                                including allowed address pair
+                                attributes.</td>
                         </tr>
                     </tbody>
                 </informaltable>
             </para>
             <para>Normal Response Code: 200 OK</para>
-            <para>Error Response Code: 401 Unauthorized, 404 Not Found</para>
+            <para>Error Response Code: 401 Unauthorized, 404 Not
+                Found</para>
             <example>
-                <title>Show port with allowed address pair atributes: JSON Response</title>
+                <title>Show port with allowed address pair attributes:
+                    JSON Response</title>
                 <programlisting language="json"><xi:include href="samples/ports-show-addr-pair.json" parse="text"/></programlisting>
             </example>
             <example>
-                <title>Show port with allowed address pair attributes: XML Response</title>
+                <title>Show port with allowed address pair attributes:
+                    XML Response</title>
                 <programlisting language="json"><xi:include href="samples/ports-show-addr-pair.xml" parse="text"/></programlisting>
             </example>
         </section>
@@ -136,17 +149,24 @@
                         <tr>
                             <td>&POST;</td>
                             <td>/ports</td>
-                            <td>Creates a new port and explicitly specify the allowed address pair attributes.</td>
+                            <td>Creates a new port and explicitly
+                                specify the allowed address pair
+                                attributes.</td>
                         </tr>
                     </tbody>
                 </informaltable>
             </para>
             <para>Normal Response Code: 200 OK</para>
-            <para>Error Response Code: 400 Bad Request, 401 Unauthorized, 403 Forbidden</para>
-            <para>Bad request is returned if an allowed address pair matches the mac_address and ip_address on port.</para>
-            <para>Note: If the mac_address field is left out of the body of the request the mac_address assigned to the port will be used.</para>
+            <para>Error Response Code: 400 Bad Request, 401
+                Unauthorized, 403 Forbidden</para>
+            <para>Bad request is returned if an allowed address pair
+                matches the mac_address and ip_address on port.</para>
+            <para>Note: If the mac_address field is left out of the
+                body of the request the mac_address assigned to the
+                port will be used.</para>
             <example>
-                <title>Create Port with allowed address pair attributes: JSON Request</title>
+                <title>Create Port with allowed address pair
+                    attributes: JSON Request</title>
                 <programlisting language="json"><xi:include href="samples/ports-post-req-addr-pairs.json" parse="text"/></programlisting>
             </example>
         </section>
@@ -168,16 +188,18 @@
                         <tr>
                             <td>&PUT;</td>
                             <td>/ports/<parameter>port_id</parameter></td>
-                            <td>Updates a port, with new allowed address pair values.</td>
+                            <td>Updates a port, with new allowed
+                                address pair values.</td>
                         </tr>
                     </tbody>
                 </informaltable>
             </para>
             <para>Normal Response Code: 200 OK</para>
-            <para>Error Response Code: 400 Bad Request, 401 Unauthorized, 404 Not Found, 403
-                Forbidden</para>
+            <para>Error Response Code: 400 Bad Request, 401
+                Unauthorized, 404 Not Found, 403 Forbidden</para>
             <example>
-                <title>Update allowed address pair attributes for a port: JSON Request</title>
+                <title>Update allowed address pair attributes for a
+                    port: JSON Request</title>
                 <programlisting language="json"><xi:include href="samples/ports-put-req-addr-pair.json" parse="text"/></programlisting>
             </example>
         </section>

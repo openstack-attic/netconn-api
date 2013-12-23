@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE chapter[
+<!-- Some useful entities borrowed from HTML -->
+<!ENTITY ndash  "&#x2013;">
+<!ENTITY mdash  "&#x2014;">
+<!ENTITY hellip "&#x2026;">
+<!ENTITY plusmn "&#xB1;">
+<!-- Useful for describing APIs -->
+<!ENTITY GET    '<command xmlns="http://docbook.org/ns/docbook">GET</command>'>
+<!ENTITY PUT    '<command xmlns="http://docbook.org/ns/docbook">PUT</command>'>
+<!ENTITY POST   '<command xmlns="http://docbook.org/ns/docbook">POST</command>'>
+<!ENTITY DELETE '<command xmlns="http://docbook.org/ns/docbook">DELETE</command>'>
+<!ENTITY CHECK  '<inlinemediaobject xmlns="http://docbook.org/ns/docbook">
+ <imageobject>
+  <imagedata fileref="figures/Check_mark_23x20_02.svg"
+     format="SVG" scale="60"/>
+</imageobject>
+      </inlinemediaobject>'>
+<!ENTITY ARROW  '<inlinemediaobject xmlns="http://docbook.org/ns/docbook">
+ <imageobject>
+  <imagedata fileref="figures/Arrow_east.svg"
+     format="SVG" scale="60"/>
+</imageobject>
+      </inlinemediaobject>'>
+ <!ENTITY APIv2   'Networking API v2.0'>
+]>
+<chapter xmlns="http://docbook.org/ns/docbook"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:xi="http://www.w3.org/2001/XInclude"
+    xmlns:svg="http://www.w3.org/2000/svg"
+    xmlns:m="http://www.w3.org/1998/Math/MathML"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns:xsdxt="http://docs.rackspacecloud.com/xsd-ext/v1.0"
+    xmlns:db="http://docbook.org/ns/docbook" version="5.0"
+    xml:id="API_extensions">
+    <title>API Extensions</title>
+    <para>The API extensions augment the core API. An API extension
+        extends one or more of the following components of the core
+        API:</para>
+    <itemizedlist>
+        <listitem>
+            <para>Resources. An extension defines new object
+                classes.</para>
+        </listitem>
+        <listitem>
+            <para>Attributes. An extended attribute defines a new
+                attribute on existing resources. Prefixed by the
+                extension name.</para>
+        </listitem>
+        <listitem>
+            <para>Actions. An extended action defines a new operation
+                on an existing resource.</para>
+        </listitem>
+    </itemizedlist>
+    <para>Generic API extensions are not plug-in-specific. For
+        information about plug-in-specific extensions that are shipped
+        with OpenStack Networking, see the extension documentation in
+        the source code tree.</para>
+    <xi:include href="section_neutron_list-extensions.xml"/>
+    <xi:include href="section_neutron-provider-ext.xml"/>
+    <xi:include href="section_neutron_binding_ext_ports.xml"/>
+    <xi:include href="section_neutron-l3-ext.xml"/>
+    <xi:include href="section_neutron-extgwmodes-ext.xml"/>
+    <xi:include href="section_neutron-quotas-ext.xml"/>
+    <xi:include href="section_neutron-security-groups-ext.xml"/>
+    <xi:include href="section_neutron-agent-ext.xml"/>
+    <xi:include href="section_neutron-extraroute-ext.xml"/>
+    <xi:include href="section_neutron-loadbalancer-ext.xml"/>
+    <xi:include href="section_neutron-firewall-ext.xml"/>
+    <xi:include href="section_neutron-scheduler-ext.xml"/>
+    <xi:include href="section_neutron-vpn-ext.xml"/>
+    <xi:include href="section_neutron-allowed-address-pair-ext.xml"/>
+    <xi:include href="section_neutron-extra-dhcp-opt-ext.xml"/>
+</chapter>
