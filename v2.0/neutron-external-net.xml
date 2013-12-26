@@ -56,22 +56,22 @@
             <col width="25%"/>
             <thead>
                 <tr>
-                    <th>Attribute </th>
-                    <th>Type </th>
-                    <th>Required </th>
+                    <th>Attribute</th>
+                    <th>Type</th>
+                    <th>Required</th>
                     <th>CRUD<footnote xml:id="crud_ext_net">
                             <para>
                                 <itemizedlist>
                                    <listitem>
                                    <para><emphasis role="bold"
                                    >C</emphasis>. Use the attribute in
-                                   create operations. </para>
+                                   create operations.</para>
                                    </listitem>
                                    <listitem>
                                    <para><emphasis role="bold"
                                    >R</emphasis>. This attribute is
                                    returned in response to show and
-                                   list operations. </para>
+                                   list operations.</para>
                                    </listitem>
                                    <listitem>
                                    <para><emphasis role="bold"
@@ -81,13 +81,13 @@
                                    <listitem>
                                    <para><emphasis role="bold"
                                    >D</emphasis>. You can delete the
-                                   value of this attribute. </para>
+                                   value of this attribute.</para>
                                    </listitem>
                                 </itemizedlist>
                             </para>
                         </footnote></th>
-                    <th>Default Value </th>
-                    <th>Validation Constraints </th>
+                    <th>Default Value</th>
+                    <th>Validation Constraints</th>
                     <th>Notes</th>
                 </tr>
             </thead>

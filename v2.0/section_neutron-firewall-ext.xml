@@ -420,8 +420,8 @@ Accept: application/json
             </para>
             <simpara>Error Response Codes: Unauthorized (<errorcode>401</errorcode>),
                 Bad Request (<errorcode>400</errorcode>)</simpara>
-            <para>This operation requires a request body. </para>
-            <para>This operation returns a response body. </para>
+            <para>This operation requires a request body.</para>
+            <para>This operation returns a response body.</para>
             <example>
                 <title>Create Firewall Rule: Request</title>
                 <programlisting>
@@ -516,8 +516,8 @@ Content-Type: application/json; charset=UTF-8
                 (<errorcode>409</errorcode>). The Conflict error response is
                 returned when an operation is performed while the firewall
                 is in a PENDING state.</simpara>
-            <para>This operation does not require a request body. </para>
-            <para>This operation does not return a response body. </para>
+            <para>This operation does not require a request body.</para>
+            <para>This operation does not return a response body.</para>
             <example>
                 <title>Delete Firewall Rule: Request</title>
                 <programlisting>
@@ -783,8 +783,8 @@ Accept: application/json
             <para>Normal Response Code: <returnvalue>201</returnvalue>
             </para>
             <simpara>Error Response Codes: Unauthorized (<errorcode>401</errorcode>).</simpara>
-            <para>This operation requires a request body. </para>
-            <para>This operation returns a response body. </para>
+            <para>This operation requires a request body.</para>
+            <para>This operation returns a response body.</para>
             <example>
                 <title>Create Firewall Policy: Request</title>
                 <programlisting>
@@ -878,8 +878,8 @@ Content-Type: application/json; charset=UTF-8
                 Not Found (<errorcode>404</errorcode>), Conflict (<errorcode>409
                 </errorcode>). Conflict error code is returned the firewall policy
                 is in use.</simpara>
-            <para>This operation does not require a request body. </para>
-            <para>This operation does not return a response body. </para>
+            <para>This operation does not require a request body.</para>
+            <para>This operation does not return a response body.</para>
             <example>
                 <title>Delete Firewall Policy: Request</title>
                 <programlisting>
@@ -1252,8 +1252,8 @@ Accept: application/json
             </para>
             <simpara>Error Response Codes: Unauthorized (<errorcode>401</errorcode>),
                 Bad Request (<errorcode>400</errorcode>)</simpara>
-            <para>This operation requires a request body. </para>
-            <para>This operation returns a response body. </para>
+            <para>This operation requires a request body.</para>
+            <para>This operation returns a response body.</para>
             <example>
                 <title>Create Firewall: Request</title>
                 <programlisting>
@@ -1345,8 +1345,8 @@ Content-Type: application/json; charset=UTF-8
             </para>
             <simpara>Error Response Codes: Unauthorized (<errorcode>401</errorcode>),
                 Not Found (<errorcode>404</errorcode>)</simpara>
-            <para>This operation does not require a request body. </para>
-            <para>This operation does not return a response body. </para>
+            <para>This operation does not require a request body.</para>
+            <para>This operation does not return a response body.</para>
             <example>
                 <title>Delete Firewall: Request</title>
                 <programlisting>

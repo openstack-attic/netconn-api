@@ -227,7 +227,7 @@
                 </doc>
             </representation>
         </response>
-      &fault401; &fault404; 
+      &fault401; &fault404;
     </method>
 
     <method name="PUT" id="updateSubnet">

@@ -44,9 +44,9 @@
     <para>This is achieved simply by specifying a boolean attribute,
             <literal>enable_snat</literal>, in the
             <literal>external_gateway_info</literal> attribute of the
-            <literal>router</literal> resource. </para>
+            <literal>router</literal> resource.</para>
     <para>This extension redefines the external_gateway_info attribute
-        as depicted in the following table. </para>
+        as depicted in the following table.</para>
     <table rules="all">
         <caption>external_gateway_info attributes</caption>
         <col width="20%"/>
@@ -57,11 +57,11 @@
         <col width="32%"/>
         <thead>
             <tr>
-                <th>Attribute </th>
-                <th>Type </th>
-                <th>Required </th>
-                <th>Default Value </th>
-                <th>Validation Constraints </th>
+                <th>Attribute</th>
+                <th>Type</th>
+                <th>Required</th>
+                <th>Default Value</th>
+                <th>Validation Constraints</th>
                 <th>Notes</th>
             </tr>
         </thead>
@@ -206,7 +206,7 @@
             SNAT will be enabled for the new network.</para>
         <para>It is important to note that whenever updating a
             router's external gateway information, the
-                <literal>network_id </literal>parameter must be
+                <literal>network_id</literal>parameter must be
             specified always, even if the final goal is just to enable
             or disable SNAT for the router on the same external
             network.</para>

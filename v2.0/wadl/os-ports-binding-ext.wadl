@@ -24,7 +24,7 @@
     xsd/api.xsd
     http://docs.openstack.org/common/api/v1.0
     xsd/api-common.xsd
-    http://wadl.dev.java.net/2009/02 
+    http://wadl.dev.java.net/2009/02
     http://www.w3.org/Submission/wadl/wadl.xsd">
 
     <!--*******************************************************-->
@@ -91,7 +91,7 @@
                 <doc xml:lang="EN">
                     <xsdxt:code href="api_samples/port_create_or_update_resp.xml" />
                 </doc>
-            </representation> 
+            </representation>
         </response>
     </method>
 
@@ -134,7 +134,7 @@
                 <doc xml:lang="EN">
                     <xsdxt:code href="api_samples/port_create_or_update_resp.xml" />
                 </doc>
-            </representation> 
+            </representation>
         </response>
     </method>
 </application>

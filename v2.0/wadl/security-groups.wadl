@@ -100,7 +100,7 @@
         <wadl:doc xml:lang="EN" xmlns="http://docbook.org/ns/docbook"
             title="Create Security Group">
             <para role="shortdesc">Creates an OpenStack Networking
-                security group. </para>
+                security group.</para>
             <para>This operation requires a request body. The request
                 body must include one or both of the following
                 attributes:</para>
@@ -121,7 +121,7 @@
                 <listitem><para><code>protocol</code></para></listitem>
                 <listitem><para><code>remote_group_id</code></para></listitem>
                 <listitem><para><code>remote_ip_prefix</code></para></listitem></itemizedlist>
-            <para>This operation returns a response body. </para>
+            <para>This operation returns a response body.</para>
         </wadl:doc>
         <request>
             <representation mediaType="application/json">
@@ -207,7 +207,7 @@
                 rules, provided that a port is not associated with the
                 security group.</para>
             <para>This operation does not require a request body. This
-                operation does not return a response body. </para>
+                operation does not return a response body.</para>
         </wadl:doc>
         <request>
             <representation mediaType="application/json">
@@ -249,7 +249,7 @@
             <para>The list provides the unique ID for each security
                 group rule.</para>
             <para>This operation does not require a request body. This
-                operation returns a response body. </para>
+                operation returns a response body.</para>
         </wadl:doc>
         <request>
             <representation mediaType="application/json">
@@ -281,8 +281,8 @@
         <wadl:doc xml:lang="EN" xmlns="http://docbook.org/ns/docbook"
             title="Create Security Group Rule">
             <para role="shortdesc">Creates an OpenStack Networking
-                security group rule. </para>
-            <para>This operation requires a request body. </para>
+                security group rule.</para>
+            <para>This operation requires a request body.</para>
             <para>The following table describes the required and
                 optional attributes in the request body:</para>
             <table width="75%" rules="all"><caption>Create Security
@@ -346,7 +346,7 @@
                                 IP prefix as the source IP address of
                                 the IP
                     packet.</para></td></tr></tbody></table>
-            <para>This operation returns a response body. </para>
+            <para>This operation returns a response body.</para>
         </wadl:doc>
         <request>
             <representation mediaType="application/json">
@@ -454,7 +454,7 @@
         <wadl:doc xml:lang="EN" xmlns="http://docbook.org/ns/docbook"
             title="Delete Security Group Rule">
             <para role="shortdesc">Deletes a specified rule from a
-                OpenStack Networking security group. </para>
+                OpenStack Networking security group.</para>
             <para>This operation does not require a request
                 body.</para>
             <para>This operation does not return a response body.

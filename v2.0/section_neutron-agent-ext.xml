@@ -98,14 +98,14 @@
                         <tr>
                             <td>&GET;</td>
                             <td>/agents</td>
-                            <td> List agents which report their status to OpenStack Networking server.</td>
+                            <td>List agents which report their status to OpenStack Networking server.</td>
                         </tr>
                     </tbody>
                 </informaltable>
                 <simpara>Normal Response Code:
                         <returnvalue>200</returnvalue>
                 </simpara>
-                <para>This operation does not require a request body. </para>
+                <para>This operation does not require a request body.</para>
                 <para>This operation returns a response body.
                 The default policy behavior is that non-admin user
                 won't be able to see any agent in the response when this call is invoked</para>
@@ -153,7 +153,7 @@ X-Auth-Token: c52a1b304fec4ca0ac85dc1741eec6e2
                 </simpara>
                 <simpara>Error Response Codes:NotFound
                         (<errorcode>404</errorcode>) if not authorized or the agent does not exist</simpara>
-                <para>This operation returns information for the given agent. </para>
+                <para>This operation returns information for the given agent.</para>
                 <para>This operation does not require a request
                     body.</para>
                 <para>This operation returns a response body. The body contents depend on the agent's type.</para>

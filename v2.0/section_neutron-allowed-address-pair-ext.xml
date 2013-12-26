@@ -44,7 +44,7 @@
         attribute to allow one to specify arbitrary
         mac_address/ip_address(cidr) pairs that are allowed to pass
         through a port regardness of the subnet associated with the
-        network. </para>
+        network.</para>
     <?hard-pagebreak?>
     <section xml:id="allowed_address_pair_ext_ops">
         <title>Port API operations with allowed address pair

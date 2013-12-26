@@ -42,7 +42,7 @@
         tagged data items that are stored in the 'options' field of the DHCP message.</para>
     <para>You can specify a DHCP options when defining or updating a Port by specifying the
         extra_dhcp_opts tag and providing its options as name value pairs e.g.
-        opt_name='bootfile-name', opt_value='pxelinux.0'. </para>
+        opt_name='bootfile-name', opt_value='pxelinux.0'.</para>
     <section xml:id="extra_dhcp_opt-concepts">
         <title>Concepts</title>
         <para>The extra-dhcp-opt extension is an attribute extension which adds the following set of
@@ -60,13 +60,13 @@
                     <para><emphasis role="italic"> extra-dhcp-opt:opt_value</emphasis> - Identifies
                         the value associated with the opt_name. These are handled in opt_name,
                         opt_value pairs only. value_opt can be any text string depending upon the
-                        name. </para>
+                        name.</para>
                 </listitem>
             </itemizedlist>
         </para>
         <para>The actual semantics of extra-dhcp-opt attributes depend on the name of the dhcp
             option being used that defines the vendor extension to DHCP. For example reference RFC:
-            http://tools.ietf.org/html/rfc2132, contains specific detail on BOOTP Vendor Extensions. </para>
+            http://tools.ietf.org/html/rfc2132, contains specific detail on BOOTP Vendor Extensions.</para>
         <para> </para>
     </section>
     <section xml:id="extra-dhcp-opt-ext-port-ops">

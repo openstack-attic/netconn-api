@@ -514,8 +514,8 @@ Accept: application/json
             </para>
             <simpara>Error Response Codes: Unauthorized (<errorcode>401</errorcode>),
                 Bad Request (<errorcode>400</errorcode>)</simpara>
-            <para>This operation requires a request body. </para>
-            <para>This operation returns a response body. </para>
+            <para>This operation requires a request body.</para>
+            <para>This operation returns a response body.</para>
             <example>
                 <title>Create VIP: Request</title>
                 <programlisting>
@@ -608,8 +608,8 @@ Content-Type: application/json; charset=UTF-8
             <simpara>Error Response Codes: Unauthorized (<errorcode>401</errorcode>),
                 Not Found (<errorcode>404</errorcode>), Conflict
                 (<errorcode>409</errorcode>)</simpara>
-            <para>This operation does not require a request body. </para>
-            <para>This operation does not return a response body. </para>
+            <para>This operation does not require a request body.</para>
+            <para>This operation does not return a response body.</para>
             <example>
                 <title>Delete VIP: Request</title>
                 <programlisting>
@@ -920,8 +920,8 @@ Content-Type: application/json; charset=UTF-8
             </para>
             <simpara>Error Response Codes: Unauthorized (<errorcode>401</errorcode>),
                 Bad Request (<errorcode>400</errorcode>)</simpara>
-            <para>This operation requires a request body. </para>
-            <para>This operation returns a response body. </para>
+            <para>This operation requires a request body.</para>
+            <para>This operation returns a response body.</para>
             <example>
                 <title>Create Pool: Request</title>
                 <programlisting>
@@ -1014,8 +1014,8 @@ Content-Type: application/json; charset=UTF-8
             <simpara>Error Response Codes: Unauthorized (<errorcode>401</errorcode>),
                 Not Found (<errorcode>404</errorcode>), Conflict
                 (<errorcode>409</errorcode>)</simpara>
-            <para>This operation does not require a request body. </para>
-            <para>This operation does not return a response body. </para>
+            <para>This operation does not require a request body.</para>
+            <para>This operation does not return a response body.</para>
             <example>
                 <title>Delete Pool: Request</title>
                 <programlisting>
@@ -1290,8 +1290,8 @@ Content-Type: application/json; charset=UTF-8
             </para>
             <simpara>Error Response Codes: Unauthorized (<errorcode>401</errorcode>),
                 Bad Request (<errorcode>400</errorcode>)</simpara>
-            <para>This operation requires a request body. </para>
-            <para>This operation returns a response body. </para>
+            <para>This operation requires a request body.</para>
+            <para>This operation returns a response body.</para>
             <example>
                 <title>Create Member: Request</title>
                 <programlisting>
@@ -1384,8 +1384,8 @@ Content-Type: application/json; charset=UTF-8
             <simpara>Error Response Codes: Unauthorized (<errorcode>401</errorcode>),
                 Not Found (<errorcode>404</errorcode>), Conflict
                 (<errorcode>409</errorcode>)</simpara>
-            <para>This operation does not require a request body. </para>
-            <para>This operation does not return a response body. </para>
+            <para>This operation does not require a request body.</para>
+            <para>This operation does not return a response body.</para>
             <example>
                 <title>Delete Member: Request</title>
                 <programlisting>
@@ -1487,7 +1487,7 @@ Content-Length: 0
                     <td>CRU</td>
                     <td>None</td>
                     <td>non-negative</td>
-                    <td>The time in seconds between sending probes to members. </td>
+                    <td>The time in seconds between sending probes to members.</td>
                 </tr>
                 <tr>
                     <td>timeout</td>
@@ -1496,7 +1496,7 @@ Content-Length: 0
                     <td>CRU</td>
                     <td>None</td>
                     <td>non-negative</td>
-                    <td>The maximum number of seconds for a monitor to wait for a connection to be established before it times out. The value must be less than the delay value. </td>
+                    <td>The maximum number of seconds for a monitor to wait for a connection to be established before it times out. The value must be less than the delay value.</td>
                 </tr>
                 <tr>
                     <td>max_retries</td>
@@ -1685,8 +1685,8 @@ Content-Type: application/json; charset=UTF-8
             </para>
             <simpara>Error Response Codes: Unauthorized (<errorcode>401</errorcode>),
                 Bad Request (<errorcode>400</errorcode>)</simpara>
-            <para>This operation requires a request body. </para>
-            <para>This operation returns a response body. </para>
+            <para>This operation requires a request body.</para>
+            <para>This operation returns a response body.</para>
             <example>
                 <title>Create Health Monitor: Request</title>
                 <programlisting>
@@ -1779,8 +1779,8 @@ Content-Type: application/json; charset=UTF-8
             <simpara>Error Response Codes: Unauthorized (<errorcode>401</errorcode>),
                 Not Found (<errorcode>404</errorcode>), Conflict
                 (<errorcode>409</errorcode>)</simpara>
-            <para>This operation does not require a request body. </para>
-            <para>This operation does not return a response body. </para>
+            <para>This operation does not require a request body.</para>
+            <para>This operation does not return a response body.</para>
             <example>
                 <title>Delete Health Monitor: Request</title>
                 <programlisting>
@@ -1870,8 +1870,8 @@ Content-Type: application/json; charset=UTF-8
             <simpara>Error Response Codes: Unauthorized (<errorcode>401</errorcode>),
                 Not Found (<errorcode>404</errorcode>), Conflict
                 (<errorcode>409</errorcode>)</simpara>
-            <para>This operation does not require a request body. </para>
-            <para>This operation does not return a response body. </para>
+            <para>This operation does not require a request body.</para>
+            <para>This operation does not return a response body.</para>
             <example>
                 <title>Disassociate Health Monitor: Request</title>
                 <programlisting>

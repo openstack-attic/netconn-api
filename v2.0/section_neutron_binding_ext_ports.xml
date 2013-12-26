@@ -58,9 +58,9 @@
         <col width="20%"/>
         <thead>
             <tr>
-                <th>Attribute </th>
-                <th>Type </th>
-                <th>Required </th>
+                <th>Attribute</th>
+                <th>Type</th>
+                <th>Required</th>
                 <th>CRUD<footnote xml:id="crud_network">
                         <para><itemizedlist>
                                 <listitem>
@@ -268,7 +268,7 @@
                 (<errorcode>401</errorcode>), Not Found
                 (<errorcode>404</errorcode>)</simpara>
         <para>This operation returns information for the port
-            specified in the request URI. </para>
+            specified in the request URI.</para>
         <para>This operation does not require a request body.</para>
         <para>This operation returns a response body.</para>
         <para>In addition to any fields returned in the show port

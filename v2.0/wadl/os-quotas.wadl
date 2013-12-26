@@ -27,7 +27,7 @@
     xsd/api.xsd
     http://docs.openstack.org/common/api/v1.0
     xsd/common.xsd
-    http://wadl.dev.java.net/2009/02 
+    http://wadl.dev.java.net/2009/02
     http://www.w3.org/Submission/wadl/wadl.xsd
     ">
 
@@ -46,7 +46,7 @@
                 </doc>
             </param>
         <resource id="Quotas" type="#QuotaList" path="quotas">
-            
+
             <method href="#listQuotas"/>
             <resource path="{quota_id}">
                 <param name="quota_id" style="template" type="csapi:UUID">
@@ -61,14 +61,13 @@
         </resource>
         </resource>
     </resources>
-    
 
     <!--*******************************************************-->
     <!--               All Methods                             -->
     <!--*******************************************************-->
 
     <method name="GET" id="listQuotas">
-        <wadl:doc xml:lang="EN" 
+        <wadl:doc xml:lang="EN"
             xmlns="http://docbook.org/ns/docbook" title="List Quotas">
             <para role="shortdesc">Lists quotas for tenants who have non-default quota values.
             </para>
@@ -87,10 +86,10 @@
         <response status="403" xmlns="http://wadl.dev.java.net/2009/02">
             <representation mediaType="application/xml" element="csapi:forbidden"/>
             <representation mediaType="application/json"/>
-        </response>       
+        </response>
     </method>
     <method name="GET" id="showQuota">
-        <wadl:doc xml:lang="EN" 
+        <wadl:doc xml:lang="EN"
             xmlns="http://docbook.org/ns/docbook" title="Show Quota">
             <para role="shortdesc">
                 Shows information for a specified quota.
@@ -114,7 +113,7 @@
     </method>
 
     <method name="PUT" id="updateQuota">
-        <wadl:doc xml:lang="EN" 
+        <wadl:doc xml:lang="EN"
             xmlns="http://docbook.org/ns/docbook" title="Update Quota">
             <para role="shortdesc">
                 Updates quotas for a specified tenant. Use when non-default quotas are desired.
@@ -143,7 +142,7 @@
     </method>
 
     <method name="DELETE" id="resetQuota">
-        <wadl:doc xml:lang="EN" 
+        <wadl:doc xml:lang="EN"
             xmlns="http://docbook.org/ns/docbook" title="Reset Quota">
             <para role="shortdesc">
                 Resets quotas to default values for a specified tenant.
