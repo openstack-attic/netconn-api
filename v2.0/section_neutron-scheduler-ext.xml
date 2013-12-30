@@ -121,7 +121,7 @@
                 <simpara>Error Response Codes: Unauthorized
                         (<errorcode>401</errorcode>), Forbidden
                         (<errorcode>403</errorcode>)</simpara>
-                <para>This operation does not require a request body. </para>
+                <para>This operation does not require a request body.</para>
                 <para>This operation returns a response body.</para>
                 <example>
                     <title>List Networks on DHCP agent: JSON Request</title>
@@ -354,7 +354,7 @@ X-Auth-Token: 7ae91cde8f504031be5a2cd5b99d4fe9
                 <simpara>Error Response Codes: Unauthorized
                         (<errorcode>401</errorcode>), Forbidden
                         (<errorcode>403</errorcode>)</simpara>
-                <para>This operation does not require a request body. </para>
+                <para>This operation does not require a request body.</para>
                 <para>This operation returns a response body.</para>
                 <example>
                     <title>List Routers on L3 agent: JSON Request</title>
@@ -580,7 +580,7 @@ X-Auth-Token: 2147ef6fe4444f0299b1c0b6b529ff47
       <simpara>Error Response Codes: Unauthorized
       (<errorcode>401</errorcode>), Forbidden
       (<errorcode>403</errorcode>)</simpara>
-      <para>This operation does not require a request body. </para>
+      <para>This operation does not require a request body.</para>
       <para>This operation returns a response body.</para>
       <example>
         <title>List Pools on LBaaS agent: JSON Request</title>

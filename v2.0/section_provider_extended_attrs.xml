@@ -39,7 +39,7 @@
         networks enables administrative users to specify how network
         objects map to the underlying networking infrastructure. These
         extended attributes also appear when administrative users
-        query networks. </para>
+        query networks.</para>
     <para>The technology back end of the particular plug-in determines
         the semantics of these attributes. To understand which values
         to specify for each attribute when you deploy &APIv2; with a

@@ -83,9 +83,9 @@
             <col width="20%"/>
             <thead>
                 <tr>
-                    <th>Attribute </th>
-                    <th>Type </th>
-                    <th>Required </th>
+                    <th>Attribute</th>
+                    <th>Type</th>
+                    <th>Required</th>
                     <th>CRUD<footnote xml:id="crud">
                             <para><itemizedlist>
                                    <listitem>
@@ -111,8 +111,8 @@
                                    </listitem>
                                 </itemizedlist></para>
                         </footnote></th>
-                    <th>Default Value </th>
-                    <th>Validation Constraints </th>
+                    <th>Default Value</th>
+                    <th>Validation Constraints</th>
                     <th>Notes</th>
                 </tr>
             </thead>
@@ -179,7 +179,7 @@
                     <td>R</td>
                     <td>Empty List</td>
                     <td>N/A</td>
-                    <td>subnets associated with this network. </td>
+                    <td>subnets associated with this network.</td>
                 </tr>
                 <tr>
                     <td>shared</td>
@@ -206,7 +206,7 @@
                     <td>N/A</td>
                     <td>No constraint</td>
                     <td>Owner of network. Only admin users can specify
-                        a tenant_id other than its own. </td>
+                        a tenant_id other than its own.</td>
                 </tr>
             </tbody>
         </table>
@@ -236,9 +236,9 @@
             <col width="20%"/>
             <thead>
                 <tr>
-                    <th>Attribute </th>
-                    <th>Type </th>
-                    <th>Required </th>
+                    <th>Attribute</th>
+                    <th>Type</th>
+                    <th>Required</th>
                     <th>CRUD<footnote xml:id="crud2">
                             <para><itemizedlist>
                                    <listitem>
@@ -265,8 +265,8 @@
                                 </itemizedlist></para>
                         </footnote>
                     </th>
-                    <th>Default Value </th>
-                    <th>Validation Constraints </th>
+                    <th>Default Value</th>
+                    <th>Validation Constraints</th>
                     <th>Notes</th>
                 </tr>
             </thead>
@@ -392,7 +392,7 @@
                     <td>N/A</td>
                     <td>No constraint</td>
                     <td>Owner of network. Only admin users can specify
-                        a tenant_id other than its own. </td>
+                        a tenant_id other than its own.</td>
                 </tr>
             </tbody>
         </table>
@@ -420,9 +420,9 @@
             <col width="20%"/>
             <thead>
                 <tr>
-                    <th>Attribute </th>
-                    <th>Type </th>
-                    <th>Required </th>
+                    <th>Attribute</th>
+                    <th>Type</th>
+                    <th>Required</th>
                     <th>CRUD<footnote xml:id="crud3">
                             <para><itemizedlist>
                                    <listitem>
@@ -449,8 +449,8 @@
                                 </itemizedlist></para>
                         </footnote>
                     </th>
-                    <th>Default Value </th>
-                    <th>Validation Constraints </th>
+                    <th>Default Value</th>
+                    <th>Validation Constraints</th>
                     <th>Notes</th>
                 </tr>
             </thead>
@@ -492,7 +492,7 @@
                     <td>true</td>
                     <td>{true|false}</td>
                     <td>Administrative state of port. If false (down),
-                        port does not forward packets. </td>
+                        port does not forward packets.</td>
                 </tr>
                 <tr>
                     <td>status</td>
@@ -576,7 +576,7 @@
                     <td>N/A</td>
                     <td>No constraint</td>
                     <td>Owner of network. Only admin users can specify
-                        a tenant_id other than its own. </td>
+                        a tenant_id other than its own.</td>
                 </tr>
                 <tr>
                     <td>security_groups</td>

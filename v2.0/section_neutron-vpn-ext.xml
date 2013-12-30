@@ -416,8 +416,8 @@ Accept: application/json
             </para>
             <simpara>Error Response Codes: Unauthorized (<errorcode>401</errorcode>),
                 Bad Request (<errorcode>400</errorcode>)</simpara>
-            <para>This operation requires a request body. </para>
-            <para>This operation returns a response body. </para>
+            <para>This operation requires a request body.</para>
+            <para>This operation returns a response body.</para>
             <example>
                 <title>Create VPN Service: Request</title>
                 <programlisting>
@@ -511,8 +511,8 @@ Content-Type: application/json; charset=UTF-8
             <simpara>Error Response Codes: Unauthorized (<errorcode>401</errorcode>),
                 Not Found (<errorcode>404</errorcode>), Conflict
                 (<errorcode>409</errorcode>)</simpara>
-            <para>This operation does not require a request body. </para>
-            <para>This operation does not return a response body. </para>
+            <para>This operation does not require a request body.</para>
+            <para>This operation does not return a response body.</para>
             <example>
                 <title>Delete VPN Service: Request</title>
                 <programlisting>
@@ -805,8 +805,8 @@ Content-Type: application/json; charset=UTF-8
             </para>
             <simpara>Error Response Codes: Unauthorized (<errorcode>401</errorcode>),
                 Bad Request (<errorcode>400</errorcode>)</simpara>
-            <para>This operation requires a request body. </para>
-            <para>This operation returns a response body. </para>
+            <para>This operation requires a request body.</para>
+            <para>This operation returns a response body.</para>
             <example>
                 <title>Create IKE Policy: Request</title>
                 <programlisting>
@@ -899,8 +899,8 @@ Content-Type: application/json; charset=UTF-8
             <simpara>Error Response Codes: Unauthorized (<errorcode>401</errorcode>),
                 Not Found (<errorcode>404</errorcode>), Conflict
                 (<errorcode>409</errorcode>)</simpara>
-            <para>This operation does not require a request body. </para>
-            <para>This operation does not return a response body. </para>
+            <para>This operation does not require a request body.</para>
+            <para>This operation does not return a response body.</para>
             <example>
                 <title>Delete IKE Policy: Request</title>
                 <programlisting>
@@ -1193,8 +1193,8 @@ Content-Type: application/json; charset=UTF-8
             </para>
             <simpara>Error Response Codes: Unauthorized (<errorcode>401</errorcode>),
                 Bad Request (<errorcode>400</errorcode>)</simpara>
-            <para>This operation requires a request body. </para>
-            <para>This operation returns a response body. </para>
+            <para>This operation requires a request body.</para>
+            <para>This operation returns a response body.</para>
             <example>
                 <title>Create IPSec Policy: Request</title>
                 <programlisting>
@@ -1287,8 +1287,8 @@ Content-Type: application/json; charset=UTF-8
             <simpara>Error Response Codes: Unauthorized (<errorcode>401</errorcode>),
                 Not Found (<errorcode>404</errorcode>), Conflict
                 (<errorcode>409</errorcode>)</simpara>
-            <para>This operation does not require a request body. </para>
-            <para>This operation does not return a response body. </para>
+            <para>This operation does not require a request body.</para>
+            <para>This operation does not return a response body.</para>
             <example>
                 <title>Delete IPSec Policy: Request</title>
                 <programlisting>
@@ -1658,8 +1658,8 @@ Content-Type: application/json; charset=UTF-8
             </para>
             <simpara>Error Response Codes: Unauthorized (<errorcode>401</errorcode>),
                 Bad Request (<errorcode>400</errorcode>)</simpara>
-            <para>This operation requires a request body. </para>
-            <para>This operation returns a response body. </para>
+            <para>This operation requires a request body.</para>
+            <para>This operation returns a response body.</para>
             <example>
                 <title>Create IPSec Site Connection: Request</title>
                 <programlisting>
@@ -1747,8 +1747,8 @@ Content-Type: application/json; charset=UTF-8
             <simpara>Error Response Codes: Unauthorized (<errorcode>401</errorcode>),
                 Not Found (<errorcode>404</errorcode>), Conflict
                 (<errorcode>409</errorcode>)</simpara>
-            <para>This operation does not require a request body. </para>
-            <para>This operation does not return a response body. </para>
+            <para>This operation does not require a request body.</para>
+            <para>This operation does not return a response body.</para>
             <example>
                 <title>Delete IPSec Site Connection: Request</title>
                 <programlisting>

@@ -36,7 +36,7 @@ format="SVG" scale="60"/>
     <para>The OpenStack Networking project provides virtual networking services
         among devices managed by the <link
             xlink:href="http://wiki.openstack.org/OpenStack">OpenStack</link>
-        compute service. </para>
+        compute service.</para>
     <para>This document describes the
         &APIv2; features.</para>
     <para>We welcome feedback, comments, and bug reports at <link

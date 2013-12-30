@@ -44,7 +44,7 @@
             >Quantum API v1.1</link> with some essential Internet
         Protocol Address Management (IPAM) capabilities from the <link
             xlink:href="http://melange.readthedocs.org/en/latest/apidoc.html"
-            >Melange API</link>. </para>
+            >Melange API</link>.</para>
     <para>These IPAM capabilities enable you to:</para>
     <itemizedlist>
         <listitem>
@@ -115,7 +115,7 @@
                     <td colspan="4">A virtual Ethernet network that is
                         managed by the OpenStack Networking service.
                         Currently, OpenStack Networking manages only
-                        Ethernet networks. </td>
+                        Ethernet networks.</td>
                 </tr>
                 <tr>
                     <td align="left">network</td>
@@ -145,7 +145,7 @@
                         port, this also implies the port is associated
                         with a subnet, as the IP address was taken
                         from the allocation pool for a specific
-                        subnet. </td>
+                        subnet.</td>
                 </tr>
                 <tr>
                     <td align="left">subnet</td>

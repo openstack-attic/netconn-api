@@ -62,7 +62,7 @@
         <para>A <emphasis role="bold">router </emphasis> is used to
             interconnect subnets and forward traffic among them.
             Another feature of the router is to NAT internal traffic
-            to external networks. </para>
+            to external networks.</para>
         <para>A router has an interface for each subnet it is
             associated with. By default the IP address of such
             interface is the subnet's gateway IP. Also, whenever a
@@ -89,22 +89,22 @@
             <col width="25%"/>
             <thead>
                 <tr>
-                    <th>Attribute </th>
-                    <th>Type </th>
-                    <th>Required </th>
+                    <th>Attribute</th>
+                    <th>Type</th>
+                    <th>Required</th>
                     <th>CRUD<footnote xml:id="crud1">
                             <para>
                                 <itemizedlist>
                                    <listitem>
                                    <para><emphasis role="bold"
                                    >C</emphasis>. Use the attribute in
-                                   create operations. </para>
+                                   create operations.</para>
                                    </listitem>
                                    <listitem>
                                    <para><emphasis role="bold"
                                    >R</emphasis>. This attribute is
                                    returned in response to show and
-                                   list operations. </para>
+                                   list operations.</para>
                                    </listitem>
                                    <listitem>
                                    <para><emphasis role="bold"
@@ -114,40 +114,40 @@
                                    <listitem>
                                    <para><emphasis role="bold"
                                    >D</emphasis>. You can delete the
-                                   value of this attribute. </para>
+                                   value of this attribute.</para>
                                    </listitem>
                                 </itemizedlist>
                             </para>
                         </footnote></th>
-                    <th>Default Value </th>
-                    <th>Validation Constraints </th>
+                    <th>Default Value</th>
+                    <th>Validation Constraints</th>
                     <th>Notes</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>id </td>
-                    <td>uuid-str </td>
-                    <td>N/A </td>
-                    <td>R </td>
-                    <td>generated </td>
-                    <td>N/A </td>
+                    <td>id</td>
+                    <td>uuid-str</td>
+                    <td>N/A</td>
+                    <td>R</td>
+                    <td>generated</td>
+                    <td>N/A</td>
                     <td>Unique identifier for the router.</td>
                 </tr>
                 <tr>
                     <td>name</td>
-                    <td>String </td>
-                    <td>No </td>
+                    <td>String</td>
+                    <td>No</td>
                     <td>CRU</td>
                     <td>None</td>
-                    <td>N/A </td>
+                    <td>N/A</td>
                     <td>Human readable name for the router. Does not
                         have to be unique</td>
                 </tr>
                 <tr>
                     <td>admin_state_up</td>
-                    <td>Bool </td>
-                    <td>No </td>
+                    <td>Bool</td>
+                    <td>No</td>
                     <td>CRU</td>
                     <td>true</td>
                     <td>{true | false }</td>
@@ -155,8 +155,8 @@
                 </tr>
                 <tr>
                     <td>status</td>
-                    <td>String </td>
-                    <td>N/A </td>
+                    <td>String</td>
+                    <td>N/A</td>
                     <td>R</td>
                     <td>N/A</td>
                     <td>N/A</td>
@@ -197,30 +197,30 @@
             <col width="25%"/>
             <thead>
                 <tr>
-                    <th>Attribute </th>
-                    <th>Type </th>
-                    <th>Required </th>
+                    <th>Attribute</th>
+                    <th>Type</th>
+                    <th>Required</th>
                     <th>CRUD</th>
-                    <th>Default Value </th>
-                    <th>Validation Constraints </th>
+                    <th>Default Value</th>
+                    <th>Validation Constraints</th>
                     <th>Notes</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>id </td>
-                    <td>uuid-str </td>
-                    <td>N/A </td>
-                    <td>R </td>
-                    <td>generated </td>
-                    <td>N/A </td>
+                    <td>id</td>
+                    <td>uuid-str</td>
+                    <td>N/A</td>
+                    <td>R</td>
+                    <td>generated</td>
+                    <td>N/A</td>
                     <td>Unique identifier for the Floating IP
                         instance</td>
                 </tr>
                 <tr>
                     <td>floating_network_id</td>
-                    <td>uuid-str </td>
-                    <td>Yes </td>
+                    <td>uuid-str</td>
+                    <td>Yes</td>
                     <td>CR</td>
                     <td>N/A</td>
                     <td>UUID Pattern</td>
@@ -229,8 +229,8 @@
                 </tr>
                 <tr>
                     <td>port_id</td>
-                    <td>uuid-str </td>
-                    <td>Yes </td>
+                    <td>uuid-str</td>
+                    <td>Yes</td>
                     <td>CRU</td>
                     <td>N/A</td>
                     <td>UUID Pattern</td>
@@ -240,7 +240,7 @@
                 </tr>
                 <tr>
                     <td>fixed_ip_address</td>
-                    <td>IP Address </td>
+                    <td>IP Address</td>
                     <td>No</td>
                     <td>CRU</td>
                     <td>None</td>
@@ -251,8 +251,8 @@
                 </tr>
                 <tr>
                     <td>floating_ip_address</td>
-                    <td>IP Address </td>
-                    <td>N/A </td>
+                    <td>IP Address</td>
+                    <td>N/A</td>
                     <td>R</td>
                     <td>Automatically allocated from pool</td>
                     <td>N/A</td>
@@ -364,8 +364,8 @@ Accept: application/json</literallayout>
                 router whose identifier is specified on the request
                 URI. Users can control which attributes should be
                 returned by using the <parameter>fields</parameter>
-                query parameter. </para>
-            <para>This operation does not require a request body. </para>
+                query parameter.</para>
+            <para>This operation does not require a request body.</para>
             <para>This operation returns a response body.</para>
             <example>
                 <title>Show Router: JSON Request</title>
@@ -425,8 +425,8 @@ Accept: application/json</literallayout>
 {
     "network_id": &lt;external_network_uuid&gt;
 }</programlisting></para>
-            <para>This operation requires a request body. </para>
-            <para>This operation returns a response body. </para>
+            <para>This operation requires a request body.</para>
+            <para>This operation returns a response body.</para>
             <example>
                 <title>Create Router: JSON Request</title>
                 <programlisting language="json"><xi:include href="samples/routers-post-req.json" parse="text"/></programlisting>
@@ -528,8 +528,8 @@ Accept: application/json</literallayout>
                 interfaces through <link
                     linkend="router_remove_interface"> remove router
                     interface operation</link>. </simpara>
-            <para>This operation does not require a request body. </para>
-            <para>This operation does not return a response body. </para>
+            <para>This operation does not require a request body.</para>
+            <para>This operation does not return a response body.</para>
             <example>
                 <title>Delete Router: JSON Request</title>
                 <literallayout class="monospaced">DELETE /v2.0/routers/8604a0de-7f6b-409a-a47c-a1cc7bc77b2e
@@ -659,7 +659,7 @@ Accept: application/json
                 the affected router and interface.</para>
             <para>A <literal>404 Not Found</literal> error will be
                 returned either if the router or the subnet/port do
-                not exist or are not visible to the user. </para>
+                not exist or are not visible to the user.</para>
             <para>As a consequence of this operation, the port
                 connecting the router with the subnet is removed from
                 the subnet's network.</para>
@@ -771,7 +771,7 @@ Accept: application/json</literallayout>
                 floating IP whose identifier is specified on the
                 request URI. Users can control which attributes should
                 be returned by using the <parameter>fields</parameter>
-                query parameter. </para>
+                query parameter.</para>
             <example>
                 <title>Show Floating IP: JSON Request</title>
                 <literallayout class="monospaced">GET /v2.0/floatingips/2f245a7b-796b-4f26-9cf9-9e82d248fda7.json?fields=fixed_ip_address&amp;fields=floating_ip_address
@@ -846,7 +846,7 @@ Accept: application/json</literallayout>
                 the Floating IP must have at least an IP address
                 configured, otherwise a <errorcode>400</errorcode>
                 error will be returned.</para>
-            <para> As an OpenStack Networking port might be associated
+            <para>As an OpenStack Networking port might be associated
                 with multiple IP addresses, the particular IP address
                 to associate with the floating IP can be specified
                 using the <literal>fixed_ip_address</literal> request
@@ -861,7 +861,7 @@ Accept: application/json</literallayout>
                 returned.</para>
             <para>If the internal OpenStack Networking port and ip address selected
                 for association are already associated to another
-                floating IP, a 409 error will be returned. </para>
+                floating IP, a 409 error will be returned.</para>
             <example>
                 <title>Create Floating IP: JSON Request</title>
                 <programlisting language="json"><xi:include href="samples/floatingips-post-req.json" parse="text"/></programlisting>

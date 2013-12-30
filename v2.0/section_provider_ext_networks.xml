@@ -263,7 +263,7 @@
             user submitting the request is authorized to see provider
             networks mapping, this operation allows for specifying how
             an existing network should be mapped on the underlying
-            network infrastructure. </para>
+            network infrastructure.</para>
         <para>If the user submitting the request is not allowed to set
             provider networks attributes, a 403 Forbidden response is
             returned.</para>

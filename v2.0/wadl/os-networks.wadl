@@ -35,7 +35,7 @@
                 </param>
                 <resource id="Networks" type="#NetworkList"
                     path="networks">
-                 
+
                     <method href="#listNetworks"/>
                     <method href="#createNetwork"/>
                     <method href="#bulkCreateNetwork"/>
@@ -73,9 +73,9 @@
                                 <para>The UUID for the network of
                                    interest to you.</para></wadl:doc>
                         </param>
-                        <method href="#showNetwork"/>   
+                        <method href="#showNetwork"/>
                         <method href="#updateNetwork"/>
-                        <method href="#deleteNetwork"/>          
+                        <method href="#deleteNetwork"/>
                     </resource>
                 </resource>
             </resource>
@@ -175,7 +175,6 @@
             <representation mediaType="application/json"
                 element="csapi:network">
 
-             
               <!--  <param required="true" name="name" style="plain"
                     type="xsd:string">
                     <wadl:doc xmlns="http://docbook.org/ns/docbook"

@@ -39,6 +39,6 @@
 
     <title>Security Groups and Rules</title>
     <para>Creates, modifies, and deletes OpenStack Networking security groups and
-        rules. </para>
+        rules.</para>
     <wadl:resources href="http://git.openstack.org/cgit/openstack/api-site/plain/api-ref/src/wadls/netconn-api/src/security-groups.wadl"/>
 </section>

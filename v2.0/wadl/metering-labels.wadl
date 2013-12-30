@@ -87,7 +87,7 @@
             title="Create Metering Label">
             <para role="shortdesc">Creates a l3 metering label.
                 </para>
-            <para>This operation requires a request body. </para>
+            <para>This operation requires a request body.</para>
             <para>The following table describes the required and
                 optional attributes in the request body:</para>
             <table width="75%" rules="all"><caption>Create Metering Label
@@ -197,7 +197,7 @@
             <para>This operation deletes a l3 metering label.
                 </para>
             <para>This operation does not require a request body. This
-                operation does not return a response body. </para>
+                operation does not return a response body.</para>
         </wadl:doc>
         <request>
             <representation mediaType="application/json">
@@ -239,7 +239,7 @@
             <para>The list provides the unique ID for each metering
                 label rule.</para>
             <para>This operation does not require a request body. This
-                operation returns a response body. </para>
+                operation returns a response body.</para>
         </wadl:doc>
         <request>
             <representation mediaType="application/json">
@@ -272,7 +272,7 @@
             title="Create Metering Label Rule">
             <para role="shortdesc">Creates a l3 metering label rule.
                 </para>
-            <para>This operation requires a request body. </para>
+            <para>This operation requires a request body.</para>
             <para>The following table describes the required and
                 optional attributes in the request body:</para>
             <table width="75%" rules="all"><caption>Create Metering Label
@@ -302,7 +302,7 @@
                                 remote IP prefix to be associated with
                                 this metering rule.
                     packet.</para></td></tr></tbody></table>
-            <para>This operation returns a response body. </para>
+            <para>This operation returns a response body.</para>
         </wadl:doc>
         <request>
             <representation mediaType="application/json">
