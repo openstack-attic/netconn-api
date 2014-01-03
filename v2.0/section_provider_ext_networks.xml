@@ -277,11 +277,19 @@
         <example>
             <title>Update Network with provider extended attributes:
                 JSON Request</title>
+<screen><computeroutput>PUT /v2.0/networks/3a06dfc7-d239-4aad-9a57-21cd171c72e5.json
+
+Content-Type: application/json
+Accept: application/json</computeroutput></screen>
             <programlisting language="json"><xi:include href="samples/networks-put-req-prov.json" parse="text"/></programlisting>
         </example>
         <example>
             <title>Update Network with provider extended attributes:
                 XML Request</title>
+<screen><computeroutput>PUT /v2.0/networks/3a06dfc7-d239-4aad-9a57-21cd171c72e5.xml
+
+Content-Type: application/xml
+Accept: application/xml</computeroutput></screen>
             <programlisting language="xml"><xi:include href="samples/networks-put-req-prov.xml" parse="text"/></programlisting>
         </example>
     </section>
