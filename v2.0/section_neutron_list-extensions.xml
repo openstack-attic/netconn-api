@@ -42,20 +42,20 @@
     </note>
     <para>The following example response shows a list of
         extensions:</para>
-    <literallayout class="monospaced">Status Code: 200 OK
-Connection: keep-alive
-Content-Length: 654
-Content-Type: application/xml; charset=UTF-8
-Date: Wed, 12 Sep 2012 11:32:56 GMT</literallayout>
+    <screen><computeroutput>Status Code: 200 OK
+        Connection: keep-alive
+        Content-Length: 654
+        Content-Type: application/xml; charset=UTF-8
+        Date: Wed, 12 Sep 2012 11:32:56 GMT</computeroutput></screen>
     <programlisting language="xml"><xi:include href="samples/extensionsv2.xml" parse="text"/></programlisting>
     <para>Also, you can query for specific extension using the
         extension alias. For instance, querying
             <literal>/v2.0/extensions/router</literal>, results in the
         following response:</para>
-    <literallayout class="monospaced">Status Code: 200 OK
+    <screen><computeroutput>Status Code: 200 OK
 Connection: keep-alive
 Content-Length: 350
 Content-Type: application/xml; charset=UTF-8
-Date: Wed, 12 Sep 2012 11:36:20 GMT</literallayout>
+Date: Wed, 12 Sep 2012 11:36:20 GMT</computeroutput></screen>
     <programlisting language="xml"><xi:include href="samples/extension.xml" parse="text"/></programlisting>
 </section>

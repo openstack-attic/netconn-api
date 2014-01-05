@@ -36,8 +36,7 @@
     xmlns:db="http://docbook.org/ns/docbook" version="5.0"
     status="final" xml:id="metering-ext"
     xmlns:wadl="http://wadl.dev.java.net/2009/02">
-
-    <title>Metering Labels and Rules</title>
+    <title>Metering labels and rules</title>
     <para>Creates, modifies, and deletes OpenStack Layer3 Metering labels
         and rules.</para>
     <wadl:resources href="wadl/metering-labels.wadl"/>
