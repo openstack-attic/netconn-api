@@ -1,0 +1,9 @@
+Verified+2: Jenkins
+Approved+1: Akihiro Motoki <motoki@da.jp.nec.com>
+Code-Review+2: Akihiro Motoki <motoki@da.jp.nec.com>
+Code-Review+2: Anne Gentle <anne@openstack.org>
+Submitted-by: Jenkins
+Submitted-at: Mon, 06 Jan 2014 05:34:32 +0000
+Reviewed-on: https://review.openstack.org/64947
+Project: openstack/netconn-api
+Branch: refs/heads/master
