@@ -966,7 +966,7 @@ Content-Type: application/json; charset=UTF-8
                 <tbody>
                     <tr>
                         <td>&PUT;</td>
-                        <td>/fw/firewall_policies/<parameter>firewall_policy-id/</parameter>remove_rule</td>
+                        <td>/fw/firewall_policies/<parameter>firewall_policy-id</parameter>/remove_rule</td>
                         <td>Removes a Firewall Rule from a Firewall Policy.</td>
                     </tr>
                 </tbody>
