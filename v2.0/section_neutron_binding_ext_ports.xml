@@ -150,7 +150,7 @@
             </tr>
         </tbody>
     </table>
-    <!--  <wadl:resources
+    <!-- <wadl:resources
         href="http://git.openstack.org/cgit/openstack/api-site/plain/api-ref/src/wadls/netconn-api/src/os-ports-binding-ext.wadl"
         xmlns:wadl="http://wadl.dev.java.net/2009/02"/>-->
    <section xml:id="List_Ports_binding">

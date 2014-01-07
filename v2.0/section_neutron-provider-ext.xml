@@ -124,10 +124,10 @@
         <para>This section discusses operations for setting and
             retrieving the provider networks extension attributes for
             network objects.</para>
-       <!-- <wadl:resources
+        <!-- <wadl:resources
             href="http://git.openstack.org/cgit/openstack/api-site/plain/api-ref/src/wadls/netconn-api/src/os-networks-provider-ext.wadl"
             xmlns:wadl="http://wadl.dev.java.net/2009/02"/> -->
-        <section xml:id="provider_network_list">
+          <section xml:id="provider_network_list">
             <title>List Networks</title>
             <para>
                 <informaltable rules="all" width="100%">
