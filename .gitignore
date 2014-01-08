@@ -3,3 +3,11 @@ target/
 
 # NetBeans user-specific build actions
 nbactions.xml
+
+# Testenvironment
+.tox/
+
+# Editors
+*~
+.*.swp
+.bak
