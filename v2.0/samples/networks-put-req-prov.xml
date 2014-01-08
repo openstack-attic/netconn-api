@@ -1,8 +1,3 @@
-PUT /v2.0/networks/3a06dfc7-d239-4aad-9a57-21cd171c72e5.xml
-
-Content-Type: application/xml
-Accept: application/xml
-
 <?xml version='1.0' encoding='UTF-8'?>
 <network xmlns="http://openstack.org/neutron/api/v2.0"
     xmlns:neutron="http://openstack.org/neutron/api/v2.0"
