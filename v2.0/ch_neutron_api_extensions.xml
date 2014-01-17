@@ -71,4 +71,5 @@
     <xi:include href="section_neutron-vpn-ext.xml"/>
     <xi:include href="section_neutron-allowed-address-pair-ext.xml"/>
     <xi:include href="section_neutron-extra-dhcp-opt-ext.xml"/>
+    <xi:include href="section_neutron-metering-ext.xml"/>
 </chapter>
