@@ -1,0 +1,8 @@
+Verified+2: Jenkins
+Approved+1: Andreas Jaeger <jaegerandi@gmail.com>
+Code-Review+2: Andreas Jaeger <jaegerandi@gmail.com>
+Submitted-by: Jenkins
+Submitted-at: Tue, 21 Jan 2014 09:35:14 +0000
+Reviewed-on: https://review.openstack.org/67545
+Project: openstack/netconn-api
+Branch: refs/heads/master
