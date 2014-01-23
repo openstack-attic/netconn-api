@@ -156,7 +156,7 @@
                     </tbody>
                 </informaltable>
             </para>
-            <para>Normal Response Code: 200 OK</para>
+            <para>Normal Response Code: 201</para>
             <para>Error Response Code: 400 Bad Request, 401
                 Unauthorized, 403 Forbidden</para>
             <para>Bad request is returned if an allowed address pair
