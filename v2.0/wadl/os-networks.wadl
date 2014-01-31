@@ -22,7 +22,8 @@
     <!--*******************************************************-->
     <!--             All Resources                             -->
     <!--*******************************************************-->
-    <resources base="https://neutron.example.com/">
+    <resources base="https://neutron.example.com/"
+               xml:id="os-networks-v2.0">
         <resource id="version" type="#VersionDetails" path="v2/">
             <resource id="tenantID" path="{tenant_id}">
                 <param name="tenant_id" style="template"
