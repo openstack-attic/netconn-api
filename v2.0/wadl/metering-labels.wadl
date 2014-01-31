@@ -13,7 +13,8 @@
     <grammars>
         <include href="../xsd/metering.xsd"/>
     </grammars>
-    <resources base="https://servers.api.openstack.com/">
+    <resources base="https://servers.api.openstack.com/"
+               xml:id="resources_metering_labels">
         <resource id="version">
             <resource id="metering_labels" path="metering-labels">
                 <method href="#listMeteringLabels"/>
