@@ -1,5 +1,8 @@
 .DS_Store
+
+# Build results
 target/
+publish-docs/
 
 # NetBeans user-specific build actions
 nbactions.xml
