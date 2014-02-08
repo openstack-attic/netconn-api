@@ -1,6 +1,6 @@
 {
-   "routers":
-   [{
+   "router":
+   {
        "status": "ACTIVE",
        "external_gateway_info":
        {
@@ -10,5 +10,5 @@
        "admin_state_up": true,
        "tenant_id": "33a40233088643acb66ff6eb0ebea679",
        "id": "a9254bdb-2613-4a13-ac4c-adc581fba50d"
-     }]
+     }
 }
