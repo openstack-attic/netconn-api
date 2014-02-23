@@ -1,8 +1,0 @@
-<networks>
-    <network>
-        <name>sample_network_1</name>
-    </network>
-    <network>
-        <name>sample_network_2</name>
-    </network>
-</networks>

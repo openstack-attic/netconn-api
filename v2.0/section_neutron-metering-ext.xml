@@ -39,5 +39,5 @@
     <title>Metering labels and rules</title>
     <para>Creates, modifies, and deletes OpenStack Layer3 Metering labels
         and rules.</para>
-    <wadl:resources href="wadl/metering-labels.wadl"/>
+    <wadl:resources href="http://git.openstack.org/cgit/openstack/api-site/plain/api-ref/src/wadls/netconn-api/src/metering-labels.wadl"/>
 </section>

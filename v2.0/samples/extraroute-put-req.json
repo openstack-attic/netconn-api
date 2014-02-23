@@ -1,9 +1,10 @@
-PUT  /v2.0/routers/babc8173-46f6-4b6f-8b95-38c1683a4e22.json
-
-{"router":
-    {
-     "routes": [{"nexthop": "10.1.0.10",
-                 "destination": "40.0.1.0/24"}]
-    }
+{
+   "router":{
+      "routes":[
+         {
+            "nexthop":"10.1.0.10",
+            "destination":"40.0.1.0/24"
+         }
+      ]
+   }
 }
-

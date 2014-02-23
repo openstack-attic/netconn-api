@@ -1,10 +1,5 @@
-PUT /v2.0/networks/3a06dfc7-d239-4aad-9a57-21cd171c72e5.json
-
-Content-Type: application/json
-Accept: application/json
-
 {
-    "network": {
-        "router:external": true
-    }
+   "network":{
+      "router:external":true
+   }
 }
