@@ -1,10 +1,6 @@
-POST /v2.0/routers
-Accept: application/json
-
 {
-    "router":
-    {
-        "name": "another_router",
-        "admin_state_up": true
-    }
+   "router":{
+      "name":"another_router",
+      "admin_state_up":true
+   }
 }

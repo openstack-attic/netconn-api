@@ -873,7 +873,7 @@ Accept: application/json</literallayout>
                 returned.</para>
             <example>
                 <title>Create Floating IP: JSON Request</title>
-                <programlisting language="json"><xi:include href="samples/floatingips-post-req.json" parse="text"/></programlisting>
+                <programlisting language="json"><xi:include href="samples/floatingips-post-req-json-http.txt" parse="text"/></programlisting>
             </example>
             <example>
                 <title>Create Floating IP: JSON Response</title>
