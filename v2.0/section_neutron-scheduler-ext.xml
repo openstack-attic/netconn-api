@@ -236,7 +236,7 @@ Content-Length: 54
                 </example>
                 <example>
                     <title>Schedule Network: JSON Response</title>
-                    <programlisting language="json"><xi:include href="samples/sche-network-dhcp-res.json" parse="text"/></programlisting>
+                    <programlisting language="json"><xi:include href="samples/sche-network-dhcp-res-json-http.txt" parse="text"/></programlisting>
                 </example>
                 </section>
             <section xml:id="Sche_Remove_Network_DHCP">
@@ -470,7 +470,7 @@ Content-Length: 54
                 </example>
                 <example>
                     <title>Schedule Router: JSON Response</title>
-                    <programlisting language="json"><xi:include href="samples/sche-router-l3-res.json" parse="text"/></programlisting>
+                    <programlisting language="json"><xi:include href="samples/sche-router-l3-res-json-http.txt" parse="text"/></programlisting>
                 </example>
                 </section>
             <section xml:id="Sche_Remove_Router_L3">

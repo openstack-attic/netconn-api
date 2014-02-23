@@ -163,7 +163,7 @@
             the default value is <literal>True</literal>.</para>
         <example>
             <title>Create router with SNAT disabled</title>
-            <programlisting><xi:include href="samples/router-create-enablesnat.sample" parse="text"/></programlisting>
+            <programlisting><xi:include href="samples/router-create-enablesnat-json-http.txt" parse="text"/></programlisting>
         </example>
     </section>
     <section xml:id="update_router_extgwmodes">
@@ -217,16 +217,25 @@
             <example>
                 <title>Disable SNAT for the current external
                     network</title>
-                <programlisting><xi:include href="samples/router-update-enablesnat-1.sample" parse="text"/></programlisting>
+                <programlisting><xi:include href="samples/router-update-enablesnat-1.json" parse="text"/></programlisting>
+                <programlisting><xi:include href="samples/router-update-enablesnat-1b.json" parse="text"/></programlisting>
+                <programlisting><xi:include href="samples/router-update-enablesnat-1c.json" parse="text"/></programlisting>
+                <programlisting><xi:include href="samples/router-update-enablesnat-1d.json" parse="text"/></programlisting>
             </example>
             <example>
                 <title>Change external network and enable SNAT</title>
-                <programlisting><xi:include href="samples/router-update-enablesnat-2.sample" parse="text"/></programlisting>
+                <programlisting><xi:include href="samples/router-update-enablesnat-2.json" parse="text"/></programlisting>
+                <programlisting><xi:include href="samples/router-update-enablesnat-2b.json" parse="text"/></programlisting>
+                <programlisting><xi:include href="samples/router-update-enablesnat-2c.json" parse="text"/></programlisting>
+                <programlisting><xi:include href="samples/router-update-enablesnat-2d.json" parse="text"/></programlisting>
             </example>
             <example>
                 <title>Change external network and keep SNAT
                     disabled</title>
-                <programlisting><xi:include href="samples/router-update-enablesnat-3.sample" parse="text"/></programlisting>
+                <programlisting><xi:include href="samples/router-update-enablesnat-3.json" parse="text"/></programlisting>
+                <programlisting><xi:include href="samples/router-update-enablesnat-3b.json" parse="text"/></programlisting>
+                <programlisting><xi:include href="samples/router-update-enablesnat-3c.json" parse="text"/></programlisting>
+                <programlisting><xi:include href="samples/router-update-enablesnat-3d.json" parse="text"/></programlisting>
             </example>
         </para>
     </section>

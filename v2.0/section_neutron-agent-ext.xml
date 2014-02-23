@@ -270,7 +270,7 @@ X-Auth-Token: 4cbb09e780434b249ff596d6979fd8fc
                 </example>
                 <example>
                     <title>Delete Agent: JSON Response</title>
-                    <programlisting language="json"><xi:include href="samples/agents-delete-res.json" parse="text"/></programlisting>
+                    <programlisting language="json"><xi:include href="samples/agents-delete-res-json-http.txt" parse="text"/></programlisting>
                 </example>
                 </section>
         </section>
