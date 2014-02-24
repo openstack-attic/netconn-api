@@ -2,13 +2,13 @@
   "networks": [
   {
     "status": "ACTIVE",
-    "subnets": [], 
+    "subnets": [],
     "name": "network_1",
     "admin_state_up": true,
-    "tenant_id": "c1210485b2424d48804aad5d39c61b8f", 
+    "tenant_id": "c1210485b2424d48804aad5d39c61b8f",
     "id": "3a06dfc7-d239-4aad-9a57-21cd171c72e5",
     "shared": false
-  }, 
+  },
   {
     "status": "ACTIVE",
     "subnets": [],
@@ -17,7 +17,7 @@
     "tenant_id": "c1210485b2424d48804aad5d39c61b8f",
     "id": "7db8c5a4-6eb0-478d-856b-7cfda2b25e13",
     "shared": false
-  }, 
+  },
   {
     "status": "ACTIVE",
     "subnets": ["e12f0c45-46e3-446a-b207-9474b27687a6"],

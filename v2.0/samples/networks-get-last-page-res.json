@@ -1,22 +1,22 @@
 {
     "networks": [
         {
-            "admin_state_up": true, 
-            "id": "b3680498-03da-4691-896f-ef9ee1d856a7", 
-            "name": "net1", 
-            "provider:network_type": "vlan", 
-            "provider:physical_network": "physnet1", 
-            "provider:segmentation_id": 1000, 
-            "router:external": false, 
-            "shared": false, 
-            "status": "ACTIVE", 
-            "subnets": [], 
+            "admin_state_up": true,
+            "id": "b3680498-03da-4691-896f-ef9ee1d856a7",
+            "name": "net1",
+            "provider:network_type": "vlan",
+            "provider:physical_network": "physnet1",
+            "provider:segmentation_id": 1000,
+            "router:external": false,
+            "shared": false,
+            "status": "ACTIVE",
+            "subnets": [],
             "tenant_id": "c05140b3dc7c4555afff9fab6b58edc2"
         }
-    ], 
+    ],
     "networks_links": [
         {
-            "href": "http://127.0.0.1:9696/v2.0/networks.json?limit=2&marker=b3680498-03da-4691-896f-ef9ee1d856a7&page_reverse=True", 
+            "href": "http://127.0.0.1:9696/v2.0/networks.json?limit=2&marker=b3680498-03da-4691-896f-ef9ee1d856a7&page_reverse=True",
             "rel": "previous"
         }
     ]

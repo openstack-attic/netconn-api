@@ -1,13 +1,13 @@
 {
-    "port": 
+    "port":
     {
-        "network_id": "87733bcc-8144-41b1-bb6b-d011d7a5168e", 
+        "network_id": "87733bcc-8144-41b1-bb6b-d011d7a5168e",
         "extra_dhcp_opts": [
-            {"opt_value": "pxelinux.0", "opt_name": "bootfile-name"}, 
-            {"opt_value": "123.123.123.123", "opt_name": "tftp-server"}, 
+            {"opt_value": "pxelinux.0", "opt_name": "bootfile-name"},
+            {"opt_value": "123.123.123.123", "opt_name": "tftp-server"},
             {"opt_value": "123.123.123.45", "opt_name": "server-ip-address"}
-        ], 
-        "fixed_ips": [{"subnet_id": "99a8aea3-b9da-409d-a5e5-f45338ceb4d3", "ip_address": "172.24.4.230"}], 
+        ],
+        "fixed_ips": [{"subnet_id": "99a8aea3-b9da-409d-a5e5-f45338ceb4d3", "ip_address": "172.24.4.230"}],
         "admin_state_up": true
     }
 }
