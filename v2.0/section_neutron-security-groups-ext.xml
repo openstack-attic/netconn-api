@@ -34,11 +34,10 @@
     xmlns:m="http://www.w3.org/1998/Math/MathML"
     xmlns:html="http://www.w3.org/1999/xhtml"
     xmlns:db="http://docbook.org/ns/docbook" version="5.0"
-    status="final" xml:id="security-groups-ext"
-    xmlns:wadl="http://wadl.dev.java.net/2009/02">
-
-    <title>Security Groups and Rules</title>
-    <para>Creates, modifies, and deletes OpenStack Networking security groups and
-        rules.</para>
-    <wadl:resources href="http://git.openstack.org/cgit/openstack/api-site/plain/api-ref/src/wadls/netconn-api/src/security-groups.wadl"/>
+    status="final" xmlns:wadl="http://wadl.dev.java.net/2009/02"
+    xml:id="security_groups">
+    <title>Security groups and rules (security-groups)</title>
+    <wadl:resources
+        href="https://raw.github.com/openstack/api-site/master/api-ref/src/wadls/netconn-api/src/security-groups.wadl"
+        xmlns:wadl="http://wadl.dev.java.net/2009/02"/>
 </section>
