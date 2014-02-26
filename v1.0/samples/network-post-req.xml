@@ -1,2 +1,2 @@
-<network
-    name="test_create_network"/>
+<?xml version="1.0" encoding="UTF-8"?>
+<network name="test_create_network"/>
