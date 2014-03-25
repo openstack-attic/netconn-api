@@ -143,10 +143,25 @@
                 <td><para>Read-only. A dictionary that enables the
                         application to pass information about
                         functions that &APIv2; provides. Specify the
-                        following value: port_filter : Boolean to
-                        define whether &APIv2; provides port filtering
+                        following value: <code>port_filter : Boolean</code> to
+                    define whether &APIv2; provides port filtering
                         features such as security group and
                         anti-MAC/IP spoofing.</para></td>
+            </tr>
+            <tr>
+                <td><para><parameter>binding:vnic_type</parameter></para></td>
+                <td><para>String</para></td>
+                <td><para>N/A</para></td>
+                <td><para>CRU</para></td>
+                <td><para>normal</para></td>
+                <td><para>(normal,
+                    direct,
+                    macvtap)</para></td>
+                <td><para>The vnic type to be bound on the neutron port.
+                    To support SR-IOV PCI passthrough networking, you can request that the neutron port
+                    be realized as normal (virtual nic), direct (pci passthrough), or
+                    macvtap (virtual interface with a tap-like software interface).
+                    The ML2 plug-in supports the vnic_type.</para></td>
             </tr>
         </tbody>
     </table>
@@ -173,7 +188,8 @@
                     <td>Lists ports to which the tenant has access.
                         The <parameter>binding</parameter> extended
                         attributes are visible to only administrative
-                        users.</td>
+                        users. The <parameter>binding:vnic_type</parameter> extended attribute
+                        is visible to only port owners and administrative users.</td>
                 </tr>
             </tbody>
         </informaltable>
@@ -199,7 +215,6 @@
             <tbody>
                 <tr>
                     <td><para><parameter>binding:vif_type</parameter></para></td>
-
                     <td><para>Read-only. The vif type for the
                             specified port.</para>
                     </td>
@@ -232,6 +247,12 @@
                             to define whether &APIv2; provides port
                             filtering features such as security group
                             and anti-MAC/IP spoofing.</para>
+                    </td>
+                </tr>
+                <tr>
+                    <td><para><parameter>binding:vnic_type</parameter></para></td>
+                    <td><para>The vnic type to be bound on the neutron port.
+                        Valid values are normal, direct, or macvtap.</para>
                     </td>
                 </tr>
             </tbody>
@@ -258,7 +279,8 @@
                     <td>Shows information for a specified port. The
                             <parameter>binding</parameter> extended
                         attributes are visible to only administrative
-                        users.</td>
+                        users. The <parameter>binding:vnic_type</parameter> extended attribute
+                        is visible to only port owners or administrative users.</td>
                 </tr>
             </tbody>
         </informaltable>
@@ -285,7 +307,6 @@
             <tbody>
                 <tr>
                     <td><para><parameter>binding:vif_type</parameter></para></td>
-
                     <td><para>Read-only. The vif type for the
                             specified port.</para>
                     </td>
@@ -314,10 +335,17 @@
                     <td><para>Read-only. A dictionary that enables the
                             application to pass information about
                             functions that &APIv2; provides. Specify
-                            the following value: port_filter : Boolean
-                            to define whether &APIv2; provides port
+                            the following value: <code>port_filter : Boolean</code>
+                        to define whether &APIv2; provides port
                             filtering features such as security group
                             and anti-MAC/IP spoofing.</para>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <para><parameter>binding:vnic_type</parameter></para></td>
+                    <td><para>The requested vnic type to be bound on neutron
+                        port (can be either normal, direct or macvtap).</para>
                     </td>
                 </tr>
             </tbody>
@@ -393,6 +421,13 @@
                             information to the plug-in.</para>
                     </td>
                 </tr>
+                <tr>
+                    <td>
+                        <para><parameter>binding:vnic_type</parameter></para></td>
+                    <td><para>The vnic type to be bound on the neutron port.
+                        Valid values are normal, direct, or macvtap.</para>
+                    </td>
+                </tr>
             </tbody>
         </informaltable>
     </section>
@@ -413,10 +448,10 @@
                 <tr>
                     <td>&PUT;</td>
                     <td>/ports/<parameter>port-id</parameter></td>
-                    <td>Updates a specified port. Only administrative
-                        users can update the
-                            <parameter>binding</parameter> extended
-                        attributes.</td>
+                    <td>Updates a specified port. Only administrative users can update the
+                            <parameter>binding</parameter> extended attributes. The
+                        <parameter>binding:vnic_type</parameter> extended attribute is visible to only port owners or
+                        administrative users.</td>
                 </tr>
             </tbody>
         </informaltable>
@@ -461,6 +496,13 @@
                             application running on the specified host
                             to pass and receive vif port-specific
                             information to the plug-in.</para>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <para><parameter>binding:vnic_type</parameter></para></td>
+                    <td><para>The vnic type to be bound on the neutron port.
+                        Valid values are normal, direct, or macvtap.</para>
                     </td>
                 </tr>
             </tbody>
