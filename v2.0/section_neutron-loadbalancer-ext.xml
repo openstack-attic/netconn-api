@@ -1,30 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE section [
-        <!-- Some useful entities borrowed from HTML -->
-        <!ENTITY ndash  "&#x2013;">
-        <!ENTITY mdash  "&#x2014;">
-        <!ENTITY hellip "&#x2026;">
-        <!ENTITY plusmn "&#xB1;">
-
-        <!-- Useful for describing APIs -->
-        <!ENTITY GET    '<command xmlns="http://docbook.org/ns/docbook">GET</command>'>
-        <!ENTITY PUT    '<command xmlns="http://docbook.org/ns/docbook">PUT</command>'>
-        <!ENTITY POST   '<command xmlns="http://docbook.org/ns/docbook">POST</command>'>
-        <!ENTITY DELETE '<command xmlns="http://docbook.org/ns/docbook">DELETE</command>'>
-
-        <!ENTITY CHECK  '<inlinemediaobject xmlns="http://docbook.org/ns/docbook">
-                 <imageobject>
-                  <imagedata fileref="figures/Check_mark_23x20_02.svg"
-                             format="SVG" scale="60"/>
-                </imageobject>
-              </inlinemediaobject>'>
-
-        <!ENTITY ARROW  '<inlinemediaobject xmlns="http://docbook.org/ns/docbook">
-                 <imageobject>
-                  <imagedata fileref="figures/Arrow_east.svg"
-                             format="SVG" scale="60"/>
-                </imageobject>
-              </inlinemediaobject>'>
+<!-- Useful for describing APIs -->
+<!ENTITY GET    '<command xmlns="http://docbook.org/ns/docbook">GET</command>'>
+<!ENTITY PUT    '<command xmlns="http://docbook.org/ns/docbook">PUT</command>'>
+<!ENTITY POST   '<command xmlns="http://docbook.org/ns/docbook">POST</command>'>
+<!ENTITY DELETE '<command xmlns="http://docbook.org/ns/docbook">DELETE</command>'>
 ]>
 <section xmlns="http://docbook.org/ns/docbook"
     xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -34,184 +14,166 @@
     xmlns:html="http://www.w3.org/1999/xhtml"
     xmlns:db="http://docbook.org/ns/docbook" version="5.0"
     status="final" xml:id="lbaas_ext">
-
     <title>The Load Balancer as a Service (LBaaS) Extension</title>
-    <para>The LBaaS extension provides OpenStack tenants
-        with a feature of balancing traffic to their VMs.
-
-        The capabilities provided by the LBaaS extension are:
-        <itemizedlist>
-            <listitem>
-                <para>Load balancing client traffic coming from one network to
-                    application services (e.g. VMs) on the same or a
-                    different network.
-                </para>
-            </listitem>
-            <listitem>
-                <para>Supporting load balancing for several protocols (TCP, HTTP)</para>
-            </listitem>
-            <listitem>
-                <para>Supporting session persistence</para>
-            </listitem>
-            <listitem>
-                <para>Monitoring the health of the application services</para>
-            </listitem>
-        </itemizedlist>
-    </para>
-
-    <para>This extension introduces new resources:
-        <itemizedlist>
-            <listitem>
-                <para><emphasis role="bold">vip</emphasis>, is the primary load
-                    balancing configuration object that specifies the virtual
-                    IP address and port on which client traffic is received.
-                </para>
-            </listitem>
-            <listitem>
-                <para><emphasis role="bold">pool</emphasis>, a load balancing
-                    pool is a logical set of members, such as web servers, that
-                    you group together to receive and process traffic.
-                </para>
-            </listitem>
-            <listitem>
-                <para><emphasis role="bold">member</emphasis>, a representation
-                    of the application running on back end server.
-                </para>
-            </listitem>
-            <listitem>
-                <para><emphasis role="bold">health_monitor</emphasis>, which is used
-                    to determine whether or not back end members of the pool
-                    are usable for processing traffic.
-                </para>
-            </listitem>
-        </itemizedlist>
-    </para>
-
-    <?hard-pagebreak?>
-
+    <para>The LBaaS extension provides OpenStack tenants with a
+        feature of balancing traffic to their VMs. The capabilities
+        provided by the LBaaS extension are:</para>
+    <itemizedlist>
+        <listitem>
+            <para>Load balancing client traffic coming from one
+                network to application services (e.g. VMs) on the same
+                or a different network.</para>
+        </listitem>
+        <listitem>
+            <para>Supporting load balancing for several protocols
+                (TCP, HTTP)</para>
+        </listitem>
+        <listitem>
+            <para>Supporting session persistence</para>
+        </listitem>
+        <listitem>
+            <para>Monitoring the health of the application
+                services</para>
+        </listitem>
+    </itemizedlist>
+    <para>This extension introduces new resources:</para>
+    <itemizedlist>
+        <listitem>
+            <para><emphasis role="bold">vip</emphasis>, is the primary
+                load balancing configuration object that specifies the
+                virtual IP address and port on which client traffic is
+                received.</para>
+        </listitem>
+        <listitem>
+            <para><emphasis role="bold">pool</emphasis>, a load
+                balancing pool is a logical set of members, such as
+                web servers, that you group together to receive and
+                process traffic.</para>
+        </listitem>
+        <listitem>
+            <para><emphasis role="bold">member</emphasis>, a
+                representation of the application running on back end
+                server.</para>
+        </listitem>
+        <listitem>
+            <para><emphasis role="bold">health_monitor</emphasis>,
+                which is used to determine whether or not back end
+                members of the pool are usable for processing traffic.
+            </para>
+        </listitem>
+    </itemizedlist>
     <section xml:id="lbaas_ext_concepts">
         <title>Concepts</title>
-
-        <para>
-            A <emphasis role="bold">VIP</emphasis> is the primary load balancing configuration object that
-            specifies the virtual IP address and port on which client traffic
-            is received, as well as other details such as the load balancing
-            method to be used, protocol, etc. This entity is sometimes known in
-            LB products as a "virtual server", a "vserver" or a "listener".
-        </para>
-
-        <para>
-            A <emphasis role="bold">Pool</emphasis> is a logical set of devices, such as web
-            servers, that you group together to receive and process traffic.
-            The load balancing function chooses a member of the pool according
-            to the configured load balancing method to handle the new requests
-            or connections received on the VIP address. There is only one pool
-            for a VIP.
-        </para>
-
-        <para>
-        A pool <emphasis role="bold">member</emphasis> represents the application running on the back end server.
-        </para>
-
-        <para>
-            A
-            <emphasis role="bold">Health Monitor</emphasis>
-            is used to determine whether or not back end members of the VIP's
-            pool are usable for processing a request. A pool can have several
-            health monitors associated with it. There are different types of
-            health monitors supported by the LBaaS extension:</para>
-            <itemizedlist>
-                <listitem>
-                    <para><emphasis>PING</emphasis>: pings the members by using ICMP.</para>
-                </listitem>
-                <listitem>
-                    <para><emphasis>TCP</emphasis>: connects to the members by using TCP.</para>
-                </listitem>
-                <listitem>
-                    <para><emphasis>HTTP</emphasis>: sends an HTTP request to the member.</para>
-                </listitem>
-                <listitem>
-                    <para><emphasis>HTTPS</emphasis>: sends a secure HTTP request to the member.</para>
-                </listitem>
-            </itemizedlist>
-
-            <para>When a pool has several monitors associated with it, each member of
-            the pool is monitored by all these monitors. If any monitor
-            declares the member as unhealthy, then the member status is changed
-            to <emphasis>inactive</emphasis> and the member won't participate in its pool's load
-            balancing. In other words, all monitors must declare the member to
-            be healthy for it to stay <emphasis>active</emphasis>.
-        </para>
-
-        <para>
-            Session persistence is a feature of the load balancing service. It
-            attempts to force connections or requests in the same session to be
-            processed by the same member as long as it is active. The
-            LBaaS extension supports three types of persistence:</para>
-
-            <itemizedlist>
-                <listitem>
-                    <para><emphasis>SOURCE_IP</emphasis>: With this persistence
-                        mode, all connections originating from the same source
-                        IP address are handled by the same member of the
-                        pool.
-                    </para>
-                </listitem>
-                <listitem>
-                    <para><emphasis>HTTP_COOKIE</emphasis>: With this
-                        persistence mode, the load balancing function creates a cookie on the first request from a client.
-                        Subsequent requests containing the same cookie value
-                        will be handled by the same member of the pool.
-                    </para>
-                </listitem>
-                <listitem>
-                    <para><emphasis>APP_COOKIE</emphasis>: With this
-                        persistence mode, the load balancing function relies
-                        on a cookie established by the back end application. All
-                        requests carrying the same cookie value is handled
-                        by the same member of the pool.
-                    </para>
-                </listitem>
-            </itemizedlist>
+        <para>A <emphasis role="bold">VIP</emphasis> is the primary
+            load balancing configuration object that specifies the
+            virtual IP address and port on which client traffic is
+            received, as well as other details such as the load
+            balancing method to be used, protocol, etc. This entity is
+            sometimes known in LB products as a "virtual server", a
+            "vserver" or a "listener".</para>
+        <para>A <emphasis role="bold">Pool</emphasis> is a logical set
+            of devices, such as web servers, that you group together
+            to receive and process traffic. The load balancing
+            function chooses a member of the pool according to the
+            configured load balancing method to handle the new
+            requests or connections received on the VIP address. There
+            is only one pool for a VIP.</para>
+        <para>A pool <emphasis role="bold">member</emphasis>
+            represents the application running on the back end
+            server.</para>
+        <para>A <emphasis role="bold">Health Monitor</emphasis> is
+            used to determine whether or not back end members of the
+            VIP pool are usable for processing a request. A pool can
+            have several health monitors associated with it. There are
+            different types of health monitors supported by the LBaaS
+            extension:</para>
+        <itemizedlist>
+            <listitem>
+                <para><emphasis>PING</emphasis>: pings the members by
+                    using ICMP.</para>
+            </listitem>
+            <listitem>
+                <para><emphasis>TCP</emphasis>: connects to the
+                    members by using TCP.</para>
+            </listitem>
+            <listitem>
+                <para><emphasis>HTTP</emphasis>: sends an HTTP request
+                    to the member.</para>
+            </listitem>
+            <listitem>
+                <para><emphasis>HTTPS</emphasis>: sends a secure HTTP
+                    request to the member.</para>
+            </listitem>
+        </itemizedlist>
+        <para>When a pool has several monitors associated with it,
+            each member of the pool is monitored by all these
+            monitors. If any monitor declares the member as unhealthy,
+            then the member status is changed to
+                <emphasis>inactive</emphasis> and the member won't
+            participate in its pool's load balancing. In other words,
+            all monitors must declare the member to be healthy for it
+            to stay <emphasis>active</emphasis>.</para>
+        <para>Session persistence is a feature of the load balancing
+            service. It attempts to force connections or requests in
+            the same session to be processed by the same member as
+            long as it is active. The LBaaS extension supports three
+            types of persistence:</para>
+        <itemizedlist>
+            <listitem>
+                <para><emphasis>SOURCE_IP</emphasis>: With this
+                    persistence mode, all connections originating from
+                    the same source IP address are handled by the same
+                    member of the pool.</para>
+            </listitem>
+            <listitem>
+                <para><emphasis>HTTP_COOKIE</emphasis>: With this
+                    persistence mode, the load balancing function
+                    creates a cookie on the first request from a
+                    client. Subsequent requests containing the same
+                    cookie value will be handled by the same member of
+                    the pool.</para>
+            </listitem>
+            <listitem>
+                <para><emphasis>APP_COOKIE</emphasis>: With this
+                    persistence mode, the load balancing function
+                    relies on a cookie established by the back end
+                    application. All requests carrying the same cookie
+                    value is handled by the same member of the pool.
+                </para>
+            </listitem>
+        </itemizedlist>
     </section>
-
-    <?hard-pagebreak?>
-
     <section xml:id="lbaas_ext_flow">
         <title>High-level flow</title>
-
-        <para>
-            The high-level task flow for using LBaaS API to configure load
-            balancing is as follows:</para>
-
-            <orderedlist>
-                <listitem>
-                    <para>The tenant creates a pool, which is initially empty</para>
-                </listitem>
-                <listitem>
-                    <para>The tenant creates one or several members in the pool</para>
-                </listitem>
-                <listitem>
-                    <para>The tenant create one or several health monitors</para>
-                </listitem>
-                <listitem>
-                    <para>The tenant associates the Health Monitors with the Pool</para>
-                </listitem>
-                <listitem>
-                    <para>The tenant finally creates a VIP associated with the Pool</para>
-                </listitem>
-            </orderedlist>
-
+        <para>The high-level task flow for using LBaaS API to
+            configure load balancing is as follows:</para>
+        <orderedlist>
+            <listitem>
+                <para>The tenant creates a pool, which is initially
+                    empty</para>
+            </listitem>
+            <listitem>
+                <para>The tenant creates one or several members in the
+                    pool</para>
+            </listitem>
+            <listitem>
+                <para>The tenant create one or several health
+                    monitors</para>
+            </listitem>
+            <listitem>
+                <para>The tenant associates the Health Monitors with
+                    the Pool</para>
+            </listitem>
+            <listitem>
+                <para>The tenant finally creates a VIP associated with
+                    the Pool</para>
+            </listitem>
+        </orderedlist>
     </section>
-
-    <?hard-pagebreak?>
-
     <section xml:id="lbaas_ext_ops_vip">
-        <title>VIP Operations</title>
-        <para>This section discusses operations for managing load balancer VIPs
-            through the Load balancing as a service extension.
-        </para>
-
+        <title>VIP operations</title>
+        <para>This section discusses operations for managing load
+            balancer VIPs through the LBaaS extension.</para>
         <table rules="all">
             <caption>VIP Attributes</caption>
             <col width="20%"/>
@@ -226,28 +188,36 @@
                     <th>Attribute</th>
                     <th>Type</th>
                     <th>Required</th>
-                    <th>CRUD
-                        <footnote xml:id="lbaas_vip_crud_note">
+                    <th>CRUD <footnote xml:id="lbaas_vip_crud_note">
                             <para>
                                 <itemizedlist>
-                                    <listitem>
-                                        <para><emphasis role="bold">C</emphasis>. Use the attribute in create operations.</para>
-                                    </listitem>
-                                    <listitem>
-                                        <para><emphasis role="bold">R</emphasis>. This attribute is returned in response to show and list operations.</para>
-                                    </listitem>
-                                    <listitem>
-                                        <para><emphasis role="bold">U</emphasis>. You can update the value of this attribute.</para>
-                                    </listitem>
-                                    <listitem>
-                                        <para><emphasis role="bold">D</emphasis>. You can delete the value of this attribute.</para>
-                                    </listitem>
+                                   <listitem>
+                                   <para><emphasis role="bold"
+                                   >C</emphasis>. Use the attribute in
+                                   create operations.</para>
+                                   </listitem>
+                                   <listitem>
+                                   <para><emphasis role="bold"
+                                   >R</emphasis>. This attribute is
+                                   returned in response to show and
+                                   list operations.</para>
+                                   </listitem>
+                                   <listitem>
+                                   <para><emphasis role="bold"
+                                   >U</emphasis>. You can update the
+                                   value of this attribute.</para>
+                                   </listitem>
+                                   <listitem>
+                                   <para><emphasis role="bold"
+                                   >D</emphasis>. You can delete the
+                                   value of this attribute.</para>
+                                   </listitem>
                                 </itemizedlist>
                             </para>
                         </footnote>
                     </th>
-                    <th>Default Value</th>
-                    <th>Validation Constraints</th>
+                    <th>Default value</th>
+                    <th>Validation constraints</th>
                     <th>Notes</th>
                 </tr>
             </thead>
@@ -268,8 +238,8 @@
                     <td>CR</td>
                     <td>Derived from Authentication token</td>
                     <td>N/A</td>
-                    <td>Owner of the vip. Only admin users can specify a
-                        tenant identifier other than its own</td>
+                    <td>Owner of the vip. Only admin users can specify
+                        a tenant identifier other than its own</td>
                 </tr>
                 <tr>
                     <td>name</td>
@@ -278,9 +248,8 @@
                     <td>CRU</td>
                     <td>None</td>
                     <td>N/A</td>
-                    <td>Human readable name for the vip.
-                        Does not have to be unique
-                    </td>
+                    <td>Human readable name for the vip. Does not have
+                        to be unique.</td>
                 </tr>
                 <tr>
                     <td>description</td>
@@ -298,7 +267,8 @@
                     <td>CR</td>
                     <td>None</td>
                     <td>UUID Pattern</td>
-                    <td>The subnet on which to allocate the vip address.</td>
+                    <td>The subnet on which to allocate the vip
+                        address.</td>
                 </tr>
                 <tr>
                     <td>address</td>
@@ -325,7 +295,8 @@
                     <td>CR</td>
                     <td>None</td>
                     <td>[0..65535]</td>
-                    <td>The port on which to listen to client traffic that is associated with the vip address.</td>
+                    <td>The port on which to listen to client traffic
+                        that is associated with the vip address.</td>
                 </tr>
                 <tr>
                     <td>pool_id</td>
@@ -334,7 +305,8 @@
                     <td>CRU</td>
                     <td>None</td>
                     <td>UUID Pattern</td>
-                    <td>The <literal>pool</literal> that the vip associated with.</td>
+                    <td>The <literal>pool</literal> that the vip
+                        associated with.</td>
                 </tr>
                 <tr>
                     <td>session_persistence</td>
@@ -342,25 +314,26 @@
                     <td>No</td>
                     <td>CRU</td>
                     <td>None</td>
-                    <td>
-                        composite
-                        <footnote xml:id="lbaas_vip_session_persistence_note">
-                            <para>
-                                Session persistence is a dictionary with the following attributes:
-                                <itemizedlist>
-                                    <listitem>
-                                        <para><emphasis role="bold">type</emphasis> -
-                                            any of <constant>APP_COOKIE</constant>,
-                                            <constant>HTTP_COOKIE</constant> or <constant>SOURCE_IP</constant></para>
-                                    </listitem>
-                                    <listitem>
-                                        <para><emphasis role="bold">cookie_name</emphasis> -
-                                            any string, required if type is <constant>APP_COOKIE</constant></para>
-                                    </listitem>
-                                </itemizedlist>
-                            </para>
-                        </footnote>
-                    </td>
+                    <td>composite <footnote
+                            xml:id="lbaas_vip_session_persistence_note">
+                            <para>Session persistence is a dictionary
+                                with the following attributes:</para>
+                            <itemizedlist>
+                                <listitem>
+                                   <para><emphasis role="bold"
+                                   >type</emphasis> - any of
+                                   <constant>APP_COOKIE</constant>,
+                                   <constant>HTTP_COOKIE</constant> or
+                                   <constant>SOURCE_IP</constant></para>
+                                </listitem>
+                                <listitem>
+                                   <para><emphasis role="bold"
+                                   >cookie_name</emphasis> - any
+                                   string, required if type is
+                                   <constant>APP_COOKIE</constant></para>
+                                </listitem>
+                            </itemizedlist>
+                        </footnote></td>
                     <td>Session persistence parameters of the vip</td>
                 </tr>
                 <tr>
@@ -370,7 +343,8 @@
                     <td>CRU</td>
                     <td>-1</td>
                     <td>None</td>
-                    <td>The maximum number of connections allowed for the vip or "-1" if the limit is not set</td>
+                    <td>The maximum number of connections allowed for
+                        the vip or "-1" if the limit is not set</td>
                 </tr>
                 <tr>
                     <td>admin_state_up</td>
@@ -388,13 +362,20 @@
                     <td>R</td>
                     <td>N/A</td>
                     <td>N/A</td>
-                    <td>Indicates whether a vip is currently operational or not</td>
+                    <td>Indicates whether a vip is currently
+                        operational or not</td>
+                </tr>
+                <tr>
+                    <td>status_description</td>
+                    <td>String</td>
+                    <td>N/A</td>
+                    <td>CRU</td>
+                    <td>null</td>
+                    <td/>
+                    <td/>
                 </tr>
             </tbody>
         </table>
-
-        <?hard-pagebreak?>
-
         <section xml:id="lbaas_ext_ops_vip_list">
             <title>List VIPs</title>
             <informaltable rules="all" width="100%">
@@ -410,40 +391,34 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>&GET;
-                        </td>
+                        <td>&GET;</td>
                         <td>/lb/vips</td>
                         <td>Lists vips.</td>
                     </tr>
                 </tbody>
             </informaltable>
             <simpara>Normal Response Code:
-                <returnvalue>200</returnvalue>
+                    <returnvalue>200</returnvalue>
             </simpara>
-            <simpara>Error Response Codes: Unauthorized (<errorcode>401</errorcode>),
-                Forbidden (<errorcode>403</errorcode>)
-            </simpara>
-            <para>This operation does not require a request body.</para>
+            <simpara>Error Response Codes: Unauthorized
+                    (<errorcode>401</errorcode>), Forbidden
+                    (<errorcode>403</errorcode>) </simpara>
+            <para>This operation does not require a request
+                body.</para>
             <para>This operation returns a response body.</para>
             <example>
                 <title>List VIPs: Request</title>
-
-                <programlisting>
-GET /v2.0/lb/vips.json HTTP/1.1
+                <programlisting>GET /v2.0/lb/vips.json HTTP/1.1
 User-Agent: python-neutronclient
-Accept: application/json
-                </programlisting>
+Accept: application/json</programlisting>
             </example>
             <example>
                 <title>List VIPs: Response</title>
                 <programlisting language="json"><xi:include href="samples/loadbalancer/vips-list-res.json" parse="text"/></programlisting>
             </example>
         </section>
-
-        <?hard-pagebreak?>
-
         <section xml:id="lbaas_ext_ops_vip_show">
-            <title>Show VIP</title>
+            <title>Show VIP details</title>
             <informaltable rules="all" width="100%">
                 <col width="20%"/>
                 <col width="20%"/>
@@ -457,38 +432,33 @@ Accept: application/json
                 </thead>
                 <tbody>
                     <tr>
-                        <td>&GET;
-                        </td>
+                        <td>&GET;</td>
                         <td>/lb/vips/<parameter>vip-id</parameter></td>
-                        <td>Returns details about a specific vip.</td>
+                        <td>Shows details for a specified VIP.</td>
                     </tr>
                 </tbody>
             </informaltable>
             <simpara>Normal Response Code:
-                <returnvalue>200</returnvalue>
+                    <returnvalue>200</returnvalue>
             </simpara>
-            <simpara>Error Response Codes: Unauthorized (<errorcode>401</errorcode>),
-                Forbidden (<errorcode>403</errorcode>), Not Found (<errorcode>404</errorcode>)
-            </simpara>
-            <para>This operation does not require a request body.</para>
+            <simpara>Error Response Codes: Unauthorized
+                    (<errorcode>401</errorcode>), Forbidden
+                    (<errorcode>403</errorcode>), Not Found
+                    (<errorcode>404</errorcode>) </simpara>
+            <para>This operation does not require a request
+                body.</para>
             <para>This operation returns a response body.</para>
             <example>
                 <title>Show VIP: Request</title>
-
-                <programlisting>
-GET /v2.0/lb/vips/4ec89087-d057-4e2c-911f-60a3b47ee304.json HTTP/1.1
+                <programlisting>GET /v2.0/lb/vips/a54bc6e7-2e28-4c55-a676-6146a4c0f8b9.json HTTP/1.1
 User-Agent: python-neutronclient
-Accept: application/json
-                </programlisting>
+Accept: application/json</programlisting>
             </example>
             <example>
                 <title>Show VIP: Response</title>
                 <programlisting language="json"><xi:include href="samples/loadbalancer/vips-show-res.json" parse="text"/></programlisting>
             </example>
         </section>
-
-        <?hard-pagebreak?>
-
         <section xml:id="lbaas_ext_ops_vip_create">
             <title>Create VIP</title>
             <informaltable rules="all" width="100%">
@@ -506,37 +476,32 @@ Accept: application/json
                     <tr>
                         <td>&POST;</td>
                         <td>/lb/vips</td>
-                        <td>Create a new load balancer vip.</td>
+                        <td>Creates a load balancer VIP.</td>
                     </tr>
                 </tbody>
             </informaltable>
             <para>Normal Response Code: <returnvalue>201</returnvalue>
             </para>
-            <simpara>Error Response Codes: Unauthorized (<errorcode>401</errorcode>),
-                Bad Request (<errorcode>400</errorcode>)</simpara>
+            <simpara>Error Response Codes: Unauthorized
+                    (<errorcode>401</errorcode>), Bad Request
+                    (<errorcode>400</errorcode>)</simpara>
             <para>This operation requires a request body.</para>
             <para>This operation returns a response body.</para>
             <example>
                 <title>Create VIP: Request</title>
-                <programlisting>
-POST /v2.0/lb/vips.json HTTP/1.1
+                <programlisting>POST /v2.0/lb/vips.json HTTP/1.1
 User-Agent: python-neutronclient
-Accept: application/json
-                </programlisting>
+Accept: application/json</programlisting>
                 <programlisting language="json"><xi:include href="samples/loadbalancer/vips-create-req.json" parse="text"/></programlisting>
             </example>
             <example>
                 <title>Create VIP: Response</title>
-                <programlisting>
-HTTP/1.1 201 Created
+                <programlisting>HTTP/1.1 201 Created
 Content-Type: application/json; charset=UTF-8
-                </programlisting>
+</programlisting>
                 <programlisting language="json"><xi:include href="samples/loadbalancer/vips-create-res.json" parse="text"/></programlisting>
             </example>
         </section>
-
-        <?hard-pagebreak?>
-
         <section xml:id="lbaas_ext_ops_vip_update">
             <title>Update VIP</title>
             <informaltable rules="all" width="100%">
@@ -558,30 +523,26 @@ Content-Type: application/json; charset=UTF-8
                     </tr>
                 </tbody>
             </informaltable>
-            <para>Normal Response Code: <returnvalue>200</returnvalue></para>
-            <simpara>Error Response Codes: Unauthorized (<errorcode>401</errorcode>),
-                Bad Request (<errorcode>400</errorcode>), Not Found (<errorcode>404</errorcode>)</simpara>
+            <para>Normal Response Code:
+                <returnvalue>200</returnvalue></para>
+            <simpara>Error Response Codes: Unauthorized
+                    (<errorcode>401</errorcode>), Bad Request
+                    (<errorcode>400</errorcode>), Not Found
+                    (<errorcode>404</errorcode>)</simpara>
             <example>
                 <title>Update VIP: Request</title>
-                <programlisting>
-PUT /v2.0/lb/vips/c987d2be-9a3c-4ac9-a046-e8716b1350e2.json
+                <programlisting>PUT /v2.0/lb/vips/a54bc6e7-2e28-4c55-a676-6146a4c0f8b9.json
 User-Agent: python-neutronclient
-Accept: application/json
-                </programlisting>
+Accept: application/json</programlisting>
                 <programlisting language="json"><xi:include href="samples/loadbalancer/vips-update-req.json" parse="text"/></programlisting>
             </example>
             <example>
                 <title>Update VIP: Response</title>
-                <programlisting>
-HTTP/1.1 200 OK
-Content-Type: application/json; charset=UTF-8
-                </programlisting>
+                <programlisting>HTTP/1.1 200 OK
+Content-Type: application/json; charset=UTF-8</programlisting>
                 <programlisting language="json"><xi:include href="samples/loadbalancer/vips-update-res.json" parse="text"/></programlisting>
             </example>
         </section>
-
-        <?hard-pagebreak?>
-
         <section xml:id="lbaas_ext_ops_vip_delete">
             <title>Delete VIP</title>
             <informaltable rules="all" width="100%">
@@ -605,37 +566,31 @@ Content-Type: application/json; charset=UTF-8
             </informaltable>
             <para>Normal Response Code: <returnvalue>204</returnvalue>
             </para>
-            <simpara>Error Response Codes: Unauthorized (<errorcode>401</errorcode>),
-                Not Found (<errorcode>404</errorcode>), Conflict
-                (<errorcode>409</errorcode>)</simpara>
-            <para>This operation does not require a request body.</para>
-            <para>This operation does not return a response body.</para>
+            <simpara>Error Response Codes: Unauthorized
+                    (<errorcode>401</errorcode>), Not Found
+                    (<errorcode>404</errorcode>), Conflict
+                    (<errorcode>409</errorcode>)</simpara>
+            <para>This operation does not require a request
+                body.</para>
+            <para>This operation does not return a response
+                body.</para>
             <example>
                 <title>Delete VIP: Request</title>
-                <programlisting>
-DELETE /v2.0/lb/vips/c987d2be-9a3c-4ac9-a046-e8716b1350e2.json HTTP/1.1
-Accept: application/json
-                </programlisting>
+                <programlisting>DELETE /v2.0/lb/vips/a54bc6e7-2e28-4c55-a676-6146a4c0f8b9.json HTTP/1.1
+Accept: application/json</programlisting>
             </example>
             <example>
                 <title>Delete VIP: Response</title>
-                <programlisting>
-HTTP/1.1 204 No Content
-Content-Length: 0
-                </programlisting>
+                <programlisting>HTTP/1.1 204 No Content
+Content-Length: 0</programlisting>
             </example>
         </section>
-
-    </section> <!-- end of vips section-->
-
-    <?hard-pagebreak?>
-
+    </section>
+    <!-- end of vips section-->
     <section xml:id="lbaas_ext_ops_pool">
-        <title>Pool Operations</title>
-        <para>This section discusses operations for managing load balancer
-            pools through the Load balancing as a service extension.
-        </para>
-
+        <title>Pool operations</title>
+        <para>This section discusses operations for managing load
+            balancer pools through the LBaaS extension.</para>
         <table rules="all">
             <caption>Pool Attributes</caption>
             <col width="20%"/>
@@ -650,22 +605,30 @@ Content-Length: 0
                     <th>Attribute</th>
                     <th>Type</th>
                     <th>Required</th>
-                    <th>CRUD
-                        <footnote xml:id="lbaas_pool_crud_note">
+                    <th>CRUD <footnote xml:id="lbaas_pool_crud_note">
                             <para>
                                 <itemizedlist>
-                                    <listitem>
-                                        <para><emphasis role="bold">C</emphasis>. Use the attribute in create operations.</para>
-                                    </listitem>
-                                    <listitem>
-                                        <para><emphasis role="bold">R</emphasis>. This attribute is returned in response to show and list operations.</para>
-                                    </listitem>
-                                    <listitem>
-                                        <para><emphasis role="bold">U</emphasis>. You can update the value of this attribute.</para>
-                                    </listitem>
-                                    <listitem>
-                                        <para><emphasis role="bold">D</emphasis>. You can delete the value of this attribute.</para>
-                                    </listitem>
+                                   <listitem>
+                                   <para><emphasis role="bold"
+                                   >C</emphasis>. Use the attribute in
+                                   create operations.</para>
+                                   </listitem>
+                                   <listitem>
+                                   <para><emphasis role="bold"
+                                   >R</emphasis>. This attribute is
+                                   returned in response to show and
+                                   list operations.</para>
+                                   </listitem>
+                                   <listitem>
+                                   <para><emphasis role="bold"
+                                   >U</emphasis>. You can update the
+                                   value of this attribute.</para>
+                                   </listitem>
+                                   <listitem>
+                                   <para><emphasis role="bold"
+                                   >D</emphasis>. You can delete the
+                                   value of this attribute.</para>
+                                   </listitem>
                                 </itemizedlist>
                             </para>
                         </footnote>
@@ -692,8 +655,9 @@ Content-Length: 0
                     <td>CR</td>
                     <td>Derived from Authentication token</td>
                     <td>N/A</td>
-                    <td>Owner of the pool. Only admin users can specify a
-                        tenant identifier other than its own</td>
+                    <td>Owner of the pool. Only admin users can
+                        specify a tenant identifier other than its
+                        own</td>
                 </tr>
                 <tr>
                     <td>vip_id</td>
@@ -702,7 +666,8 @@ Content-Length: 0
                     <td>R</td>
                     <td>None</td>
                     <td>UUID Pattern</td>
-                    <td>The <literal>vip</literal> that the pool associated with.</td>
+                    <td>The <literal>vip</literal> that the pool
+                        associated with.</td>
                 </tr>
                 <tr>
                     <td>name</td>
@@ -711,9 +676,8 @@ Content-Length: 0
                     <td>CRU</td>
                     <td>None</td>
                     <td>N/A</td>
-                    <td>Human readable name for the pool.
-                        Does not have to be unique
-                    </td>
+                    <td>Human readable name for the pool. Does not
+                        have to be unique.</td>
                 </tr>
                 <tr>
                     <td>description</td>
@@ -749,7 +713,8 @@ Content-Length: 0
                     <td>CRU</td>
                     <td>None</td>
                     <td>None</td>
-                    <td>The algorithm used to distribute load between the members of the pool.</td>
+                    <td>The algorithm used to distribute load between
+                        the members of the pool.</td>
                 </tr>
                 <tr>
                     <td>health_monitors</td>
@@ -758,7 +723,8 @@ Content-Length: 0
                     <td>CRU</td>
                     <td>None</td>
                     <td>N/A</td>
-                    <td>List of health monitors to associate with the pool</td>
+                    <td>List of health monitors to associate with the
+                        pool</td>
                 </tr>
                 <tr>
                     <td>members</td>
@@ -785,15 +751,22 @@ Content-Length: 0
                     <td>R</td>
                     <td>N/A</td>
                     <td>N/A</td>
-                    <td>Indicates whether a pool is currently operational or not</td>
+                    <td>Indicates whether a pool is currently
+                        operational or not</td>
+                </tr>
+                <tr>
+                    <td>status_description</td>
+                    <td>String</td>
+                    <td>N/A</td>
+                    <td>CRU</td>
+                    <td>null</td>
+                    <td/>
+                    <td/>
                 </tr>
             </tbody>
         </table>
-
-        <?hard-pagebreak?>
-
         <section xml:id="lbaas_ext_ops_pool_list">
-            <title>List Pools</title>
+            <title>List pools</title>
             <informaltable rules="all" width="100%">
                 <col width="20%"/>
                 <col width="20%"/>
@@ -807,45 +780,36 @@ Content-Length: 0
                 </thead>
                 <tbody>
                     <tr>
-                        <td>&GET;
-                        </td>
+                        <td>&GET;</td>
                         <td>/lb/pools</td>
                         <td>Lists pools.</td>
                     </tr>
                 </tbody>
             </informaltable>
             <simpara>Normal Response Code:
-                <returnvalue>200</returnvalue>
+                    <returnvalue>200</returnvalue>
             </simpara>
             <simpara>Error Response Codes: Unauthorized
-                (<errorcode>401</errorcode>), Forbidden
-                (<errorcode>403</errorcode>)
-            </simpara>
-            <para>This operation does not require a request body.</para>
+                    (<errorcode>401</errorcode>), Forbidden
+                    (<errorcode>403</errorcode>) </simpara>
+            <para>This operation does not require a request
+                body.</para>
             <para>This operation returns a response body.</para>
             <example>
                 <title>List Pools: Request</title>
-
-                <programlisting>
-GET /v2.0/lb/pools.json HTTP/1.1
+                <programlisting>GET /v2.0/lb/pools.json HTTP/1.1
 User-Agent: python-neutronclient
-Accept: application/json
-                </programlisting>
+Accept: application/json</programlisting>
             </example>
             <example>
                 <title>List Pools: Response</title>
-                <programlisting>
-HTTP/1.1 200 OK
-Content-Type: application/json; charset=UTF-8
-                </programlisting>
+                <programlisting>HTTP/1.1 200 OK
+Content-Type: application/json; charset=UTF-8</programlisting>
                 <programlisting language="json"><xi:include href="samples/loadbalancer/pools-list-res.json" parse="text"/></programlisting>
             </example>
         </section>
-
-        <?hard-pagebreak?>
-
         <section xml:id="lbaas_ext_ops_pool_show">
-            <title>Show Pool</title>
+            <title>Show pool details</title>
             <informaltable rules="all" width="100%">
                 <col width="20%"/>
                 <col width="20%"/>
@@ -859,189 +823,166 @@ Content-Type: application/json; charset=UTF-8
                 </thead>
                 <tbody>
                     <tr>
-                        <td>&GET;
-                        </td>
+                        <td>&GET;</td>
                         <td>/lb/pools/<parameter>pool-id</parameter></td>
-                        <td>Returns details about a specific pool.</td>
+                        <td>Shows details for a specified pool.</td>
                     </tr>
                 </tbody>
             </informaltable>
             <simpara>Normal Response Code:
-                <returnvalue>200</returnvalue>
+                    <returnvalue>200</returnvalue>
             </simpara>
-            <simpara>Error Response Codes: Unauthorized (<errorcode>401</errorcode>),
-                Forbidden (<errorcode>403</errorcode>), Not Found (<errorcode>404</errorcode>)
-            </simpara>
-            <para>This operation does not require a request body.</para>
+            <simpara>Error Response Codes: Unauthorized
+                    (<errorcode>401</errorcode>), Forbidden
+                    (<errorcode>403</errorcode>), Not Found
+                    (<errorcode>404</errorcode>) </simpara>
+            <para>This operation does not require a request
+                body.</para>
             <para>This operation returns a response body.</para>
             <example>
                 <title>Show Pool: Request</title>
-
-                <programlisting>
-GET /v2.0/lb/pools/72741b06-df4d-4715-b142-276b6bce75ab.json HTTP/1.1
+                <programlisting>GET /v2.0/lb/pools/7803631d-f181-4500-b3a2-1b68ba2a75fd.json HTTP/1.1
 User-Agent: python-neutronclient
-Accept: application/json
-                </programlisting>
+Accept: application/json</programlisting>
             </example>
             <example>
                 <title>Show Pool: Response</title>
-                <programlisting>
-HTTP/1.1 200 OK
-Content-Type: application/json; charset=UTF-8
-                </programlisting>
+                <programlisting>HTTP/1.1 200 OK
+Content-Type: application/json; charset=UTF-8</programlisting>
                 <programlisting language="json"><xi:include href="samples/loadbalancer/pools-show-res.json" parse="text"/></programlisting>
             </example>
         </section>
-
-        <?hard-pagebreak?>
-
         <section xml:id="lbaas_ext_ops_pool_create">
-            <title>Create Pool</title>
-                <informaltable rules="all" width="100%">
-                    <col width="20%"/>
-                    <col width="20%"/>
-                    <col width="60%"/>
-                    <thead>
-                        <tr>
-                            <td>Verb</td>
-                            <td>URI</td>
-                            <td>Description</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>&POST;</td>
-                            <td>/lb/pools</td>
-                            <td>Create a new load balancer pool.</td>
-                        </tr>
-                    </tbody>
-                </informaltable>
+            <title>Create pool</title>
+            <informaltable rules="all" width="100%">
+                <col width="20%"/>
+                <col width="20%"/>
+                <col width="60%"/>
+                <thead>
+                    <tr>
+                        <td>Verb</td>
+                        <td>URI</td>
+                        <td>Description</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>&POST;</td>
+                        <td>/lb/pools</td>
+                        <td>Create a new load balancer pool.</td>
+                    </tr>
+                </tbody>
+            </informaltable>
             <para>Normal Response Code: <returnvalue>201</returnvalue>
             </para>
-            <simpara>Error Response Codes: Unauthorized (<errorcode>401</errorcode>),
-                Bad Request (<errorcode>400</errorcode>)</simpara>
+            <simpara>Error Response Codes: Unauthorized
+                    (<errorcode>401</errorcode>), Bad Request
+                    (<errorcode>400</errorcode>)</simpara>
             <para>This operation requires a request body.</para>
             <para>This operation returns a response body.</para>
             <example>
                 <title>Create Pool: Request</title>
-                <programlisting>
-POST /v2.0/lb/pools.json HTTP/1.1
+                <programlisting>POST /v2.0/lb/pools.json HTTP/1.1
 User-Agent: python-neutronclient
-Accept: application/json
-                </programlisting>
+Accept: application/json</programlisting>
                 <programlisting language="json"><xi:include href="samples/loadbalancer/pools-create-req.json" parse="text"/></programlisting>
             </example>
             <example>
                 <title>Create Pool: Response</title>
-                <programlisting>
-HTTP/1.1 201 Created
-Content-Type: application/json; charset=UTF-8
-                </programlisting>
+                <programlisting>HTTP/1.1 201 Created
+Content-Type: application/json; charset=UTF-8</programlisting>
                 <programlisting language="json"><xi:include href="samples/loadbalancer/pools-create-res.json" parse="text"/></programlisting>
             </example>
         </section>
-
-        <?hard-pagebreak?>
-
         <section xml:id="lbaas_ext_ops_pool_update">
-            <title>Update Pool</title>
-                <informaltable rules="all" width="100%">
-                    <col width="20%"/>
-                    <col width="20%"/>
-                    <col width="60%"/>
-                    <thead>
-                        <tr>
-                            <td>Verb</td>
-                            <td>URI</td>
-                            <td>Description</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>&PUT;</td>
-                            <td>/lb/pools/<parameter>pool-id</parameter></td>
-                            <td>Updates a load balancer pool.</td>
-                        </tr>
-                    </tbody>
-                </informaltable>
-            <para>Normal Response Code: <returnvalue>200</returnvalue></para>
-            <simpara>Error Response Codes: Unauthorized (<errorcode>401</errorcode>),
-                Bad Request (<errorcode>400</errorcode>), Not Found (<errorcode>404</errorcode>)</simpara>
+            <title>Update pool</title>
+            <informaltable rules="all" width="100%">
+                <col width="20%"/>
+                <col width="20%"/>
+                <col width="60%"/>
+                <thead>
+                    <tr>
+                        <td>Verb</td>
+                        <td>URI</td>
+                        <td>Description</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>&PUT;</td>
+                        <td>/lb/pools/<parameter>pool-id</parameter></td>
+                        <td>Updates a load balancer pool.</td>
+                    </tr>
+                </tbody>
+            </informaltable>
+            <para>Normal Response Code:
+                <returnvalue>200</returnvalue></para>
+            <simpara>Error Response Codes: Unauthorized
+                    (<errorcode>401</errorcode>), Bad Request
+                    (<errorcode>400</errorcode>), Not Found
+                    (<errorcode>404</errorcode>)</simpara>
             <example>
                 <title>Update Pool: Request</title>
-                <programlisting>
-PUT /v2.0/lb/pools/61b1f87a-7a21-4ad3-9dda-7f81d249944f.json
+                <programlisting>PUT /v2.0/lb/pools/7803631d-f181-4500-b3a2-1b68ba2a75fd.json
 User-Agent: python-neutronclient
-Accept: application/json
-                </programlisting>
+Accept: application/json</programlisting>
                 <programlisting language="json"><xi:include href="samples/loadbalancer/pools-update-req.json" parse="text"/></programlisting>
             </example>
             <example>
                 <title>Update Pool: Response</title>
-                <programlisting>
-HTTP/1.1 200 OK
-Content-Type: application/json; charset=UTF-8
-                </programlisting>
+                <programlisting>HTTP/1.1 200 OK
+Content-Type: application/json; charset=UTF-8</programlisting>
                 <programlisting language="json"><xi:include href="samples/loadbalancer/pools-update-res.json" parse="text"/></programlisting>
             </example>
         </section>
-
-        <?hard-pagebreak?>
-
         <section xml:id="lbaas_ext_ops_pool_delete">
-            <title>Delete Pool</title>
-                <informaltable rules="all" width="100%">
-                    <col width="20%"/>
-                    <col width="20%"/>
-                    <col width="60%"/>
-                    <thead>
-                        <tr>
-                            <td>Verb</td>
-                            <td>URI</td>
-                            <td>Description</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>&DELETE;</td>
-                            <td>/lb/pools/<parameter>pool-id</parameter></td>
-                            <td>Removes a load balancer pool.</td>
-                        </tr>
-                    </tbody>
-                </informaltable>
+            <title>Delete pool</title>
+            <informaltable rules="all" width="100%">
+                <col width="20%"/>
+                <col width="20%"/>
+                <col width="60%"/>
+                <thead>
+                    <tr>
+                        <td>Verb</td>
+                        <td>URI</td>
+                        <td>Description</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>&DELETE;</td>
+                        <td>/lb/pools/<parameter>pool-id</parameter></td>
+                        <td>Removes a load balancer pool.</td>
+                    </tr>
+                </tbody>
+            </informaltable>
             <para>Normal Response Code: <returnvalue>204</returnvalue>
             </para>
-            <simpara>Error Response Codes: Unauthorized (<errorcode>401</errorcode>),
-                Not Found (<errorcode>404</errorcode>), Conflict
-                (<errorcode>409</errorcode>)</simpara>
-            <para>This operation does not require a request body.</para>
-            <para>This operation does not return a response body.</para>
+            <simpara>Error Response Codes: Unauthorized
+                    (<errorcode>401</errorcode>), Not Found
+                    (<errorcode>404</errorcode>), Conflict
+                    (<errorcode>409</errorcode>)</simpara>
+            <para>This operation does not require a request
+                body.</para>
+            <para>This operation does not return a response
+                body.</para>
             <example>
                 <title>Delete Pool: Request</title>
-                <programlisting>
-DELETE /v2.0/lb/pools/a224402b-794b-4c0c-9d08-d95640a6f5a1.json HTTP/1.1
-Accept: application/json
-                </programlisting>
+                <programlisting>DELETE /v2.0/lb/pools/7803631d-f181-4500-b3a2-1b68ba2a75fd.json HTTP/1.1
+Accept: application/json</programlisting>
             </example>
             <example>
                 <title>Delete Pool: Response</title>
-                <programlisting>
-HTTP/1.1 204 No Content
-Content-Length: 0
-                </programlisting>
+                <programlisting>HTTP/1.1 204 No Content
+Content-Length: 0</programlisting>
             </example>
         </section>
-
-    </section> <!-- end of pools section-->
-
-    <?hard-pagebreak?>
-
+    </section>
+    <!-- end of pools section-->
     <section xml:id="lbaas_ext_ops_member">
-        <title>Member Operations</title>
+        <title>Member operations</title>
         <para>This section discusses operations for managing pool
-            members through the Load balancing as a service extension.
-        </para>
-
+            members through the LBaaS extension.</para>
         <table rules="all">
             <caption>Member Attributes</caption>
             <col width="20%"/>
@@ -1056,24 +997,30 @@ Content-Length: 0
                     <th>Attribute</th>
                     <th>Type</th>
                     <th>Required</th>
-                    <th>CRUD
-                        <footnote xml:id="lbaas_member_crud_note">
-                            <para>
-                                <itemizedlist>
-                                    <listitem>
-                                        <para><emphasis role="bold">C</emphasis>. Use the attribute in create operations.</para>
-                                    </listitem>
-                                    <listitem>
-                                        <para><emphasis role="bold">R</emphasis>. This attribute is returned in response to show and list operations.</para>
-                                    </listitem>
-                                    <listitem>
-                                        <para><emphasis role="bold">U</emphasis>. You can update the value of this attribute.</para>
-                                    </listitem>
-                                    <listitem>
-                                        <para><emphasis role="bold">D</emphasis>. You can delete the value of this attribute.</para>
-                                    </listitem>
-                                </itemizedlist>
-                            </para>
+                    <th>CRUD <footnote xml:id="lbaas_member_crud_note">
+                            <itemizedlist>
+                                <listitem>
+                                   <para><emphasis role="bold"
+                                   >C</emphasis>. Use the attribute in
+                                   create operations.</para>
+                                </listitem>
+                                <listitem>
+                                   <para><emphasis role="bold"
+                                   >R</emphasis>. This attribute is
+                                   returned in response to show and
+                                   list operations.</para>
+                                </listitem>
+                                <listitem>
+                                   <para><emphasis role="bold"
+                                   >U</emphasis>. You can update the
+                                   value of this attribute.</para>
+                                </listitem>
+                                <listitem>
+                                   <para><emphasis role="bold"
+                                   >D</emphasis>. You can delete the
+                                   value of this attribute.</para>
+                                </listitem>
+                            </itemizedlist>
                         </footnote>
                     </th>
                     <th>Default Value</th>
@@ -1098,8 +1045,9 @@ Content-Length: 0
                     <td>CR</td>
                     <td>Derived from Authentication token</td>
                     <td>N/A</td>
-                    <td>Owner of the member. Only admin users can specify a
-                        tenant identifier other than its own</td>
+                    <td>Owner of the member. Only admin users can
+                        specify a tenant identifier other than its
+                        own</td>
                 </tr>
                 <tr>
                     <td>pool_id</td>
@@ -1108,7 +1056,8 @@ Content-Length: 0
                     <td>CRU</td>
                     <td>None</td>
                     <td>UUID Pattern</td>
-                    <td>The <literal>pool</literal> that the member belongs to.</td>
+                    <td>The <literal>pool</literal> that the member
+                        belongs to.</td>
                 </tr>
                 <tr>
                     <td>address</td>
@@ -1126,7 +1075,8 @@ Content-Length: 0
                     <td>CR</td>
                     <td>None</td>
                     <td>[0..65535]</td>
-                    <td>The port on which the application is hosted.</td>
+                    <td>The port on which the application is
+                        hosted.</td>
                 </tr>
                 <tr>
                     <td>weight</td>
@@ -1135,9 +1085,12 @@ Content-Length: 0
                     <td>CRU</td>
                     <td>1</td>
                     <td>[0..256]</td>
-                    <td>The weight of a member determines the portion of requests or connections it services compared to the other members of the pool. A value of 0
-means the member will not participate in load-balancing but will still accept
-persistent connections.</td>
+                    <td>The weight of a member determines the portion
+                        of requests or connections it services
+                        compared to the other members of the pool. A
+                        value of 0 means the member will not
+                        participate in load-balancing but will still
+                        accept persistent connections.</td>
                 </tr>
                 <tr>
                     <td>admin_state_up</td>
@@ -1155,15 +1108,22 @@ persistent connections.</td>
                     <td>R</td>
                     <td>N/A</td>
                     <td>N/A</td>
-                    <td>Indicates whether a member is currently operational or not</td>
+                    <td>Indicates whether a member is currently
+                        operational or not</td>
+                </tr>
+                <tr>
+                    <td>status_description</td>
+                    <td>String</td>
+                    <td>N/A</td>
+                    <td>CRU</td>
+                    <td>null</td>
+                    <td/>
+                    <td/>
                 </tr>
             </tbody>
         </table>
-
-        <?hard-pagebreak?>
-
         <section xml:id="lbaas_ext_ops_member_list">
-            <title>List Members</title>
+            <title>List members</title>
             <informaltable rules="all" width="100%">
                 <col width="20%"/>
                 <col width="20%"/>
@@ -1177,45 +1137,36 @@ persistent connections.</td>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>&GET;
-                        </td>
+                        <td>&GET;</td>
                         <td>/lb/members</td>
                         <td>Lists members.</td>
                     </tr>
                 </tbody>
             </informaltable>
             <simpara>Normal Response Code:
-                <returnvalue>200</returnvalue>
+                    <returnvalue>200</returnvalue>
             </simpara>
             <simpara>Error Response Codes: Unauthorized
-                (<errorcode>401</errorcode>), Forbidden
-                (<errorcode>403</errorcode>)
-            </simpara>
-            <para>This operation does not require a request body.</para>
+                    (<errorcode>401</errorcode>), Forbidden
+                    (<errorcode>403</errorcode>) </simpara>
+            <para>This operation does not require a request
+                body.</para>
             <para>This operation returns a response body.</para>
             <example>
                 <title>List Members: Request</title>
-
-                <programlisting>
-GET /v2.0/lb/members.json HTTP/1.1
+                <programlisting>GET /v2.0/lb/members.json HTTP/1.1
 User-Agent: python-neutronclient
-Accept: application/json
-                </programlisting>
+Accept: application/json</programlisting>
             </example>
             <example>
                 <title>List Members: Response</title>
-                <programlisting>
-HTTP/1.1 200 OK
-Content-Type: application/json; charset=UTF-8
-                </programlisting>
+                <programlisting>HTTP/1.1 200 OK
+Content-Type: application/json; charset=UTF-8</programlisting>
                 <programlisting language="json"><xi:include href="samples/loadbalancer/members-list-res.json" parse="text"/></programlisting>
             </example>
         </section>
-
-        <?hard-pagebreak?>
-
         <section xml:id="lbaas_ext_ops_member_show">
-            <title>Show Member</title>
+            <title>Show member details</title>
             <informaltable rules="all" width="100%">
                 <col width="20%"/>
                 <col width="20%"/>
@@ -1229,189 +1180,167 @@ Content-Type: application/json; charset=UTF-8
                 </thead>
                 <tbody>
                     <tr>
-                        <td>&GET;
-                        </td>
+                        <td>&GET;</td>
                         <td>/lb/members/<parameter>member-id</parameter></td>
-                        <td>Returns details about a specific member.</td>
+                        <td>Shows details for a specified member.</td>
                     </tr>
                 </tbody>
             </informaltable>
             <simpara>Normal Response Code:
-                <returnvalue>200</returnvalue>
+                    <returnvalue>200</returnvalue>
             </simpara>
-            <simpara>Error Response Codes: Unauthorized (<errorcode>401</errorcode>),
-                Forbidden (<errorcode>403</errorcode>), Not Found (<errorcode>404</errorcode>)
-            </simpara>
-            <para>This operation does not require a request body.</para>
+            <simpara>Error Response Codes: Unauthorized
+                    (<errorcode>401</errorcode>), Forbidden
+                    (<errorcode>403</errorcode>), Not Found
+                    (<errorcode>404</errorcode>) </simpara>
+            <para>This operation does not require a request
+                body.</para>
             <para>This operation returns a response body.</para>
             <example>
                 <title>Show Member: Request</title>
-
-                <programlisting>
-GET /v2.0/lb/members/701b531b-111a-4f21-ad85-4795b7b12af6.json HTTP/1.1
+                <programlisting>GET /v2.0/lb/members/48a471ea-64f1-4eb6-9be7-dae6bbe40a0f.json HTTP/1.1
 User-Agent: python-neutronclient
-Accept: application/json
-                </programlisting>
+Accept: application/json</programlisting>
             </example>
             <example>
                 <title>Show Member: Response</title>
-                <programlisting>
-HTTP/1.1 200 OK
-Content-Type: application/json; charset=UTF-8
-                </programlisting>
+                <programlisting>HTTP/1.1 200 OK
+Content-Type: application/json; charset=UTF-8</programlisting>
                 <programlisting language="json"><xi:include href="samples/loadbalancer/members-show-res.json" parse="text"/></programlisting>
             </example>
         </section>
-
-        <?hard-pagebreak?>
-
         <section xml:id="lbaas_ext_ops_member_create">
-            <title>Create Member</title>
-                <informaltable rules="all" width="100%">
-                    <col width="20%"/>
-                    <col width="20%"/>
-                    <col width="60%"/>
-                    <thead>
-                        <tr>
-                            <td>Verb</td>
-                            <td>URI</td>
-                            <td>Description</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>&POST;</td>
-                            <td>/lb/members</td>
-                            <td>Create a new load balancer member.</td>
-                        </tr>
-                    </tbody>
-                </informaltable>
+            <title>Create member</title>
+            <informaltable rules="all" width="100%">
+                <col width="20%"/>
+                <col width="20%"/>
+                <col width="60%"/>
+                <thead>
+                    <tr>
+                        <td>Verb</td>
+                        <td>URI</td>
+                        <td>Description</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>&POST;</td>
+                        <td>/lb/members</td>
+                        <td>Create a new load balancer member.</td>
+                    </tr>
+                </tbody>
+            </informaltable>
             <para>Normal Response Code: <returnvalue>201</returnvalue>
             </para>
-            <simpara>Error Response Codes: Unauthorized (<errorcode>401</errorcode>),
-                Bad Request (<errorcode>400</errorcode>)</simpara>
+            <simpara>Error Response Codes: Unauthorized
+                    (<errorcode>401</errorcode>), Bad Request
+                    (<errorcode>400</errorcode>)</simpara>
             <para>This operation requires a request body.</para>
             <para>This operation returns a response body.</para>
             <example>
                 <title>Create Member: Request</title>
-                <programlisting>
-POST /v2.0/lb/members.json HTTP/1.1
+                <programlisting>POST /v2.0/lb/members.json HTTP/1.1
 User-Agent: python-neutronclient
-Accept: application/json
-                </programlisting>
+Accept: application/json</programlisting>
                 <programlisting language="json"><xi:include href="samples/loadbalancer/members-create-req.json" parse="text"/></programlisting>
             </example>
             <example>
                 <title>Create Member: Response</title>
-                <programlisting>
-HTTP/1.1 201 Created
-Content-Type: application/json; charset=UTF-8
-                </programlisting>
+                <programlisting>HTTP/1.1 201 Created
+Content-Type: application/json; charset=UTF-8</programlisting>
                 <programlisting language="json"><xi:include href="samples/loadbalancer/members-create-res.json" parse="text"/></programlisting>
             </example>
         </section>
-
-        <?hard-pagebreak?>
-
         <section xml:id="lbaas_ext_ops_member_update">
-            <title>Update Member</title>
-                <informaltable rules="all" width="100%">
-                    <col width="20%"/>
-                    <col width="20%"/>
-                    <col width="60%"/>
-                    <thead>
-                        <tr>
-                            <td>Verb</td>
-                            <td>URI</td>
-                            <td>Description</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>&PUT;</td>
-                            <td>/lb/members/<parameter>member-id</parameter></td>
-                            <td>Updates a load balancer member.</td>
-                        </tr>
-                    </tbody>
-                </informaltable>
-            <para>Normal Response Code: <returnvalue>200</returnvalue></para>
-            <simpara>Error Response Codes: Unauthorized (<errorcode>401</errorcode>),
-                Bad Request (<errorcode>400</errorcode>), Not Found (<errorcode>404</errorcode>)</simpara>
+            <title>Update member</title>
+            <informaltable rules="all" width="100%">
+                <col width="20%"/>
+                <col width="20%"/>
+                <col width="60%"/>
+                <thead>
+                    <tr>
+                        <td>Verb</td>
+                        <td>URI</td>
+                        <td>Description</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>&PUT;</td>
+                        <td>/lb/members/<parameter>member-id</parameter></td>
+                        <td>Updates a load balancer member.</td>
+                    </tr>
+                </tbody>
+            </informaltable>
+            <para>Normal Response Code:
+                <returnvalue>200</returnvalue></para>
+            <simpara>Error Response Codes: Unauthorized
+                    (<errorcode>401</errorcode>), Bad Request
+                    (<errorcode>400</errorcode>), Not Found
+                    (<errorcode>404</errorcode>)</simpara>
             <example>
                 <title>Update Member: Request</title>
-                <programlisting>
-PUT /v2.0/lb/members/b9a7012a-1097-45b2-a973-6572973619bc.json
+                <programlisting>PUT /v2.0/lb/members/48a471ea-64f1-4eb6-9be7-dae6bbe40a0f.json
 User-Agent: python-neutronclient
-Accept: application/json
-                </programlisting>
+Accept: application/json</programlisting>
                 <programlisting language="json"><xi:include href="samples/loadbalancer/members-update-req.json" parse="text"/></programlisting>
             </example>
             <example>
                 <title>Update Member: Response</title>
-                <programlisting>
-HTTP/1.1 200 OK
-Content-Type: application/json; charset=UTF-8
-                </programlisting>
+                <programlisting>HTTP/1.1 200 OK
+Content-Type: application/json; charset=UTF-8</programlisting>
                 <programlisting language="json"><xi:include href="samples/loadbalancer/members-update-res.json" parse="text"/></programlisting>
             </example>
         </section>
-
-        <?hard-pagebreak?>
-
         <section xml:id="lbaas_ext_ops_member_delete">
-            <title>Delete Member</title>
-                <informaltable rules="all" width="100%">
-                    <col width="20%"/>
-                    <col width="20%"/>
-                    <col width="60%"/>
-                    <thead>
-                        <tr>
-                            <td>Verb</td>
-                            <td>URI</td>
-                            <td>Description</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>&DELETE;</td>
-                            <td>/lb/members/<parameter>member-id</parameter></td>
-                            <td>Removes a load balancer member.</td>
-                        </tr>
-                    </tbody>
-                </informaltable>
+            <title>Delete member</title>
+            <informaltable rules="all" width="100%">
+                <col width="20%"/>
+                <col width="20%"/>
+                <col width="60%"/>
+                <thead>
+                    <tr>
+                        <td>Verb</td>
+                        <td>URI</td>
+                        <td>Description</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>&DELETE;</td>
+                        <td>/lb/members/<parameter>member-id</parameter></td>
+                        <td>Removes a load balancer member.</td>
+                    </tr>
+                </tbody>
+            </informaltable>
             <para>Normal Response Code: <returnvalue>204</returnvalue>
             </para>
-            <simpara>Error Response Codes: Unauthorized (<errorcode>401</errorcode>),
-                Not Found (<errorcode>404</errorcode>), Conflict
-                (<errorcode>409</errorcode>)</simpara>
-            <para>This operation does not require a request body.</para>
-            <para>This operation does not return a response body.</para>
+            <simpara>Error Response Codes: Unauthorized
+                    (<errorcode>401</errorcode>), Not Found
+                    (<errorcode>404</errorcode>), Conflict
+                    (<errorcode>409</errorcode>)</simpara>
+            <para>This operation does not require a request
+                body.</para>
+            <para>This operation does not return a response
+                body.</para>
             <example>
                 <title>Delete Member: Request</title>
-                <programlisting>
-DELETE /v2.0/lb/members/b9a7012a-1097-45b2-a973-6572973619bc.json HTTP/1.1
-Accept: application/json
-                </programlisting>
+                <programlisting>DELETE /v2.0/lb/members/48a471ea-64f1-4eb6-9be7-dae6bbe40a0f.json HTTP/1.1
+Accept: application/json</programlisting>
             </example>
             <example>
                 <title>Delete Member: Response</title>
-                <programlisting>
-HTTP/1.1 204 No Content
-Content-Length: 0
-                </programlisting>
+                <programlisting>HTTP/1.1 204 No Content
+Content-Length: 0</programlisting>
             </example>
         </section>
-
-    </section> <!-- end of members section-->
-
-    <?hard-pagebreak?>
-
+    </section>
+    <!-- end of members section-->
     <section xml:id="lbaas_ext_ops_health_monitor">
-        <title>Health Monitor Operations</title>
-        <para>This section discusses operations for managing load balancer
-            health monitors through the Load balancing as a service extension.
-        </para>
-
+        <title>Health monitor operations</title>
+        <para>This section discusses operations for managing load
+            balancer health monitors through the LBaaS
+            extension.</para>
         <table rules="all">
             <caption>Health Monitor Attributes</caption>
             <col width="20%"/>
@@ -1426,24 +1355,31 @@ Content-Length: 0
                     <th>Attribute</th>
                     <th>Type</th>
                     <th>Required</th>
-                    <th>CRUD
-                        <footnote xml:id="lbaas_healthmonitor_crud_note">
-                            <para>
-                                <itemizedlist>
-                                    <listitem>
-                                        <para><emphasis role="bold">C</emphasis>. Use the attribute in create operations.</para>
-                                    </listitem>
-                                    <listitem>
-                                        <para><emphasis role="bold">R</emphasis>. This attribute is returned in response to show and list operations.</para>
-                                    </listitem>
-                                    <listitem>
-                                        <para><emphasis role="bold">U</emphasis>. You can update the value of this attribute.</para>
-                                    </listitem>
-                                    <listitem>
-                                        <para><emphasis role="bold">D</emphasis>. You can delete the value of this attribute.</para>
-                                    </listitem>
-                                </itemizedlist>
-                            </para>
+                    <th>CRUD <footnote
+                            xml:id="lbaas_healthmonitor_crud_note">
+                            <itemizedlist>
+                                <listitem>
+                                   <para><emphasis role="bold"
+                                   >C</emphasis>. Use the attribute in
+                                   create operations.</para>
+                                </listitem>
+                                <listitem>
+                                   <para><emphasis role="bold"
+                                   >R</emphasis>. This attribute is
+                                   returned in response to show and
+                                   list operations.</para>
+                                </listitem>
+                                <listitem>
+                                   <para><emphasis role="bold"
+                                   >U</emphasis>. You can update the
+                                   value of this attribute.</para>
+                                </listitem>
+                                <listitem>
+                                   <para><emphasis role="bold"
+                                   >D</emphasis>. You can delete the
+                                   value of this attribute.</para>
+                                </listitem>
+                            </itemizedlist>
                         </footnote>
                     </th>
                     <th>Default Value</th>
@@ -1468,8 +1404,9 @@ Content-Length: 0
                     <td>CR</td>
                     <td>Derived from Authentication token</td>
                     <td>N/A</td>
-                    <td>Owner of the health monitor. Only admin users can specify a
-                        tenant identifier other than its own</td>
+                    <td>Owner of the health monitor. Only admin users
+                        can specify a tenant identifier other than its
+                        own</td>
                 </tr>
                 <tr>
                     <td>type</td>
@@ -1478,7 +1415,8 @@ Content-Length: 0
                     <td>CR</td>
                     <td>None</td>
                     <td>{"PING" | "TCP" | "HTTP" | "HTTPS"}</td>
-                    <td>The type of probe send by load balancer to verify member state</td>
+                    <td>The type of probe send by load balancer to
+                        verify member state</td>
                 </tr>
                 <tr>
                     <td>delay</td>
@@ -1487,7 +1425,8 @@ Content-Length: 0
                     <td>CRU</td>
                     <td>None</td>
                     <td>non-negative</td>
-                    <td>The time in seconds between sending probes to members.</td>
+                    <td>The time in seconds between sending probes to
+                        members.</td>
                 </tr>
                 <tr>
                     <td>timeout</td>
@@ -1496,7 +1435,10 @@ Content-Length: 0
                     <td>CRU</td>
                     <td>None</td>
                     <td>non-negative</td>
-                    <td>The maximum number of seconds for a monitor to wait for a connection to be established before it times out. The value must be less than the delay value.</td>
+                    <td>The maximum number of seconds for a monitor to
+                        wait for a connection to be established before
+                        it times out. The value must be less than the
+                        delay value.</td>
                 </tr>
                 <tr>
                     <td>max_retries</td>
@@ -1505,37 +1447,51 @@ Content-Length: 0
                     <td>CRU</td>
                     <td>None</td>
                     <td>[1..10]</td>
-                    <td>Number of allowed connection failures before changing the member's status to INACTIVE</td>
+                    <td>Number of allowed connection failures before
+                        changing the member's status to INACTIVE</td>
                 </tr>
                 <tr>
                     <td>http_method</td>
                     <td>String</td>
-                    <td>No<footnote xml:id="lbaas_health_monitor_http_method">
-                        <para>Required if <literal>type</literal> is <constant>HTTP</constant>
-                             or <constant>HTTPS</constant></para>
-                    </footnote></td>
+                    <td>No<footnote
+                            xml:id="lbaas_health_monitor_http_method">
+                            <para>Required if <literal>type</literal>
+                                is <constant>HTTP</constant> or
+                                   <constant>HTTPS</constant></para>
+                        </footnote></td>
                     <td>CRU</td>
                     <td>GET</td>
                     <td>None</td>
-                    <td>The HTTP method used for requests by the monitor.</td>
+                    <td>The HTTP method used for requests by the
+                        monitor.</td>
                 </tr>
                 <tr>
                     <td>url_path</td>
                     <td>String</td>
-                    <td>No<footnoteref linkend="lbaas_health_monitor_http_method"/></td>
+                    <td>No<footnoteref
+                            linkend="lbaas_health_monitor_http_method"
+                        /></td>
                     <td>CRU</td>
                     <td>/</td>
                     <td>None</td>
-                    <td>The HTTP path of the request sent by the monitor to test a member's health. This must be a string beginning with a / (forward slash).</td>
+                    <td>The HTTP path of the request sent by the
+                        monitor to test a member's health. This must
+                        be a string beginning with a / (forward
+                        slash).</td>
                 </tr>
                 <tr>
                     <td>expected_codes</td>
                     <td>String</td>
-                    <td>No<footnoteref linkend="lbaas_health_monitor_http_method"/></td>
+                    <td>No<footnoteref
+                            linkend="lbaas_health_monitor_http_method"
+                        /></td>
                     <td>CRU</td>
                     <td>200</td>
-                    <td>single value (e.g. 200), list (e.g. 200, 202) or range (e.g. 200-204)</td>
-                    <td>The list of HTTP status codes expected in response from the member to declare it healthy.</td>
+                    <td>single value (e.g. 200), list (e.g. 200, 202)
+                        or range (e.g. 200-204)</td>
+                    <td>The list of HTTP status codes expected in
+                        response from the member to declare it
+                        healthy.</td>
                 </tr>
                 <tr>
                     <td>admin_state_up</td>
@@ -1544,16 +1500,8 @@ Content-Length: 0
                     <td>CRU</td>
                     <td>true</td>
                     <td>{true | false }</td>
-                    <td>Administrative state of the health monitor</td>
-                </tr>
-                <tr>
-                    <td>status</td>
-                    <td>String</td>
-                    <td>N/A</td>
-                    <td>R</td>
-                    <td>N/A</td>
-                    <td>N/A</td>
-                    <td>Indicates whether a health monitor is currently operational or not</td>
+                    <td>Administrative state of the health
+                        monitor</td>
                 </tr>
             </tbody>
         </table>
@@ -1572,45 +1520,36 @@ Content-Length: 0
                 </thead>
                 <tbody>
                     <tr>
-                        <td>&GET;
-                        </td>
+                        <td>&GET;</td>
                         <td>/lb/health_monitors</td>
                         <td>Lists health monitors.</td>
                     </tr>
                 </tbody>
             </informaltable>
             <simpara>Normal Response Code:
-                <returnvalue>200</returnvalue>
+                    <returnvalue>200</returnvalue>
             </simpara>
             <simpara>Error Response Codes: Unauthorized
-                (<errorcode>401</errorcode>), Forbidden
-                (<errorcode>403</errorcode>)
-            </simpara>
-            <para>This operation does not require a request body.</para>
+                    (<errorcode>401</errorcode>), Forbidden
+                    (<errorcode>403</errorcode>) </simpara>
+            <para>This operation does not require a request
+                body.</para>
             <para>This operation returns a response body.</para>
             <example>
                 <title>List Health Monitors: Request</title>
-
-                <programlisting>
-GET /v2.0/lb/health_monitors.json HTTP/1.1
+                <programlisting>GET /v2.0/lb/health_monitors.json HTTP/1.1
 User-Agent: python-neutronclient
-Accept: application/json
-                </programlisting>
+Accept: application/json</programlisting>
             </example>
             <example>
                 <title>List Health Monitors: Response</title>
-                <programlisting>
-HTTP/1.1 200 OK
-Content-Type: application/json; charset=UTF-8
-                </programlisting>
+                <programlisting>HTTP/1.1 200 OK
+Content-Type: application/json; charset=UTF-8</programlisting>
                 <programlisting language="json"><xi:include href="samples/loadbalancer/health_monitors-list-res.json" parse="text"/></programlisting>
             </example>
         </section>
-
-        <?hard-pagebreak?>
-
         <section xml:id="lbaas_ext_ops_health_monitor_show">
-            <title>Show Health Monitor</title>
+            <title>Show health monitor</title>
             <informaltable rules="all" width="100%">
                 <col width="20%"/>
                 <col width="20%"/>
@@ -1624,137 +1563,123 @@ Content-Type: application/json; charset=UTF-8
                 </thead>
                 <tbody>
                     <tr>
-                        <td>&GET;
-                        </td>
+                        <td>&GET;</td>
                         <td>/lb/health_monitors/<parameter>health_monitor-id</parameter></td>
-                        <td>Returns details about a specific health monitor.</td>
+                        <td>Returns details about a specific health
+                            monitor.</td>
                     </tr>
                 </tbody>
             </informaltable>
             <simpara>Normal Response Code:
-                <returnvalue>200</returnvalue>
+                    <returnvalue>200</returnvalue>
             </simpara>
-            <simpara>Error Response Codes: Unauthorized (<errorcode>401</errorcode>),
-                Forbidden (<errorcode>403</errorcode>), Not Found (<errorcode>404</errorcode>)
-            </simpara>
-            <para>This operation does not require a request body.</para>
+            <simpara>Error Response Codes: Unauthorized
+                    (<errorcode>401</errorcode>), Forbidden
+                    (<errorcode>403</errorcode>), Not Found
+                    (<errorcode>404</errorcode>) </simpara>
+            <para>This operation does not require a request
+                body.</para>
             <para>This operation returns a response body.</para>
             <example>
                 <title>Show Health Monitor: Request</title>
-
-                <programlisting>
-GET /v2.0/lb/health_monitors/701b531b-111a-4f21-ad85-4795b7b12af6.json HTTP/1.1
+                <programlisting>GET /v2.0/lb/health_monitors/5d4b5228-33b0-4e60-b225-9b727c1a20e7.json HTTP/1.1
 User-Agent: python-neutronclient
-Accept: application/json
-                </programlisting>
+Accept: application/json</programlisting>
             </example>
             <example>
                 <title>Show Health Monitor: Response</title>
-                <programlisting>
-HTTP/1.1 200 OK
-Content-Type: application/json; charset=UTF-8
-                </programlisting>
+                <programlisting>HTTP/1.1 200 OK
+Content-Type: application/json; charset=UTF-8</programlisting>
                 <programlisting language="json"><xi:include href="samples/loadbalancer/health_monitors-show-res.json" parse="text"/></programlisting>
             </example>
         </section>
-
-        <?hard-pagebreak?>
-
         <section xml:id="lbaas_ext_ops_health_monitor_create">
-            <title>Create Health Monitor</title>
-                <informaltable rules="all" width="100%">
-                    <col width="20%"/>
-                    <col width="20%"/>
-                    <col width="60%"/>
-                    <thead>
-                        <tr>
-                            <td>Verb</td>
-                            <td>URI</td>
-                            <td>Description</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>&POST;</td>
-                            <td>/lb/health_monitors</td>
-                            <td>Create a new load balancer health monitor.</td>
-                        </tr>
-                    </tbody>
-                </informaltable>
+            <title>Create health monitor</title>
+            <informaltable rules="all" width="100%">
+                <col width="20%"/>
+                <col width="20%"/>
+                <col width="60%"/>
+                <thead>
+                    <tr>
+                        <td>Verb</td>
+                        <td>URI</td>
+                        <td>Description</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>&POST;</td>
+                        <td>/lb/health_monitors</td>
+                        <td>Creates a new load balancer health
+                            monitor.</td>
+                    </tr>
+                </tbody>
+            </informaltable>
             <para>Normal Response Code: <returnvalue>201</returnvalue>
             </para>
-            <simpara>Error Response Codes: Unauthorized (<errorcode>401</errorcode>),
-                Bad Request (<errorcode>400</errorcode>)</simpara>
+            <simpara>Error Response Codes: Unauthorized
+                    (<errorcode>401</errorcode>), Bad Request
+                    (<errorcode>400</errorcode>)</simpara>
             <para>This operation requires a request body.</para>
             <para>This operation returns a response body.</para>
             <example>
                 <title>Create Health Monitor: Request</title>
-                <programlisting>
-POST /v2.0/lb/health_monitors.json HTTP/1.1
+                <programlisting>POST /v2.0/lb/health_monitors.json HTTP/1.1
 User-Agent: python-neutronclient
-Accept: application/json
-                </programlisting>
+Accept: application/json</programlisting>
                 <programlisting language="json"><xi:include href="samples/loadbalancer/health_monitors-create-req.json" parse="text"/></programlisting>
             </example>
             <example>
                 <title>Create Health Monitor: Response</title>
-                <programlisting>
-HTTP/1.1 201 Created
-Content-Type: application/json; charset=UTF-8
-                </programlisting>
+                <programlisting>HTTP/1.1 201 Created
+Content-Type: application/json; charset=UTF-8</programlisting>
                 <programlisting language="json"><xi:include href="samples/loadbalancer/health_monitors-create-res.json" parse="text"/></programlisting>
             </example>
         </section>
-
-        <?hard-pagebreak?>
-
         <section xml:id="lbaas_ext_ops_health_monitor_update">
-            <title>Update Health Monitor</title>
-                <informaltable rules="all" width="100%">
-                    <col width="20%"/>
-                    <col width="20%"/>
-                    <col width="60%"/>
-                    <thead>
-                        <tr>
-                            <td>Verb</td>
-                            <td>URI</td>
-                            <td>Description</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>&PUT;</td>
-                            <td>/lb/health_monitors/<parameter>health_monitor-id</parameter></td>
-                            <td>Updates a load balancer health monitor.</td>
-                        </tr>
-                    </tbody>
-                </informaltable>
-            <para>Normal Response Code: <returnvalue>200</returnvalue></para>
-            <simpara>Error Response Codes: Unauthorized (<errorcode>401</errorcode>),
-                Bad Request (<errorcode>400</errorcode>), Not Found (<errorcode>404</errorcode>)</simpara>
+            <title>Update health monitor</title>
+            <informaltable rules="all" width="100%">
+                <col width="20%"/>
+                <col width="20%"/>
+                <col width="60%"/>
+                <thead>
+                    <tr>
+                        <td>Verb</td>
+                        <td>URI</td>
+                        <td>Description</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>&PUT;</td>
+                        <td>/lb/health_monitors/<parameter>health_monitor-id</parameter></td>
+                        <td>Updates a load balancer health
+                            monitor.</td>
+                    </tr>
+                </tbody>
+            </informaltable>
+            <para>Normal Response Code:
+                <returnvalue>200</returnvalue></para>
+            <simpara>Error Response Codes: Unauthorized
+                    (<errorcode>401</errorcode>), Bad Request
+                    (<errorcode>400</errorcode>), Not Found
+                    (<errorcode>404</errorcode>)</simpara>
             <example>
                 <title>Update Health Monitor: Request</title>
-                <programlisting>
-PUT /v2.0/lb/health_monitors/466c8345-28d8-4f84-a246-e04380b0461d.json HTTP/1.1
+                <programlisting>PUT /v2.0/lb/health_monitors/b624decf-d5d3-4c66-9a3d-f047e7786181.json HTTP/1.1
 User-Agent: python-neutronclient
-Accept: application/json
-                </programlisting>
+Accept: application/json</programlisting>
                 <programlisting language="json"><xi:include href="samples/loadbalancer/health_monitors-update-req.json" parse="text"/></programlisting>
             </example>
             <example>
                 <title>Update Health Monitor: Response</title>
-                <programlisting>
-HTTP/1.1 200 OK
-Content-Type: application/json; charset=UTF-8
-                </programlisting>
+                <programlisting>HTTP/1.1 200 OK
+Content-Type: application/json; charset=UTF-8</programlisting>
                 <programlisting language="json"><xi:include href="samples/loadbalancer/health_monitors-update-res.json" parse="text"/></programlisting>
             </example>
         </section>
-
-        <?hard-pagebreak?>
-
         <section xml:id="lbaas_ext_ops_health_monitor_delete">
-            <title>Delete Health Monitor</title>
+            <title>Delete health monitor</title>
             <informaltable rules="all" width="100%">
                 <col width="20%"/>
                 <col width="20%"/>
@@ -1770,124 +1695,117 @@ Content-Type: application/json; charset=UTF-8
                     <tr>
                         <td>&DELETE;</td>
                         <td>/lb/health_monitors/<parameter>healthmonitor-id</parameter></td>
-                        <td>Delete health monitor.</td>
+                        <td>Deletes a specified health monitor.</td>
                     </tr>
                 </tbody>
             </informaltable>
             <para>Normal Response Code: <returnvalue>204</returnvalue>
             </para>
-            <simpara>Error Response Codes: Unauthorized (<errorcode>401</errorcode>),
-                Not Found (<errorcode>404</errorcode>), Conflict
-                (<errorcode>409</errorcode>)</simpara>
-            <para>This operation does not require a request body.</para>
-            <para>This operation does not return a response body.</para>
+            <simpara>Error Response Codes: Unauthorized
+                    (<errorcode>401</errorcode>), Not Found
+                    (<errorcode>404</errorcode>), Conflict
+                    (<errorcode>409</errorcode>)</simpara>
+            <para>This operation does not require a request
+                body.</para>
+            <para>This operation does not return a response
+                body.</para>
             <example>
                 <title>Delete Health Monitor: Request</title>
-                <programlisting>
-DELETE /v2.0/lb/health_monitors/ada338f0-10d0-4326-b02e-cc123114f240.json HTTP/1.1
-Accept: application/json
-                </programlisting>
+                <programlisting>DELETE /v2.0/lb/health_monitors/b624decf-d5d3-4c66-9a3d-f047e7786181.json HTTP/1.1
+Accept: application/json</programlisting>
             </example>
             <example>
                 <title>Delete Health Monitor: Response</title>
-                <programlisting>
-HTTP/1.1 204 No Content
-Content-Length: 0
-                </programlisting>
+                <programlisting>HTTP/1.1 204 No Content
+Content-Length: 0</programlisting>
             </example>
         </section>
-
-        <?hard-pagebreak?>
-
         <section xml:id="lbaas_ext_ops_health_monitor_associate">
-            <title>Associate Health Monitor with a Pool</title>
-                <informaltable rules="all" width="100%">
-                    <col width="20%"/>
-                    <col width="20%"/>
-                    <col width="60%"/>
-                    <thead>
-                        <tr>
-                            <td>Verb</td>
-                            <td>URI</td>
-                            <td>Description</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>&POST;</td>
-                            <td>/lb/pools/<parameter>pool-id</parameter>/health_monitors</td>
-                            <td>Associate health monitor with the pool.</td>
-                        </tr>
-                    </tbody>
-                </informaltable>
-            <para>Normal Response Code: <returnvalue>200</returnvalue></para>
-            <simpara>Error Response Codes: Unauthorized (<errorcode>401</errorcode>),
-                Bad Request (<errorcode>400</errorcode>), Not Found (<errorcode>404</errorcode>)</simpara>
+            <title>Associate health monitor with a pool</title>
+            <informaltable rules="all" width="100%">
+                <col width="20%"/>
+                <col width="20%"/>
+                <col width="60%"/>
+                <thead>
+                    <tr>
+                        <td>Verb</td>
+                        <td>URI</td>
+                        <td>Description</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>&POST;</td>
+                        <td>/lb/pools/<parameter>pool-id</parameter>/health_monitors</td>
+                        <td>Associates a health monitor with a
+                            pool.</td>
+                    </tr>
+                </tbody>
+            </informaltable>
+            <para>Normal Response Code:
+                <returnvalue>200</returnvalue></para>
+            <simpara>Error Response Codes: Unauthorized
+                    (<errorcode>401</errorcode>), Bad Request
+                    (<errorcode>400</errorcode>), Not Found
+                    (<errorcode>404</errorcode>)</simpara>
             <example>
                 <title>Associate Health Monitor: Request</title>
-                <programlisting>
-POST /v2.0/lb/pools/72741b06-df4d-4715-b142-276b6bce75ab/health_monitors.json HTTP/1.1
+                <programlisting>POST /v2.0/lb/pools/72741b06-df4d-4715-b142-276b6bce75ab/health_monitors.json HTTP/1.1
 User-Agent: python-neutronclient
-Accept: application/json
-                </programlisting>
+Accept: application/json</programlisting>
                 <programlisting language="json"><xi:include href="samples/loadbalancer/healthmonitors-associate-req.json" parse="text"/></programlisting>
             </example>
             <example>
                 <title>Associate Health Monitor: Response</title>
-                <programlisting>
-HTTP/1.1 201 Created
-Content-Type: application/json; charset=UTF-8
-                </programlisting>
+                <programlisting>HTTP/1.1 201 Created
+Content-Type: application/json; charset=UTF-8</programlisting>
                 <programlisting language="json"><xi:include href="samples/loadbalancer/healthmonitors-associate-res.json" parse="text"/></programlisting>
             </example>
         </section>
-
-        <?hard-pagebreak?>
-
         <section xml:id="lbaas_ext_ops_health_monitor_disassociate">
-            <title>Disassociate Health Monitor from a Pool</title>
-                <informaltable rules="all" width="100%">
-                    <col width="20%"/>
-                    <col width="20%"/>
-                    <col width="60%"/>
-                    <thead>
-                        <tr>
-                            <td>Verb</td>
-                            <td>URI</td>
-                            <td>Description</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>&DELETE;</td>
-                            <td>/lb/pools/<parameter>pool-id</parameter>/health_monitors/<parameter>healthmonitor-id</parameter></td>
-                            <td>Disassociate health monitor from the pool.</td>
-                        </tr>
-                    </tbody>
-                </informaltable>
+            <title>Disassociate health monitor from a pool</title>
+            <informaltable rules="all" width="100%">
+                <col width="20%"/>
+                <col width="20%"/>
+                <col width="60%"/>
+                <thead>
+                    <tr>
+                        <td>Verb</td>
+                        <td>URI</td>
+                        <td>Description</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>&DELETE;</td>
+                        <td>/lb/pools/<parameter>pool-id</parameter>/health_monitors/<parameter>healthmonitor-id</parameter></td>
+                        <td>Disassociate health monitor from the
+                            pool.</td>
+                    </tr>
+                </tbody>
+            </informaltable>
             <para>Normal Response Code: <returnvalue>204</returnvalue>
             </para>
-            <simpara>Error Response Codes: Unauthorized (<errorcode>401</errorcode>),
-                Not Found (<errorcode>404</errorcode>), Conflict
-                (<errorcode>409</errorcode>)</simpara>
-            <para>This operation does not require a request body.</para>
-            <para>This operation does not return a response body.</para>
+            <simpara>Error Response Codes: Unauthorized
+                    (<errorcode>401</errorcode>), Not Found
+                    (<errorcode>404</errorcode>), Conflict
+                    (<errorcode>409</errorcode>)</simpara>
+            <para>This operation does not require a request
+                body.</para>
+            <para>This operation does not return a response
+                body.</para>
             <example>
                 <title>Disassociate Health Monitor: Request</title>
-                <programlisting>
-DELETE /v2.0/lb/pools/72741b06-df4d-4715-b142-276b6bce75ab/health_monitors/ada338f0-10d0-4326-b02e-cc123114f240.json HTTP/1.1
-Accept: application/json
-                </programlisting>
+                <programlisting>DELETE /v2.0/lb/pools/72741b06-df4d-4715-b142-276b6bce75ab/health_monitors/ada338f0-10d0-4326-b02e-cc123114f240.json HTTP/1.1
+Accept: application/json</programlisting>
             </example>
             <example>
                 <title>Disassociate Health Monitor: Response</title>
-                <programlisting>
-HTTP/1.1 204 No Content
-Content-Length: 0
-                </programlisting>
+                <programlisting>HTTP/1.1 204 No Content
+Content-Length: 0</programlisting>
             </example>
         </section>
-
-    </section> <!-- end of health_monitors section-->
-
-</section> <!-- end of lbaas section -->
+    </section>
+    <!-- end of health_monitors section-->
+</section>
+<!-- end of lbaas section -->

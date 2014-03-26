@@ -1,16 +1,25 @@
 {
-    "pool": {
-        "status": "PENDING_UPDATE",
-        "lb_method": "ROUND_ROBIN",
-        "protocol": "TCP",
-        "description": "",
-        "health_monitors": [],
-        "subnet_id": "8032909d-47a1-4715-90af-5153ffe39861",
-        "tenant_id": "83657cfcdfe44cd5920adaf26c48ceea",
-        "admin_state_up": true,
-        "name": "SuperPool",
-        "members": [],
-        "id": "61b1f87a-7a21-4ad3-9dda-7f81d249944f",
-        "vip_id": null
-    }
+   "pool":{
+      "status":"PENDING_UPDATE",
+      "lb_method":"SOURCE_IP",
+      "protocol":"HTTP",
+      "description":"",
+      "health_monitors":[
+
+      ],
+      "subnet_id":"54d6f61d-db07-451c-9ab3-b9609b6b6f0b",
+      "tenant_id":"4fd44f30292945e481c7b8a0c8908869",
+      "admin_state_up":true,
+      "name":"SuperPool",
+      "health_monitors_status":[
+
+      ],
+      "members":[
+
+      ],
+      "provider":"haproxy",
+      "status_description":null,
+      "id":"7803631d-f181-4500-b3a2-1b68ba2a75fd",
+      "vip_id":null
+   }
 }
