@@ -1,9 +1,9 @@
 {
    "pool":{
-      "subnet_id":"54d6f61d-db07-451c-9ab3-b9609b6b6f0b",
-      "lb_method":"SOURCE_IP",
-      "protocol":"HTTP",
-      "name":"mypool",
+      "subnet_id":"8032909d-47a1-4715-90af-5153ffe39861",
+      "lb_method":"ROUND_ROBIN",
+      "protocol":"TCP",
+      "name":"NewPool",
       "admin_state_up":true
    }
 }
