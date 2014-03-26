@@ -1,12 +1,13 @@
 {
-    "member": {
-        "status": "PENDING_UPDATE",
-        "weight": 5,
-        "admin_state_up": false,
-        "tenant_id": "83657cfcdfe44cd5920adaf26c48ceea",
-        "pool_id": "72741b06-df4d-4715-b142-276b6bce75ab",
-        "address": "10.0.0.5",
-        "protocol_port": 8080,
-        "id": "b9a7012a-1097-45b2-a973-6572973619bc"
-    }
+   "member":{
+      "status":"PENDING_UPDATE",
+      "protocol_port":8080,
+      "weight":1,
+      "admin_state_up":false,
+      "tenant_id":"4fd44f30292945e481c7b8a0c8908869",
+      "pool_id":"7803631d-f181-4500-b3a2-1b68ba2a75fd",
+      "address":"10.0.0.5",
+      "status_description":null,
+      "id":"48a471ea-64f1-4eb6-9be7-dae6bbe40a0f"
+   }
 }

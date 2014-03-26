@@ -39,7 +39,7 @@
     <para>The LBaaS extension provides OpenStack tenants
         with a feature of balancing traffic to their VMs.
 
-        The capabilities provided by the LBaaS extension are:
+        The capabilities provided by the LBaaS extension are:</para>
         <itemizedlist>
             <listitem>
                 <para>Load balancing client traffic coming from one network to
@@ -57,7 +57,6 @@
                 <para>Monitoring the health of the application services</para>
             </listitem>
         </itemizedlist>
-    </para>
 
     <para>This extension introduces new resources:
         <itemizedlist>
@@ -207,10 +206,9 @@
     <?hard-pagebreak?>
 
     <section xml:id="lbaas_ext_ops_vip">
-        <title>VIP Operations</title>
-        <para>This section discusses operations for managing load balancer VIPs
-            through the Load balancing as a service extension.
-        </para>
+        <title>VIP operations</title>
+        <para>This section discusses operations for managing load
+            balancer VIPs through the LBaaS extension. </para>
 
         <table rules="all">
             <caption>VIP Attributes</caption>
@@ -246,8 +244,8 @@
                             </para>
                         </footnote>
                     </th>
-                    <th>Default Value</th>
-                    <th>Validation Constraints</th>
+                    <th>Default value</th>
+                    <th>Validation constraints</th>
                     <th>Notes</th>
                 </tr>
             </thead>
@@ -390,6 +388,15 @@
                     <td>N/A</td>
                     <td>Indicates whether a vip is currently operational or not</td>
                 </tr>
+                <tr>
+                    <td>status_description</td>
+                    <td>String</td>
+                    <td>N/A</td>
+                    <td>CRU</td>
+                    <td>null</td>
+                    <td/>
+                    <td/>
+                </tr>
             </tbody>
         </table>
 
@@ -428,11 +435,9 @@
             <example>
                 <title>List VIPs: Request</title>
 
-                <programlisting>
-GET /v2.0/lb/vips.json HTTP/1.1
+                <programlisting>GET /v2.0/lb/vips.json HTTP/1.1
 User-Agent: python-neutronclient
-Accept: application/json
-                </programlisting>
+Accept: application/json             </programlisting>
             </example>
             <example>
                 <title>List VIPs: Response</title>
@@ -443,7 +448,7 @@ Accept: application/json
         <?hard-pagebreak?>
 
         <section xml:id="lbaas_ext_ops_vip_show">
-            <title>Show VIP</title>
+            <title>Show VIP details</title>
             <informaltable rules="all" width="100%">
                 <col width="20%"/>
                 <col width="20%"/>
@@ -460,7 +465,7 @@ Accept: application/json
                         <td>&GET;
                         </td>
                         <td>/lb/vips/<parameter>vip-id</parameter></td>
-                        <td>Returns details about a specific vip.</td>
+                        <td>Shows details for a specified VIP.</td>
                     </tr>
                 </tbody>
             </informaltable>
@@ -475,11 +480,9 @@ Accept: application/json
             <example>
                 <title>Show VIP: Request</title>
 
-                <programlisting>
-GET /v2.0/lb/vips/4ec89087-d057-4e2c-911f-60a3b47ee304.json HTTP/1.1
+                <programlisting>GET /v2.0/lb/vips/a54bc6e7-2e28-4c55-a676-6146a4c0f8b9.json HTTP/1.1
 User-Agent: python-neutronclient
-Accept: application/json
-                </programlisting>
+Accept: application/json             </programlisting>
             </example>
             <example>
                 <title>Show VIP: Response</title>
@@ -506,7 +509,7 @@ Accept: application/json
                     <tr>
                         <td>&POST;</td>
                         <td>/lb/vips</td>
-                        <td>Create a new load balancer vip.</td>
+                        <td>Creates a load balancer VIP.</td>
                     </tr>
                 </tbody>
             </informaltable>
@@ -518,11 +521,9 @@ Accept: application/json
             <para>This operation returns a response body.</para>
             <example>
                 <title>Create VIP: Request</title>
-                <programlisting>
-POST /v2.0/lb/vips.json HTTP/1.1
+                <programlisting>POST /v2.0/lb/vips.json HTTP/1.1
 User-Agent: python-neutronclient
-Accept: application/json
-                </programlisting>
+Accept: application/json              </programlisting>
                 <programlisting language="json"><xi:include href="samples/loadbalancer/vips-create-req.json" parse="text"/></programlisting>
             </example>
             <example>
@@ -563,11 +564,9 @@ Content-Type: application/json; charset=UTF-8
                 Bad Request (<errorcode>400</errorcode>), Not Found (<errorcode>404</errorcode>)</simpara>
             <example>
                 <title>Update VIP: Request</title>
-                <programlisting>
-PUT /v2.0/lb/vips/c987d2be-9a3c-4ac9-a046-e8716b1350e2.json
+                <programlisting>PUT /v2.0/lb/vips/a54bc6e7-2e28-4c55-a676-6146a4c0f8b9.json
 User-Agent: python-neutronclient
-Accept: application/json
-                </programlisting>
+Accept: application/json            </programlisting>
                 <programlisting language="json"><xi:include href="samples/loadbalancer/vips-update-req.json" parse="text"/></programlisting>
             </example>
             <example>
@@ -612,17 +611,13 @@ Content-Type: application/json; charset=UTF-8
             <para>This operation does not return a response body.</para>
             <example>
                 <title>Delete VIP: Request</title>
-                <programlisting>
-DELETE /v2.0/lb/vips/c987d2be-9a3c-4ac9-a046-e8716b1350e2.json HTTP/1.1
-Accept: application/json
-                </programlisting>
+                <programlisting>DELETE /v2.0/lb/vips/a54bc6e7-2e28-4c55-a676-6146a4c0f8b9.json HTTP/1.1
+Accept: application/json              </programlisting>
             </example>
             <example>
                 <title>Delete VIP: Response</title>
-                <programlisting>
-HTTP/1.1 204 No Content
-Content-Length: 0
-                </programlisting>
+                <programlisting>HTTP/1.1 204 No Content
+Content-Length: 0              </programlisting>
             </example>
         </section>
 
@@ -631,10 +626,9 @@ Content-Length: 0
     <?hard-pagebreak?>
 
     <section xml:id="lbaas_ext_ops_pool">
-        <title>Pool Operations</title>
-        <para>This section discusses operations for managing load balancer
-            pools through the Load balancing as a service extension.
-        </para>
+        <title>Pool operations</title>
+        <para>This section discusses operations for managing load
+            balancer pools through the LBaaS extension. </para>
 
         <table rules="all">
             <caption>Pool Attributes</caption>
@@ -787,13 +781,22 @@ Content-Length: 0
                     <td>N/A</td>
                     <td>Indicates whether a pool is currently operational or not</td>
                 </tr>
+                <tr>
+                    <td>status_description</td>
+                    <td>String</td>
+                    <td>N/A</td>
+                    <td>CRU</td>
+                    <td>null</td>
+                    <td/>
+                    <td/>
+                </tr>
             </tbody>
         </table>
 
         <?hard-pagebreak?>
 
         <section xml:id="lbaas_ext_ops_pool_list">
-            <title>List Pools</title>
+            <title>List pools</title>
             <informaltable rules="all" width="100%">
                 <col width="20%"/>
                 <col width="20%"/>
@@ -826,18 +829,14 @@ Content-Length: 0
             <example>
                 <title>List Pools: Request</title>
 
-                <programlisting>
-GET /v2.0/lb/pools.json HTTP/1.1
+                <programlisting>GET /v2.0/lb/pools.json HTTP/1.1
 User-Agent: python-neutronclient
-Accept: application/json
-                </programlisting>
+Accept: application/json              </programlisting>
             </example>
             <example>
                 <title>List Pools: Response</title>
-                <programlisting>
-HTTP/1.1 200 OK
-Content-Type: application/json; charset=UTF-8
-                </programlisting>
+                <programlisting>HTTP/1.1 200 OK
+Content-Type: application/json; charset=UTF-8              </programlisting>
                 <programlisting language="json"><xi:include href="samples/loadbalancer/pools-list-res.json" parse="text"/></programlisting>
             </example>
         </section>
@@ -845,7 +844,7 @@ Content-Type: application/json; charset=UTF-8
         <?hard-pagebreak?>
 
         <section xml:id="lbaas_ext_ops_pool_show">
-            <title>Show Pool</title>
+            <title>Show pool details</title>
             <informaltable rules="all" width="100%">
                 <col width="20%"/>
                 <col width="20%"/>
@@ -862,7 +861,7 @@ Content-Type: application/json; charset=UTF-8
                         <td>&GET;
                         </td>
                         <td>/lb/pools/<parameter>pool-id</parameter></td>
-                        <td>Returns details about a specific pool.</td>
+                        <td>Shows details for a specified pool.</td>
                     </tr>
                 </tbody>
             </informaltable>
@@ -877,18 +876,14 @@ Content-Type: application/json; charset=UTF-8
             <example>
                 <title>Show Pool: Request</title>
 
-                <programlisting>
-GET /v2.0/lb/pools/72741b06-df4d-4715-b142-276b6bce75ab.json HTTP/1.1
+                <programlisting>GET /v2.0/lb/pools/7803631d-f181-4500-b3a2-1b68ba2a75fd.json HTTP/1.1
 User-Agent: python-neutronclient
-Accept: application/json
-                </programlisting>
+Accept: application/json             </programlisting>
             </example>
             <example>
                 <title>Show Pool: Response</title>
-                <programlisting>
-HTTP/1.1 200 OK
-Content-Type: application/json; charset=UTF-8
-                </programlisting>
+                <programlisting>HTTP/1.1 200 OK
+Content-Type: application/json; charset=UTF-8               </programlisting>
                 <programlisting language="json"><xi:include href="samples/loadbalancer/pools-show-res.json" parse="text"/></programlisting>
             </example>
         </section>
@@ -896,7 +891,7 @@ Content-Type: application/json; charset=UTF-8
         <?hard-pagebreak?>
 
         <section xml:id="lbaas_ext_ops_pool_create">
-            <title>Create Pool</title>
+            <title>Create pool</title>
                 <informaltable rules="all" width="100%">
                     <col width="20%"/>
                     <col width="20%"/>
@@ -924,19 +919,15 @@ Content-Type: application/json; charset=UTF-8
             <para>This operation returns a response body.</para>
             <example>
                 <title>Create Pool: Request</title>
-                <programlisting>
-POST /v2.0/lb/pools.json HTTP/1.1
+                <programlisting>POST /v2.0/lb/pools.json HTTP/1.1
 User-Agent: python-neutronclient
-Accept: application/json
-                </programlisting>
+Accept: application/json             </programlisting>
                 <programlisting language="json"><xi:include href="samples/loadbalancer/pools-create-req.json" parse="text"/></programlisting>
             </example>
             <example>
                 <title>Create Pool: Response</title>
-                <programlisting>
-HTTP/1.1 201 Created
-Content-Type: application/json; charset=UTF-8
-                </programlisting>
+                <programlisting>HTTP/1.1 201 Created
+Content-Type: application/json; charset=UTF-8              </programlisting>
                 <programlisting language="json"><xi:include href="samples/loadbalancer/pools-create-res.json" parse="text"/></programlisting>
             </example>
         </section>
@@ -944,7 +935,7 @@ Content-Type: application/json; charset=UTF-8
         <?hard-pagebreak?>
 
         <section xml:id="lbaas_ext_ops_pool_update">
-            <title>Update Pool</title>
+            <title>Update pool</title>
                 <informaltable rules="all" width="100%">
                     <col width="20%"/>
                     <col width="20%"/>
@@ -969,19 +960,15 @@ Content-Type: application/json; charset=UTF-8
                 Bad Request (<errorcode>400</errorcode>), Not Found (<errorcode>404</errorcode>)</simpara>
             <example>
                 <title>Update Pool: Request</title>
-                <programlisting>
-PUT /v2.0/lb/pools/61b1f87a-7a21-4ad3-9dda-7f81d249944f.json
+                <programlisting>PUT /v2.0/lb/pools/7803631d-f181-4500-b3a2-1b68ba2a75fd.json
 User-Agent: python-neutronclient
-Accept: application/json
-                </programlisting>
+Accept: application/json             </programlisting>
                 <programlisting language="json"><xi:include href="samples/loadbalancer/pools-update-req.json" parse="text"/></programlisting>
             </example>
             <example>
                 <title>Update Pool: Response</title>
-                <programlisting>
-HTTP/1.1 200 OK
-Content-Type: application/json; charset=UTF-8
-                </programlisting>
+                <programlisting>HTTP/1.1 200 OK
+Content-Type: application/json; charset=UTF-8              </programlisting>
                 <programlisting language="json"><xi:include href="samples/loadbalancer/pools-update-res.json" parse="text"/></programlisting>
             </example>
         </section>
@@ -989,7 +976,7 @@ Content-Type: application/json; charset=UTF-8
         <?hard-pagebreak?>
 
         <section xml:id="lbaas_ext_ops_pool_delete">
-            <title>Delete Pool</title>
+            <title>Delete pool</title>
                 <informaltable rules="all" width="100%">
                     <col width="20%"/>
                     <col width="20%"/>
@@ -1018,17 +1005,13 @@ Content-Type: application/json; charset=UTF-8
             <para>This operation does not return a response body.</para>
             <example>
                 <title>Delete Pool: Request</title>
-                <programlisting>
-DELETE /v2.0/lb/pools/a224402b-794b-4c0c-9d08-d95640a6f5a1.json HTTP/1.1
-Accept: application/json
-                </programlisting>
+                <programlisting>DELETE /v2.0/lb/pools/7803631d-f181-4500-b3a2-1b68ba2a75fd.json HTTP/1.1
+Accept: application/json               </programlisting>
             </example>
             <example>
                 <title>Delete Pool: Response</title>
-                <programlisting>
-HTTP/1.1 204 No Content
-Content-Length: 0
-                </programlisting>
+                <programlisting>HTTP/1.1 204 No Content
+Content-Length: 0              </programlisting>
             </example>
         </section>
 
@@ -1037,10 +1020,9 @@ Content-Length: 0
     <?hard-pagebreak?>
 
     <section xml:id="lbaas_ext_ops_member">
-        <title>Member Operations</title>
+        <title>Member operations</title>
         <para>This section discusses operations for managing pool
-            members through the Load balancing as a service extension.
-        </para>
+            members through the LBaaS extension. </para>
 
         <table rules="all">
             <caption>Member Attributes</caption>
@@ -1157,13 +1139,22 @@ persistent connections.</td>
                     <td>N/A</td>
                     <td>Indicates whether a member is currently operational or not</td>
                 </tr>
+                <tr>
+                    <td>status_description</td>
+                    <td>String</td>
+                    <td>N/A</td>
+                    <td>CRU</td>
+                    <td>null</td>
+                    <td/>
+                    <td/>
+                </tr>
             </tbody>
         </table>
 
         <?hard-pagebreak?>
 
         <section xml:id="lbaas_ext_ops_member_list">
-            <title>List Members</title>
+            <title>List members</title>
             <informaltable rules="all" width="100%">
                 <col width="20%"/>
                 <col width="20%"/>
@@ -1196,18 +1187,14 @@ persistent connections.</td>
             <example>
                 <title>List Members: Request</title>
 
-                <programlisting>
-GET /v2.0/lb/members.json HTTP/1.1
+                <programlisting>GET /v2.0/lb/members.json HTTP/1.1
 User-Agent: python-neutronclient
-Accept: application/json
-                </programlisting>
+Accept: application/json              </programlisting>
             </example>
             <example>
                 <title>List Members: Response</title>
-                <programlisting>
-HTTP/1.1 200 OK
-Content-Type: application/json; charset=UTF-8
-                </programlisting>
+                <programlisting>HTTP/1.1 200 OK
+Content-Type: application/json; charset=UTF-8              </programlisting>
                 <programlisting language="json"><xi:include href="samples/loadbalancer/members-list-res.json" parse="text"/></programlisting>
             </example>
         </section>
@@ -1215,7 +1202,7 @@ Content-Type: application/json; charset=UTF-8
         <?hard-pagebreak?>
 
         <section xml:id="lbaas_ext_ops_member_show">
-            <title>Show Member</title>
+            <title>Show member details</title>
             <informaltable rules="all" width="100%">
                 <col width="20%"/>
                 <col width="20%"/>
@@ -1232,7 +1219,7 @@ Content-Type: application/json; charset=UTF-8
                         <td>&GET;
                         </td>
                         <td>/lb/members/<parameter>member-id</parameter></td>
-                        <td>Returns details about a specific member.</td>
+                        <td>Shows details for a specified member.</td>
                     </tr>
                 </tbody>
             </informaltable>
@@ -1247,18 +1234,14 @@ Content-Type: application/json; charset=UTF-8
             <example>
                 <title>Show Member: Request</title>
 
-                <programlisting>
-GET /v2.0/lb/members/701b531b-111a-4f21-ad85-4795b7b12af6.json HTTP/1.1
+                <programlisting>GET /v2.0/lb/members/48a471ea-64f1-4eb6-9be7-dae6bbe40a0f.json HTTP/1.1
 User-Agent: python-neutronclient
-Accept: application/json
-                </programlisting>
+Accept: application/json              </programlisting>
             </example>
             <example>
                 <title>Show Member: Response</title>
-                <programlisting>
-HTTP/1.1 200 OK
-Content-Type: application/json; charset=UTF-8
-                </programlisting>
+                <programlisting>HTTP/1.1 200 OK
+Content-Type: application/json; charset=UTF-8               </programlisting>
                 <programlisting language="json"><xi:include href="samples/loadbalancer/members-show-res.json" parse="text"/></programlisting>
             </example>
         </section>
@@ -1266,7 +1249,7 @@ Content-Type: application/json; charset=UTF-8
         <?hard-pagebreak?>
 
         <section xml:id="lbaas_ext_ops_member_create">
-            <title>Create Member</title>
+            <title>Create member</title>
                 <informaltable rules="all" width="100%">
                     <col width="20%"/>
                     <col width="20%"/>
@@ -1294,19 +1277,15 @@ Content-Type: application/json; charset=UTF-8
             <para>This operation returns a response body.</para>
             <example>
                 <title>Create Member: Request</title>
-                <programlisting>
-POST /v2.0/lb/members.json HTTP/1.1
+                <programlisting>POST /v2.0/lb/members.json HTTP/1.1
 User-Agent: python-neutronclient
-Accept: application/json
-                </programlisting>
+Accept: application/json              </programlisting>
                 <programlisting language="json"><xi:include href="samples/loadbalancer/members-create-req.json" parse="text"/></programlisting>
             </example>
             <example>
                 <title>Create Member: Response</title>
-                <programlisting>
-HTTP/1.1 201 Created
-Content-Type: application/json; charset=UTF-8
-                </programlisting>
+                <programlisting>HTTP/1.1 201 Created
+Content-Type: application/json; charset=UTF-8               </programlisting>
                 <programlisting language="json"><xi:include href="samples/loadbalancer/members-create-res.json" parse="text"/></programlisting>
             </example>
         </section>
@@ -1314,7 +1293,7 @@ Content-Type: application/json; charset=UTF-8
         <?hard-pagebreak?>
 
         <section xml:id="lbaas_ext_ops_member_update">
-            <title>Update Member</title>
+            <title>Update member</title>
                 <informaltable rules="all" width="100%">
                     <col width="20%"/>
                     <col width="20%"/>
@@ -1339,19 +1318,15 @@ Content-Type: application/json; charset=UTF-8
                 Bad Request (<errorcode>400</errorcode>), Not Found (<errorcode>404</errorcode>)</simpara>
             <example>
                 <title>Update Member: Request</title>
-                <programlisting>
-PUT /v2.0/lb/members/b9a7012a-1097-45b2-a973-6572973619bc.json
+                <programlisting>PUT /v2.0/lb/members/48a471ea-64f1-4eb6-9be7-dae6bbe40a0f.json
 User-Agent: python-neutronclient
-Accept: application/json
-                </programlisting>
+Accept: application/json</programlisting>
                 <programlisting language="json"><xi:include href="samples/loadbalancer/members-update-req.json" parse="text"/></programlisting>
             </example>
             <example>
                 <title>Update Member: Response</title>
-                <programlisting>
-HTTP/1.1 200 OK
-Content-Type: application/json; charset=UTF-8
-                </programlisting>
+                <programlisting>HTTP/1.1 200 OK
+Content-Type: application/json; charset=UTF-8              </programlisting>
                 <programlisting language="json"><xi:include href="samples/loadbalancer/members-update-res.json" parse="text"/></programlisting>
             </example>
         </section>
@@ -1359,7 +1334,7 @@ Content-Type: application/json; charset=UTF-8
         <?hard-pagebreak?>
 
         <section xml:id="lbaas_ext_ops_member_delete">
-            <title>Delete Member</title>
+            <title>Delete member</title>
                 <informaltable rules="all" width="100%">
                     <col width="20%"/>
                     <col width="20%"/>
@@ -1388,17 +1363,13 @@ Content-Type: application/json; charset=UTF-8
             <para>This operation does not return a response body.</para>
             <example>
                 <title>Delete Member: Request</title>
-                <programlisting>
-DELETE /v2.0/lb/members/b9a7012a-1097-45b2-a973-6572973619bc.json HTTP/1.1
-Accept: application/json
-                </programlisting>
+                <programlisting>DELETE /v2.0/lb/members/48a471ea-64f1-4eb6-9be7-dae6bbe40a0f.json HTTP/1.1
+Accept: application/json           </programlisting>
             </example>
             <example>
                 <title>Delete Member: Response</title>
-                <programlisting>
-HTTP/1.1 204 No Content
-Content-Length: 0
-                </programlisting>
+                <programlisting>HTTP/1.1 204 No Content
+Content-Length: 0           </programlisting>
             </example>
         </section>
 
@@ -1407,10 +1378,9 @@ Content-Length: 0
     <?hard-pagebreak?>
 
     <section xml:id="lbaas_ext_ops_health_monitor">
-        <title>Health Monitor Operations</title>
-        <para>This section discusses operations for managing load balancer
-            health monitors through the Load balancing as a service extension.
-        </para>
+        <title>Health monitor operations</title>
+        <para>This section discusses operations for managing load
+            balancer health monitors through the LBaaS extension. </para>
 
         <table rules="all">
             <caption>Health Monitor Attributes</caption>
@@ -1546,15 +1516,6 @@ Content-Length: 0
                     <td>{true | false }</td>
                     <td>Administrative state of the health monitor</td>
                 </tr>
-                <tr>
-                    <td>status</td>
-                    <td>String</td>
-                    <td>N/A</td>
-                    <td>R</td>
-                    <td>N/A</td>
-                    <td>N/A</td>
-                    <td>Indicates whether a health monitor is currently operational or not</td>
-                </tr>
             </tbody>
         </table>
         <section xml:id="lbaas_ext_ops_health_monitor_list">
@@ -1591,18 +1552,14 @@ Content-Length: 0
             <example>
                 <title>List Health Monitors: Request</title>
 
-                <programlisting>
-GET /v2.0/lb/health_monitors.json HTTP/1.1
+                <programlisting>GET /v2.0/lb/health_monitors.json HTTP/1.1
 User-Agent: python-neutronclient
-Accept: application/json
-                </programlisting>
+Accept: application/json            </programlisting>
             </example>
             <example>
                 <title>List Health Monitors: Response</title>
-                <programlisting>
-HTTP/1.1 200 OK
-Content-Type: application/json; charset=UTF-8
-                </programlisting>
+                <programlisting>HTTP/1.1 200 OK
+Content-Type: application/json; charset=UTF-8             </programlisting>
                 <programlisting language="json"><xi:include href="samples/loadbalancer/health_monitors-list-res.json" parse="text"/></programlisting>
             </example>
         </section>
@@ -1610,7 +1567,7 @@ Content-Type: application/json; charset=UTF-8
         <?hard-pagebreak?>
 
         <section xml:id="lbaas_ext_ops_health_monitor_show">
-            <title>Show Health Monitor</title>
+            <title>Show health monitor</title>
             <informaltable rules="all" width="100%">
                 <col width="20%"/>
                 <col width="20%"/>
@@ -1642,18 +1599,14 @@ Content-Type: application/json; charset=UTF-8
             <example>
                 <title>Show Health Monitor: Request</title>
 
-                <programlisting>
-GET /v2.0/lb/health_monitors/701b531b-111a-4f21-ad85-4795b7b12af6.json HTTP/1.1
+                <programlisting>GET /v2.0/lb/health_monitors/5d4b5228-33b0-4e60-b225-9b727c1a20e7.json HTTP/1.1
 User-Agent: python-neutronclient
-Accept: application/json
-                </programlisting>
+Accept: application/json              </programlisting>
             </example>
             <example>
                 <title>Show Health Monitor: Response</title>
-                <programlisting>
-HTTP/1.1 200 OK
-Content-Type: application/json; charset=UTF-8
-                </programlisting>
+                <programlisting>HTTP/1.1 200 OK
+Content-Type: application/json; charset=UTF-8            </programlisting>
                 <programlisting language="json"><xi:include href="samples/loadbalancer/health_monitors-show-res.json" parse="text"/></programlisting>
             </example>
         </section>
@@ -1661,7 +1614,7 @@ Content-Type: application/json; charset=UTF-8
         <?hard-pagebreak?>
 
         <section xml:id="lbaas_ext_ops_health_monitor_create">
-            <title>Create Health Monitor</title>
+            <title>Create health monitor</title>
                 <informaltable rules="all" width="100%">
                     <col width="20%"/>
                     <col width="20%"/>
@@ -1677,7 +1630,8 @@ Content-Type: application/json; charset=UTF-8
                         <tr>
                             <td>&POST;</td>
                             <td>/lb/health_monitors</td>
-                            <td>Create a new load balancer health monitor.</td>
+                            <td>Creates a new load balancer health
+                            monitor.</td>
                         </tr>
                     </tbody>
                 </informaltable>
@@ -1689,19 +1643,15 @@ Content-Type: application/json; charset=UTF-8
             <para>This operation returns a response body.</para>
             <example>
                 <title>Create Health Monitor: Request</title>
-                <programlisting>
-POST /v2.0/lb/health_monitors.json HTTP/1.1
+                <programlisting>POST /v2.0/lb/health_monitors.json HTTP/1.1
 User-Agent: python-neutronclient
-Accept: application/json
-                </programlisting>
+Accept: application/json               </programlisting>
                 <programlisting language="json"><xi:include href="samples/loadbalancer/health_monitors-create-req.json" parse="text"/></programlisting>
             </example>
             <example>
                 <title>Create Health Monitor: Response</title>
-                <programlisting>
-HTTP/1.1 201 Created
-Content-Type: application/json; charset=UTF-8
-                </programlisting>
+                <programlisting>HTTP/1.1 201 Created
+Content-Type: application/json; charset=UTF-8               </programlisting>
                 <programlisting language="json"><xi:include href="samples/loadbalancer/health_monitors-create-res.json" parse="text"/></programlisting>
             </example>
         </section>
@@ -1709,7 +1659,7 @@ Content-Type: application/json; charset=UTF-8
         <?hard-pagebreak?>
 
         <section xml:id="lbaas_ext_ops_health_monitor_update">
-            <title>Update Health Monitor</title>
+            <title>Update health monitor</title>
                 <informaltable rules="all" width="100%">
                     <col width="20%"/>
                     <col width="20%"/>
@@ -1734,19 +1684,15 @@ Content-Type: application/json; charset=UTF-8
                 Bad Request (<errorcode>400</errorcode>), Not Found (<errorcode>404</errorcode>)</simpara>
             <example>
                 <title>Update Health Monitor: Request</title>
-                <programlisting>
-PUT /v2.0/lb/health_monitors/466c8345-28d8-4f84-a246-e04380b0461d.json HTTP/1.1
+                <programlisting>PUT /v2.0/lb/health_monitors/b624decf-d5d3-4c66-9a3d-f047e7786181.json HTTP/1.1
 User-Agent: python-neutronclient
-Accept: application/json
-                </programlisting>
+Accept: application/json            </programlisting>
                 <programlisting language="json"><xi:include href="samples/loadbalancer/health_monitors-update-req.json" parse="text"/></programlisting>
             </example>
             <example>
                 <title>Update Health Monitor: Response</title>
-                <programlisting>
-HTTP/1.1 200 OK
-Content-Type: application/json; charset=UTF-8
-                </programlisting>
+                <programlisting>HTTP/1.1 200 OK
+Content-Type: application/json; charset=UTF-8              </programlisting>
                 <programlisting language="json"><xi:include href="samples/loadbalancer/health_monitors-update-res.json" parse="text"/></programlisting>
             </example>
         </section>
@@ -1754,7 +1700,7 @@ Content-Type: application/json; charset=UTF-8
         <?hard-pagebreak?>
 
         <section xml:id="lbaas_ext_ops_health_monitor_delete">
-            <title>Delete Health Monitor</title>
+            <title>Delete health monitor</title>
             <informaltable rules="all" width="100%">
                 <col width="20%"/>
                 <col width="20%"/>
@@ -1770,7 +1716,7 @@ Content-Type: application/json; charset=UTF-8
                     <tr>
                         <td>&DELETE;</td>
                         <td>/lb/health_monitors/<parameter>healthmonitor-id</parameter></td>
-                        <td>Delete health monitor.</td>
+                        <td>Deletes a specified health monitor.</td>
                     </tr>
                 </tbody>
             </informaltable>
@@ -1783,24 +1729,20 @@ Content-Type: application/json; charset=UTF-8
             <para>This operation does not return a response body.</para>
             <example>
                 <title>Delete Health Monitor: Request</title>
-                <programlisting>
-DELETE /v2.0/lb/health_monitors/ada338f0-10d0-4326-b02e-cc123114f240.json HTTP/1.1
-Accept: application/json
-                </programlisting>
+                <programlisting>DELETE /v2.0/lb/health_monitors/b624decf-d5d3-4c66-9a3d-f047e7786181.json HTTP/1.1
+Accept: application/json               </programlisting>
             </example>
             <example>
                 <title>Delete Health Monitor: Response</title>
-                <programlisting>
-HTTP/1.1 204 No Content
-Content-Length: 0
-                </programlisting>
+                <programlisting>HTTP/1.1 204 No Content
+Content-Length: 0             </programlisting>
             </example>
         </section>
 
         <?hard-pagebreak?>
 
         <section xml:id="lbaas_ext_ops_health_monitor_associate">
-            <title>Associate Health Monitor with a Pool</title>
+            <title>Associate health monitor with a pool</title>
                 <informaltable rules="all" width="100%">
                     <col width="20%"/>
                     <col width="20%"/>
@@ -1816,7 +1758,8 @@ Content-Length: 0
                         <tr>
                             <td>&POST;</td>
                             <td>/lb/pools/<parameter>pool-id</parameter>/health_monitors</td>
-                            <td>Associate health monitor with the pool.</td>
+                            <td>Associates a health monitor with a
+                            pool.</td>
                         </tr>
                     </tbody>
                 </informaltable>
@@ -1825,19 +1768,15 @@ Content-Length: 0
                 Bad Request (<errorcode>400</errorcode>), Not Found (<errorcode>404</errorcode>)</simpara>
             <example>
                 <title>Associate Health Monitor: Request</title>
-                <programlisting>
-POST /v2.0/lb/pools/72741b06-df4d-4715-b142-276b6bce75ab/health_monitors.json HTTP/1.1
+                <programlisting>POST /v2.0/lb/pools/72741b06-df4d-4715-b142-276b6bce75ab/health_monitors.json HTTP/1.1
 User-Agent: python-neutronclient
-Accept: application/json
-                </programlisting>
+Accept: application/json               </programlisting>
                 <programlisting language="json"><xi:include href="samples/loadbalancer/healthmonitors-associate-req.json" parse="text"/></programlisting>
             </example>
             <example>
                 <title>Associate Health Monitor: Response</title>
-                <programlisting>
-HTTP/1.1 201 Created
-Content-Type: application/json; charset=UTF-8
-                </programlisting>
+                <programlisting>HTTP/1.1 201 Created
+Content-Type: application/json; charset=UTF-8             </programlisting>
                 <programlisting language="json"><xi:include href="samples/loadbalancer/healthmonitors-associate-res.json" parse="text"/></programlisting>
             </example>
         </section>
@@ -1845,7 +1784,7 @@ Content-Type: application/json; charset=UTF-8
         <?hard-pagebreak?>
 
         <section xml:id="lbaas_ext_ops_health_monitor_disassociate">
-            <title>Disassociate Health Monitor from a Pool</title>
+            <title>Disassociate health monitor from a pool</title>
                 <informaltable rules="all" width="100%">
                     <col width="20%"/>
                     <col width="20%"/>
@@ -1874,17 +1813,13 @@ Content-Type: application/json; charset=UTF-8
             <para>This operation does not return a response body.</para>
             <example>
                 <title>Disassociate Health Monitor: Request</title>
-                <programlisting>
-DELETE /v2.0/lb/pools/72741b06-df4d-4715-b142-276b6bce75ab/health_monitors/ada338f0-10d0-4326-b02e-cc123114f240.json HTTP/1.1
-Accept: application/json
-                </programlisting>
+                <programlisting>DELETE /v2.0/lb/pools/72741b06-df4d-4715-b142-276b6bce75ab/health_monitors/ada338f0-10d0-4326-b02e-cc123114f240.json HTTP/1.1
+Accept: application/json             </programlisting>
             </example>
             <example>
                 <title>Disassociate Health Monitor: Response</title>
-                <programlisting>
-HTTP/1.1 204 No Content
-Content-Length: 0
-                </programlisting>
+                <programlisting>HTTP/1.1 204 No Content
+Content-Length: 0              </programlisting>
             </example>
         </section>
 
