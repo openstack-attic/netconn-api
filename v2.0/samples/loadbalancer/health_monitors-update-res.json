@@ -1,12 +1,17 @@
 {
-    "health_monitor": {
-        "status": "PENDING_UPDATE",
-        "admin_state_up": true,
-        "tenant_id": "83657cfcdfe44cd5920adaf26c48ceea",
-        "delay": 30,
-        "max_retries": 1,
-        "timeout": 1,
-        "type": "PING",
-        "id": "466c8345-28d8-4f84-a246-e04380b0461d"
-    }
+   "health_monitor":{
+      "admin_state_up":true,
+      "tenant_id":"4fd44f30292945e481c7b8a0c8908869",
+      "delay":3,
+      "expected_codes":"200",
+      "max_retries":1,
+      "http_method":"GET",
+      "timeout":1,
+      "pools":[
+
+      ],
+      "url_path":"/",
+      "type":"HTTP",
+      "id":"b624decf-d5d3-4c66-9a3d-f047e7786181"
+   }
 }
