@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE chapter [
+<!-- Some useful entities borrowed from HTML -->
+<!ENTITY ndash  "&#x2013;">
+<!ENTITY mdash  "&#x2014;">
+<!ENTITY hellip "&#x2026;">
+<!ENTITY plusmn "&#xB1;">
+
+<!-- Useful for describing APIs -->
+<!ENTITY GET    '<command xmlns="http://docbook.org/ns/docbook">GET</command>'>
+<!ENTITY PUT    '<command xmlns="http://docbook.org/ns/docbook">PUT</command>'>
+<!ENTITY POST   '<command xmlns="http://docbook.org/ns/docbook">POST</command>'>
+<!ENTITY DELETE '<command xmlns="http://docbook.org/ns/docbook">DELETE</command>'>
+
+<!ENTITY CHECK  '<inlinemediaobject xmlns="http://docbook.org/ns/docbook">
+<imageobject>
+<imagedata fileref="figures/Check_mark_23x20_02.svg"
+format="SVG" scale="60"/>
+</imageobject>
+</inlinemediaobject>'>
+
+<!ENTITY ARROW  '<inlinemediaobject xmlns="http://docbook.org/ns/docbook">
+<imageobject>
+<imagedata fileref="figures/Arrow_east.svg"
+format="SVG" scale="60"/>
+</imageobject>
+</inlinemediaobject>'>
+ <!ENTITY APIv2   'Networking API v2.0'>
+]>
+<preface xmlns="http://docbook.org/ns/docbook"
+    xmlns:xi="http://www.w3.org/2001/XInclude"
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0"
+    xml:id="ch_pythonapi">
+    <?dbhtml stop-chunking?>
+    <title>Neutron Python API Client</title>
+    <para>The OpenStack Networking project provides virtual networking services
+        among devices managed by the <link
+            xlink:href="http://wiki.openstack.org/OpenStack">OpenStack</link>
+        compute service.</para>
+    <para>This document describes the
+        &APIv2; features.</para>
+    <para>We welcome feedback, comments, and bug reports at <link
+            xlink:href="http://bugs.launchpad.net/Neutron">bugs.launchpad.net/Neutron</link>.</para>
+    <section xml:id="id11111">
+        <title>Introduction</title>
+        <para xmlns:svg="http://www.w3.org/2000/svg"
+            xmlns:m="http://www.w3.org/1998/Math/MathML"
+            xmlns:html="http://www.w3.org/1999/xhtml"
+            xmlns:db="http://docbook.org/ns/docbook">This guide is for
+            software developers who create applications by using the
+            &APIv2;. To use this information, you should have a
+            general understanding of the OpenStack Networking
+            service, the OpenStack compute service, and the
+            integration between the two. You should also have access
+            to a plug-in that implements the &APIv2;.</para>
+        <para xmlns:svg="http://www.w3.org/2000/svg"
+            xmlns:m="http://www.w3.org/1998/Math/MathML"
+            xmlns:html="http://www.w3.org/1999/xhtml"
+            xmlns:db="http://docbook.org/ns/docbook">You should also
+            be familiar with:</para>
+        <itemizedlist spacing="compact">
+            <listitem>
+                <para>ReTful web services</para>
+            </listitem>
+            <listitem>
+                <para>HTTP/1.1</para>
+            </listitem>
+            <listitem>
+                <para>JSON and XML data serialization formats</para>
+            </listitem>
+        </itemizedlist>
+    </section>
+    <section xml:id="env">
+    <title>Setting the Environment Variables</title>
+    <para>Make sure the relevant Environment variables are setup appropriately.
+    As an example refer to the sample shell file which sets the variables used
+    to get credentials</para>
+    <programlisting>
+export OS_USERNAME="admin"
+export OS_PASSWORD="password"
+export OS_TENANT_NAME="admin"
+export OS_AUTH_URL="http://IPADDRESS/v2.0"
+    </programlisting>
+    </section>
+    <section xml:id="common_code">
+    <title>Common Code</title>
+    <para>
+    All the examples below use a common method <code>get_credentials</code>
+    This code is listed below.</para>
+    <programlisting language="python">
+def get_credentials():
+    d = {}
+    d['username'] = os.environ['OS_USERNAME']
+    d['password'] = os.environ['OS_PASSWORD']
+    d['auth_url'] = os.environ['OS_AUTH_URL']
+    d['tenant_name'] = os.environ['OS_TENANT_NAME']
+    return d
+    </programlisting>
+    <para>This code is assumed to exist in the file <code>credentials.py</code>
+    which is imported in all the samples.
+    </para>    
+    </section>	
+    <?hard-pagebreak?>
+     <section xml:id="create_network">
+            <title>Create Network</title>
+        <para>
+                The following program creates the Network</para>
+        <programlisting language="python">
+from neutronclient.v2_0 import client
+from credentials import get_credentials
+from utils import print_networks
+
+network_name="sample_network"
+credentials = get_credentials()
+neutron = client.Client(**credentials)
+try:
+    body_sample = {
+        "network":
+        {
+           "name": network_name,
+           "admin_state_up": True
+        }
+       }
+    netw = neutron.create_network(body=body_sample)
+    net_dict = netw['network']
+    network_id = net_dict['id']
+    print "Network %s created" % network_id
+
+    body_create_subnet = {
+      "subnets":[
+          {
+             "cidr":"192.168.199.0/24",
+             "ip_version":4,
+             "network_id": network_id
+          }
+      ]
+    }
+
+    subnet = neutron.create_subnet(body=body_create_subnet)
+    print "Created subnet %s" % subnet
+finally:
+    print "Execution completed"
+    #neutron.delete_network(network_id)
+    #print "Deleted Network %s" %network_id
+
+        </programlisting>
+    </section>
+       <section xml:id="list_networks">
+            <title>List Networks</title>
+        <para>
+                The following program lists the Networks</para>
+        <programlisting language="python">
+from neutronclient.v2_0 import client
+from credentials import get_credentials
+from utils import print_values
+
+
+credentials = get_credentials()
+neutron = client.Client(**credentials)
+netw = neutron.list_networks()
+
+print_values(netw, 'networks')
+        </programlisting>
+    </section>
+
+
+        <section xml:id="create_port">
+            <title>Create Port</title>
+        <para>
+                The following program creates a port</para>
+        <programlisting language="python">
+from neutronclient.v2_0 import client
+import novaclient.v1_1.client as nvclient
+from credentials import get_credentials
+from utils import print_values_server
+from credentials import get_nova_credentials
+
+credentials = get_nova_credentials()
+nova_client = nvclient.Client(**credentials)
+
+#replace with server_id and network_id from your environment
+
+server_id='9a52795a-a70d-49a8-a5d0-5b38d78bd12d'
+network_id= 'ce5d204a-93f5-43ef-bd89-3ab99ad09a9a'
+server_detail = nova_client.servers.get(server_id)
+print server_detail.id
+
+if server_detail != None:
+    credentials = get_credentials()
+    neutron = client.Client(**credentials)
+
+    body_value = {
+                     "port": {
+                             "admin_state_up": True,
+                             "device_id": server_id,
+                             "name": "port1",
+                             "network_id": network_id
+                      }
+                 }
+    response = neutron.create_port(body=body_value)
+    print response
+        </programlisting>
+    </section>
+   <section xml:id="list_ports">
+            <title>List Ports</title>
+        <para>
+                The following program lists the ports</para>
+        <programlisting language="python">
+from neutronclient.v2_0 import client
+from credentials import get_credentials
+from utils import print_values
+
+
+credentials = get_credentials()
+neutron = client.Client(**credentials)
+ports = neutron.list_ports()
+print print_values(ports, 'ports')
+        </programlisting>
+    </section>
+
+        <section xml:id="list_server_ports">
+            <title>List Server Ports</title>
+        <para>
+                The following program lists the ports of a server</para>
+        <programlisting language="python">
+from neutronclient.v2_0 import client
+from credentials import get_credentials
+from utils import print_values
+
+
+credentials = get_credentials()
+neutron = client.Client(**credentials)
+ports = neutron.list_ports()
+print print_values(ports, 'ports')
+
+        </programlisting>
+    </section>
+
+</preface>
