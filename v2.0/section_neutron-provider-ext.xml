@@ -119,15 +119,40 @@
     </section>
     <?hard-pagebreak?>
     <section xml:id="provider_ext_ops">
-        <title>Network API operations with provider network
-            extension</title>
-        <para>This section discusses operations for setting and
-            retrieving the provider networks extension attributes for
+        <title>Network API operations with provider extension</title>
+        <para>Set and retrieve the provider extension attributes for
             network objects.</para>
-        <!-- <wadl:resources
-            href="http://git.openstack.org/cgit/openstack/api-site/plain/api-ref/src/wadls/netconn-api/src/os-networks-provider-ext.wadl"
-            xmlns:wadl="http://wadl.dev.java.net/2009/02"/> -->
-          <section xml:id="provider_network_list">
+        <wadl:resources xmlns:wadl="http://wadl.dev.java.net/2009/02">
+            <wadl:resource
+                href="http://git.openstack.org/cgit/openstack/api-site/plain/api-ref/src/wadls/netconn-api/src/os-networks-provider-ext.wadl#Networks">
+                <wadl:method href="#listNetworks"/>
+                <wadl:method href="#createNetwork"/>
+            </wadl:resource>
+            <wadl:resource
+                href="http://git.openstack.org/cgit/openstack/api-site/plain/api-ref/src/wadls/netconn-api/src/os-networks-provider-ext.wadl#network_id">
+                <wadl:method href="#showNetwork"/>
+                <wadl:method href="#updateNetwork"/>
+                <wadl:method href="#deleteNetwork"/>
+            </wadl:resource>
+        </wadl:resources>
+    </section>
+    <section xml:id="provider_ext_ops">
+        <title>Network API operations with multiple provider
+            extension</title>
+        <para>Set and retrieve the multiple provider networks
+            extension attributes for network objects.</para>
+        <wadl:resources xmlns:wadl="http://wadl.dev.java.net/2009/02">
+            <wadl:resource
+                href="http://git.openstack.org/cgit/openstack/api-site/plain/api-ref/src/wadls/netconn-api/src/os-networks-multi-provider-ext.wadl#Networks">
+                <wadl:method href="#createNetwork"/>
+            </wadl:resource>
+            <wadl:resource
+                href="http://git.openstack.org/cgit/openstack/api-site/plain/api-ref/src/wadls/netconn-api/src/os-networks-multi-provider-ext.wadl#network_id">
+                <wadl:method href="#showNetwork"/>
+            </wadl:resource>
+        </wadl:resources>
+    </section>
+    <!--<section xml:id="provider_network_list">
             <title>List Networks</title>
             <para>
                 <informaltable rules="all" width="100%">
@@ -169,8 +194,8 @@
                     Response</title>
                 <programlisting language="json"><xi:include href="samples/networks-get-res-prov.xml" parse="text"/></programlisting>
             </example>
-        </section>
-        <section xml:id="provider_network_show">
+        </section>-->
+    <!--<section xml:id="provider_network_show">
             <title>Show Network</title>
             <para>
                 <informaltable rules="all" width="100%">
@@ -215,8 +240,8 @@
                     Response</title>
                 <programlisting language="json"><xi:include href="samples/networks-show-res-prov.xml" parse="text"/></programlisting>
             </example>
-        </section>
-        <section xml:id="provider_network_create">
+        </section>-->
+    <!--<section xml:id="provider_network_create">
             <title>Create Network</title>
             <para>
                 <informaltable rules="all" width="100%">
@@ -270,8 +295,8 @@
                     Request</title>
                 <programlisting language="json"><xi:include href="samples/networks-post-req-prov.xml" parse="text"/></programlisting>
             </example>
-        </section>
-        <section xml:id="provider_network_update">
+        </section>-->
+    <!--<section xml:id="provider_network_update">
             <title>Update Network</title>
             <informaltable rules="all" width="100%">
                 <col width="10%"/>
@@ -323,6 +348,6 @@
                     Request</title>
                 <programlisting language="json"><xi:include href="samples/networks-put-req-prov.xml" parse="text"/></programlisting>
             </example>
-        </section>
-    </section>
+        </section>-->
+
 </section>
