@@ -58,6 +58,7 @@
         the source code tree.</para>
     <xi:include href="section_neutron_list-extensions.xml"/>
     <xi:include href="section_neutron-provider-ext.xml"/>
+    <xi:include href="section_neutron-multi-provider-ext.xml"/>
     <xi:include href="section_neutron_binding_ext_ports.xml"/>
     <xi:include href="section_neutron-l3-ext.xml"/>
     <xi:include href="section_neutron-extgwmodes-ext.xml"/>
