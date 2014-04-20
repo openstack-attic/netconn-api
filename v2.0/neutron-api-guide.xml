@@ -33,8 +33,8 @@
     xmlns:xsdxt="http://docs.rackspacecloud.com/xsd-ext/v1.0"
     xmlns:db="http://docbook.org/ns/docbook" version="5.0"
     status="final" xml:id="neutron-api-spec">
-    <title>OpenStack Networking API v2.0 Reference</title>
-    <titleabbrev>Networking API Reference</titleabbrev>
+    <title>OpenStack Networking (neutron) API v2.0 Reference</title>
+    <titleabbrev>Networking (neutron) API Reference</titleabbrev>
     <info>
         <author>
             <personname>
@@ -49,7 +49,7 @@
             <holder>OpenStack Foundation</holder>
         </copyright>
         <releaseinfo>API v2.0</releaseinfo>
-        <productname>OpenStack Networking API v2.0</productname>
+        <productname>OpenStack Networking (neutron) API v2.0</productname>
         <pubdate/>
         <legalnotice role="apache2">
             <annotation>

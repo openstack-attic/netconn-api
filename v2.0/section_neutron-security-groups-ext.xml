@@ -1,32 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE section [
-<!-- Some useful entities borrowed from HTML -->
-<!ENTITY ndash  "&#x2013;">
-<!ENTITY mdash  "&#x2014;">
-<!ENTITY hellip "&#x2026;">
-<!ENTITY plusmn "&#xB1;">
-
-<!-- Useful for describing APIs -->
-<!ENTITY GET    '<command xmlns="http://docbook.org/ns/docbook">GET</command>'>
-<!ENTITY PUT    '<command xmlns="http://docbook.org/ns/docbook">PUT</command>'>
-<!ENTITY POST   '<command xmlns="http://docbook.org/ns/docbook">POST</command>'>
-<!ENTITY DELETE '<command xmlns="http://docbook.org/ns/docbook">DELETE</command>'>
-
-<!ENTITY CHECK  '<inlinemediaobject xmlns="http://docbook.org/ns/docbook">
- <imageobject>
-  <imagedata fileref="figures/Check_mark_23x20_02.svg"
-     format="SVG" scale="60"/>
-</imageobject>
-      </inlinemediaobject>'>
-
-<!ENTITY ARROW  '<inlinemediaobject xmlns="http://docbook.org/ns/docbook">
- <imageobject>
-  <imagedata fileref="figures/Arrow_east.svg"
-     format="SVG" scale="60"/>
-</imageobject>
-      </inlinemediaobject>'>
- <!ENTITY APIv2   'Networking API v2.0'>
-]>
 <section xmlns="http://docbook.org/ns/docbook"
     xmlns:xlink="http://www.w3.org/1999/xlink"
     xmlns:xi="http://www.w3.org/2001/XInclude"
@@ -37,7 +9,26 @@
     status="final" xmlns:wadl="http://wadl.dev.java.net/2009/02"
     xml:id="security_groups">
     <title>Security groups and rules (security-groups)</title>
-    <wadl:resources
-        href="https://raw.github.com/openstack/api-site/master/api-ref/src/wadls/netconn-api/src/security-groups.wadl"
-        xmlns:wadl="http://wadl.dev.java.net/2009/02"/>
+    <wadl:resources xmlns:wadl="http://wadl.dev.java.net/2009/02">
+        <wadl:resource
+            href="https://raw.github.com/openstack/api-site/master/api-ref/src/wadls/netconn-api/src/security-groups.wadl#security_groups">
+            <wadl:method href="#listSecGroups"/>
+            <wadl:method href="#createSecGroup"/>
+        </wadl:resource>
+        <wadl:resource
+            href="https://raw.github.com/openstack/api-site/master/api-ref/src/wadls/netconn-api/src/security-groups.wadl#security_group_id">
+            <wadl:method href="#getSecGroup"/>
+            <wadl:method href="#deleteSecGroup"/>
+        </wadl:resource>
+        <wadl:resource
+            href="https://raw.github.com/openstack/api-site/master/api-ref/src/wadls/netconn-api/src/security-groups.wadl#security_groups_rules">
+            <wadl:method href="#listSecGroupRules"/>
+            <wadl:method href="#createSecGroupRule"/>
+        </wadl:resource>
+        <wadl:resource
+            href="https://raw.github.com/openstack/api-site/master/api-ref/src/wadls/netconn-api/src/security-groups.wadl#rules-security-groups-id">
+            <wadl:method href="#getSecGroupRule"/>
+            <wadl:method href="#deleteSecGroupRule"/>
+        </wadl:resource>
+    </wadl:resources>
 </section>
