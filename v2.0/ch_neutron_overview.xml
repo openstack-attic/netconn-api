@@ -136,16 +136,16 @@
                 </tr>
                 <tr>
                     <td align="left">port</td>
-                    <td colspan="4">A virtual switch port on a logical
-                        network switch. Virtual instances attach their
-                        interfaces into ports. The logical port also
-                        defines the MAC address and the IP addresses
-                        to be assigned to the interfaces plugged into
-                        them. When IP addresses are associated to a
-                        port, this also implies the port is associated
-                        with a subnet, as the IP address was taken
-                        from the allocation pool for a specific
-                        subnet.</td>
+                    <td colspan="4">A virtual switch port on a logical network
+                        switch. Virtual instances attach their interfaces into
+                        ports. The logical port also defines the MAC address and
+                        the IP addresses to be assigned to the interfaces
+                        plugged into them. When creating a port, any unallocated
+                        IP in the subnet can be stated specifically, even if the
+                        IP address is not in the allocation_pool. Enabling users
+                        to specify the IP explicitly allows them to retain a
+                        particular subset of the subnet IPs for static
+                        allocation.</td>
                 </tr>
                 <tr>
                     <td align="left">subnet</td>
