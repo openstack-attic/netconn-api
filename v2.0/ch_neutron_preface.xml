@@ -25,7 +25,7 @@ format="SVG" scale="60"/>
 format="SVG" scale="60"/>
 </imageobject>
 </inlinemediaobject>'>
- <!ENTITY APIv2   'Networking API v2.0'>
+ <!ENTITY APIv2   'Networking (neutron) API v2.0'>
 ]>
 <preface xmlns="http://docbook.org/ns/docbook"
     xmlns:xi="http://www.w3.org/2001/XInclude"
@@ -33,14 +33,14 @@ format="SVG" scale="60"/>
     xml:id="ch_preface">
     <?dbhtml stop-chunking?>
     <title>Preface</title>
-    <para>The OpenStack Networking project provides virtual networking services
-        among devices managed by the <link
-            xlink:href="http://wiki.openstack.org/OpenStack">OpenStack</link>
-        compute service.</para>
-    <para>This document describes the
-        &APIv2; features.</para>
+    <para>The OpenStack Networking (neutron) project provides virtual
+        networking services among devices managed by the <link
+            xlink:href="http://wiki.openstack.org/OpenStack"
+            >OpenStack</link> compute service.</para>
+    <para>This document describes the &APIv2; features.</para>
     <para>We welcome feedback, comments, and bug reports at <link
-            xlink:href="http://bugs.launchpad.net/Neutron">bugs.launchpad.net/Neutron</link>.</para>
+            xlink:href="http://bugs.launchpad.net/Neutron"
+            >bugs.launchpad.net/Neutron</link>.</para>
     <section xml:id="Intended_Audience-d1e85">
         <title>Intended Audience</title>
         <para xmlns:svg="http://www.w3.org/2000/svg"
@@ -49,10 +49,10 @@ format="SVG" scale="60"/>
             xmlns:db="http://docbook.org/ns/docbook">This guide is for
             software developers who create applications by using the
             &APIv2;. To use this information, you should have a
-            general understanding of the OpenStack Networking
-            service, the OpenStack compute service, and the
-            integration between the two. You should also have access
-            to a plug-in that implements the &APIv2;.</para>
+            general understanding of the OpenStack Networking service,
+            the OpenStack compute service, and the integration between
+            the two. You should also have access to a plug-in that
+            implements the &APIv2;.</para>
         <para xmlns:svg="http://www.w3.org/2000/svg"
             xmlns:m="http://www.w3.org/1998/Math/MathML"
             xmlns:html="http://www.w3.org/1999/xhtml"
@@ -85,28 +85,29 @@ format="SVG" scale="60"/>
         <para>Use the following resources in conjunction with this
             guide:</para>
         <informaltable rules="all">
-                <thead>
-                    <tr>
-                        <th>Resource</th>
-                        <th>See</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>
-                            <para>Related documents</para>
-                        </td>
-                        <td><link xlink:href="http://docs.openstack.org"
-                                >OpenStack Manuals</link></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <para>OpenStack Neutron Wiki</para>
-                        </td>
-                        <td><link xlink:href="http://wiki.openstack.org/Neutron"
-                                >http://wiki.openstack.org/Neutron</link></td>
-                    </tr>
-                </tbody>
-            </informaltable>
+            <thead>
+                <tr>
+                    <th>Resource</th>
+                    <th>See</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <para>Related documents</para>
+                    </td>
+                    <td><link xlink:href="http://docs.openstack.org"
+                            >OpenStack Documentation</link></td>
+                </tr>
+                <tr>
+                    <td>
+                        <para>OpenStack Neutron Wiki</para>
+                    </td>
+                    <td><link
+                            xlink:href="http://wiki.openstack.org/Neutron"
+                            >http://wiki.openstack.org/Neutron</link></td>
+                </tr>
+            </tbody>
+        </informaltable>
     </section>
 </preface>
