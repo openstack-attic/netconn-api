@@ -33,7 +33,7 @@
     xmlns:xsdxt="http://docs.rackspacecloud.com/xsd-ext/v1.0"
     xmlns:db="http://docbook.org/ns/docbook" version="5.0"
     xml:id="retrieve_extensions">
-    <title>List Available Extensions</title>
+    <title>List available extensions</title>
     <para>You can list available extensions through the <filename
             role="bold">/v2.0/extensions</filename> URI.</para>
     <note>

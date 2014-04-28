@@ -43,13 +43,12 @@
             </personname>
         </author>
         <copyright>
-            <year>2011</year>
-            <year>2012</year>
-            <year>2013</year>
+            <year>2011-2014</year>
             <holder>OpenStack Foundation</holder>
         </copyright>
         <releaseinfo>API v2.0</releaseinfo>
-        <productname>OpenStack Networking (neutron) API v2.0</productname>
+        <productname>OpenStack Networking (neutron) API
+            v2.0</productname>
         <pubdate/>
         <legalnotice role="apache2">
             <annotation>
@@ -63,6 +62,19 @@
         </abstract>
         <revhistory>
             <!-- ... continue adding more revisions here as you change this document using the markup shown below... -->
+            <revision>
+                <date>2014-04-29</date>
+                <revdescription>
+                    <itemizedlist spacing="compact">
+                        <listitem>
+                            <para>Updated
+                                   <parameter>binding:capabilities</parameter>
+                                to
+                                   <parameter>binding:vif_details</parameter>.</para>
+                        </listitem>
+                    </itemizedlist>
+                </revdescription>
+            </revision>
             <revision>
                 <date>2013-12-20</date>
                 <revdescription>
@@ -98,8 +110,7 @@
                             <para>Updated the title of the book to
                                    <citetitle>Reference</citetitle>
                                 from <citetitle>Developer
-                                   Guide</citetitle> for consistency.
-                            </para>
+                                   Guide</citetitle> for consistency.</para>
                         </listitem>
                     </itemizedlist>
                 </revdescription>
@@ -143,5 +154,5 @@
     <xi:include href="ch_neutron_overview.xml"/>
     <xi:include href="ch_neutron_general_info.xml"/>
     <xi:include href="ch_neutron_api_operations.xml"/>
-   <xi:include href="ch_neutron_api_extensions.xml"/>
+    <xi:include href="ch_neutron_api_extensions.xml"/>
 </book>
