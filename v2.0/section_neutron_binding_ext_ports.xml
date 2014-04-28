@@ -132,21 +132,22 @@
                 </td>
             </tr>
             <tr>
-                <td>
-                    <para><parameter>binding:capabilities</parameter></para></td>
+                <td><para><parameter>binding:vif_details</parameter></para></td>
                 <td>list(dict)</td>
-
                 <td>N/A</td>
                 <td>R</td>
                 <td>None</td>
-                <td>N/A</td>
-                <td><para>Read-only. A dictionary that enables the
+                <td>None</td>
+                <td>
+                    <para>Read-only. A dictionary that enables the
                         application to pass information about
-                        functions that &APIv2; provides. Specify the
-                        following value: <code>port_filter : Boolean</code> to
-                    define whether &APIv2; provides port filtering
-                        features such as security group and
-                        anti-MAC/IP spoofing.</para></td>
+                        functions that Networking API v2.0 provides.
+                        Specify the following value:
+                            <literal>port_filter : Boolean</literal>
+                        to define whether Networking API v2.0 provides
+                        port filtering features, such as security
+                        group and anti-MAC/IP spoofing.</para>
+                </td>
             </tr>
             <tr>
                 <td><para><parameter>binding:vnic_type</parameter></para></td>
@@ -154,358 +155,28 @@
                 <td><para>N/A</para></td>
                 <td><para>CRU</para></td>
                 <td><para>normal</para></td>
-                <td><para>(normal,
-                    direct,
-                    macvtap)</para></td>
-                <td><para>The vnic type to be bound on the neutron port.
-                    To support SR-IOV PCI passthrough networking, you can request that the neutron port
-                    be realized as normal (virtual nic), direct (pci passthrough), or
-                    macvtap (virtual interface with a tap-like software interface).
-                    The ML2 plug-in supports the vnic_type.</para></td>
+                <td><para>(normal, direct, macvtap)</para></td>
+                <td><para>The VNIC type to be bound on the neutron
+                        port. To support SR-IOV PCI passthrough
+                        networking, you can request that the neutron
+                        port be realized as normal (virtual NIC),
+                        direct (pci passthrough), or macvtap (virtual
+                        interface with a tap-like software interface).
+                        The ML2 plug-in supports the
+                    vnic_type.</para></td>
             </tr>
         </tbody>
     </table>
-    <!-- <wadl:resources
-        href="http://git.openstack.org/cgit/openstack/api-site/plain/api-ref/src/wadls/netconn-api/src/os-ports-binding-ext.wadl"
-        xmlns:wadl="http://wadl.dev.java.net/2009/02"/>-->
-   <section xml:id="List_Ports_binding">
-        <title>List Ports</title>
-        <informaltable rules="all" width="100%">
-            <col width="20%"/>
-            <col width="20%"/>
-            <col width="60%"/>
-            <thead>
-                <tr>
-                    <td>Verb</td>
-                    <td>URI</td>
-                    <td>Description</td>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>&GET;</td>
-                    <td>/ports</td>
-                    <td>Lists ports to which the tenant has access.
-                        The <parameter>binding</parameter> extended
-                        attributes are visible to only administrative
-                        users. The <parameter>binding:vnic_type</parameter> extended attribute
-                        is visible to only port owners and administrative users.</td>
-                </tr>
-            </tbody>
-        </informaltable>
-        <simpara>Normal Response Code: <returnvalue>200</returnvalue>
-        </simpara>
-        <simpara>Error Response Codes: Unauthorized
-                (<errorcode>401</errorcode>)</simpara>
-        <para>This operation lists ports to which the tenant has
-            access.</para>
-        <para>This operation does not require a request body.</para>
-        <para>This operation returns a response body.</para>
-        <para>In addition to any other fields returned in the list
-            port response, the following
-                <parameter>binding</parameter>-prefixed fields are
-            visible to administrative users:</para>
-        <informaltable rules="all">
-            <thead>
-                <tr>
-                    <th>Field</th>
-                    <th>Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><para><parameter>binding:vif_type</parameter></para></td>
-                    <td><para>Read-only. The vif type for the
-                            specified port.</para>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <para><parameter>binding:host_id</parameter></para></td>
-                    <td><para>The ID of the host where the port is
-                            allocated. In some cases different
-                            implementations can run on different
-                            hosts.</para>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <para><parameter>binding:profile</parameter></para></td>
-                    <td><para>A dictionary that enables the
-                            application running on the specified host
-                            to pass and receive vif port-specific
-                            information to the plug-in.</para>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <para><parameter>binding:capabilities</parameter></para></td>
-                    <td><para>Read-only. A dictionary that enables the
-                            application to pass information about
-                            functions that &APIv2; provides. Specify
-                            the following value: port_filter : Boolean
-                            to define whether &APIv2; provides port
-                            filtering features such as security group
-                            and anti-MAC/IP spoofing.</para>
-                    </td>
-                </tr>
-                <tr>
-                    <td><para><parameter>binding:vnic_type</parameter></para></td>
-                    <td><para>The vnic type to be bound on the neutron port.
-                        Valid values are normal, direct, or macvtap.</para>
-                    </td>
-                </tr>
-            </tbody>
-        </informaltable>
-    </section>
-    <?hard-pagebreak?>
-    <section xml:id="Show_port_binding">
-        <title>Show Port</title>
-        <informaltable rules="all" width="100%">
-            <col width="20%"/>
-            <col width="20%"/>
-            <col width="60%"/>
-            <thead>
-                <tr>
-                    <td>Verb</td>
-                    <td>URI</td>
-                    <td>Description</td>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>&GET;</td>
-                    <td>/ports/<parameter>port-id</parameter></td>
-                    <td>Shows information for a specified port. The
-                            <parameter>binding</parameter> extended
-                        attributes are visible to only administrative
-                        users. The <parameter>binding:vnic_type</parameter> extended attribute
-                        is visible to only port owners or administrative users.</td>
-                </tr>
-            </tbody>
-        </informaltable>
-        <simpara>Normal Response Code: <returnvalue>200</returnvalue>
-        </simpara>
-        <simpara>Error Response Codes: Unauthorized
-                (<errorcode>401</errorcode>), Not Found
-                (<errorcode>404</errorcode>)</simpara>
-        <para>This operation returns information for the port
-            specified in the request URI.</para>
-        <para>This operation does not require a request body.</para>
-        <para>This operation returns a response body.</para>
-        <para>In addition to any fields returned in the show port
-            response, the following
-            <parameter>binding</parameter>-prefixed extended
-            attributes are visible to administrative users:</para>
-        <informaltable rules="all">
-            <thead>
-                <tr>
-                    <th>Field</th>
-                    <th>Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><para><parameter>binding:vif_type</parameter></para></td>
-                    <td><para>Read-only. The vif type for the
-                            specified port.</para>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <para><parameter>binding:host_id</parameter></para></td>
-                    <td><para>The ID of the host where the port is
-                            allocated. In some cases different
-                            implementations can run on different
-                            hosts.</para>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <para><parameter>binding:profile</parameter></para></td>
-                    <td><para>A dictionary that enables the
-                            application running on the specified host
-                            to pass and receive vif port-specific
-                            information to the plug-in.</para>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <para><parameter>binding:capabilities</parameter></para></td>
-                    <td><para>Read-only. A dictionary that enables the
-                            application to pass information about
-                            functions that &APIv2; provides. Specify
-                            the following value: <code>port_filter : Boolean</code>
-                        to define whether &APIv2; provides port
-                            filtering features such as security group
-                            and anti-MAC/IP spoofing.</para>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <para><parameter>binding:vnic_type</parameter></para></td>
-                    <td><para>The requested vnic type to be bound on neutron
-                        port (can be either normal, direct or macvtap).</para>
-                    </td>
-                </tr>
-            </tbody>
-        </informaltable>
-    </section>
-
-    <section xml:id="Create_Port_binding">
-        <title>Create Port</title>
-        <informaltable rules="all" width="100%">
-            <col width="20%"/>
-            <col width="20%"/>
-            <col width="60%"/>
-            <thead>
-                <tr>
-                    <td>Verb</td>
-                    <td>URI</td>
-                    <td>Description</td>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>&POST;</td>
-                    <td>/ports</td>
-                    <td>Creates a port on a specified network. Only
-                        administrative users can add the
-                            <parameter>binding</parameter> extended
-                        attributes.</td>
-                </tr>
-            </tbody>
-        </informaltable>
-        <simpara>Normal Response Code: <returnvalue>201</returnvalue>
-        </simpara>
-        <simpara>Error Response Codes: Bad Request
-                (<errorcode>400</errorcode>), Unauthorized
-                (<errorcode>401</errorcode>), Forbidden
-                (<errorcode>403</errorcode>), Not Found
-                (<errorcode>404</errorcode>), Conflict
-                (<errorcode>409</errorcode>), MAC generation failure
-                (<errorcode>503</errorcode>) </simpara>
-        <para>This operation creates an OpenStack Networking port. You
-            must specify the network where the port is to created on
-            the <parameter>network_id</parameter> attribute in the
-            request body.</para>
-        <para>This operation requires a request body.</para>
-        <para>This operation returns a response body.</para>
-        <para>In addition to any attributes that can be set in a
-            create port operation, administrative users can also set
-            the following <parameter>binding</parameter>-prefixed
-            extended attributes:</para>
-        <informaltable rules="all">
-            <thead>
-                <tr>
-                    <th>Field</th>
-                    <th>Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>
-                        <para><parameter>binding:host_id</parameter></para></td>
-                    <td><para>The ID of the host where the port is
-                            allocated. In some cases different
-                            implementations can run on different
-                            hosts.</para>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <para><parameter>binding:profile</parameter></para></td>
-                    <td><para>A dictionary that enables the
-                            application running on the specified host
-                            to pass and receive vif port-specific
-                            information to the plug-in.</para>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <para><parameter>binding:vnic_type</parameter></para></td>
-                    <td><para>The vnic type to be bound on the neutron port.
-                        Valid values are normal, direct, or macvtap.</para>
-                    </td>
-                </tr>
-            </tbody>
-        </informaltable>
-    </section>
-    <section xml:id="Update_Port_binding">
-        <title>Update Port</title>
-        <informaltable rules="all" width="100%">
-            <col width="20%"/>
-            <col width="20%"/>
-            <col width="60%"/>
-            <thead>
-                <tr>
-                    <td>Verb</td>
-                    <td>URI</td>
-                    <td>Description</td>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>&PUT;</td>
-                    <td>/ports/<parameter>port-id</parameter></td>
-                    <td>Updates a specified port. Only administrative users can update the
-                            <parameter>binding</parameter> extended attributes. The
-                        <parameter>binding:vnic_type</parameter> extended attribute is visible to only port owners or
-                        administrative users.</td>
-                </tr>
-            </tbody>
-        </informaltable>
-        <simpara>Normal Response Code: <returnvalue>200</returnvalue>
-        </simpara>
-        <simpara>Error Response Codes: Bad Request
-                (<errorcode>400</errorcode>), Unauthorized
-                (<errorcode>401</errorcode>), Forbidden
-                (<errorcode>403</errorcode>), Not Found
-                (<errorcode>404</errorcode>), Conflict
-                (<errorcode>409</errorcode>) </simpara>
-        <para>Use this operation to update information for a
-            port.</para>
-        <para>This operation requires a request body.</para>
-        <para>This operation returns a response body.</para>
-        <para>In addition to any attributes that can be updated in the
-            update port operation, administrative users can also
-            update the following
-            <parameter>binding</parameter>-prefixed extended
-            attributes:</para>
-        <informaltable rules="all">
-            <thead>
-                <tr>
-                    <th>Field</th>
-                    <th>Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>
-                        <para><parameter>binding:host_id</parameter></para></td>
-                    <td><para>The ID of the host where the port is
-                            allocated. In some cases different
-                            implementations can run on different
-                            hosts.</para>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <para><parameter>binding:profile</parameter></para></td>
-                    <td><para>A dictionary that enables the
-                            application running on the specified host
-                            to pass and receive vif port-specific
-                            information to the plug-in.</para>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <para><parameter>binding:vnic_type</parameter></para></td>
-                    <td><para>The vnic type to be bound on the neutron port.
-                        Valid values are normal, direct, or macvtap.</para>
-                    </td>
-                </tr>
-            </tbody>
-        </informaltable>
-    </section>
+    <wadl:resources xmlns:wadl="http://wadl.dev.java.net/2009/02">
+        <wadl:resource
+            href="http://git.openstack.org/cgit/openstack/api-site/plain/api-ref/src/wadls/netconn-api/src/os-ports-binding-ext.wadl#Ports">
+            <wadl:method href="#listPorts"/>
+            <wadl:method href="#createPort"/>
+        </wadl:resource>
+        <wadl:resource
+            href="http://git.openstack.org/cgit/openstack/api-site/plain/api-ref/src/wadls/netconn-api/src/os-ports-binding-ext.wadl#port_id">
+            <wadl:method href="#showPort"/>
+            <wadl:method href="#updatePort"/>
+        </wadl:resource>
+    </wadl:resources>
 </section>
