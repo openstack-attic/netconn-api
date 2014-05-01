@@ -190,7 +190,7 @@
                     Vendor aliases are used to differentiate
                     extensions in non-XML representations as well as
                     in HTTP headers and in the URL path.  An alias is
-                    made of a vendor prefix, followed be a a dash (-)
+                    made of a vendor prefix, followed be a dash (-)
                     followed be a short extension ID.  For example:
                     <code>RAX-PIE</code>.
                 </p>
