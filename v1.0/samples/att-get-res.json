@@ -1,6 +1,5 @@
 {
- "attachment":
-     {
-         "id": "test_interface_identifier"
-     }
+    "attachment": {
+        "id": "test_interface_identifier"
+    }
 }

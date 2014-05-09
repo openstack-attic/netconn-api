@@ -1,11 +1,12 @@
 {
-  "network":
-  {
-    "status": "ACTIVE",
-    "subnets": ["e12f0c45-46e3-446a-b207-9474b27687a6"],
-    "name": "network_3",
-    "admin_state_up": true,
-    "tenant_id": "ed680f49ff714162ab3612d7876ffce5",
-    "id": "afc75773-640e-403c-9fff-62ba98db1f19"
-  }
+    "network": {
+        "status": "ACTIVE",
+        "subnets": [
+            "e12f0c45-46e3-446a-b207-9474b27687a6"
+        ],
+        "name": "network_3",
+        "admin_state_up": true,
+        "tenant_id": "ed680f49ff714162ab3612d7876ffce5",
+        "id": "afc75773-640e-403c-9fff-62ba98db1f19"
+    }
 }

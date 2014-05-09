@@ -1,6 +1,10 @@
 {
-    "port":
-    {
-        "extra_dhcp_opts": [{"opt_value": "testfile.1", "opt_name": "bootfile-name"}]
-     }
+    "port": {
+        "extra_dhcp_opts": [
+            {
+                "opt_value": "testfile.1",
+                "opt_name": "bootfile-name"
+            }
+        ]
+    }
 }
