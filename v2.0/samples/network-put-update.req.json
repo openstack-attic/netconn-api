@@ -1,6 +1,5 @@
 {
- "network":
-  {
-    "name": "updated_name"
-  }
+    "network": {
+        "name": "updated_name"
+    }
 }

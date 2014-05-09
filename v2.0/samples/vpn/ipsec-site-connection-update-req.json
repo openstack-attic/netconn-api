@@ -1,5 +1,5 @@
 {
-  "ipsec_site_connection": {
-    "mtu": "2000"
-  }
+    "ipsec_site_connection": {
+        "mtu": "2000"
+    }
 }

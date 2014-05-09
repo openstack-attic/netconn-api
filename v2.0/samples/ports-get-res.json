@@ -1,124 +1,120 @@
 {
-   "ports":[
-      {
-         "admin_state_up":true,
-         "device_id":"",
-         "device_owner":"",
-         "fixed_ips":[
-            {
-               "ip_address":"10.0.0.4",
-               "subnet_id":"3b498f11-0a20-43ed-b992-0e4202d5f930"
-            }
-         ],
-         "id":"358c03ee-20f8-40d2-b74b-9b21a9df10a7",
-         "mac_address":"fa:16:3e:ac:95:a9",
-         "name":"",
-         "network_id":"abaf2e70-4305-4e8d-ac70-3e4cc5f66a07",
-         "security_groups":[
-            "85cc3048-abc3-43cc-89b3-377341426ac5"
-         ],
-         "status":"DOWN",
-         "tenant_id":"e4f50856753b4dc6afee5fa6b9b6c550"
-      },
-      {
-         "admin_state_up":true,
-         "device_id":"",
-         "device_owner":"",
-         "fixed_ips":[
-            {
-               "ip_address":"10.0.0.6",
-               "subnet_id":"3b498f11-0a20-43ed-b992-0e4202d5f930"
-            }
-         ],
-         "id":"74ec4d1d-27e8-4461-9257-8fc153288b19",
-         "mac_address":"fa:16:3e:a8:94:2a",
-         "name":"",
-         "network_id":"abaf2e70-4305-4e8d-ac70-3e4cc5f66a07",
-         "security_groups":[
-            "85cc3048-abc3-43cc-89b3-377341426ac5"
-         ],
-         "status":"DOWN",
-         "tenant_id":"e4f50856753b4dc6afee5fa6b9b6c550"
-      },
-      {
-         "admin_state_up":true,
-         "device_id":"d6f00d75-c6ef-45a6-bf26-94b9844f8a64",
-         "device_owner":"network:router_interface",
-         "fixed_ips":[
-            {
-               "ip_address":"10.0.0.1",
-               "subnet_id":"3b498f11-0a20-43ed-b992-0e4202d5f930"
-            }
-         ],
-         "id":"88a5b3ee-4625-4b16-b513-62581294f281",
-         "mac_address":"fa:16:3e:33:4c:d2",
-         "name":"",
-         "network_id":"abaf2e70-4305-4e8d-ac70-3e4cc5f66a07",
-         "security_groups":[
-
-         ],
-         "status":"ACTIVE",
-         "tenant_id":"e4f50856753b4dc6afee5fa6b9b6c550"
-      },
-      {
-         "admin_state_up":true,
-         "device_id":"24df1d04-d5cb-41e1-8de5-61ed77c558df",
-         "device_owner":"compute:None",
-         "fixed_ips":[
-            {
-               "ip_address":"10.0.0.3",
-               "subnet_id":"3b498f11-0a20-43ed-b992-0e4202d5f930"
-            }
-         ],
-         "id":"a5d9a8e4-a4f3-41f0-b5dc-f0ec0562cbe9",
-         "mac_address":"fa:16:3e:b6:da:54",
-         "name":"",
-         "network_id":"abaf2e70-4305-4e8d-ac70-3e4cc5f66a07",
-         "security_groups":[
-
-         ],
-         "status":"ACTIVE",
-         "tenant_id":"e4f50856753b4dc6afee5fa6b9b6c550"
-      },
-      {
-         "admin_state_up":true,
-         "device_id":"dhcpacb6d6f0-2d56-5c7a-9905-4c3a3d168f49-abaf2e70-4305-4e8d-ac70-3e4cc5f66a07",
-         "device_owner":"network:dhcp",
-         "fixed_ips":[
-            {
-               "ip_address":"10.0.0.2",
-               "subnet_id":"3b498f11-0a20-43ed-b992-0e4202d5f930"
-            }
-         ],
-         "id":"adf92676-97a8-4ada-b6e8-4fa7195b5eb3",
-         "mac_address":"fa:16:3e:a9:34:c3",
-         "name":"",
-         "network_id":"abaf2e70-4305-4e8d-ac70-3e4cc5f66a07",
-         "security_groups":[
-            "49258a30-81f9-44d7-9440-c60dba50e29e"
-         ],
-         "status":"ACTIVE",
-         "tenant_id":"e4f50856753b4dc6afee5fa6b9b6c550"
-      },
-      {
-         "admin_state_up":true,
-         "device_id":"",
-         "device_owner":"",
-         "fixed_ips":[
-            {
-               "ip_address":"10.0.0.5",
-               "subnet_id":"3b498f11-0a20-43ed-b992-0e4202d5f930"
-            }
-         ],
-         "id":"c81cf7ff-1ba1-403a-bddb-58aa0aecd92c",
-         "mac_address":"fa:16:3e:9c:11:3c",
-         "name":"",
-         "network_id":"abaf2e70-4305-4e8d-ac70-3e4cc5f66a07",
-         "security_groups":[
-            "85cc3048-abc3-43cc-89b3-377341426ac5"
-         ],
-         "status":"DOWN",
-         "tenant_id":"e4f50856753b4dc6afee5fa6b9b6c550"
-      }
-   ]
+    "ports": [
+        {
+            "admin_state_up": true,
+            "device_id": "",
+            "device_owner": "",
+            "fixed_ips": [
+                {
+                    "ip_address": "10.0.0.4",
+                    "subnet_id": "3b498f11-0a20-43ed-b992-0e4202d5f930"
+                }
+            ],
+            "id": "358c03ee-20f8-40d2-b74b-9b21a9df10a7",
+            "mac_address": "fa:16:3e:ac:95:a9",
+            "name": "",
+            "network_id": "abaf2e70-4305-4e8d-ac70-3e4cc5f66a07",
+            "security_groups": [
+                "85cc3048-abc3-43cc-89b3-377341426ac5"
+            ],
+            "status": "DOWN",
+            "tenant_id": "e4f50856753b4dc6afee5fa6b9b6c550"
+        },
+        {
+            "admin_state_up": true,
+            "device_id": "",
+            "device_owner": "",
+            "fixed_ips": [
+                {
+                    "ip_address": "10.0.0.6",
+                    "subnet_id": "3b498f11-0a20-43ed-b992-0e4202d5f930"
+                }
+            ],
+            "id": "74ec4d1d-27e8-4461-9257-8fc153288b19",
+            "mac_address": "fa:16:3e:a8:94:2a",
+            "name": "",
+            "network_id": "abaf2e70-4305-4e8d-ac70-3e4cc5f66a07",
+            "security_groups": [
+                "85cc3048-abc3-43cc-89b3-377341426ac5"
+            ],
+            "status": "DOWN",
+            "tenant_id": "e4f50856753b4dc6afee5fa6b9b6c550"
+        },
+        {
+            "admin_state_up": true,
+            "device_id": "d6f00d75-c6ef-45a6-bf26-94b9844f8a64",
+            "device_owner": "network:router_interface",
+            "fixed_ips": [
+                {
+                    "ip_address": "10.0.0.1",
+                    "subnet_id": "3b498f11-0a20-43ed-b992-0e4202d5f930"
+                }
+            ],
+            "id": "88a5b3ee-4625-4b16-b513-62581294f281",
+            "mac_address": "fa:16:3e:33:4c:d2",
+            "name": "",
+            "network_id": "abaf2e70-4305-4e8d-ac70-3e4cc5f66a07",
+            "security_groups": [],
+            "status": "ACTIVE",
+            "tenant_id": "e4f50856753b4dc6afee5fa6b9b6c550"
+        },
+        {
+            "admin_state_up": true,
+            "device_id": "24df1d04-d5cb-41e1-8de5-61ed77c558df",
+            "device_owner": "compute:None",
+            "fixed_ips": [
+                {
+                    "ip_address": "10.0.0.3",
+                    "subnet_id": "3b498f11-0a20-43ed-b992-0e4202d5f930"
+                }
+            ],
+            "id": "a5d9a8e4-a4f3-41f0-b5dc-f0ec0562cbe9",
+            "mac_address": "fa:16:3e:b6:da:54",
+            "name": "",
+            "network_id": "abaf2e70-4305-4e8d-ac70-3e4cc5f66a07",
+            "security_groups": [],
+            "status": "ACTIVE",
+            "tenant_id": "e4f50856753b4dc6afee5fa6b9b6c550"
+        },
+        {
+            "admin_state_up": true,
+            "device_id": "dhcpacb6d6f0-2d56-5c7a-9905-4c3a3d168f49-abaf2e70-4305-4e8d-ac70-3e4cc5f66a07",
+            "device_owner": "network:dhcp",
+            "fixed_ips": [
+                {
+                    "ip_address": "10.0.0.2",
+                    "subnet_id": "3b498f11-0a20-43ed-b992-0e4202d5f930"
+                }
+            ],
+            "id": "adf92676-97a8-4ada-b6e8-4fa7195b5eb3",
+            "mac_address": "fa:16:3e:a9:34:c3",
+            "name": "",
+            "network_id": "abaf2e70-4305-4e8d-ac70-3e4cc5f66a07",
+            "security_groups": [
+                "49258a30-81f9-44d7-9440-c60dba50e29e"
+            ],
+            "status": "ACTIVE",
+            "tenant_id": "e4f50856753b4dc6afee5fa6b9b6c550"
+        },
+        {
+            "admin_state_up": true,
+            "device_id": "",
+            "device_owner": "",
+            "fixed_ips": [
+                {
+                    "ip_address": "10.0.0.5",
+                    "subnet_id": "3b498f11-0a20-43ed-b992-0e4202d5f930"
+                }
+            ],
+            "id": "c81cf7ff-1ba1-403a-bddb-58aa0aecd92c",
+            "mac_address": "fa:16:3e:9c:11:3c",
+            "name": "",
+            "network_id": "abaf2e70-4305-4e8d-ac70-3e4cc5f66a07",
+            "security_groups": [
+                "85cc3048-abc3-43cc-89b3-377341426ac5"
+            ],
+            "status": "DOWN",
+            "tenant_id": "e4f50856753b4dc6afee5fa6b9b6c550"
+        }
+    ]
 }
