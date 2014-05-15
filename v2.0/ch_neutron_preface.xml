@@ -42,7 +42,7 @@ format="SVG" scale="60"/>
             xlink:href="http://bugs.launchpad.net/Neutron"
             >bugs.launchpad.net/Neutron</link>.</para>
     <section xml:id="Intended_Audience-d1e85">
-        <title>Intended Audience</title>
+        <title>Intended audience</title>
         <para xmlns:svg="http://www.w3.org/2000/svg"
             xmlns:m="http://www.w3.org/1998/Math/MathML"
             xmlns:html="http://www.w3.org/1999/xhtml"
@@ -72,7 +72,7 @@ format="SVG" scale="60"/>
     </section>
     <?hard-pagebreak?>
     <section xml:id="Document_Change_History-d1e118">
-        <title>Document Change History</title>
+        <title>Document change history</title>
         <para>This version of the document replaces and obsoletes all
             previous versions. The following table describes the most
             recent changes:</para>

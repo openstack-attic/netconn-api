@@ -33,7 +33,7 @@
     xmlns:xsdxt="http://docs.rackspacecloud.com/xsd-ext/v1.0"
     xmlns:db="http://docbook.org/ns/docbook" version="5.0"
     xml:id="API_extensions">
-    <title>API Extensions</title>
+    <title>API extensions</title>
     <para>An API extension extends one or more of the following
         components of the core API:</para>
     <itemizedlist>
@@ -55,21 +55,22 @@
         information about plug-in-specific extensions that ship with
         OpenStack Networking, see the extension documentation in the
         source code tree.</para>
-    <xi:include href="section_neutron_list-extensions.xml"/>
-    <xi:include href="section_neutron-provider-ext.xml"/>
-    <xi:include href="section_neutron-multi-provider-ext.xml"/>
-    <xi:include href="section_neutron_binding_ext_ports.xml"/>
-    <xi:include href="section_neutron-l3-ext.xml"/>
-    <xi:include href="section_neutron-extgwmodes-ext.xml"/>
-    <xi:include href="section_neutron-quotas-ext.xml"/>
-    <xi:include href="section_neutron-security-groups-ext.xml"/>
-    <xi:include href="section_neutron-agent-ext.xml"/>
-    <xi:include href="section_neutron-extraroute-ext.xml"/>
-    <xi:include href="section_neutron-loadbalancer-ext.xml"/>
-    <xi:include href="section_neutron-firewall-ext.xml"/>
-    <xi:include href="section_neutron-scheduler-ext.xml"/>
-    <xi:include href="section_neutron-vpn-ext.xml"/>
-    <xi:include href="section_neutron-allowed-address-pair-ext.xml"/>
-    <xi:include href="section_neutron-extra-dhcp-opt-ext.xml"/>
-    <xi:include href="section_neutron-metering-ext.xml"/>
+    <xi:include href="section_neutron-ext-show-info.xml"/>
+    <xi:include href="section_neutron-ext-agent-management.xml"/>
+    <xi:include href="section_neutron-ext-agent-schedulers.xml"/>
+    <xi:include href="section_neutron-ext-allowed-address-pairs.xml"/>
+    <xi:include href="section_neutron-ext-binding-ports.xml"/>
+    <xi:include href="section_neutron-ext-external-gateways-modes.xml"/>
+    <xi:include href="section_neutron-ext-external-networks.xml"/>
+    <xi:include href="section_neutron-ext-extra-routes.xml"/>
+    <xi:include href="section_neutron-ext-fwaas.xml"/>
+    <xi:include href="section_neutron-ext-layer3.xml"/>
+    <xi:include href="section_neutron-ext-lbaas.xml"/>
+    <xi:include href="section_neutron-ext-metering.xml"/>
+    <xi:include href="section_neutron-ext-provider-networks.xml"/>
+    <xi:include href="section_neutron-ext-provider-networks-multi.xml"/>
+    <xi:include href="section_neutron-ext-quotas.xml"/>
+    <xi:include href="section_neutron-ext-security-groups-rules.xml"/>
+    <xi:include href="section_neutron-ext-vpnaas.xml"/>
+    <xi:include href="section_neutron-ext-extra-dhcp-options.xml"/>
 </chapter>

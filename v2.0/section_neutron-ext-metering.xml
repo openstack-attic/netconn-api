@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xmlns="http://docbook.org/ns/docbook"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:xi="http://www.w3.org/2001/XInclude"
+    xmlns:svg="http://www.w3.org/2000/svg"
+    xmlns:m="http://www.w3.org/1998/Math/MathML"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns:db="http://docbook.org/ns/docbook" version="5.0"
+    status="final" xml:id="metering-ext"
+    xmlns:wadl="http://wadl.dev.java.net/2009/02">
+    <title>Metering labels and rules</title>
+    <para>Create, modify, and delete OpenStack Layer3 metering
+        labels and rules.</para>
+    <wadl:resources>
+        <wadl:resource
+            href="http://git.openstack.org/cgit/openstack/api-site/plain/api-ref/src/wadls/netconn-api/src/metering-labels.wadl#metering_labels">
+            <wadl:method href="#listMeteringLabels"/>
+            <wadl:method href="#createMeteringLabel"/>
+        </wadl:resource>
+        <wadl:resource
+            href="http://git.openstack.org/cgit/openstack/api-site/plain/api-ref/src/wadls/netconn-api/src/metering-labels.wadl#get_metering_label">
+            <wadl:method href="#getMeteringLabel"/>
+            <wadl:method href="#deleteMeteringLabel"/>
+        </wadl:resource>
+        <wadl:resource
+            href="http://git.openstack.org/cgit/openstack/api-site/plain/api-ref/src/wadls/netconn-api/src/metering-labels.wadl#metering_label_rules">
+            <wadl:method href="#listMeteringLabelRules"/>
+            <wadl:method href="#createMeteringLabelRule"/>
+        </wadl:resource>
+        <wadl:resource
+            href="http://git.openstack.org/cgit/openstack/api-site/plain/api-ref/src/wadls/netconn-api/src/metering-labels.wadl#metering-label-rule-id">
+            <wadl:method href="#getMeteringLabelRule"/>
+            <wadl:method href="#deleteMeteringLabelRule"/>
+        </wadl:resource>
+    </wadl:resources>
+</section>

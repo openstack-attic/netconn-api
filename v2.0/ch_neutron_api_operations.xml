@@ -8,7 +8,7 @@
     xmlns:xsdxt="http://docs.rackspacecloud.com/xsd-ext/v1.0"
     xmlns:db="http://docbook.org/ns/docbook" version="5.0"
     xml:id="API_Operations" role="api-reference">
-    <title>API Operations</title>
+    <title>API operations</title>
     <para>Provides virtual networking services among devices that are
         managed by the OpenStack Compute service. The Networking API
         v2.0 combines the API v1.1 functionality with some essential
@@ -22,25 +22,36 @@
         <title>Networks</title>
         <para>List, show information for, create, update, and delete
             networks.</para>
-        <wadl:resources
+        <wadl:resources xmlns:wadl="http://wadl.dev.java.net/2009/02"
             href="http://git.openstack.org/cgit/openstack/api-site/plain/api-ref/src/wadls/netconn-api/src/os-networks.wadl"
-            xmlns:wadl="http://wadl.dev.java.net/2009/02"/>
+        />
     </section>
     <section xml:id="subnets">
         <title>Subnets</title>
         <para>List, show information for, create, update, and delete
             subnet resources.</para>
         <!-- updated os-subnets.wadl to correct errors reported in bug #1292359 -->
-        <wadl:resources
-            href="http://git.openstack.org/cgit/openstack/api-site/plain/api-ref/src/wadls/netconn-api/src/os-subnets.wadl"
-            xmlns:wadl="http://wadl.dev.java.net/2009/02"/>
+        <wadl:resources xmlns:wadl="http://wadl.dev.java.net/2009/02">
+            <wadl:resource
+                href="http://git.openstack.org/cgit/openstack/api-site/plain/api-ref/src/wadls/netconn-api/src/os-subnets.wadl#Subnets">
+                <wadl:method href="#listSubnets"/>
+                <wadl:method href="#createSubnet"/>
+                <wadl:method href="#bulkCreateSubnet"/>
+            </wadl:resource>
+            <wadl:resource
+                href="http://git.openstack.org/cgit/openstack/api-site/plain/api-ref/src/wadls/netconn-api/src/os-subnets.wadl#subnet_id">
+                <wadl:method href="#showSubnet"/>
+                <wadl:method href="#updateSubnet"/>
+                <wadl:method href="#removeSubnet"/>
+            </wadl:resource>
+        </wadl:resources>
     </section>
     <section xml:id="ports">
         <title>Ports</title>
         <para>List, show information for, create, update, and delete
             ports.</para>
-        <wadl:resources
+        <wadl:resources xmlns:wadl="http://wadl.dev.java.net/2009/02"
             href="http://git.openstack.org/cgit/openstack/api-site/plain/api-ref/src/wadls/netconn-api/src/os-ports.wadl"
-            xmlns:wadl="http://wadl.dev.java.net/2009/02"/>
+        />
     </section>
 </chapter>

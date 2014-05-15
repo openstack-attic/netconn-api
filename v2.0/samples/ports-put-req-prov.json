@@ -1,7 +1,0 @@
-{
-   "network":{
-      "provider:network_type":"flat",
-      "provider:physical_network":"physnet_1",
-      "provider:segmentation_id":null
-   }
-}
