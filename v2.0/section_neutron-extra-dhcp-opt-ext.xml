@@ -1,180 +1,100 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE section [
-<!-- Some useful entities borrowed from HTML -->
-<!ENTITY ndash  "&#x2013;">
-<!ENTITY mdash  "&#x2014;">
-<!ENTITY hellip "&#x2026;">
-<!ENTITY plusmn "&#xB1;">
-
 <!-- Useful for describing APIs -->
 <!ENTITY GET    '<command xmlns="http://docbook.org/ns/docbook">GET</command>'>
 <!ENTITY PUT    '<command xmlns="http://docbook.org/ns/docbook">PUT</command>'>
 <!ENTITY POST   '<command xmlns="http://docbook.org/ns/docbook">POST</command>'>
 <!ENTITY DELETE '<command xmlns="http://docbook.org/ns/docbook">DELETE</command>'>
-
-<!ENTITY CHECK  '<inlinemediaobject xmlns="http://docbook.org/ns/docbook">
- <imageobject>
-  <imagedata fileref="figures/Check_mark_23x20_02.svg"
-     format="SVG" scale="60"/>
-</imageobject>
-      </inlinemediaobject>'>
-
-<!ENTITY ARROW  '<inlinemediaobject xmlns="http://docbook.org/ns/docbook">
- <imageobject>
-  <imagedata fileref="figures/Arrow_east.svg"
-     format="SVG" scale="60"/>
-</imageobject>
-      </inlinemediaobject>'>
 ]>
-<section xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
-    xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:svg="http://www.w3.org/2000/svg"
-    xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:html="http://www.w3.org/1999/xhtml"
-    xmlns:db="http://docbook.org/ns/docbook" version="5.0" status="final"
-    xml:id="extra-dhcp-opt-ext">
-    <title>The Extra DHCP Options Extension (extra-dhcp-opt)</title>
-    <para>The Neutron DHCP options extension allows adding DHCP options that are associated to a
-        Neutron Port. They are tagged such that they can be associated from the hosts file to
-        designate a specific network interface and port. The DHCP tag scheme used to associate
-        options to the host files is the port_id (UUID - in the form of 8-4-4-4-12 for a total of 36
-        characters), these associate options to a Neutron Port and its network. The Dynamic Host
-        Configuration Protocol (DHCP) provides a framework for passing configuration information to
-        hosts on a TCP/IP network. Configuration parameters and other information are carried in
-        tagged data items that are stored in the 'options' field of the DHCP message.</para>
-    <para>You can specify a DHCP options when defining or updating a Port by specifying the
-        extra_dhcp_opts tag and providing its options as name value pairs e.g.
-        opt_name='bootfile-name', opt_value='pxelinux.0'.</para>
+<section xmlns="http://docbook.org/ns/docbook"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:xi="http://www.w3.org/2001/XInclude"
+    xmlns:svg="http://www.w3.org/2000/svg"
+    xmlns:m="http://www.w3.org/1998/Math/MathML"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns:db="http://docbook.org/ns/docbook" version="5.0"
+    status="final" xml:id="extra-dhcp-opt-ext">
+    <title>Extra DHCP options (extra-dhcp-opt)</title>
+    <para>The DHCP options extension allows adding DHCP options that
+        are associated to a Neutron port. They are tagged such that
+        they can be associated from the hosts file to designate a
+        specific network interface and port. The DHCP tag scheme used
+        to associate options to the host files is the port_id (UUID -
+        in the form of 8-4-4-4-12 for a total of 36 characters), these
+        associate options to a Neutron port and its network. The
+        Dynamic Host Configuration Protocol (DHCP) provides a
+        framework for passing configuration information to hosts on a
+        TCP/IP network. Configuration parameters and other information
+        are carried in tagged data items that are stored in the
+        'options' field of the DHCP message.</para>
+    <para>You can specify a DHCP options when defining or updating a
+        port by specifying the extra_dhcp_opts tag and providing its
+        options as name value pairs e.g. opt_name='bootfile-name',
+        opt_value='pxelinux.0'.</para>
     <section xml:id="extra_dhcp_opt-concepts">
         <title>Concepts</title>
-        <para>The extra-dhcp-opt extension is an attribute extension which adds the following set of
-            attributes to the <emphasis role="bold">port</emphasis> resource:</para>
-        <para>
-            <itemizedlist>
-                <listitem>
-                    <para><emphasis role="italic"> extra-dhcp-opt:opt_name</emphasis> - Specified
-                        the DHCP option that this is defined as mapped to this port resource.
-                        Examples are <literal>bootfile-name</literal>,
-                            <literal>server-ip-address</literal>, <literal>tftp-server</literal>,
-                        etc..</para>
-                </listitem>
-                <listitem>
-                    <para><emphasis role="italic"> extra-dhcp-opt:opt_value</emphasis> - Identifies
-                        the value associated with the opt_name. These are handled in opt_name,
-                        opt_value pairs only. value_opt can be any text string depending upon the
-                        name.</para>
-                </listitem>
-            </itemizedlist>
-        </para>
-        <para>The actual semantics of extra-dhcp-opt attributes depend on the name of the dhcp
-            option being used that defines the vendor extension to DHCP. For example reference RFC:
-            http://tools.ietf.org/html/rfc2132, contains specific detail on BOOTP Vendor Extensions.</para>
-        <para> </para>
+        <para>The extra-dhcp-opt extension is an attribute extension
+            which adds the following set of attributes to the
+                <emphasis role="bold">port</emphasis> resource:</para>
+        <itemizedlist>
+            <listitem>
+                <para><emphasis role="italic">
+                        extra-dhcp-opt:opt_name</emphasis> - Specified
+                    the DHCP option that this is defined as mapped to
+                    this port resource. Examples are
+                        <literal>bootfile-name</literal>,
+                        <literal>server-ip-address</literal>,
+                        <literal>tftp-server</literal>, etc..</para>
+            </listitem>
+            <listitem>
+                <para><emphasis role="italic">
+                        extra-dhcp-opt:opt_value</emphasis> -
+                    Identifies the value associated with the opt_name.
+                    These are handled in opt_name, opt_value pairs
+                    only. value_opt can be any text string depending
+                    upon the name.</para>
+            </listitem>
+        </itemizedlist>
+        <para>The actual semantics of extra-dhcp-opt attributes depend
+            on the name of the dhcp option being used that defines the
+            vendor extension to DHCP. For example reference RFC:
+            http://tools.ietf.org/html/rfc2132, contains specific
+            detail on BOOTP Vendor Extensions.</para>
     </section>
-    <section xml:id="extra-dhcp-opt-ext-port-ops">
-        <title>Port API operations with extra-dhcp-opt port extension</title>
-        <para>This section discusses operations for setting and retrieving the extra-dhcp-opt port
-            extension attributes for port objects.</para>
-        <section xml:id="extra-dhcp-opts-ext-list">
-            <title>List Ports</title>
-                    <informaltable rules="all" width="100%">
-                        <col width="20%"/>
-                        <col width="20%"/>
-                        <col width="60%"/>
-                        <thead>
-                            <tr>
-                                <td>Verb</td>
-                                <td>URI</td>
-                                <td>Description</td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>&GET;</td>
-                                <td>/ports</td>
-                                <td>Returns a list of ports with their attributes.</td>
-                            </tr>
-                        </tbody>
-                    </informaltable>
-                <para>Normal Response Code: 200 OK</para>
-                <para>Error Response Codes: 401 Unauthorized</para>
-                <para>This operation returns, all the ports defined in Neutron that this user has
-                access to.</para>
-                <example>
-                    <title>List Ports with extra_dhcp_opts: JSON Response</title>
-                    <programlisting language="json"><?db-font-size 75%?><xi:include href="samples/port-get-res-edo.json" parse="text"/></programlisting>
-                </example>
-        </section>
-        <section xml:id="extra-dhcp-opts-ext-show">
-            <title>Show Port</title>
-            <para>
-                <informaltable rules="all" width="100%">
-                    <col width="10%"/>
-                    <col width="30%"/>
-                    <col width="60%"/>
-                    <thead>
-                        <tr>
-                            <td>Verb</td>
-                            <td>URI</td>
-                            <td>Description</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>&GET;</td>
-                            <td>/ports/<parameter>port_id</parameter></td>
-                            <td>Returns details about a specific port, including extra-dhcp-opt
-                                attributes.</td>
-                        </tr>
-                    </tbody>
-                </informaltable>
-            </para>
-            <para>Normal Response Code: 200 OK</para>
-            <para>Error Response Code: 401 Unauthorized, 404 Not Found</para>
-            <para>This operation returns, for the port specified in the request URI, its port
-                attributes, including the extra_dhcp_opts attributes.</para>
-            <example>
-                <title>Show port with extra-dhcp-opt attributes: JSON Response</title>
-                <programlisting language="json"><?db-font-size 75%?><xi:include href="samples/port-show-res-edo.json" parse="text"/></programlisting>
-            </example>
-        </section>
-        <section xml:id="extra-dhcp-opt-ext-create">
-            <title>Create Port</title>
-            <para>
-                <informaltable rules="all" width="100%">
-                    <col width="10%"/>
-                    <col width="30%"/>
-                    <col width="60%"/>
-                    <thead>
-                        <tr>
-                            <td>Verb</td>
-                            <td>URI</td>
-                            <td>Description</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>&POST;</td>
-                            <td>/ports</td>
-                            <td>Create a new port and explicitly specify attributes with the
-                                extra-dhcp-opt extension attributes.</td>
-                        </tr>
-                    </tbody>
-                </informaltable>
-            </para>
-            <para>Normal Response Code: 200 OK</para>
-            <para>Error Response Code: 401 Unauthorized.</para>
-            <para>This operation returns, for the port specified in the request URI, its port
-                attributes, including the extra_dhcp_opts attributes.</para>
-            <example>
-                <title>Create port with extra-dhcp-opt attributes: JSON Request</title>
-                <programlisting language="json"><?db-font-size 75%?><xi:include href="samples/port-create-req-edo.json" parse="text"/></programlisting>
-            </example>
-            <example>
-                <title>Create port with extra-dhcp-opt attributes: JSON Response</title>
-                <programlisting language="json"><?db-font-size 75%?><xi:include href="samples/port-create-res-edo.json" parse="text"/></programlisting>
-            </example>
-        </section>
-        <section xml:id="extra-dhc-opt-ext-update">
-            <title>Update Port</title>
+    <section xml:id="extra-dhcp-opts-ext-list">
+        <title>List ports</title>
+        <informaltable rules="all" width="100%">
+            <col width="20%"/>
+            <col width="20%"/>
+            <col width="60%"/>
+            <thead>
+                <tr>
+                    <td>Verb</td>
+                    <td>URI</td>
+                    <td>Description</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>&GET;</td>
+                    <td>/ports</td>
+                    <td>Lists ports with attributes.</td>
+                </tr>
+            </tbody>
+        </informaltable>
+        <para>Normal response Code: 200 OK</para>
+        <para>Error response Codes: 401 Unauthorized</para>
+        <para>This operation returns all the ports defined in Neutron
+            that to which this user has access.</para>
+        <example>
+            <title>List ports with extra_dhcp_opts: JSON
+                response</title>
+            <programlisting language="json"><?db-font-size 75%?><xi:include href="samples/port-get-res-edo.json" parse="text"/></programlisting>
+        </example>
+    </section>
+    <section xml:id="extra-dhcp-opts-ext-show">
+        <title>Show port details</title>
+        <para>
             <informaltable rules="all" width="100%">
                 <col width="10%"/>
                 <col width="30%"/>
@@ -188,27 +108,105 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>&PUT;</td>
+                        <td>&GET;</td>
                         <td>/ports/<parameter>port_id</parameter></td>
-                        <td>Updates a port's attributes, including extra_dhcp_opts extension
-                            attributes.</td>
+                        <td>Shows details about a specified port,
+                            including extra-dhcp-opt attributes.</td>
                     </tr>
                 </tbody>
             </informaltable>
-            <para/>
-            <para>Normal Response Code: 200 OK</para>
-            <para>Error Response Code: 401 Unauthorized.</para>
-            <para>This operation allow for the updating of attributes for the port specified in the
-                request URI, its port attributes, including the extra_dhcp_opts attributes.</para>
-            <example>
-                <title>Update port with extra-dhcp-opt attributes: JSON Request</title>
-                <programlisting language="json"><?db-font-size 75%?><xi:include href="samples/port-update-req-edo.json" parse="text"/></programlisting>
-            </example>
-            <example>
-                <title>Update port with extra-dhcp-opt attributes: JSON Response</title>
-                <programlisting language="json"><?db-font-size 75%?><xi:include href="samples/port-update-res-edo.json" parse="text"/></programlisting>
-            </example>
-        </section>
-    </section> <!-- end of port operations section -->
-
-</section> <!-- end of extra-dhcp-opt-ext section -->
+        </para>
+        <para>Normal response Code: 200 OK</para>
+        <para>Error response Code: 401 Unauthorized, 404 Not
+            Found</para>
+        <para>This operation returns, for the port specified in the
+            request URI, its port attributes, including the
+            extra_dhcp_opts attributes.</para>
+        <example>
+            <title>Show port details with extra-dhcp-opt attributes:
+                JSON response</title>
+            <programlisting language="json"><?db-font-size 75%?><xi:include href="samples/port-show-res-edo.json" parse="text"/></programlisting>
+        </example>
+    </section>
+    <section xml:id="extra-dhcp-opt-ext-create">
+        <title>Create port</title>
+        <para>
+            <informaltable rules="all" width="100%">
+                <col width="10%"/>
+                <col width="30%"/>
+                <col width="60%"/>
+                <thead>
+                    <tr>
+                        <td>Verb</td>
+                        <td>URI</td>
+                        <td>Description</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>&POST;</td>
+                        <td>/ports</td>
+                        <td>Creates a port and explicitly specifies
+                            attributes with the extra-dhcp-opt
+                            extension attributes.</td>
+                    </tr>
+                </tbody>
+            </informaltable>
+        </para>
+        <para>Normal response Code: 200 OK</para>
+        <para>Error response Code: 401 Unauthorized.</para>
+        <para>This operation returns, for the port specified in the
+            request URI, its port attributes, including the
+            extra_dhcp_opts attributes.</para>
+        <example>
+            <title>Create port with extra-dhcp-opt attributes: JSON
+                request</title>
+            <programlisting language="json"><?db-font-size 75%?><xi:include href="samples/port-create-req-edo.json" parse="text"/></programlisting>
+        </example>
+        <example>
+            <title>Create port with extra-dhcp-opt attributes: JSON
+                response</title>
+            <programlisting language="json"><?db-font-size 75%?><xi:include href="samples/port-create-res-edo.json" parse="text"/></programlisting>
+        </example>
+    </section>
+    <section xml:id="extra-dhc-opt-ext-update">
+        <title>Update port</title>
+        <informaltable rules="all" width="100%">
+            <col width="10%"/>
+            <col width="30%"/>
+            <col width="60%"/>
+            <thead>
+                <tr>
+                    <td>Verb</td>
+                    <td>URI</td>
+                    <td>Description</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>&PUT;</td>
+                    <td>/ports/<parameter>port_id</parameter></td>
+                    <td>Updates attributes for a port, including
+                        extra_dhcp_opts extension attributes.</td>
+                </tr>
+            </tbody>
+        </informaltable>
+        <para/>
+        <para>Normal response Code: 200 OK</para>
+        <para>Error response Code: 401 Unauthorized.</para>
+        <para>This operation allow for the updating of attributes for
+            the port specified in the request URI, its port
+            attributes, including the extra_dhcp_opts
+            attributes.</para>
+        <example>
+            <title>Update port with extra-dhcp-opt attributes: JSON
+                request</title>
+            <programlisting language="json"><?db-font-size 75%?><xi:include href="samples/port-update-req-edo.json" parse="text"/></programlisting>
+        </example>
+        <example>
+            <title>Update port with extra-dhcp-opt attributes: JSON
+                response</title>
+            <programlisting language="json"><?db-font-size 75%?><xi:include href="samples/port-update-res-edo.json" parse="text"/></programlisting>
+        </example>
+    </section>
+</section>

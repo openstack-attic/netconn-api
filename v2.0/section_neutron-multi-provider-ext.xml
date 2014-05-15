@@ -5,18 +5,18 @@
     xmlns:xi="http://www.w3.org/2001/XInclude"
     xmlns:xlink="http://www.w3.org/1999/xlink"
     xml:id="provider_multi_ext_ops">
-    <title>Network API operations with multiple provider
-        extension</title>
+    <title>Multiple provider networks</title>
     <para>Set and retrieve the multiple provider networks extension
         attributes for network objects.</para>
     <wadl:resources xmlns:wadl="http://wadl.dev.java.net/2009/02">
         <wadl:resource
             href="http://git.openstack.org/cgit/openstack/api-site/plain/api-ref/src/wadls/netconn-api/src/os-networks-multi-provider-ext.wadl#Networks">
-            <wadl:method href="#createNetwork"/>
+            <wadl:method href="#listMultiNetworks"/>
+            <wadl:method href="#createMultiNetwork"/>
         </wadl:resource>
         <wadl:resource
             href="http://git.openstack.org/cgit/openstack/api-site/plain/api-ref/src/wadls/netconn-api/src/os-networks-multi-provider-ext.wadl#network_id">
-            <wadl:method href="#showNetwork"/>
+            <wadl:method href="#showMultiNetwork"/>
         </wadl:resource>
     </wadl:resources>
 </section>

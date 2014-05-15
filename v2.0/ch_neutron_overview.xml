@@ -170,7 +170,7 @@
     <?hard-pagebreak?>
     <xi:include href="section_neutron_concepts.xml"/>
     <section xml:id="Theory">
-        <title>High-Level Task Flow</title>
+        <title>High-level task flow</title>
         <para>The high-level task flow for OpenStack Networking
             involves creating a network, associating a subnet with
             that network, and booting a VM that is attached to the

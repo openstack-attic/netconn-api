@@ -33,7 +33,7 @@
     xmlns:xsdxt="http://docs.rackspacecloud.com/xsd-ext/v1.0"
     xmlns:db="http://docbook.org/ns/docbook" version="5.0"
     xml:id="API_extensions">
-    <title>API Extensions</title>
+    <title>API extensions</title>
     <para>An API extension extends one or more of the following
         components of the core API:</para>
     <itemizedlist>
