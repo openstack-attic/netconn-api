@@ -34,7 +34,7 @@
     xmlns:db="http://docbook.org/ns/docbook" version="5.0"
     xml:id="General_API_Information-d1e436">
     <?dbhtml stop-chunking?>
-    <title>General API Information</title>
+    <title>General API information</title>
     <para>The &APIv2; is a ReSTful HTTP service that uses all aspects
         of the HTTP protocol including methods, URIs, media types,
         response codes, and so on. Providers can use existing features
@@ -48,7 +48,7 @@
         Create clients so that these differences are accounted
         for.</para>
     <section xml:id="Authentication-d1e444">
-        <title>Authentication and Authorization</title>
+        <title>Authentication and authorization</title>
         <para>The &APIv2; uses the <link
                 xlink:href="https://openstack.keystone.org">Keystone
                 Identity Service</link> as the default authentication
@@ -70,31 +70,32 @@
             different tenant.</para>
         <para>OpenStack Networking uses information received from
             Keystone to authorize user requests. OpenStack Networking
-            handles the following types of authorization policies: <itemizedlist>
-                <listitem>
-                    <para><emphasis role="bold">Operation-based
-                            policies</emphasis> specify access
-                        criteria for specific operations, possibly
-                        with fine-grained control over specific
-                        attributes.</para>
-                </listitem>
-                <listitem>
-                    <para><emphasis role="bold">Resource-based
-                            policies</emphasis> access a specific
-                        resource. Permissions might or might not be
-                        granted depending on the permissions
-                        configured for the resource. Currently
-                        available for only the network
-                        resource.</para>
-                </listitem>
-            </itemizedlist></para>
+            handles the following types of authorization
+            policies:</para>
+        <itemizedlist>
+            <listitem>
+                <para><emphasis role="bold">Operation-based
+                        policies</emphasis> specify access criteria
+                    for specific operations, possibly with
+                    fine-grained control over specific
+                    attributes.</para>
+            </listitem>
+            <listitem>
+                <para><emphasis role="bold">Resource-based
+                        policies</emphasis> access a specific
+                    resource. Permissions might or might not be
+                    granted depending on the permissions configured
+                    for the resource. Currently available for only the
+                    network resource.</para>
+            </listitem>
+        </itemizedlist>
         <para>The actual authorization policies enforced in OpenStack
             Networking might vary from deployment to
             deployment.</para>
     </section>
     <?hard-pagebreak?>
-    <section xml:id="Request_Response_Types">
-        <title>Request/Response Types</title>
+    <section xml:id="request_response_Types">
+        <title>Request and response types</title>
         <para>The &APIv2; supports the JSON data serialization
             format.</para>
         <para>The format for both the request and the response can be
@@ -103,30 +104,30 @@
                 <code>.json</code> extension to the request
             URI.</para>
         <example>
-            <title>JSON Request with Headers</title>
+            <title>JSON request with headers</title>
             <literallayout class="monospaced">POST /v1.0/tenants/tenantX/networks HTTP/1.1
 Host 127.0.0.1:9696
 Content-Type application/json
 Accept application/json
 Content-Length 57</literallayout>
-            <programlisting language="json"><xi:include href="samples/networks-post-req.json" parse="text"/></programlisting>
+            <programlisting language="json"><xi:include href="http://git.openstack.org/cgit/openstack/api-site/plain/api-ref/src/wadls/netconn-api/src/api_samples/network-post-req.json" parse="text"/></programlisting>
         </example>
         <example>
-            <title>JSON Response with Headers</title>
+            <title>JSON response with headers</title>
             <literallayout class="monospaced">HTTP/1.1 201 Created
 Content-Type application/json
 Content-Length 204</literallayout>
-            <programlisting language="json"><xi:include href="samples/networks-post-res.json" parse="text"/></programlisting>
+            <programlisting language="json"><xi:include href="http://git.openstack.org/cgit/openstack/api-site/plain/api-ref/src/wadls/netconn-api/src/api_samples/network-post-resp.json" parse="text"/></programlisting>
         </example>
     </section>
     <section xml:id="filtering">
-        <title>Filtering and Column Selection</title>
+        <title>Filtering and column selection</title>
         <para>The &APIv2; supports filtering based on all top level
             attributes of a resource. Filters are applicable to all
             list requests.</para>
         <para>For example, the following request returns all networks
             named <literal>foobar</literal>:</para>
-        <programlisting language="bash" role="gutter: false">GET /v2.0/networks?name=foobar</programlisting>
+        <programlisting language="bash">GET /v2.0/networks?name=foobar</programlisting>
         <para>When you specify multiple filters, the &APIv2; returns
             only objects that meet all filtering criteria. The
             operation applies an AND condition among the
@@ -148,11 +149,11 @@ Content-Length 204</literallayout>
         <para>For example, the following request returns only
                 <literal>id</literal> and <literal>name</literal> for
             each network:</para>
-        <programlisting language="bash" role="gutter: false">GET /v2.0/networks.json?fields=id&amp;fields=name</programlisting>
+        <programlisting language="bash">GET /v2.0/networks.json?fields=id&amp;fields=name</programlisting>
     </section>
     <section xml:id="Async_behaviour">
-        <title>Synchronous versus Asynchronous Plug-in
-            Behavior</title>
+        <title>Synchronous versus asynchronous plug-in
+            behavior</title>
         <para>The &APIv2; presents a logical model of network
             connectivity consisting of networks, ports, and subnets.
             It is up to the OpenStack Networking plug-in to
@@ -179,7 +180,7 @@ Content-Length 204</literallayout>
             the configuration of the resource.</para>
     </section>
     <section xml:id="bulk_create_operations">
-        <title>Bulk Create Operations</title>
+        <title>Bulk-create</title>
         <para>The &APIv2; enables you to create several objects of the
             same type in the same API request. Bulk create operations
             use exactly the same API syntax as single create
@@ -195,9 +196,9 @@ Content-Length 204</literallayout>
         <para>OpenStack Networking might be deployed without support
             for bulk operations and when the client attempts a bulk
             create operation, a <errorcode>400</errorcode>
-            <errortext>Bad Request</errortext> error is
+            <errortext>Bad request</errortext> error is
             returned.</para>
-       <!-- <para>For information about how to submit bulk requests to the
+        <!-- <para>For information about how to submit bulk requests to the
             &APIv2; see <xref linkend="bulk_create_networks"/>, <xref
                 linkend="bulK_create_subnets"/>, and <xref
                 linkend="bulk_create_ports"/>.</para> -->
@@ -238,8 +239,8 @@ Content-Length 204</literallayout>
             mechanism to tell user if pagination is supported by
             particular plug-in or enabled.</para>
         <example>
-            <title>Network Collection, First Page: JSON
-                Request</title>
+            <title>Network collection, first page: JSON
+                request</title>
 
             <literallayout class="monospaced">GET /v2.0/networks.json?limit=2 HTTP/1.1
 Host: 127.0.0.1:9696
@@ -247,12 +248,12 @@ Content-Type: application/json
 Accept: application/json</literallayout>
         </example>
         <example>
-            <title>Network Collection, First Page: JSON
-                Response</title>
-            <programlisting language="json"><xi:include href="samples/networks-get-first-page-res.json" parse="text"/></programlisting>
+            <title>Network collection, first page: JSON
+                response</title>
+            <programlisting language="json"><xi:include href="samples/general/networks-get-first-page-res.json" parse="text"/></programlisting>
         </example>
         <example>
-            <title>Network Collection, First Page: XML Request</title>
+            <title>Network collection, first page: XML request</title>
             <literallayout class="monospaced">
 GET /v2.0/networks.xml?limit=2 HTTP/1.1
 Host: 127.0.0.1:9696
@@ -261,13 +262,13 @@ Accept: application/xml
                  </literallayout>
         </example>
         <example>
-            <title>Network Collection, First Page: XML
-                Response</title>
-            <programlisting language="xml"><xi:include href="samples/networks-get-first-page-res.xml" parse="text"/></programlisting>
+            <title>Network collection, first page: XML
+                response</title>
+            <programlisting language="xml"><xi:include href="samples/general/networks-get-first-page-res.xml" parse="text"/></programlisting>
         </example>
         <para>The last page won't show the "next" links</para>
         <example>
-            <title>Network Collection, Last Page: JSON Request</title>
+            <title>Network collection, last page: JSON request</title>
             <literallayout class="monospaced">
 GET /v2.0/networks.json?limit=2&amp;marker=71c1e68c-171a-4aa2-aca5-50ea153a3718 HTTP/1.1
 Host: 127.0.0.1:9696
@@ -276,12 +277,12 @@ Accept: application/json
                  </literallayout>
         </example>
         <example>
-            <title>Network Collection, Last Page: JSON
-                Response</title>
-            <programlisting language="json"><xi:include href="samples/networks-get-last-page-res.json" parse="text"/></programlisting>
+            <title>Network collection, last page: JSON
+                response</title>
+            <programlisting language="json"><xi:include href="samples/general/networks-get-last-page-res.json" parse="text"/></programlisting>
         </example>
         <example>
-            <title>Network Collection, Last Page: XML Request</title>
+            <title>Network collection, last page: XML request</title>
             <literallayout class="monospaced">
 GET /v2.0/networks.xml?limit=2&amp;marker=71c1e68c-171a-4aa2-aca5-50ea153a3718 HTTP/1.1
 Host: 127.0.0.1:9696
@@ -290,27 +291,31 @@ Accept: application/xml
                  </literallayout>
         </example>
         <example>
-            <title>Network Collection, Last Page: XML Response</title>
-            <programlisting language="xml"><xi:include href="samples/networks-get-last-page-res.xml" parse="text"/></programlisting>
+            <title>Network collection, last page: XML response</title>
+            <programlisting language="xml"><xi:include href="samples/general/networks-get-last-page-res.xml" parse="text"/></programlisting>
         </example>
     </section>
     <section xml:id="Sorting">
         <title>Sorting</title>
-        <para>The results of list operations can be ordered using the
-            'sort_key' and 'sort_dir' parameters. Currently sorting
-            doesn't work with extended attributes of resource. The
-            'sort_key' and 'sort_dir' can be repeated, and the number
-            of 'sort_key' and 'sort_dir' provided must be same. The
-            sort_dir parameter indicates in which direction to sort.
-            Acceptable values are 'asc' (ascending) and 'desc'
-            (descending).</para>
+        <para>You can use the <parameter>sort_key</parameter> and
+                <parameter>sort_dir</parameter> parameters to sort the
+            results of list operations. Currently sorting does not
+            work with extended attributes of resource. The
+                <parameter>sort_key</parameter> and
+                <parameter>sort_dir</parameter> can be repeated, and
+            the number of <parameter>sort_key</parameter> and
+                <parameter>sort_dir</parameter> provided must be same.
+            The <parameter>sort_dir</parameter> parameter indicates in
+            which direction to sort. Acceptable values are
+                <literal>asc</literal> (ascending) and
+                <literal>desc</literal> (descending).</para>
         <para>Sorting is optional feature of OpenStack Networking API,
             and it might be disabled. If sorting is disabled, the
-            sorting parameters will be ignored.</para>
+            sorting parameters are ignored.</para>
         <para>If a particular plug-in does not support sorting
-            operations, and sorting is enabled, the &APIv2; will
-            emulate the sorting behavior so that users can expect the
-            same behavior regardless of the particular plug-in running
+            operations and sorting is enabled, the &APIv2;
+            emulates the sorting behavior so that users can expect the
+            same behavior regardless of the particular plug-in that runs
             in the background.</para>
         <para>Unfortunately OpenStack Networking does provide a
             mechanism to tell users if specific plug-ins support or
@@ -356,7 +361,7 @@ Accept: application/xml
             extension varies with deployments and the specific plug-in
             in use.</para>
         <para>For more information regarding specific extensions, see
-                <xref linkend="API_extensions"/></para>
+            <xref linkend="API_extensions"/></para>
     </section>
     <?hard-pagebreak?>
     <section xml:id="faults">
@@ -364,7 +369,7 @@ Accept: application/xml
         <para>The &APIv2; returns an error response if a failure
             occurs while processing a request. OpenStack Networking
             uses only standard HTTP error codes.
-                4<varname>xx</varname> errors indicate problems in the
+                4<replaceable>nn</replaceable> errors indicate problems in the
             particular request being sent from the client.</para>
         <informaltable rules="all">
             <col width="10%"/>
@@ -379,11 +384,11 @@ Accept: application/xml
             <tbody>
                 <tr>
                     <td rowspan="6">400</td>
-                    <td rowspan="6">Bad Request</td>
+                    <td rowspan="6">Bad request</td>
                     <td>Malformed request URI or body</td>
                 </tr>
                 <tr>
-                    <td>Requested admin state invalid</td>
+                    <td>requested admin state invalid</td>
                 </tr>
                 <tr>
                     <td>Invalid values entered</td>

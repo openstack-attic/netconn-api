@@ -46,9 +46,8 @@
             <year>2011-2014</year>
             <holder>OpenStack Foundation</holder>
         </copyright>
-        <releaseinfo>API v2.0</releaseinfo>
-        <productname>OpenStack Networking (neutron) API
-            v2.0</productname>
+        <releaseinfo>API v2.0 and extensions</releaseinfo>
+        <productname>OpenStack Networking (neutron)</productname>
         <pubdate/>
         <legalnotice role="apache2">
             <annotation>
@@ -110,7 +109,8 @@
                             <para>Updated the title of the book to
                                    <citetitle>Reference</citetitle>
                                 from <citetitle>Developer
-                                   Guide</citetitle> for consistency.</para>
+                                   Guide</citetitle> for
+                                consistency.</para>
                         </listitem>
                     </itemizedlist>
                 </revdescription>

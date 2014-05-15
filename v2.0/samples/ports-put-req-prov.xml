@@ -1,9 +1,0 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<network xmlns="http://openstack.org/neutron/api/v2.0"
-    xmlns:neutron="http://openstack.org/neutron/api/v2.0"
-    xmlns:provider="http://docs.openstack.org/ext/provider/api/v1.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-    <provider:network_type>flat</provider:network_type>
-    <provider:physical_network>physnet_1</provider:physical_network>
-    <provider:segmentation_id xsi:nil="true"/>
-</network>

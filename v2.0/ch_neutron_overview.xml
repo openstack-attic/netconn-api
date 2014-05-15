@@ -1,28 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE chapter[
-<!-- Some useful entities borrowed from HTML -->
-<!ENTITY ndash  "&#x2013;">
-<!ENTITY mdash  "&#x2014;">
-<!ENTITY hellip "&#x2026;">
-<!ENTITY plusmn "&#xB1;">
 <!-- Useful for describing APIs -->
-<!ENTITY GET    '<command xmlns="http://docbook.org/ns/docbook">GET</command>'>
-<!ENTITY PUT    '<command xmlns="http://docbook.org/ns/docbook">PUT</command>'>
-<!ENTITY POST   '<command xmlns="http://docbook.org/ns/docbook">POST</command>'>
-<!ENTITY DELETE '<command xmlns="http://docbook.org/ns/docbook">DELETE</command>'>
-<!ENTITY CHECK  '<inlinemediaobject xmlns="http://docbook.org/ns/docbook">
- <imageobject>
-  <imagedata fileref="figures/Check_mark_23x20_02.svg"
-     format="SVG" scale="60"/>
-</imageobject>
-      </inlinemediaobject>'>
-<!ENTITY ARROW  '<inlinemediaobject xmlns="http://docbook.org/ns/docbook">
- <imageobject>
-  <imagedata fileref="figures/Arrow_east.svg"
-     format="SVG" scale="60"/>
-</imageobject>
-      </inlinemediaobject>'>
- <!ENTITY APIv2   'Networking API v2.0'>
+<!ENTITY APIv2   'Networking API v2.0'>
 ]>
 <chapter xmlns="http://docbook.org/ns/docbook"
     xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -136,15 +115,17 @@
                 </tr>
                 <tr>
                     <td align="left">port</td>
-                    <td colspan="4">A virtual switch port on a logical network
-                        switch. Virtual instances attach their interfaces into
-                        ports. The logical port also defines the MAC address and
-                        the IP addresses to be assigned to the interfaces
-                        plugged into them. When creating a port, any unallocated
-                        IP in the subnet can be stated specifically, even if the
-                        IP address is not in the allocation pool. Enabling users
-                        to specify the IP explicitly allows them to retain a
-                        particular subset of the subnet IPs for static
+                    <td colspan="4">A virtual switch port on a logical
+                        network switch. Virtual instances attach their
+                        interfaces into ports. The logical port also
+                        defines the MAC address and the IP addresses
+                        to be assigned to the interfaces plugged into
+                        them. When creating a port, any unallocated IP
+                        in the subnet can be stated specifically, even
+                        if the IP address is not in the allocation
+                        pool. Enabling users to specify the IP
+                        explicitly allows them to retain a particular
+                        subset of the subnet IPs for static
                         allocation.</td>
                 </tr>
                 <tr>
@@ -170,7 +151,7 @@
     <?hard-pagebreak?>
     <xi:include href="section_neutron_concepts.xml"/>
     <section xml:id="Theory">
-        <title>High-Level Task Flow</title>
+        <title>High-level task flow</title>
         <para>The high-level task flow for OpenStack Networking
             involves creating a network, associating a subnet with
             that network, and booting a VM that is attached to the

@@ -10,19 +10,7 @@
 <!ENTITY PUT    '<command xmlns="http://docbook.org/ns/docbook">PUT</command>'>
 <!ENTITY POST   '<command xmlns="http://docbook.org/ns/docbook">POST</command>'>
 <!ENTITY DELETE '<command xmlns="http://docbook.org/ns/docbook">DELETE</command>'>
-<!ENTITY CHECK  '<inlinemediaobject xmlns="http://docbook.org/ns/docbook">
- <imageobject>
-  <imagedata fileref="figures/Check_mark_23x20_02.svg"
-     format="SVG" scale="60"/>
-</imageobject>
-      </inlinemediaobject>'>
-<!ENTITY ARROW  '<inlinemediaobject xmlns="http://docbook.org/ns/docbook">
- <imageobject>
-  <imagedata fileref="figures/Arrow_east.svg"
-     format="SVG" scale="60"/>
-</imageobject>
-      </inlinemediaobject>'>
- <!ENTITY APIv2   'Networking API v2.0'>
+<!ENTITY APIv2   'Networking API v2.0'>
 ]>
 <section xmlns="http://docbook.org/ns/docbook"
     xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -35,26 +23,27 @@
     xml:id="Concepts-d1e369">
     <?dbhtml stop-chunking?>
     <title>Concepts</title>
-    <para>Use the &APIv2; to manage the following entities:<itemizedlist>
-            <listitem>
-                <para><emphasis role="bold">Network</emphasis>. An
-                    isolated virtual layer-2 domain. A network can
-                    also be a virtual, or logical, switch. See <xref
-                        linkend="Network"/>.</para>
-            </listitem>
-            <listitem>
-                <para><emphasis role="bold">Subnet</emphasis>. An IP
-                    version 4 or version 6 address block from which IP
-                    addresses that are assigned to VMs on a specified
-                    network are selected. See <xref linkend="subnet"
-                    />.</para>
-            </listitem>
-            <listitem>
-                <para><emphasis role="bold">Port</emphasis>. A
-                    virtual, or logical, switch port on a specified
-                    network. See <xref linkend="Port"/>.</para>
-            </listitem>
-        </itemizedlist></para>
+    <para>Use the &APIv2; to manage the following entities:</para>
+    <itemizedlist>
+        <listitem>
+            <para><emphasis role="bold">Network</emphasis>. An
+                isolated virtual layer-2 domain. A network can also be
+                a virtual, or logical, switch. See <xref
+                    linkend="Network"/>.</para>
+        </listitem>
+        <listitem>
+            <para><emphasis role="bold">Subnet</emphasis>. An IP
+                version 4 or version 6 address block from which IP
+                addresses that are assigned to VMs on a specified
+                network are selected. See <xref linkend="subnet"
+                />.</para>
+        </listitem>
+        <listitem>
+            <para><emphasis role="bold">Port</emphasis>. A virtual, or
+                logical, switch port on a specified network. See <xref
+                    linkend="Port"/>.</para>
+        </listitem>
+    </itemizedlist>
     <para>These entities have auto-generated unique identifiers and
         support basic create, read, update, and delete (CRUD)
         functions with the &POST;, &GET;, &PUT;, and &DELETE;
@@ -73,7 +62,7 @@
         <para>The following table describes the attributes for network
             objects:</para>
         <table rules="all" width="95%">
-            <caption>Network Attributes</caption>
+            <caption>Network attributes</caption>
             <col width="20%"/>
             <col width="10%"/>
             <col width="10%"/>
@@ -87,29 +76,29 @@
                     <th>Type</th>
                     <th>Required</th>
                     <th>CRUD<footnote xml:id="crud">
-                            <para><itemizedlist>
-                                   <listitem>
+                            <itemizedlist>
+                                <listitem>
                                    <para><emphasis role="bold"
                                    >C</emphasis>. Use the attribute in
                                    create operations.</para>
-                                   </listitem>
-                                   <listitem>
+                                </listitem>
+                                <listitem>
                                    <para><emphasis role="bold"
                                    >R</emphasis>. This attribute is
                                    returned in response to show and
                                    list operations.</para>
-                                   </listitem>
-                                   <listitem>
+                                </listitem>
+                                <listitem>
                                    <para><emphasis role="bold"
                                    >U</emphasis>. You can update the
                                    value of this attribute.</para>
-                                   </listitem>
-                                   <listitem>
+                                </listitem>
+                                <listitem>
                                    <para><emphasis role="bold"
                                    >D</emphasis>. You can delete the
                                    value of this attribute.</para>
-                                   </listitem>
-                                </itemizedlist></para>
+                                </listitem>
+                            </itemizedlist>
                         </footnote></th>
                     <th>Default Value</th>
                     <th>Validation Constraints</th>
@@ -155,21 +144,23 @@
                     <td>N/A</td>
                     <td>N/A</td>
                     <td><para>Indicates whether network is currently
-                            operational. Possible values include: <itemizedlist>
-                                <listitem>
-                                   <para>ACTIVE</para>
-                                </listitem>
-                                <listitem>
-                                   <para>DOWN</para>
-                                </listitem>
-                                <listitem>
-                                   <para>BUILD</para>
-                                </listitem>
-                                <listitem>
-                                   <para>ERROR</para>
-                                </listitem>
-                            </itemizedlist>
-                        </para><para>Plug-ins might define additional
+                            operational. Possible values
+                            include:</para>
+                        <itemizedlist>
+                            <listitem>
+                                <para>ACTIVE</para>
+                            </listitem>
+                            <listitem>
+                                <para>DOWN</para>
+                            </listitem>
+                            <listitem>
+                                <para>BUILD</para>
+                            </listitem>
+                            <listitem>
+                                <para>ERROR</para>
+                            </listitem>
+                        </itemizedlist>
+                        <para>Plug-ins might define additional
                             values.</para></td>
                 </tr>
                 <tr>
@@ -240,29 +231,29 @@
                     <th>Type</th>
                     <th>Required</th>
                     <th>CRUD<footnote xml:id="crud2">
-                            <para><itemizedlist>
-                                   <listitem>
+                            <itemizedlist>
+                                <listitem>
                                    <para><emphasis role="bold"
                                    >C</emphasis>. Use the attribute in
                                    create operations.</para>
-                                   </listitem>
-                                   <listitem>
+                                </listitem>
+                                <listitem>
                                    <para><emphasis role="bold"
                                    >R</emphasis>. This attribute is
                                    returned in response to show and
                                    list operations.</para>
-                                   </listitem>
-                                   <listitem>
+                                </listitem>
+                                <listitem>
                                    <para><emphasis role="bold"
                                    >U</emphasis>. You can update the
                                    value of this attribute.</para>
-                                   </listitem>
-                                   <listitem>
+                                </listitem>
+                                <listitem>
                                    <para><emphasis role="bold"
                                    >D</emphasis>. You can delete the
                                    value of this attribute.</para>
-                                   </listitem>
-                                </itemizedlist></para>
+                                </listitem>
+                            </itemizedlist>
                         </footnote>
                     </th>
                     <th>Default Value</th>
@@ -424,29 +415,29 @@
                     <th>Type</th>
                     <th>Required</th>
                     <th>CRUD<footnote xml:id="crud3">
-                            <para><itemizedlist>
-                                   <listitem>
+                            <itemizedlist>
+                                <listitem>
                                    <para><emphasis role="bold"
                                    >C</emphasis>. Use the attribute in
                                    create operations.</para>
-                                   </listitem>
-                                   <listitem>
+                                </listitem>
+                                <listitem>
                                    <para><emphasis role="bold"
                                    >R</emphasis>. This attribute is
                                    returned in response to show and
                                    list operations.</para>
-                                   </listitem>
-                                   <listitem>
+                                </listitem>
+                                <listitem>
                                    <para><emphasis role="bold"
                                    >U</emphasis>. You can update the
                                    value of this attribute.</para>
-                                   </listitem>
-                                   <listitem>
+                                </listitem>
+                                <listitem>
                                    <para><emphasis role="bold"
                                    >D</emphasis>. You can delete the
                                    value of this attribute.</para>
-                                   </listitem>
-                                </itemizedlist></para>
+                                </listitem>
+                            </itemizedlist>
                         </footnote>
                     </th>
                     <th>Default Value</th>
@@ -502,21 +493,23 @@
                     <td>N/A</td>
                     <td>N/A</td>
                     <td><para>Indicates whether network is currently
-                            operational. Possible values include: <itemizedlist>
-                                <listitem>
-                                   <para>ACTIVE</para>
-                                </listitem>
-                                <listitem>
-                                   <para>DOWN</para>
-                                </listitem>
-                                <listitem>
-                                   <para>BUILD</para>
-                                </listitem>
-                                <listitem>
-                                   <para>ERROR</para>
-                                </listitem>
-                            </itemizedlist>
-                        </para><para>Plug-ins might define additional
+                            operational. Possible values
+                            include:</para>
+                        <itemizedlist>
+                            <listitem>
+                                <para>ACTIVE</para>
+                            </listitem>
+                            <listitem>
+                                <para>DOWN</para>
+                            </listitem>
+                            <listitem>
+                                <para>BUILD</para>
+                            </listitem>
+                            <listitem>
+                                <para>ERROR</para>
+                            </listitem>
+                        </itemizedlist>
+                        <para>Plug-ins might define additional
                             values.</para></td>
                 </tr>
                 <tr>

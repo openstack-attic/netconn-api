@@ -1,7 +1,0 @@
-{
-    "network": {
-        "admin_state_up": true,
-        "name": "ext_net",
-        "router:external": true
-    }
-}

@@ -33,7 +33,7 @@
     xmlns:xsdxt="http://docs.rackspacecloud.com/xsd-ext/v1.0"
     xmlns:db="http://docbook.org/ns/docbook" version="5.0"
     xml:id="API_extensions">
-    <title>API Extensions</title>
+    <title>API extensions</title>
     <para>An API extension extends one or more of the following
         components of the core API:</para>
     <itemizedlist>
@@ -64,10 +64,10 @@
     <xi:include href="section_neutron-quotas-ext.xml"/>
     <xi:include href="section_neutron-security-groups-ext.xml"/>
     <xi:include href="section_neutron-agent-ext.xml"/>
+    <xi:include href="section_neutron-scheduler-ext.xml"/>
     <xi:include href="section_neutron-extraroute-ext.xml"/>
     <xi:include href="section_neutron-loadbalancer-ext.xml"/>
     <xi:include href="section_neutron-firewall-ext.xml"/>
-    <xi:include href="section_neutron-scheduler-ext.xml"/>
     <xi:include href="section_neutron-vpn-ext.xml"/>
     <xi:include href="section_neutron-allowed-address-pair-ext.xml"/>
     <xi:include href="section_neutron-extra-dhcp-opt-ext.xml"/>

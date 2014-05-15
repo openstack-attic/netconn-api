@@ -39,16 +39,17 @@
     xmlns="http://docbook.org/ns/docbook"
     xmlns:xi="http://www.w3.org/2001/XInclude"
     xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
-    <title>The <literal>binding</literal> Extended Attributes for
-        Ports</title>
+    <title>
+        <literal>binding</literal> extended attributes for
+        ports</title>
     <para>Use the &APIv2; with the <parameter>binding</parameter>
         extended attributes to get information about, create, and
         update port objects.</para>
     <para>The <parameter>binding</parameter>-prefixed extended
         attributes for ports are:</para>
     <table rules="all" width="95%">
-        <caption><parameter>binding</parameter> Extended Attributes
-            for Ports</caption>
+        <caption><parameter>binding</parameter> extended attributes
+            for ports</caption>
         <col width="30%"/>
         <col width="10%"/>
         <col width="10%"/>
