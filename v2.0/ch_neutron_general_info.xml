@@ -126,7 +126,7 @@ Content-Length 204</literallayout>
             list requests.</para>
         <para>For example, the following request returns all networks
             named <literal>foobar</literal>:</para>
-        <programlisting language="bash" role="gutter: false">GET /v2.0/networks?name=foobar</programlisting>
+        <programlisting language="bash">GET /v2.0/networks?name=foobar</programlisting>
         <para>When you specify multiple filters, the &APIv2; returns
             only objects that meet all filtering criteria. The
             operation applies an AND condition among the
@@ -148,7 +148,7 @@ Content-Length 204</literallayout>
         <para>For example, the following request returns only
                 <literal>id</literal> and <literal>name</literal> for
             each network:</para>
-        <programlisting language="bash" role="gutter: false">GET /v2.0/networks.json?fields=id&amp;fields=name</programlisting>
+        <programlisting language="bash">GET /v2.0/networks.json?fields=id&amp;fields=name</programlisting>
     </section>
     <section xml:id="Async_behaviour">
         <title>Synchronous versus Asynchronous Plug-in

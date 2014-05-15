@@ -4,8 +4,7 @@
 <section xml:id="provider_ext" xmlns="http://docbook.org/ns/docbook"
     xmlns:xi="http://www.w3.org/2001/XInclude"
     xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
-    <title>The Provider Networks Extension
-            (<literal>provider</literal>)</title>
+    <title>Provider networks (<literal>provider</literal>)</title>
     <para>The provider networks extension allows OpenStack Networking
         API users with the appropriate rights, to specify how an
         OpenStack Networking network object is mapped to the
