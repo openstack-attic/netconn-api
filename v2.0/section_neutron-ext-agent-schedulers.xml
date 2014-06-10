@@ -466,7 +466,7 @@ X-Auth-Token: bce63afb1e794c70972a19a7c2d6dcab</programlisting>
                 body.</para>
             <example>
                 <title>Schedule router: JSON request</title>
-                <programlisting>GET /v2.0/agents/fa24e88e-3d2f-4fc2-b038-5fb5be294c03/l3-routers.json HTTP/1.1
+                <programlisting>POST /v2.0/agents/fa24e88e-3d2f-4fc2-b038-5fb5be294c03/l3-routers.json HTTP/1.1
 Host: localhost:9696
 User-Agent: python-neutronclient
 Content-Type: application/json
