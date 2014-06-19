@@ -96,8 +96,8 @@
     <?hard-pagebreak?>
     <section xml:id="request_response_Types">
         <title>Request and response types</title>
-        <para>The &APIv2; supports the JSON data serialization
-            format.</para>
+        <para>The &APIv2; supports the JSON data serialization format and XML
+            format for requests and responses.</para>
         <para>The format for both the request and the response can be
             specified by using the <code>Content-Type</code> header,
             the <code>Accept</code> header or adding the
