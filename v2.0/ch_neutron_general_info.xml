@@ -96,13 +96,12 @@
     <?hard-pagebreak?>
     <section xml:id="request_response_Types">
         <title>Request and response types</title>
-        <para>The &APIv2; supports the JSON data serialization
-            format.</para>
+        <para>The &APIv2; supports the JSON data serialization format and XML
+            format for requests and responses.</para>
         <para>The format for both the request and the response can be
             specified by using the <code>Content-Type</code> header,
             the <code>Accept</code> header or adding the
-                <code>.json</code> extension to the request
-            URI.</para>
+                <filename>.json</filename> extension to the request
         <example>
             <title>JSON request with headers</title>
             <literallayout class="monospaced">POST /v1.0/tenants/tenantX/networks HTTP/1.1
@@ -119,6 +118,27 @@ Content-Type application/json
 Content-Length 204</literallayout>
             <programlisting language="json"><xi:include href="http://git.openstack.org/cgit/openstack/api-site/plain/api-ref/src/wadls/netconn-api/src/api_samples/network-post-resp.json" parse="text"/></programlisting>
         </example>
+        <para>The format for both the request and the response can be specified
+            by using the <code>Content-Type</code> header, the
+            <code>Accept</code> header or adding the <filename>.xml</filename> extension to the request URI.</para>
+        <example>
+            <title>XML request with headers</title>
+            <literallayout class="monospaced">POST /v1.0/tenants/tenantX/networks HTTP/1.1
+Host 127.0.0.1:9696
+Content-Type application/xml
+Accept application/xml
+Content-Length 57</literallayout>
+            <programlisting language="json"><xi:include
+                href="http://git.openstack.org/cgit/openstack/api-site/plain/api-ref/src/wadls/netconn-api/src/api_samples/network-post-req.xml"
+                parse="text"/></programlisting>
+        </example>
+        <title>XML response with headers</title>
+        <literallayout class="monospaced">HTTP/1.1 201 Created
+Content-Type application/xml
+Content-Length 204</literallayout>
+        <programlisting language="xml"><xi:include
+            href="http://git.openstack.org/cgit/openstack/api-site/plain/api-ref/src/wadls/netconn-api/src/api_samples/network-post-resp.xml"
+            parse="text"/></programlisting>
     </section>
     <section xml:id="filtering">
         <title>Filtering and column selection</title>
