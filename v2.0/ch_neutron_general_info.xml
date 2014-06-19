@@ -94,31 +94,66 @@
             deployment.</para>
     </section>
     <?hard-pagebreak?>
-    <section xml:id="request_response_Types">
-        <title>Request and response types</title>
-        <para>The &APIv2; supports the JSON data serialization
-            format.</para>
-        <para>The format for both the request and the response can be
-            specified by using the <code>Content-Type</code> header,
-            the <code>Accept</code> header or adding the
-                <code>.json</code> extension to the request
-            URI.</para>
-        <example>
-            <title>JSON request with headers</title>
-            <literallayout class="monospaced">POST /v1.0/tenants/tenantX/networks HTTP/1.1
-Host 127.0.0.1:9696
-Content-Type application/json
-Accept application/json
-Content-Length 57</literallayout>
-            <programlisting language="json"><xi:include href="http://git.openstack.org/cgit/openstack/api-site/plain/api-ref/src/wadls/netconn-api/src/api_samples/network-post-req.json" parse="text"/></programlisting>
-        </example>
-        <example>
-            <title>JSON response with headers</title>
-            <literallayout class="monospaced">HTTP/1.1 201 Created
-Content-Type application/json
-Content-Length 204</literallayout>
-            <programlisting language="json"><xi:include href="http://git.openstack.org/cgit/openstack/api-site/plain/api-ref/src/wadls/netconn-api/src/api_samples/network-post-resp.json" parse="text"/></programlisting>
-        </example>
+    <section xml:id="request-response-formats">
+        <title>Request and response formats</title>
+        <para>The &APIv2; supports both JSON and XML data
+            serialization request and response formats.</para>
+        <section xml:id="request-format">
+            <title>Request format</title>
+            <para>Use the <code>Content-Type</code> request header to
+                specify the request format. This header is required
+                for operations that have a request body. </para>
+            <para>The syntax for the <code>Content-Type</code> header
+                is:</para>
+            <programlisting>Content-Type: application/<replaceable>FORMAT</replaceable></programlisting>
+            <para>Where <replaceable>FORMAT</replaceable> is either
+                    <literal>json</literal> or
+                <literal>xml</literal>.</para>
+        </section>
+        <section xml:id="response-format">
+            <title>Response format</title>
+            <para>Use one of the following methods to specify the
+                response format:</para>
+            <variablelist>
+                <varlistentry>
+                    <term><code>Accept</code> header</term>
+                    <listitem>
+                        <para>The syntax for the <code>Accept</code>
+                            header is:</para>
+                        <programlisting>Accept: application/<replaceable>FORMAT</replaceable></programlisting>
+                        <para>Where <replaceable>FORMAT</replaceable>
+                            is either <literal>json</literal> or
+                                <literal>xml</literal>. The default
+                            format is <literal>json</literal>.</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>Query extension</term>
+                    <listitem>
+                        <para>Add an <literal>.xml</literal> or
+                                <literal>.json</literal> extension to
+                            the request URI. For example, the
+                                <literal>.xml</literal> extension in
+                            the following list networks URI request
+                            specifies that the response body is to be
+                            returned in XML format:</para>
+                        <literallayout role="monospace">&GET; <replaceable>publicURL</replaceable>/networks.xml</literallayout>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+            <para>If you do not specify a response format, JSON is the
+                default.</para>
+            <para>If the <code>Accept</code> header and the query
+                extension specify conflicting formats, the format
+                specified in the query extension takes precedence. For
+                example, if the query extension is
+                    <literal>.xml</literal> and the
+                    <code>Accept</code> header specifies
+                    <literal>application/json</literal>, the response
+                is returned in XML format.</para>
+            <para>You can serialize a response in a different format
+                from the request format.</para>
+        </section>
     </section>
     <section xml:id="filtering">
         <title>Filtering and column selection</title>
@@ -313,10 +348,10 @@ Accept: application/xml
             and it might be disabled. If sorting is disabled, the
             sorting parameters are ignored.</para>
         <para>If a particular plug-in does not support sorting
-            operations and sorting is enabled, the &APIv2;
-            emulates the sorting behavior so that users can expect the
-            same behavior regardless of the particular plug-in that runs
-            in the background.</para>
+            operations and sorting is enabled, the &APIv2; emulates
+            the sorting behavior so that users can expect the same
+            behavior regardless of the particular plug-in that runs in
+            the background.</para>
         <para>Unfortunately OpenStack Networking does provide a
             mechanism to tell users if specific plug-ins support or
             have enabled sorting.</para>
@@ -361,7 +396,7 @@ Accept: application/xml
             extension varies with deployments and the specific plug-in
             in use.</para>
         <para>For more information regarding specific extensions, see
-            <xref linkend="API_extensions"/></para>
+            <!-- <xref linkend="API_extensions"/>--></para>
     </section>
     <?hard-pagebreak?>
     <section xml:id="faults">
@@ -369,8 +404,9 @@ Accept: application/xml
         <para>The &APIv2; returns an error response if a failure
             occurs while processing a request. OpenStack Networking
             uses only standard HTTP error codes.
-                4<replaceable>nn</replaceable> errors indicate problems in the
-            particular request being sent from the client.</para>
+                4<replaceable>nn</replaceable> errors indicate
+            problems in the particular request being sent from the
+            client.</para>
         <informaltable rules="all">
             <col width="10%"/>
             <col width="20%"/>
