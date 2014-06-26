@@ -125,7 +125,7 @@
             subnets that are used by one or more routes, it responds
             with <literal>409 Conflict</literal>.</para>
         <example>
-            <title>Update routes: XML response</title>
+            <title>Update routes: JSON request</title>
             <programlisting language="json"><xi:include href="samples/extraroute/extraroute-put-req.json" parse="text"/></programlisting>
         </example>
         <example>
