@@ -21,7 +21,7 @@
             <wadl:method href="#listQuotas"/>
         </wadl:resource>
         <wadl:resource
-            href="http://git.openstack.org/cgit/openstack/api-site/plain/api-ref/src/wadls/netconn-api/src/os-quotas.wadl#tenant_id">
+            href="http://git.openstack.org/cgit/openstack/api-site/plain/api-ref/src/wadls/netconn-api/src/os-quotas.wadl#Quotas">
             <wadl:method href="#showQuota"/>
             <wadl:method href="#updateQuota"/>
             <wadl:method href="#resetQuota"/>
