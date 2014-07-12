@@ -1,0 +1,9 @@
+Verified+2: Jenkins
+Code-Review+2: Diane Fleming <dfleming@austin.rr.com>
+Workflow+1: Diane Fleming <dfleming@austin.rr.com>
+Code-Review+2: Andreas Jaeger <jaegerandi@gmail.com>
+Submitted-by: Jenkins
+Submitted-at: Sat, 12 Jul 2014 20:05:22 +0000
+Reviewed-on: https://review.openstack.org/106297
+Project: openstack/netconn-api
+Branch: refs/heads/master
