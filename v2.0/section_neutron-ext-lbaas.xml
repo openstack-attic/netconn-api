@@ -39,23 +39,12 @@
         <para>This extension introduces these concepts:</para>
         <variablelist>
             <varlistentry>
-                <term>VIP</term>
-                <listitem>
-                    <para>The primary load balancing configuration
-                        object. Specifies the virtual IP address and
-                        port where client traffic is received. Also
-                        defines other details such as the load
-                        balancing method to be used, protocol, and so
-                        on.</para>
-                    <para>This entity is sometimes known in
-                        load-balancing products as a
-                            <firstterm>virtual server</firstterm>,
-                            <firstterm>vserver</firstterm>, or
-                            <firstterm>listener</firstterm>.</para>
-                </listitem>
+                <term>Load Balancers</term>
+                <listitem><para>The primary load balancing configuration object.Specifies the virtual IP address where client traffic is received. 
+                    Also defines other details such as the load	balancing method to be used, protocol, and so on.</para></listitem>
             </varlistentry>
             <varlistentry>
-                <term>pool</term>
+                <term>Pools</term>
                 <listitem>
                     <para>A logical set of devices, such as web
                         servers, that you group together to receive
@@ -67,14 +56,21 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>pool member</term>
+                <term>Listener</term>
+                <listitem>
+                    <para>Listeners represent a single listening port,defines protocol and can
+                        optionally provide TLS termination\u0000</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Members</term>
                 <listitem>
                     <para>The application that runs on the back-end
                         server.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>health monitor</term>
+                <term>Health Monitors</term>
                 <listitem>
                     <para>Determines whether or not back-end members
                         of the VIP pool can process a request. A pool
@@ -185,202 +181,52 @@
                 <para>Associate the health monitors with the
                     pool.</para>
             </listitem>
-            <listitem>
-                <para>Create a VIP that is associated with the
-                    pool.</para>
-            </listitem>
         </orderedlist>
     </section>
-    <section xml:id="lbaas_ext_ops_vip">
-        <title>VIP operations</title>
+    <section xml:id="lbaas_ext_ops_loadbalancer">
+        <title>Load Balancers</title>
         <wadl:resources xmlns:wadl="http://wadl.dev.java.net/2009/02">
             <wadl:resource
-                href="http://git.openstack.org/cgit/openstack/api-site/plain/api-ref/src/wadls/netconn-api/src/os-lbaas-ext.wadl#lb-vips">
-                <wadl:method href="#listVIPs"/>
-                <wadl:method href="#createVIP"/>
+                href="http://git.openstack.org/cgit/openstack/api-site/plain/api-ref/src/wadls/netconn-api/src/os-lbaas-ext.wadl#loadbalancers">
+                <wadl:method href="#createLoadBalancer"/>
+                <wadl:method href="#listLoadBalancers"/>
             </wadl:resource>
             <wadl:resource
-                href="http://git.openstack.org/cgit/openstack/api-site/plain/api-ref/src/wadls/netconn-api/src/os-lbaas-ext.wadl#vip_id">
-                <wadl:method href="#showVIP"/>
-                <wadl:method href="#updateVIP"/>
-                <wadl:method href="#deleteVIP"/>
+                href="http://git.openstack.org/cgit/openstack/api-site/plain/api-ref/src/wadls/netconn-api/src/os-lbaas-ext.wadl#lb_id">
+                <wadl:method href="#showLoadBalancer"/>
+                <wadl:method href="#updateLoadBalancer"/>
+                <wadl:method href="#deleteLoadBalancer"/>
             </wadl:resource>
         </wadl:resources>
     </section>
-    <!-- end of vips section-->
+    <!-- end of loadbalancer section-->
+    <section xml:id="lbaas_ext_ops_listner">
+        <title>Listeners</title>
+        <wadl:resources xmlns:wadl="http://wadl.dev.java.net/2009/02">
+            <wadl:resource
+                href="http://git.openstack.org/cgit/openstack/api-site/plain/api-ref/src/wadls/netconn-api/src/os-lbaas-ext.wadl#Listeners">
+                <wadl:method href="#createListener"/>
+                <wadl:method href="#listListeners"/>
+            </wadl:resource>
+            <wadl:resource
+                href="http://git.openstack.org/cgit/openstack/api-site/plain/api-ref/src/wadls/netconn-api/src/os-lbaas-ext.wadl#listener_id">
+                <wadl:method href="#showListener"/>
+                <wadl:method href="#updateListener"/>
+                <wadl:method href="#deleteListener"/>
+            </wadl:resource>
+        </wadl:resources>
+    </section>
+    <!-- end of listner section-->
     <section xml:id="lbaas_ext_ops_pool">
-        <title>Pool operations</title>
+        <title>Pools</title>
         <para>This section discusses operations for managing load
             balancer pools through the Load balancing as a service
             extension.</para>
-        <table rules="all">
-            <caption>Pool Attributes</caption>
-            <col width="20%"/>
-            <col width="8%"/>
-            <col width="10%"/>
-            <col width="7%"/>
-            <col width="15%"/>
-            <col width="15%"/>
-            <col width="25%"/>
-            <thead>
-                <tr>
-                    <th>Attribute</th>
-                    <th>Type</th>
-                    <th>Required</th>
-                    <th>CRUD <footnote xml:id="lbaas_pool_crud_note">
-                            <itemizedlist>
-                                <listitem>
-                                   <para><emphasis role="bold"
-                                   >C</emphasis>. Use the attribute in
-                                   create operations.</para>
-                                </listitem>
-                                <listitem>
-                                   <para><emphasis role="bold"
-                                   >R</emphasis>. This attribute is
-                                   returned in response to show and
-                                   list operations.</para>
-                                </listitem>
-                                <listitem>
-                                   <para><emphasis role="bold"
-                                   >U</emphasis>. You can update the
-                                   value of this attribute.</para>
-                                </listitem>
-                                <listitem>
-                                   <para><emphasis role="bold"
-                                   >D</emphasis>. You can delete the
-                                   value of this attribute.</para>
-                                </listitem>
-                            </itemizedlist>
-                        </footnote>
-                    </th>
-                    <th>Default Value</th>
-                    <th>Validation Constraints</th>
-                    <th>Notes</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>id</td>
-                    <td>uuid-str</td>
-                    <td>N/A</td>
-                    <td>R</td>
-                    <td>generated</td>
-                    <td>N/A</td>
-                    <td>Unique identifier for the pool.</td>
-                </tr>
-                <tr>
-                    <td>tenant_id</td>
-                    <td>uuid-str</td>
-                    <td>Yes</td>
-                    <td>CR</td>
-                    <td>Derived from authentication token.</td>
-                    <td>N/A</td>
-                    <td>Owner of the pool. Only an admin user can
-                        specify a tenant identifier other than its
-                        own</td>
-                </tr>
-                <tr>
-                    <td>vip_id</td>
-                    <td>uuid-str</td>
-                    <td>No</td>
-                    <td>R</td>
-                    <td>None</td>
-                    <td>UUID pattern.</td>
-                    <td>The <literal>vip</literal> that the pool
-                        associated with.</td>
-                </tr>
-                <tr>
-                    <td>name</td>
-                    <td>String</td>
-                    <td>No</td>
-                    <td>CRU</td>
-                    <td>None</td>
-                    <td>N/A</td>
-                    <td>Human readable name for the pool. Does not
-                        have to be unique.</td>
-                </tr>
-                <tr>
-                    <td>description</td>
-                    <td>String</td>
-                    <td>No</td>
-                    <td>CRU</td>
-                    <td>None</td>
-                    <td>N/A</td>
-                    <td>Human readable description for the pool.</td>
-                </tr>
-                <tr>
-                    <td>subnet_id</td>
-                    <td>uuid-str</td>
-                    <td>No</td>
-                    <td>CR</td>
-                    <td>None</td>
-                    <td>UUID pattern.</td>
-                    <td>The network that pool members belong to.</td>
-                </tr>
-                <tr>
-                    <td>protocol</td>
-                    <td>String</td>
-                    <td>Yes</td>
-                    <td>CR</td>
-                    <td>None</td>
-                    <td>{ "TCP" | "HTTP" | "HTTPS" }</td>
-                    <td>The protocol of the pool.</td>
-                </tr>
-                <tr>
-                    <td>lb_method</td>
-                    <td>String</td>
-                    <td>Yes</td>
-                    <td>CRU</td>
-                    <td>None</td>
-                    <td>None</td>
-                    <td>The algorithm used to distribute load between
-                        the members of the pool.</td>
-                </tr>
-                <tr>
-                    <td>health_monitors</td>
-                    <td>uuid-list</td>
-                    <td>No</td>
-                    <td>CRU</td>
-                    <td>None</td>
-                    <td>N/A</td>
-                    <td>List of health monitors to associate with the
-                        pool.</td>
-                </tr>
-                <tr>
-                    <td>members</td>
-                    <td>uuid-list</td>
-                    <td>No</td>
-                    <td>R</td>
-                    <td>None</td>
-                    <td>N/A</td>
-                    <td>List of members that belong to the pool.</td>
-                </tr>
-                <tr>
-                    <td>admin_state_up</td>
-                    <td>Bool</td>
-                    <td>No</td>
-                    <td>CRU</td>
-                    <td>true</td>
-                    <td>{true | false }</td>
-                    <td>Administrative state of the pool.</td>
-                </tr>
-                <tr>
-                    <td>status</td>
-                    <td>String</td>
-                    <td>N/A</td>
-                    <td>R</td>
-                    <td>N/A</td>
-                    <td>N/A</td>
-                    <td>Indicates whether a pool is currently
-                        operational or not.</td>
-                </tr>
-            </tbody>
-        </table>
         <wadl:resources xmlns:wadl="http://wadl.dev.java.net/2009/02">
             <wadl:resource
                 href="http://git.openstack.org/cgit/openstack/api-site/plain/api-ref/src/wadls/netconn-api/src/os-lbaas-ext.wadl#lb-pools">
-                <wadl:method href="#listPools"/>
                 <wadl:method href="#createPool"/>
+                <wadl:method href="#listPools"/>
             </wadl:resource>
             <wadl:resource
                 href="http://git.openstack.org/cgit/openstack/api-site/plain/api-ref/src/wadls/netconn-api/src/os-lbaas-ext.wadl#pool_id">
@@ -392,145 +238,15 @@
     </section>
     <!-- end of pools section-->
     <section xml:id="lbaas_ext_ops_member">
-        <title>Member operations</title>
+        <title>Members</title>
         <para>This section discusses operations for managing pool
             members through the Load balancing as a service
             extension.</para>
-        <table rules="all">
-            <caption>Member Attributes</caption>
-            <col width="20%"/>
-            <col width="8%"/>
-            <col width="10%"/>
-            <col width="7%"/>
-            <col width="15%"/>
-            <col width="15%"/>
-            <col width="25%"/>
-            <thead>
-                <tr>
-                    <th>Attribute</th>
-                    <th>Type</th>
-                    <th>Required</th>
-                    <th>CRUD <footnote xml:id="lbaas_member_crud_note">
-                            <itemizedlist>
-                                <listitem>
-                                   <para><emphasis role="bold"
-                                   >C</emphasis>. Use the attribute in
-                                   create operations.</para>
-                                </listitem>
-                                <listitem>
-                                   <para><emphasis role="bold"
-                                   >R</emphasis>. This attribute is
-                                   returned in response to show and
-                                   list operations.</para>
-                                </listitem>
-                                <listitem>
-                                   <para><emphasis role="bold"
-                                   >U</emphasis>. You can update the
-                                   value of this attribute.</para>
-                                </listitem>
-                                <listitem>
-                                   <para><emphasis role="bold"
-                                   >D</emphasis>. You can delete the
-                                   value of this attribute.</para>
-                                </listitem>
-                            </itemizedlist>
-                        </footnote>
-                    </th>
-                    <th>Default value</th>
-                    <th>Validation constraints</th>
-                    <th>Notes</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>id</td>
-                    <td>uuid-str</td>
-                    <td>N/A</td>
-                    <td>R</td>
-                    <td>generated</td>
-                    <td>N/A</td>
-                    <td>Unique identifier for the member.</td>
-                </tr>
-                <tr>
-                    <td>tenant_id</td>
-                    <td>uuid-str</td>
-                    <td>Yes</td>
-                    <td>CR</td>
-                    <td>Derived from authentication token.</td>
-                    <td>N/A</td>
-                    <td>Owner of the member. Only an admin user can
-                        specify a tenant identifier other than its
-                        own.</td>
-                </tr>
-                <tr>
-                    <td>pool_id</td>
-                    <td>uuid-str</td>
-                    <td>Yes</td>
-                    <td>CRU</td>
-                    <td>None</td>
-                    <td>UUID pattern.</td>
-                    <td>The <literal>pool</literal> that the member
-                        belongs to.</td>
-                </tr>
-                <tr>
-                    <td>address</td>
-                    <td>IP</td>
-                    <td>Yes</td>
-                    <td>CR</td>
-                    <td>None</td>
-                    <td>IP address or null.</td>
-                    <td>The IP address of the member.</td>
-                </tr>
-                <tr>
-                    <td>protocol_port</td>
-                    <td>Integer</td>
-                    <td>Yes</td>
-                    <td>CR</td>
-                    <td>None</td>
-                    <td>[0..65535]</td>
-                    <td>The port on which the application is
-                        hosted.</td>
-                </tr>
-                <tr>
-                    <td>weight</td>
-                    <td>Integer</td>
-                    <td>No</td>
-                    <td>CRU</td>
-                    <td>1</td>
-                    <td>[0..256]</td>
-                    <td>The weight of a member determines the portion
-                        of requests or connections it services
-                        compared to the other members of the pool. A
-                        value of 0 means the member does not
-                        participate in load-balancing but still
-                        accepts persistent connections.</td>
-                </tr>
-                <tr>
-                    <td>admin_state_up</td>
-                    <td>Bool</td>
-                    <td>No</td>
-                    <td>CRU</td>
-                    <td>true</td>
-                    <td>{true | false }</td>
-                    <td>Administrative state of the member.</td>
-                </tr>
-                <tr>
-                    <td>status</td>
-                    <td>String</td>
-                    <td>N/A</td>
-                    <td>R</td>
-                    <td>N/A</td>
-                    <td>N/A</td>
-                    <td>Indicates whether or not a member is currently
-                        operational.</td>
-                </tr>
-            </tbody>
-        </table>
         <wadl:resources xmlns:wadl="http://wadl.dev.java.net/2009/02">
             <wadl:resource
                 href="http://git.openstack.org/cgit/openstack/api-site/plain/api-ref/src/wadls/netconn-api/src/os-lbaas-ext.wadl#lb-members">
-                <wadl:method href="#listMembers"/>
                 <wadl:method href="#createMember"/>
+                <wadl:method  href="#listMembers"/>
             </wadl:resource>
             <wadl:resource
                 href="http://git.openstack.org/cgit/openstack/api-site/plain/api-ref/src/wadls/netconn-api/src/os-lbaas-ext.wadl#member_id">
@@ -542,197 +258,15 @@
     </section>
     <!-- end of members section-->
     <section xml:id="lbaas_ext_ops_health_monitor">
-        <title>Health monitor operations</title>
+        <title>Health Monitors</title>
         <para>This section discusses operations for managing load
             balancer health monitors through the LBaaS
             extension.</para>
-        <table rules="all">
-            <caption>Health monitor attributes</caption>
-            <col width="20%"/>
-            <col width="8%"/>
-            <col width="10%"/>
-            <col width="7%"/>
-            <col width="15%"/>
-            <col width="15%"/>
-            <col width="25%"/>
-            <thead>
-                <tr>
-                    <th>Attribute</th>
-                    <th>Type</th>
-                    <th>Required</th>
-                    <th>CRUD <footnote
-                            xml:id="lbaas_healthmonitor_crud_note">
-                            <itemizedlist>
-                                <listitem>
-                                   <para><emphasis role="bold"
-                                   >C</emphasis>. Use the attribute in
-                                   create operations.</para>
-                                </listitem>
-                                <listitem>
-                                   <para><emphasis role="bold"
-                                   >R</emphasis>. This attribute is
-                                   returned in response to show and
-                                   list operations.</para>
-                                </listitem>
-                                <listitem>
-                                   <para><emphasis role="bold"
-                                   >U</emphasis>. You can update the
-                                   value of this attribute.</para>
-                                </listitem>
-                                <listitem>
-                                   <para><emphasis role="bold"
-                                   >D</emphasis>. You can delete the
-                                   value of this attribute.</para>
-                                </listitem>
-                            </itemizedlist>
-                        </footnote>
-                    </th>
-                    <th>Default value</th>
-                    <th>Validation constraints</th>
-                    <th>Notes</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>id</td>
-                    <td>uuid-str</td>
-                    <td>N/A</td>
-                    <td>R</td>
-                    <td>generated</td>
-                    <td>N/A</td>
-                    <td>Unique ID for the health monitor.</td>
-                </tr>
-                <tr>
-                    <td>tenant_id</td>
-                    <td>uuid-str</td>
-                    <td>Yes</td>
-                    <td>CR</td>
-                    <td>Derived from authentication token.</td>
-                    <td>N/A</td>
-                    <td>Owner of the health monitor. Only an admin
-                        user can specify a tenant identifier other
-                        than its own.</td>
-                </tr>
-                <tr>
-                    <td>type</td>
-                    <td>String</td>
-                    <td>Yes</td>
-                    <td>CR</td>
-                    <td>None</td>
-                    <td>{"PING" | "TCP" | "HTTP" | "HTTPS"}</td>
-                    <td>The type of probe send by load balancer to
-                        verify member state</td>
-                </tr>
-                <tr>
-                    <td>delay</td>
-                    <td>Integer</td>
-                    <td>Yes</td>
-                    <td>CRU</td>
-                    <td>None</td>
-                    <td>non-negative</td>
-                    <td>The time in seconds between sending probes to
-                        members.</td>
-                </tr>
-                <tr>
-                    <td>timeout</td>
-                    <td>uuid-str</td>
-                    <td>Yes</td>
-                    <td>CRU</td>
-                    <td>None</td>
-                    <td>non-negative</td>
-                    <td>The maximum number of seconds for a monitor to
-                        wait for a connection to be established before
-                        it times out. The value must be less than the
-                        delay value.</td>
-                </tr>
-                <tr>
-                    <td>max_retries</td>
-                    <td>Integer</td>
-                    <td>Yes</td>
-                    <td>CRU</td>
-                    <td>None</td>
-                    <td>[1..10]</td>
-                    <td>Number of allowed connection failures before
-                        changing the member's status to INACTIVE.</td>
-                </tr>
-                <tr>
-                    <td>http_method</td>
-                    <td>String</td>
-                    <td>No<footnote
-                            xml:id="lbaas_health_monitor_http_method">
-                            <para>Required if <literal>type</literal>
-                                is <constant>HTTP</constant> or
-                                   <constant>HTTPS</constant>.</para>
-                        </footnote></td>
-                    <td>CRU</td>
-                    <td>GET</td>
-                    <td>None</td>
-                    <td>The HTTP method used for requests by the
-                        monitor.</td>
-                </tr>
-                <tr>
-                    <td>url_path</td>
-                    <td>String</td>
-                    <td>No<footnoteref
-                            linkend="lbaas_health_monitor_http_method"
-                        /></td>
-                    <td>CRU</td>
-                    <td>/</td>
-                    <td>None</td>
-                    <td>The HTTP path of the request sent by the
-                        monitor to test a member's health. This must
-                        be a string beginning with a / (forward
-                        slash).</td>
-                </tr>
-                <tr>
-                    <td>expected_codes</td>
-                    <td>String</td>
-                    <td>No<footnoteref
-                            linkend="lbaas_health_monitor_http_method"
-                        /></td>
-                    <td>CRU</td>
-                    <td>200</td>
-                    <td>Single value, such as 200, list, such as 200,
-                        202, or range, such as 200-204.</td>
-                    <td>The list of HTTP status codes expected in
-                        response from the member to declare it
-                        healthy.</td>
-                </tr>
-                <tr>
-                    <td>admin_state_up</td>
-                    <td>Bool</td>
-                    <td>No</td>
-                    <td>CRU</td>
-                    <td>true</td>
-                    <td>{true | false }</td>
-                    <td>Administrative state of the health
-                        monitor.</td>
-                </tr>
-                <tr>
-                    <td>status</td>
-                    <td>String</td>
-                    <td>N/A</td>
-                    <td>R</td>
-                    <td>N/A</td>
-                    <td>N/A</td>
-                    <td>Indicates whether or not a health monitor is
-                        currently operational.</td>
-                </tr>
-            </tbody>
-        </table>
         <wadl:resources xmlns:wadl="http://wadl.dev.java.net/2009/02">
             <wadl:resource
-                href="http://git.openstack.org/cgit/openstack/api-site/plain/api-ref/src/wadls/netconn-api/src/os-lbaas-ext.wadl#health_monitors_pool">
-                <wadl:method href="#associateHealthMonitor"/>
-            </wadl:resource>
-            <wadl:resource
-                href="http://git.openstack.org/cgit/openstack/api-site/plain/api-ref/src/wadls/netconn-api/src/os-lbaas-ext.wadl#health_monitor_id_pool">
-                <wadl:method href="#disassociateHealthMonitor"/>
-            </wadl:resource>
-            <wadl:resource
                 href="http://git.openstack.org/cgit/openstack/api-site/plain/api-ref/src/wadls/netconn-api/src/os-lbaas-ext.wadl#lb-healthmonitors">
-                <wadl:method href="#listHealthMonitors"/>
                 <wadl:method href="#createHealthMonitor"/>
+                <wadl:method href="#listHealthMonitors"/>
             </wadl:resource>
             <wadl:resource
                 href="http://git.openstack.org/cgit/openstack/api-site/plain/api-ref/src/wadls/netconn-api/src/os-lbaas-ext.wadl#health_monitor_id_hm">
