@@ -12,17 +12,13 @@
 <!ENTITY DELETE '<command xmlns="http://docbook.org/ns/docbook">DELETE</command>'>
 <!ENTITY APIv2   'Networking API v2.0'>
 ]>
-<book xmlns="http://docbook.org/ns/docbook"
-    xmlns:xlink="http://www.w3.org/1999/xlink"
-    xmlns:xi="http://www.w3.org/2001/XInclude"
-    xmlns:svg="http://www.w3.org/2000/svg"
-    xmlns:m="http://www.w3.org/1998/Math/MathML"
-    xmlns:html="http://www.w3.org/1999/xhtml"
+<book xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:svg="http://www.w3.org/2000/svg"
+    xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:html="http://www.w3.org/1999/xhtml"
     xmlns:xsdxt="http://docs.rackspacecloud.com/xsd-ext/v1.0"
-    xmlns:db="http://docbook.org/ns/docbook" version="5.0"
-    status="final" xml:id="neutron-api-spec">
-    <title>OpenStack Networking (neutron) API v2.0 Reference</title>
-    <titleabbrev>Networking (neutron) API Reference</titleabbrev>
+    xmlns:db="http://docbook.org/ns/docbook" version="5.0" status="final" xml:id="neutron-api-spec">
+    <title>OpenStack Networking API v2.0 (neutron) Reference</title>
+    <titleabbrev>Networking API Reference</titleabbrev>
     <info>
         <author>
             <personname>
@@ -34,18 +30,17 @@
             <year>2011-2014</year>
             <holder>OpenStack Foundation</holder>
         </copyright>
-        <releaseinfo>API v2.0 and extensions</releaseinfo>
-        <productname>OpenStack Networking (neutron)</productname>
+        <releaseinfo>API v2.0 (neutron) and extensions</releaseinfo>
+        <productname>OpenStack Networking</productname>
         <pubdate/>
         <legalnotice role="apache2">
             <annotation>
-                <remark>Copyright details are filled in by the
-                    template.</remark>
+                <remark>Copyright details are filled in by the template.</remark>
             </annotation>
         </legalnotice>
         <abstract>
-            <para>This document is for software developers who develop
-                applications by using the OpenStack &APIv2;.</para>
+            <para>This document is for software developers who develop applications by using the
+                OpenStack &APIv2;.</para>
         </abstract>
         <revhistory>
             <!-- ... continue adding more revisions here as you change this document using the markup shown below... -->
@@ -54,8 +49,7 @@
                 <revdescription>
                     <itemizedlist spacing="compact">
                         <listitem>
-                            <para>Added
-                                <parameter>binding:vnic_type</parameter>.</para>
+                            <para>Added <parameter>binding:vnic_type</parameter>.</para>
                         </listitem>
                     </itemizedlist>
                 </revdescription>
@@ -65,10 +59,8 @@
                 <revdescription>
                     <itemizedlist spacing="compact">
                         <listitem>
-                            <para>Changed
-                                   <parameter>binding:capabilities</parameter>
-                                to
-                                   <parameter>binding:vif_details</parameter>.</para>
+                            <para>Changed <parameter>binding:capabilities</parameter> to
+                                    <parameter>binding:vif_details</parameter>.</para>
                         </listitem>
                     </itemizedlist>
                 </revdescription>
@@ -78,8 +70,7 @@
                 <revdescription>
                     <itemizedlist spacing="compact">
                         <listitem>
-                            <para>Updated book to source information
-                                from WADL files.</para>
+                            <para>Updated book to source information from WADL files.</para>
                         </listitem>
                     </itemizedlist>
                 </revdescription>
@@ -89,8 +80,7 @@
                 <revdescription>
                     <itemizedlist spacing="compact">
                         <listitem>
-                            <para>Added the Networking API ports
-                                binding extension.</para>
+                            <para>Added the Networking API ports binding extension.</para>
                         </listitem>
                     </itemizedlist>
                 </revdescription>
@@ -100,16 +90,12 @@
                 <revdescription>
                     <itemizedlist spacing="compact">
                         <listitem>
-                            <para>Updated the title of the book and
-                                project name to "OpenStack
+                            <para>Updated the title of the book and project name to "OpenStack
                                 Networking."</para>
                         </listitem>
                         <listitem>
-                            <para>Updated the title of the book to
-                                   <citetitle>Reference</citetitle>
-                                from <citetitle>Developer
-                                   Guide</citetitle> for
-                                consistency.</para>
+                            <para>Updated the title of the book to <citetitle>Reference</citetitle>
+                                from <citetitle>Developer Guide</citetitle> for consistency.</para>
                         </listitem>
                     </itemizedlist>
                 </revdescription>
@@ -119,8 +105,7 @@
                 <revdescription>
                     <itemizedlist spacing="compact">
                         <listitem>
-                            <para>Updated incorrect nova command
-                                examples in <xref linkend="Theory"
+                            <para>Updated incorrect nova command examples in <xref linkend="Theory"
                                 />.</para>
                         </listitem>
                     </itemizedlist>
@@ -131,8 +116,7 @@
                 <revdescription>
                     <itemizedlist spacing="compact">
                         <listitem>
-                            <para>Removed XML as a valid request or
-                                response type.</para>
+                            <para>Removed XML as a valid request or response type.</para>
                         </listitem>
                     </itemizedlist>
                 </revdescription>
