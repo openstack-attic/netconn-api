@@ -497,7 +497,7 @@ Content-Length: 54
                 <tbody>
                     <tr>
                         <td>&DELETE;</td>
-                        <td>/agents/<parameter>agent_id</parameter>/l3-routers/<parameter>network_id</parameter></td>
+                        <td>/agents/<parameter>agent_id</parameter>/l3-routers/<parameter>router_id</parameter></td>
                         <td>Removes the router from that the specified
                             L3 agent.</td>
                     </tr>
