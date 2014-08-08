@@ -45,6 +45,17 @@
         <revhistory>
             <!-- ... continue adding more revisions here as you change this document using the markup shown below... -->
             <revision>
+                <date>2014-08-08</date>
+                <revdescription>
+                    <itemizedlist spacing="compact">
+                        <listitem>
+                            <para>Remove WADL references and replace
+                                with links to API Reference.</para>
+                        </listitem>
+                    </itemizedlist>
+                </revdescription>
+            </revision>
+            <revision>
                 <date>2014-06-29</date>
                 <revdescription>
                     <itemizedlist spacing="compact">
@@ -136,6 +147,19 @@
     <xi:include href="ch_neutron_preface.xml"/>
     <xi:include href="ch_neutron_overview.xml"/>
     <xi:include href="ch_neutron_general_info.xml"/>
-    <xi:include href="ch_neutron_api_operations.xml"/>
-    <xi:include href="ch_neutron_api_extensions.xml"/>
+    <chapter xml:id="API_Operations">
+        <title>API operations and extensions</title>
+        <para>Provides virtual networking services among devices that are
+            managed by the OpenStack Compute service. The Networking API
+            v2.0 combines the API v1.1 functionality with some essential
+            Internet Protocol Address Management (IPAM)
+            functionality.</para>
+        <para>Enables users to associate IP address blocks and other
+            network configuration settings with a neutron network. You
+            can choose a specific IP address from the block or let the
+            service choose the first available IP address.</para>
+        <para>For information about Networking API operations, see <link
+            xlink:href="http://developer.openstack.org/api-ref-networking-v2.0.html"
+            ><citetitle>Networking API v2.0 (CURRENT)</citetitle></link>.</para>
+    </chapter>
 </book>
