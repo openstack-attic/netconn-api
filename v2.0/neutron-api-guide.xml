@@ -51,7 +51,7 @@
                         <listitem>
                             <para>Removed and replaced WADL references
                                 with links to <link
-                                   xlink:href="http://developer.openstack.org/api-ref-networking-v2.0.html"
+                                   xlink:href="http://developer.openstack.org/api-ref-networking-v2.html"
                                    ><citetitle>Networking API v2.0
                                    (CURRENT)</citetitle></link>.</para>
                         </listitem>
@@ -162,7 +162,7 @@
             can choose a specific IP address from the block or let the
             service choose the first available IP address.</para>
         <para>For information about Networking API operations, see <link
-            xlink:href="http://developer.openstack.org/api-ref-networking-v2.0.html"
+            xlink:href="http://developer.openstack.org/api-ref-networking-v2.html"
             ><citetitle>Networking API v2.0 (CURRENT)</citetitle></link>.</para>
     </chapter>
 </book>
