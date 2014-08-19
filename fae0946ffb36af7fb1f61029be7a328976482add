@@ -1,0 +1,9 @@
+Verified+2: Jenkins
+Code-Review+2: Anne Gentle <anne@openstack.org>
+Code-Review+2: Andreas Jaeger <jaegerandi@gmail.com>
+Workflow+1: Andreas Jaeger <jaegerandi@gmail.com>
+Submitted-by: Jenkins
+Submitted-at: Tue, 19 Aug 2014 19:32:41 +0000
+Reviewed-on: https://review.openstack.org/114304
+Project: openstack/netconn-api
+Branch: refs/heads/master
