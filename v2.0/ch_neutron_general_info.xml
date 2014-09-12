@@ -396,7 +396,8 @@ Accept: application/xml
             extension varies with deployments and the specific plug-in
             in use.</para>
         <para>For more information regarding specific extensions, see
-            <!-- <xref linkend="API_extensions"/>--></para>
+            <link xlink:href="http://developer.openstack.org/api-ref-networking-v2.html#netconn-v2-ext">Networking API v2.0 extensions</link>
+        </para>
     </section>
     <?hard-pagebreak?>
     <section xml:id="faults">
