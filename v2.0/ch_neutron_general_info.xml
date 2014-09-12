@@ -49,9 +49,8 @@
         for.</para>
     <section xml:id="Authentication-d1e444">
         <title>Authentication and authorization</title>
-        <para>The &APIv2; uses the <link
-                xlink:href="https://openstack.keystone.org">Keystone
-                Identity Service</link> as the default authentication
+        <para>The &APIv2; uses the Keystone
+                Identity Service as the default authentication
             service. When Keystone is enabled, users that submit
             requests to the OpenStack Networking service must provide
             an authentication token in <emphasis role="bold"
@@ -396,7 +395,8 @@ Accept: application/xml
             extension varies with deployments and the specific plug-in
             in use.</para>
         <para>For more information regarding specific extensions, see
-            <!-- <xref linkend="API_extensions"/>--></para>
+            <link xlink:href="http://developer.openstack.org/api-ref-networking-v2.html#netconn-v2-ext">Networking API v2.0 extensions</link>
+        </para>
     </section>
     <?hard-pagebreak?>
     <section xml:id="faults">
