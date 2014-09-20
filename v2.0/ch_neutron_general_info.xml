@@ -351,7 +351,7 @@ Accept: application/xml
             the sorting behavior so that users can expect the same
             behavior regardless of the particular plug-in that runs in
             the background.</para>
-        <para>Unfortunately OpenStack Networking does provide a
+        <para>Unfortunately OpenStack Networking does not provide a
             mechanism to tell users if specific plug-ins support or
             have enabled sorting.</para>
     </section>
